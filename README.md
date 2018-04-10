@@ -1,5 +1,7 @@
 # OpenSUTD
-**Important note: This is crowd-contributed stuff that's in its infancy and it'd be nice if this can be developed into a useful & valuable platform before it is shared around!**   
+> **Important note:** This is crowd-contributed stuff that's in its infancy and it'd be nice if this can be developed into a useful & valuable platform **before** it is shared around!  
+
+> **Important note 2:** The endgame for this project is simply to be **a platform to share information**. If you are the creator or owner of any of the materials on this repository and would not like it to be here, we will take it down.
 
 Knowledge should be available for everyone who wants to access it. MIT set up OpenCourseWare in the spirit of sharing knowledge with everybody - this is our take on it, and it'll be interesting to see what this evolves into!
 
