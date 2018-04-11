@@ -1,0 +1,3 @@
+[submodule "Projects/SUTDtoSimei_bot"]
+	path = Projects/SUTDtoSimei_bot
+	url = https://github.com/benghaun/SUTDtoSimei_bot
