@@ -1,8 +1,8 @@
 # OpenSUTD/Projects
 This is a crowd-sourced collection of useful projects, scripts, and tools from the SUTD community.
 ## List of Projects
-* **SUTD to Simei Bot**, benghaun
-`python` `telegram`
+* **SUTD to Simei Bot**, benghaun  
+`python` `telegram`  
 Telegram bot that helps you decide which bus stop to go to in order to take Bus 5/20 to Simei.
 
 ## Contributing a folder
