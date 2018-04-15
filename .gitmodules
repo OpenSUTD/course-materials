@@ -1,3 +1,6 @@
 [submodule "Projects/SUTDtoSimei_bot"]
 	path = Projects/SUTDtoSimei_bot
 	url = https://github.com/benghaun/SUTDtoSimei_bot
+[submodule "Projects/edimension-sso-login"]
+	path = Projects/edimension-sso-login
+	url = https://github.com/joel-huang/edimension-sso-login
