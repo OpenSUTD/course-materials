@@ -4,6 +4,9 @@ This is a crowd-sourced collection of useful projects, scripts, and tools from t
 * **SUTD to Simei Bot**, benghaun  
 `python` `telegram`  
 Telegram bot that helps you decide which bus stop to go to in order to take Bus 5/20 to Simei.
+* **Edimension Auto-login extension**, joel huang  
+`javascript` `chrome extension`  
+Hacked together a quick fix to log you in when you're logged out of eDimension. Assumes you have Chrome auto-fill, but doesn't store any of the plaintext (check the source before using).
 
 ## Contributing a folder
 ### 1. Uploading your folder

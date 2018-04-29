@@ -1,3 +1,12 @@
 [submodule "Projects/SUTDtoSimei_bot"]
 	path = Projects/SUTDtoSimei_bot
 	url = https://github.com/benghaun/SUTDtoSimei_bot
+[submodule "Projects/edimension-sso-login"]
+	path = Projects/edimension-sso-login
+	url = https://github.com/joel-huang/edimension-sso-login
+[submodule "Projects/sutd-timetable"]
+	path = Projects/sutd-timetable
+	url = https://github.com/randName/sutd-timetable
+[submodule "Projects/SUTD-data"]
+	path = Projects/SUTD-data
+	url = https://github.com/randName/SUTD-data
