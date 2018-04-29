@@ -32,7 +32,7 @@ Static data for SUTD.
 ### If you are a collaborator!
 #### 1. Uploading your folder
 ##### Your project is an existing Github repository
-* Create a new branch on the browser
+* Create a new branch on the browser `myprojectname`
 * `cd` to `opensutd` on your disk
 * `git pull` to get the latest version
 * `git checkout myprojectname` to switch to your branch
@@ -42,7 +42,7 @@ Static data for SUTD.
 * Submit pull request into `master`
 
 ##### Your project resides on a folder on your computer
-* Create a new branch on the browser
+* Create a new branch on the browser `myprojectname`
 * `cd` to `opensutd` on your disk
 * `git pull` to get the latest version
 * `git checkout myprojectname` to switch to your branch
