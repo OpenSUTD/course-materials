@@ -4,3 +4,6 @@
 [submodule "Projects/edimension-sso-login"]
 	path = Projects/edimension-sso-login
 	url = https://github.com/joel-huang/edimension-sso-login
+[submodule "Projects/sutd-timetable"]
+	path = Projects/sutd-timetable
+	url = https://github.com/randName/sutd-timetable
