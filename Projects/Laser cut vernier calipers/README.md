@@ -1,7 +1,7 @@
 # Laser cut calipers
 Laser cut vernier calipers. Achieves 0.1mm accuracy when tuned. Also includes depth rod and flush head.
 
-File was designed with 0.135mm of kerf in mind, using 3mm cast transparent acrylic from Dama. Joined with acrylic glue.
+File was designed with 0.135mm of kerf in mind, using 3mm cast transparent acrylic from Dama. Joined with acrylic glue. Kerf is currently 0.09mm in the file, which should be cut with vector cutting.
 
 Future improvements (pull requests welcome):
 * Assembly instructions/diagram
@@ -10,4 +10,4 @@ Future improvements (pull requests welcome):
 * Cut settings
 * CorelDRAW file
 
-[Fusion360 plans](https://a360.co/2Hzj3zL) (in case 0.135mm kerf is no longer accurate)
+Designed in Fusion360. 

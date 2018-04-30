@@ -18,11 +18,16 @@ A .ics generator for timetables.
 `raw`  
 Static data for SUTD.
 
+* **Laser cut calipers**, Isaac  
+`SVG` `hardware` `tools`
+Laser cut vernier calipers with depth rod. Beginner-intermediate project.
+
 ## Contributing a folder
+NB: If you are using windows ang git bash, open up a terminal (powershell or cmd is fine) in with admin access and use `git config core.longpaths true` to handle long file names.
 ### If you are not a collaborator yet!
 * If you are not a collaborator yet, it's a little more complicated:
    1. `fork` this repository by clicking the fork button above. This creates a copy of opensutd under your GitHub account
-   2. `git clone https://github.com/yourname/opensutd`
+   2. `git clone https://github.com/yourgithubid/opensutd`
    3. `cd opensutd`, add the original repository as remote by running `git remote add upstream https://github.com/joel-huang/opensutd`
    4. On your local copy, either (a) copy your project folder into `/Projects`, or (b) run `git submodule add https://github.com/your/repo` from the `/Projects` directory, depending on whether your project exists as a folder on your computer or another GitHub repository
    5. `git add -A`, `git commit -m "added myprojectname"`, `git push`
