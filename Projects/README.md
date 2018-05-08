@@ -18,6 +18,10 @@ A .ics generator for timetables.
 `raw`  
 Static data for SUTD.
 
+* **Jupyter Service**, Isaac  
+`python` `jupyter` `telegram`  
+Telegram bot that sends you a link to a jupyter notebook once you power your raspberry pi up
+
 * **Laser cut calipers**, Isaac  
 `SVG` `hardware` `tools`
 Laser cut vernier calipers with depth rod. Beginner-intermediate project.

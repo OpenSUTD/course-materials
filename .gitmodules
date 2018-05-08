@@ -10,3 +10,6 @@
 [submodule "Projects/SUTD-data"]
 	path = Projects/SUTD-data
 	url = https://github.com/randName/SUTD-data
+[submodule "Projects/jupyter_sendme"]
+	path = Projects/jupyter_sendme
+	url = https://github.com/isaacngym/jupyter_sendme
