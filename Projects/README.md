@@ -47,7 +47,7 @@ NB: If you are using windows ang git bash, open up a terminal (powershell or cmd
 * `git checkout myprojectname` to switch to your branch
 * `cd Projects`
 * `git submodule add https://github.com/you/repo`, replace with your repo
-* `git add -A`, `git commit -m "added myprojectname"`, `git push myprojectname`
+* `git add -A`, `git commit -m "added myprojectname"`, `git push`
 * Submit pull request into `master`
 
 ##### Your project resides on a folder on your computer
@@ -56,7 +56,7 @@ NB: If you are using windows ang git bash, open up a terminal (powershell or cmd
 * `git pull` to get the latest version
 * `git checkout myprojectname` to switch to your branch
 * Copypasta your folder into `/Projects`
-* `git add -A`, `git commit -m "added myprojectname"`, `git push myprojectname`
+* `git add -A`, `git commit -m "added myprojectname"`, `git push`
 * Submit pull request into `master`
 
 #### 2. Documentation
