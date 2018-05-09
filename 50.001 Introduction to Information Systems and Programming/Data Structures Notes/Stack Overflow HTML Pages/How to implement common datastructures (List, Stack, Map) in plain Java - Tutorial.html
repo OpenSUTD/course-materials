@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)http://www.vogella.com/tutorials/JavaDatastructures/article.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.5">
+<meta name="author" content="Lars Vogel (c) 2008, 2016 vogella GmbH">
+<title>How to implement common datastructures (List, Stack, Map) in plain Java - Tutorial</title>
+<script src="https://securepubads.g.doubleclick.net/gpt/pubads_impl_rendering_167.js"></script><script src="https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&amp;correlator=2276990237781949&amp;output=json_html&amp;callback=googletag.impl.pubads.callbackProxy1&amp;impl=fifs&amp;json_a=1&amp;eid=108809107%2C21060361%2C21061149&amp;sc=0&amp;sfv=1-0-13&amp;iu_parts=6839%2Clqm.javaeclipseandroid.site%2Cright%2Cbeforetoc%2Cinbetween01%2Cinbetween02%2Cinbetween03%2Cafterresources&amp;enc_prev_ius=%2F0%2F1%2F2%2C%2F0%2F1%2F3%2C%2F0%2F1%2F4%2C%2F0%2F1%2F5%2C%2F0%2F1%2F6%2C%2F0%2F1%2F7&amp;prev_iu_szs=160x600%2C728x90%2C728x90%2C728x90%2C728x90%2C728x90&amp;prev_scp=left%3D%7Cbeforetoc%3D%7Cinbetween01%3D%7Cinbetween02%3D%7Cinbetween03%3D%7Cafterresources%3D&amp;cookie_enabled=1&amp;abxe=1&amp;lmt=1510294907&amp;dt=1510294907757&amp;frm=20&amp;biw=1519&amp;bih=694&amp;oid=3&amp;adxs=0%2C-9%2C0%2C-9%2C-9%2C0&amp;adys=0%2C-9%2C0%2C-9%2C-9%2C0&amp;adks=2919474546%2C1761957546%2C481766228%2C2766903734%2C469986755%2C3646098570&amp;gut=v2&amp;ifi=1&amp;u_tz=480&amp;u_his=3&amp;u_h=864&amp;u_w=1536&amp;u_ah=834&amp;u_aw=1536&amp;u_cd=24&amp;u_nplug=4&amp;u_nmime=5&amp;u_sd=1.25&amp;flash=0&amp;url=http%3A%2F%2Fwww.vogella.com%2Ftutorials%2FJavaDatastructures%2Farticle.html&amp;ref=https%3A%2F%2Fwww.google.com.sg%2F&amp;dssz=23&amp;icsg=32938&amp;std=0&amp;vrg=167&amp;vis=1&amp;ga_vid=1915827680.1510294908&amp;ga_sid=1510294908&amp;ga_hid=1898063803&amp;ga_fc=true"></script><script async="" type="text/javascript" src="./How to implement common datastructures (List, Stack, Map) in plain Java - Tutorial_files/gpt.js.download"></script><script type="text/javascript" async="" src="./How to implement common datastructures (List, Stack, Map) in plain Java - Tutorial_files/ga.js.download"></script><script type="text/javascript">window.mod_pagespeed_start = Number(new Date());</script><link rel="stylesheet" href="./How to implement common datastructures (List, Stack, Map) in plain Java - Tutorial_files/css">
+<link rel="stylesheet" href="./How to implement common datastructures (List, Stack, Map) in plain Java - Tutorial_files/A.asciidoctor.css.pagespeed.cf.pHeShcvYJ5.css">
+<link rel="stylesheet" href="./How to implement common datastructures (List, Stack, Map) in plain Java - Tutorial_files/font-awesome.min.css">
+<link rel="stylesheet" href="./How to implement common datastructures (List, Stack, Map) in plain Java - Tutorial_files/A.tutorials,,_JavaDatastructures,,_coderay-asciidoct.css">
+
+
+
+<!-- Google analytics -->
+
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-3967758-1']);_gaq.push(['_setDomainName','vogella.com']);_gaq.push(['_setAllowLinker',true]);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);})();</script>
+
+<!-- Lake Quincy Ads Responsive -->
+<script type="text/javascript">var googletag=googletag||{};googletag.cmd=googletag.cmd||[];(function(){var gads=document.createElement('script');gads.async=true;gads.type='text/javascript';var useSSL='https:'==document.location.protocol;gads.src=(useSSL?'https:':'http:')+'//www.googletagservices.com/tag/js/gpt.js';var node=document.getElementsByTagName('script')[0];node.parentNode.insertBefore(gads,node);})();</script>
+
+<script type="text/javascript">googletag.cmd.push(function(){var mapping=googletag.sizeMapping().addSize([0,0],[300,250]).addSize([750,250],[300,250]).addSize([1170,200],[728,90]).build();googletag.defineSlot('/6839/lqm.javaeclipseandroid.site/right',[160,600],'ad-left').addService(googletag.pubads()).setTargeting('left');googletag.defineSlot('/6839/lqm.javaeclipseandroid.site/beforetoc',[[300,250],[728,90]],'ad-beforeTOC').defineSizeMapping(mapping).addService(googletag.pubads()).setTargeting('beforetoc');googletag.defineSlot('/6839/lqm.javaeclipseandroid.site/inbetween01',[[300,250],[728,90]],'ad-inBetween01').defineSizeMapping(mapping).addService(googletag.pubads()).setTargeting('inbetween01');googletag.defineSlot('/6839/lqm.javaeclipseandroid.site/inbetween02',[[300,250],[728,90]],'ad-inBetween02').defineSizeMapping(mapping).addService(googletag.pubads()).setTargeting('inbetween02');googletag.defineSlot('/6839/lqm.javaeclipseandroid.site/inbetween03',[[300,250],[728,90]],'ad-inBetween03').defineSizeMapping(mapping).addService(googletag.pubads()).setTargeting('inbetween03');googletag.defineSlot('/6839/lqm.javaeclipseandroid.site/afterresources',[[300,250],[728,90]],'ad-afterResources').defineSizeMapping(mapping).addService(googletag.pubads()).setTargeting('afterresources');googletag.pubads().enableSingleRequest();googletag.enableServices();});</script>
+
+<!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+<script type="text/javascript">window.cookieconsent_options={"message":"We use cookies to personalise ads and to analyse our traffic. We also share information about your use of our site with our advertising and analytics partners. By using this site you agree to our cookie use.","dismiss":"Got it!","learnMore":"See details","link":"http://www.vogella.com/legal.html","theme":"dark-bottom"};</script>
+
+<script type="text/javascript" src="./How to implement common datastructures (List, Stack, Map) in plain Java - Tutorial_files/cookieconsent.min.js.download"></script>
+<!-- End Cookie Consent plugin -->
+
+<!-- Share on Facebook -->
+<script language="javascript">function fbshareCurrentPage(){window.open("https://www.facebook.com/sharer/sharer.php?u="+escape(window.location.href),'','menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;}</script>
+
+<!-- Share on Twitter -->
+<script>function tweetCurrentPage(){window.open("https://twitter.com/share?url="+escape(window.location.href)+"&text="+document.title,'','menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;}</script>
+
+<script>function openCloseNav(){if(document.getElementById("mobileTopnav").style.width==="150px"){document.getElementById("mobileTopnav").style.width="0";document.body.style.marginLeft="8px";}else{document.getElementById("mobileTopnav").style.width="150px";document.body.style.marginLeft="160px";}}</script>
+
+<link rel="preload" href="https://adservice.google.com/adsid/integrator.js?domain=www.vogella.com" as="script"><script type="text/javascript" src="https://adservice.google.com/adsid/integrator.js?domain=www.vogella.com"></script><script src="https://securepubads.g.doubleclick.net/gpt/pubads_impl_167.js" async=""></script><link rel="prefetch" href="http://tpc.googlesyndication.com/safeframe/1-0-13/html/container.html"><link rel="prefetch" href="https://securepubads.g.doubleclick.net/static/3p_cookie.html"><style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style><link rel="stylesheet" type="text/css" href="./How to implement common datastructures (List, Stack, Map) in plain Java - Tutorial_files/dark-bottom.css"></head><body class="article"><div class="cc_banner-wrapper "><div class="cc_banner cc_container cc_container--open"><a href="http://www.vogella.com/tutorials/JavaDatastructures/article.html#null" data-cc-event="click:dismiss" target="_blank" class="cc_btn cc_btn_accept_all">Got it!</a><p class="cc_message">We use cookies to personalise ads and to analyse our traffic. We also share information about your use of our site with our advertising and analytics partners. By using this site you agree to our cookie use. <a data-cc-if="options.link" target="_self" class="cc_more_info" href="http://www.vogella.com/legal.html">See details</a></p><a class="cc_logo" target="_blank" href="http://silktide.com/cookieconsent" data-external="true">Cookie Consent plugin for the EU cookie law</a></div></div><div id="mobileHeaderpart">
+    <span onclick="openCloseNav()"><img src="./How to implement common datastructures (List, Stack, Map) in plain Java - Tutorial_files/burger.svg" alt=""> </span>
+    <div id="mobileLogo">
+        <a title="vogella.com" href="http://www.vogella.com/">
+            <img src="./How to implement common datastructures (List, Stack, Map) in plain Java - Tutorial_files/index_logo.svg" alt="vogella.com">
+        </a>
+    </div>
+</div>
+
+<div id="mobileTopnav" class="sidenav">
+    <a href="http://www.vogella.com/">Home</a>
+    <a class="currentpage" href="http://www.vogella.com/tutorials/">Tutorials</a>
+    <a href="http://www.vogella.com/training/">Training</a>
+    <a href="http://www.vogella.com/consulting/">Consulting</a>
+    <a href="http://www.vogella.com/products/">Products</a>
+    <a href="http://www.vogella.com/books/">Books</a>
+    <a href="http://www.vogella.com/company/">Company</a>
+    <a href="http://www.vogella.com/support.html">Donate</a>
+    <a style="margin-bottom:60px" href="http://www.vogella.com/contact.html">Contact us</a></div>
+
+<div id="headerpart">
+
+	<div id="logo">
+		<a title="vogella.com" href="http://www.vogella.com/">
+			<img src="./How to implement common datastructures (List, Stack, Map) in plain Java - Tutorial_files/xindex_logo.png.pagespeed.ic.lSTHBCgULt.webp" alt="vogella.com">
+		</a>
+	</div> <!-- logo -->
+
+	<div id="topnav">
+		<ul id="home" class="topnav">
+			<li id="home-icon"><a href="http://www.vogella.com/"></a></li>
+			<li class="currentpage"> <a href="http://www.vogella.com/tutorials/">Tutorials</a>
+				<ul>
+					<li><a href="http://www.vogella.com/tutorials/android.html">Android Programming</a></li>
+					<li><a href="http://www.vogella.com/tutorials/eclipseide.html">Eclipse IDE</a></li>
+					<li><a href="http://www.vogella.com/tutorials/eclipse.html">Eclipse RCP/Plug-ins</a></li>
+					<li><a href="http://www.vogella.com/tutorials/web.html">Web</a></li>
+					<li><a href="http://www.vogella.com/tutorials/java.html">Java</a></li>
+					<li><a href="http://www.vogella.com/tutorials/technology.html">Technology</a></li>
+					<li><a href="http://www.vogella.com/tutorials/google.html">Google</a></li>
+					<li><a href="http://www.vogella.com/tutorials/algorithms.html">Algorithms</a></li>
+					<li><a href="http://www.vogella.com/tutorials/designpattern.html">Design Pattern</a></li>
+					<li><a href="http://www.vogella.com/code/index.html">Source Code</a></li>
+				</ul>
+			</li>
+			<li><a href="http://www.vogella.com/training/">Training</a>
+				<ul>
+					<li><a href="http://www.vogella.com/training/eclipse/index.html">Eclipse Development Training</a>
+						<ul>
+							<li><a href="http://www.vogella.com/training/eclipse/eclipsercp.html">Eclipse RCP</a></li>
+							<li><a href="http://www.vogella.com/training/eclipse/tycho.html">Testing and building Eclipse RCP</a></li>
+							<li><a href="http://www.vogella.com/training/eclipse/eclipsercpmigration.html">Eclipse RCP Migration</a></li>
+							<li><a href="http://www.vogella.com/training/eclipse/eclipseplugin.html">Eclipse IDE Plug-in Development</a></li>
+							<li><a href="http://www.vogella.com/training/eclipse/rcpjavaeespring.html">Eclipse RCP with Java EE and Spring</a></li>
+							<li><a href="http://www.vogella.com/training/eclipse/eclipsenattable.html">NatTable</a></li>
+						</ul>
+					</li>
+					<li><a href="http://www.vogella.com/training/android/index.html">Android Development Training</a>
+						<ul>
+							<li><a href="http://www.vogella.com/training/android/androidprofessional.html">Android Professional</a></li>
+							<li><a href="http://www.vogella.com/training/android/androidtesting.html">Android Testing and Appl. Optimization</a></li>
+							<li><a href="http://www.vogella.com/training/android/androidexpert.html">Android Expert</a></li>
+						</ul>
+					</li>
+					<li><a href="http://www.vogella.com/training/git/index.html">Git and Gerrit Training</a></li>
+					<li><a href="http://www.vogella.com/training/programming/index.html">Programming Training</a>
+						<ul>
+							<li><a href="http://www.vogella.com/training/testbuild/javatesting.html">Java test technologies</a></li>
+							<li><a href="http://www.vogella.com/training/programming/java.html">Java</a></li>
+							<li><a href="http://www.vogella.com/training/docker/index.html">Docker Training</a></li>
+							<li><a href="http://www.vogella.com/training/testbuild/maven.html">Apache Maven</a></li>
+							<li><a href="http://www.vogella.com/training/testbuild/gradle.html">Gradle</a></li>
+							<li><a href="http://www.vogella.com/training/programming/groovy.html">Groovy</a></li>
+
+						</ul>
+					</li>
+				</ul>
+			</li>
+
+			<li><a href="http://www.vogella.com/consulting/">Consulting</a></li>
+
+			<li><a href="http://www.vogella.com/downloads/">Downloads</a>
+					<ul>
+					<li><a href="http://www.vogella.com/files/eclipse_cheatsheet.pdf">Eclipse Cheatsheet</a></li>
+					</ul>
+			</li>
+			<li><a href="http://www.vogella.com/books/">Books</a>
+					<ul>
+						<li><a href="http://www.vogella.com/books/eclipsercp.html">Eclipse RCP</a></li>
+						<li><a href="http://www.vogella.com/books/eclipseide.html">Eclipse IDE</a></li>
+						<li><a href="http://www.vogella.com/books/eclipsecontribution.html">Contributing to the Eclipse Project</a></li>
+						<li><a href="http://www.vogella.com/books/git.html">Git</a></li>
+					</ul>
+			</li>
+			<li><a href="http://www.vogella.com/company/">Company</a>
+					<ul>
+						<li><a href="http://www.vogella.com/aboutvogella.html">About us</a></li>
+						<li><a href="http://www.vogella.com/people/index.html">People at vogella</a></li>
+						<li><a href="http://www.vogella.com/customers.html" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Customers&#39;, &#39;clicked&#39;, &#39;Header&#39;]);">Reference Customers</a></li>
+						<li><a href="http://blog.vogella.com/" data-external="true">Blog</a></li>
+						<li><a href="http://www.vogella.com/jobs/">Jobs</a></li>
+						<li><a href="http://www.vogella.com/faq.html">FAQ</a></li>
+						<li><a href="http://www.vogella.com/legal.html">Legal</a></li>
+					</ul>
+			</li>
+
+			<li><a href="http://www.vogella.com/support.html">Donate</a></li>
+			<li><a href="http://www.vogella.com/contact.html">Contact us</a></li>
+		</ul>
+	</div><!-- topnav -->
+
+	<div id="searchfixed">
+		<form action="http://www.vogella.com/search.html" id="cse-search-box">
+			<div id="searchwrapper">
+
+				<input type="hidden" name="cx" value="partner-pub-3851443674951530:3991491935">
+				<input type="hidden" name="cof" value="FORID:10">
+				<input type="hidden" name="ie" value="UTF-8">
+				<input type="text" placeholder="Search" id="search_field" name="q" size="55">
+				<input type="image" src="./How to implement common datastructures (List, Stack, Map) in plain Java - Tutorial_files/xsrch.png.pagespeed.ic.5JIHxb_e6N.webp" id="search_button" name="sa" alt="Search">
+			</div>
+		</form>
+	</div> <!-- searchfixed -->
+
+</div> <!-- headerpart -->
+
+<div id="leftcol">
+
+	<br>
+	<br>
+
+	<script async="async" src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<!-- LeftColumn -->
+	<ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-3851443674951530" data-ad-slot="6294971031"></ins>
+	<script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<!-- Responsive Lake Quincy Ads -->
+	<div id="ad-left">
+		<script type="text/javascript">googletag.cmd.push(function(){googletag.display('ad-left');});</script>
+	<div id="google_ads_iframe_/6839/lqm.javaeclipseandroid.site/right_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/6839/lqm.javaeclipseandroid.site/right_0" title="3rd party ad content" name="google_ads_iframe_/6839/lqm.javaeclipseandroid.site/right_0" width="160" height="600" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" src="./How to implement common datastructures (List, Stack, Map) in plain Java - Tutorial_files/saved_resource.html"></iframe></div></div>
+</div> <!-- leftcolumn -->
+
+<div id="rightcol">
+	<br>
+	<br>
+	<a class="hiring_ads" href="http://www.vogella.com/jobs/" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;vogella Services&#39;, &#39;clicked&#39;, &#39;hiring&#39;]);">NOW Hiring</a>
+
+	<br>
+	<br>
+	<!-- vogellas own advertising for training and books -->
+	<div class="vogella_ads">
+		<h1>Quick links</h1>
+		<ul>
+			<li><a href="http://www.vogella.com/training/eclipse/eclipsercp.html" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;vogella Services&#39;, &#39;clicked&#39;, &#39;next RCP training&#39;]);">09 OCT - RCP Training</a></li>
+			<li><a href="http://www.vogella.com/training/android/androidprofessional.html" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;vogella Services&#39;, &#39;clicked&#39;, &#39;next Android training&#39;]);">23 OCT - Android Development</a></li>
+			<li><a href="http://www.vogella.com/training/" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;vogella Services&#39;, &#39;clicked&#39;, &#39;training&#39;]);">vogella Training</a></li>
+			<li><a href="http://www.vogella.com/books/index.html" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;vogella Services&#39;, &#39;clicked&#39;, &#39;books&#39;]);">vogella Books</a></li>
+		</ul>
+		<h1>Share</h1>
+		<div class="social_media_icons">
+ 			<a href="javascript:tweetCurrentPage()" data-external="true">
+				<img src="data:image/webp;base64,UklGRigCAABXRUJQVlA4TBwCAAAvP8APEE/koI0kRypv4I/jSH7YPRAO2kYSnHH2yrD8obwMpG2Tzr/Tiziitm3k9HlEjsTxO9oK27ZBOubd0Xj+d/e1z9f/fvr6Bn3mjW9r1vRJY04wQjAK5TVnBAcJcLRQhBAQxsvrB9EiwniAC4T5I4xLgPFQChDBCDeyBAEiQGHxgCBACSDCOAK5mwSEljM3jvMtiPFoCSBOpIQAEK4+H585I0C2bdumHV1zxrZtq5ybclVs27adnPnX8T5rn8e8RPQ/bQ6XH5YFPQ6bwwdLfQ4XLHb7YXEA7yFRjVMH9xfLv9PwIguSvGiYKNrky8vPeIiommyDZH4kAsqqK74xMnTInTgIUgwOR0GRfUbFaSFiYL6Kj3NJeHuMiu26ppEPMN/Ap51ivJVxT4XBh14Iqvl815mA141U94dDkMqXR1/i8fIXVfchyBb56qynLAJPf6jag7CKbx2Ph2oL26jahrSb0jXIyusT+imchqyWt+tXlHVBlk55M4TzFOdCWGJQuAfxTwo7IP9hUJQPDcWzBs0vQENJ67dxg6YroSH9ioJpaPlK85c50BI2SNOfoCksdE1zo2HQlvl39YrqlVjojP5nULWSDI3h9VtUziRCX27rNpX37RHQUv6/vW/2kCY2SqGreIZm9loioTGvc59vX07UREBzWMHHgaW985uT3ZXh7xXRePcIwuKABxY7HT5Y6rXbHO4ALAs47TY=" alt="Tweet" title="Tweet">
+			</a>
+
+			<a href="javascript:fbshareCurrentPage()" data-external="true">
+				<img src="data:image/webp;base64,UklGRhQCAABXRUJQVlA4TAgCAAAvf8AfEH/iJpIkR+qqEW8p7yk9fy7vnmDhuG0kRypV9zR2XzapzT8Zd6YdRJKkSFV1DP/e3+grOHDUSJIjRyN7HQP73wN2ZAMUhcklEX7n7/he3/7Pv8718z/NyfVPO4cM3tDb0YXeaH+nnznFiepsJv28mu0QKdaoADqGegymBqIAEEZFOhPUmeeyMmQEwQhA63Psdhp1ZmqgA+gx0ArQqozWjMFjnkwNdhrdv6nB1ACE1Zl7jQiCKgQKqIhWAAgEACzbtk1HL7aTHdtOyrFRPP3vTvGOcd/+KkX0n5HbNo6oKdvP+wbjNbszFAVd8YjPYbzL4k2ANb/tbQZAXPB1eEGdz7AnwJ3DCfI8IZAXjoK8GH6nVO7ezDbHR/kykFQabUQlHpW7FxFi6YtnEWbVlQi1xkm4tZ+EW+1BuBUPwi01F3I9IVc4s7sWcrkHdkMhl9yyqwm7S3pLdllh1xT11uNOJZOC6esrHy3qIOlWdV6lwNJUdYKnleJdnmNgr6YOou6V5hpMPSsZgym18w6YUlMBU2oyYEoN01ehCEx9wxFd7ehN6A3otejl2e3AbkJvQK9FL89uB3YTegN6LXp5djuwm9Ab0GvRy8PE8f93///vm0ccJkivWAQmSK+QDyZIL5cDJkgvu+GH/rRyG4YtCO3pFLAar8PPy2013uXwhGN8YiGX/e0e" alt="Share on Facebook" title="Share on Facebook">
+			</a>
+		</div>
+	</div>
+</div> <!--rightcol-->
+
+
+<div id="header">
+<h1>How to implement common datastructures (List, Stack, Map) in plain Java - Tutorial</h1>
+<div class="details">
+<span id="author" class="author">Lars Vogel (c) 2008, 2016 vogella GmbH</span><br>
+<span id="revnumber">version 1.3,</span>
+<span id="revdate">26.09.2016</span>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="http://www.vogella.com/tutorials/JavaDatastructures/article.html#datastructures">1. Datastructures</a></li>
+<li><a href="http://www.vogella.com/tutorials/JavaDatastructures/article.html#list">2. List</a></li>
+<li><a href="http://www.vogella.com/tutorials/JavaDatastructures/article.html#map">3. Map - Associative array</a></li>
+<li><a href="http://www.vogella.com/tutorials/JavaDatastructures/article.html#stack">4. Stack</a></li>
+<li><a href="http://www.vogella.com/tutorials/JavaDatastructures/article.html#about-this-website">5. About this website</a></li>
+<li><a href="http://www.vogella.com/tutorials/JavaDatastructures/article.html#resources">6. Links and Literature</a></li>
+<li><a href="http://www.vogella.com/tutorials/JavaDatastructures/article.html#copyright-and-license">Appendix A: Copyright and License</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="quoteblock abstract">
+<blockquote>
+List, Map and Stack implementations in Java.
+This article describes how to implement data structures (List Stack, Map) in Java.
+The implementations in this articles are for demonstration and education purpose.
+They do not try to be as efficient as the standard libraries and they are not intended to be an replacement for the standard libraries.
+</blockquote>
+</div>
+<script async="async" src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Responsive - After Table of Content -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3851443674951530" data-ad-slot="4470606330" data-ad-format="auto"></ins>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+</div>
+</div>
+<div class="sect1">
+<h2 id="datastructures"><a class="link" href="http://www.vogella.com/tutorials/JavaDatastructures/article.html#datastructures">1. Datastructures</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Every programmer requires certain data structures for saving
+several elements. Usually every programming languages provides Arrays.
+These are fixed sized storage elements where every element can be
+addressed via an index.
+The programmer usually requires a higher level of abstraction,
+e.g. Lists,  Maps, Stacks, etc.
+The Java programming language provides these elements very
+efficiently implemented in libraries. This article tries to describe
+how such elements could be implemented directly with Java constructs.
+The implementations in this articles are for demonstration and education purpose.
+They do not try to be as efficient as the standard libraries and they
+are not intended to be an replacement for the standard libraries.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="list"><a class="link" href="http://www.vogella.com/tutorials/JavaDatastructures/article.html#list">2. List</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>See <a href="http://www.vogella.com/tutorials/JavaDatastructureList/article.html">Implementing a List data structure in Java</a>.</p>
+</div>
+<!-- Non responsive Lake Quincy Ads
+<div data-type="ad" data-publisher="lqm.javaeclipseandroid.site" data-zone="inBetween01" data-format="728x90">
+</div> -->
+
+<!-- Responsive Lake Quincy Ads -->
+<div id="ad-inBetween01">
+	<script type="text/javascript">googletag.cmd.push(function(){googletag.display('ad-inBetween01');});</script>
+<div id="google_ads_iframe_/6839/lqm.javaeclipseandroid.site/inbetween01_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/6839/lqm.javaeclipseandroid.site/inbetween01_0" title="3rd party ad content" name="google_ads_iframe_/6839/lqm.javaeclipseandroid.site/inbetween01_0" width="728" height="90" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" src="./How to implement common datastructures (List, Stack, Map) in plain Java - Tutorial_files/saved_resource(1).html"></iframe></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="map"><a class="link" href="http://www.vogella.com/tutorials/JavaDatastructures/article.html#map">3. Map - Associative array</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following example is contained in the project "de.vogella.datastructures.map".
+A map represents a data structure in which collections of
+unique key and collections of values are stored where each key is
+associated with one value. The operation of finding the value is
+called lookup.
+A standard array is a special case of a map where the key are
+the index number of the elements pointing to the object in the array.</p>
+</div>
+<div class="paragraph">
+<p>The standard Java interfaces for maps is import java.util.Map.
+Standard implementations of Maps are for example java.util.HashMap or
+import java.util.concurrent.ConcurrentHashMap</p>
+</div>
+<div class="paragraph">
+<p>A simple map with the option to add, get, remove and get the
+size of the Map could be implemented like the following. Please note
+that this map is not very fast for large sets.
+This would be an entry.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">package</span> <span class="namespace">de.vogella.datastructures.map</span>;
+
+<span class="directive">public</span> <span class="type">class</span> <span class="class">MyEntry</span>&lt;K, V&gt; {
+    <span class="directive">private</span> <span class="directive">final</span> K key;
+    <span class="directive">private</span> V value;
+
+    <span class="directive">public</span> MyEntry(K key, V value) {
+        <span class="local-variable">this</span>.key = key;
+        <span class="local-variable">this</span>.value = value;
+    }
+
+    <span class="directive">public</span> K getKey() {
+        <span class="keyword">return</span> key;
+    }
+
+    <span class="directive">public</span> V getValue() {
+        <span class="keyword">return</span> value;
+    }
+
+    <span class="directive">public</span> <span class="type">void</span> setValue(V value) {
+        <span class="local-variable">this</span>.value = value;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is the map implementation based on MyEntry.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">package</span> <span class="namespace">de.vogella.datastructures.map</span>;
+
+<span class="keyword">import</span> <span class="include">java.util.Arrays</span>;
+<span class="keyword">import</span> <span class="include">java.util.HashSet</span>;
+<span class="keyword">import</span> <span class="include">java.util.Set</span>;
+
+<span class="directive">public</span> <span class="type">class</span> <span class="class">MyMap</span>&lt;K, V&gt; {
+    <span class="directive">private</span> <span class="type">int</span> size;
+    <span class="directive">private</span> <span class="type">int</span> DEFAULT_CAPACITY = <span class="integer">16</span>;
+    <span class="annotation">@SuppressWarnings</span>(<span class="string"><span class="delimiter">"</span><span class="content">unchecked</span><span class="delimiter">"</span></span>)
+    <span class="directive">private</span> MyEntry&lt;K, V&gt;<span class="type">[]</span> values = <span class="keyword">new</span> MyEntry[DEFAULT_CAPACITY];
+
+
+    <span class="directive">public</span> V get(K key) {
+        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; size; i++) {
+            <span class="keyword">if</span> (values[i] != <span class="predefined-constant">null</span>) {
+                <span class="keyword">if</span> (values[i].getKey().equals(key)) {
+                    <span class="keyword">return</span> values[i].getValue();
+                }
+            }
+        }
+        <span class="keyword">return</span> <span class="predefined-constant">null</span>;
+    }
+
+    <span class="directive">public</span> <span class="type">void</span> put(K key, V value) {
+        <span class="type">boolean</span> insert = <span class="predefined-constant">true</span>;
+        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; size; i++) {
+            <span class="keyword">if</span> (values[i].getKey().equals(key)) {
+                values[i].setValue(value);
+                insert = <span class="predefined-constant">false</span>;
+            }
+        }
+        <span class="keyword">if</span> (insert) {
+            ensureCapa();
+            values[size++] = <span class="keyword">new</span> MyEntry&lt;K, V&gt;(key, value);
+        }
+    }
+
+    <span class="directive">private</span> <span class="type">void</span> ensureCapa() {
+        <span class="keyword">if</span> (size == values.length) {
+            <span class="type">int</span> newSize = values.length * <span class="integer">2</span>;
+            values = <span class="predefined-type">Arrays</span>.copyOf(values, newSize);
+        }
+    }
+
+    <span class="directive">public</span> <span class="type">int</span> size() {
+        <span class="keyword">return</span> size;
+    }
+
+    <span class="directive">public</span> <span class="type">void</span> remove(K key) {
+        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; size; i++) {
+            <span class="keyword">if</span> (values[i].getKey().equals(key)) {
+                values[i] = <span class="predefined-constant">null</span>;
+                size--;
+                condenseArray(i);
+            }
+        }
+    }
+
+    <span class="directive">private</span> <span class="type">void</span> condenseArray(<span class="type">int</span> start) {
+        <span class="keyword">for</span> (<span class="type">int</span> i = start; i &lt; size; i++) {
+            values[i] = values[i + <span class="integer">1</span>];
+        }
+    }
+
+    <span class="directive">public</span> <span class="predefined-type">Set</span>&lt;K&gt; keySet() {
+        <span class="predefined-type">Set</span>&lt;K&gt; set = <span class="keyword">new</span> <span class="predefined-type">HashSet</span>&lt;K&gt;();
+        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; size; i++) {
+            set.add(values[i].getKey());
+        }
+        <span class="keyword">return</span> set;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And a small test.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">package</span> <span class="namespace">de.vogella.datastructures.map</span>;
+
+<span class="keyword">import</span> <span class="include">static</span> <span class="include">org.junit.Assert.assertEquals</span>;
+
+<span class="keyword">import</span> <span class="include">java.util.HashMap</span>;
+<span class="keyword">import</span> <span class="include">java.util.Map</span>;
+
+<span class="keyword">import</span> <span class="include">org.junit.Before</span>;
+<span class="keyword">import</span> <span class="include">org.junit.Test</span>;
+
+<span class="directive">public</span> <span class="type">class</span> <span class="class">MyMapTest</span> {
+
+    <span class="annotation">@Before</span>
+    <span class="directive">public</span> <span class="type">void</span> setUp() <span class="directive">throws</span> <span class="exception">Exception</span> {
+    }
+
+    <span class="annotation">@Test</span>
+    <span class="directive">public</span> <span class="type">void</span> testStandardMap() {
+        <span class="comment">// Standard Map</span>
+        <span class="predefined-type">Map</span>&lt;<span class="predefined-type">String</span>, <span class="predefined-type">Integer</span>&gt; map = <span class="keyword">new</span> <span class="predefined-type">HashMap</span>&lt;<span class="predefined-type">String</span>, <span class="predefined-type">Integer</span>&gt;();
+        map.put(<span class="string"><span class="delimiter">"</span><span class="content">Lars</span><span class="delimiter">"</span></span>, <span class="integer">1</span>);
+        map.put(<span class="string"><span class="delimiter">"</span><span class="content">Lars</span><span class="delimiter">"</span></span>, <span class="integer">2</span>);
+        map.put(<span class="string"><span class="delimiter">"</span><span class="content">Lars</span><span class="delimiter">"</span></span>, <span class="integer">1</span>);
+        assertEquals(map.get(<span class="string"><span class="delimiter">"</span><span class="content">Lars</span><span class="delimiter">"</span></span>), <span class="integer">1</span>);
+
+        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; <span class="integer">100</span>; i++) {
+            map.put(<span class="predefined-type">String</span>.valueOf(i), i);
+        }
+        assertEquals(map.size(), <span class="integer">101</span>);
+
+        assertEquals(map.get(<span class="string"><span class="delimiter">"</span><span class="content">51</span><span class="delimiter">"</span></span>), <span class="integer">51</span>);
+        map.keySet();
+    }
+
+    <span class="annotation">@Test</span>
+    <span class="directive">public</span> <span class="type">void</span> testMapMap() {
+
+        <span class="comment">// MyMap</span>
+        MyMap&lt;<span class="predefined-type">String</span>, <span class="predefined-type">Integer</span>&gt; map = <span class="keyword">new</span> MyMap&lt;<span class="predefined-type">String</span>, <span class="predefined-type">Integer</span>&gt;();
+        map.put(<span class="string"><span class="delimiter">"</span><span class="content">Lars</span><span class="delimiter">"</span></span>, <span class="integer">1</span>);
+        map.put(<span class="string"><span class="delimiter">"</span><span class="content">Lars</span><span class="delimiter">"</span></span>, <span class="integer">2</span>);
+        map.put(<span class="string"><span class="delimiter">"</span><span class="content">Lars</span><span class="delimiter">"</span></span>, <span class="integer">1</span>);
+        assertEquals(map.get(<span class="string"><span class="delimiter">"</span><span class="content">Lars</span><span class="delimiter">"</span></span>), <span class="integer">1</span>);
+        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; <span class="integer">100</span>; i++) {
+            map.put(<span class="predefined-type">String</span>.valueOf(i), i);
+        }
+        assertEquals(map.size(), <span class="integer">101</span>);
+        assertEquals(map.get(<span class="string"><span class="delimiter">"</span><span class="content">51</span><span class="delimiter">"</span></span>), <span class="integer">51</span>);
+
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="stack"><a class="link" href="http://www.vogella.com/tutorials/JavaDatastructures/article.html#stack">4. Stack</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following example is contain in the project
+"de.vogella.datastructures.stack".
+The
+stack offers to put new object on the stack ( method push())
+and to
+get objects from the stack (method pop()). A stack returns the
+object
+according to last-in-first-out (LIFO), e.g. the object which was
+placed latest on the stack is returned first. Java provides a
+standard
+implementation of a stack in java.util.Stack.
+The following are two implementations of stacks, one based on
+arrays the other based on ArrayLists.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">package</span> <span class="namespace">de.vogella.datastructures.stack</span>;
+
+<span class="keyword">import</span> <span class="include">java.util.Arrays</span>;
+
+<span class="directive">public</span> <span class="type">class</span> <span class="class">MyStackArray</span>&lt;E&gt; {
+    <span class="directive">private</span> <span class="type">int</span> size = <span class="integer">0</span>;
+    <span class="directive">private</span> <span class="directive">static</span> <span class="directive">final</span> <span class="type">int</span> DEFAULT_CAPACITY = <span class="integer">10</span>;
+    <span class="directive">private</span> <span class="predefined-type">Object</span> elements<span class="type">[]</span>;
+
+    <span class="directive">public</span> MyStackArray() {
+        elements = <span class="keyword">new</span> <span class="predefined-type">Object</span>[DEFAULT_CAPACITY];
+    }
+
+    <span class="directive">public</span> <span class="type">void</span> push(E e) {
+        <span class="keyword">if</span> (size == elements.length) {
+            ensureCapa();
+        }
+        elements[size++] = e;
+    }
+
+    <span class="annotation">@SuppressWarnings</span>(<span class="string"><span class="delimiter">"</span><span class="content">unchecked</span><span class="delimiter">"</span></span>)
+    <span class="directive">public</span> E pop() {
+        E e = (E) elements[--size];
+        elements[size] = <span class="predefined-constant">null</span>;
+        <span class="keyword">return</span> e;
+    }
+
+    <span class="directive">private</span> <span class="type">void</span> ensureCapa() {
+        <span class="type">int</span> newSize = elements.length * <span class="integer">2</span>;
+        elements = <span class="predefined-type">Arrays</span>.copyOf(elements, newSize);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">package</span> <span class="namespace">de.vogella.datastructures.stack</span>;
+
+<span class="keyword">import</span> <span class="include">java.util.ArrayList</span>;
+
+<span class="directive">public</span> <span class="type">class</span> <span class="class">MyStackList</span>&lt;E&gt; <span class="directive">extends</span> <span class="predefined-type">ArrayList</span>&lt;E&gt; {
+
+    <span class="directive">private</span> <span class="directive">static</span> <span class="directive">final</span> <span class="type">long</span> serialVersionUID = <span class="integer">1L</span>;
+
+    <span class="directive">public</span> E pop() {
+        E e = get(size() - <span class="integer">1</span>);
+        remove(size() - <span class="integer">1</span>);
+        <span class="keyword">return</span> e;
+    }
+
+    <span class="directive">public</span> <span class="type">void</span> push(E e) {
+        add(e);
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is a small JUnit test for the data structure.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">package</span> <span class="namespace">de.vogella.datastructures.stack</span>;
+
+<span class="keyword">import</span> <span class="include">static</span> <span class="include">org.junit.Assert.assertTrue</span>;
+
+<span class="keyword">import</span> <span class="include">org.junit.Before</span>;
+<span class="keyword">import</span> <span class="include">org.junit.Test</span>;
+
+<span class="directive">public</span> <span class="type">class</span> <span class="class">MyStackTest</span> {
+
+    <span class="annotation">@Before</span>
+    <span class="directive">public</span> <span class="type">void</span> setUp() <span class="directive">throws</span> <span class="exception">Exception</span> {
+
+    }
+
+    <span class="annotation">@Test</span>
+    <span class="directive">public</span> <span class="type">void</span> testStackArray() {
+        MyStackArray&lt;<span class="predefined-type">Integer</span>&gt; stack = <span class="keyword">new</span> MyStackArray&lt;<span class="predefined-type">Integer</span>&gt;();
+        stack.push(<span class="integer">1</span>);
+        stack.push(<span class="integer">2</span>);
+        stack.push(<span class="integer">3</span>);
+        stack.push(<span class="integer">3</span>);
+        stack.push(<span class="integer">4</span>);
+        assertTrue(<span class="integer">4</span> == stack.pop());
+        assertTrue(<span class="integer">3</span> == stack.pop());
+        assertTrue(<span class="integer">3</span> == stack.pop());
+        assertTrue(<span class="integer">2</span> == stack.pop());
+        assertTrue(<span class="integer">1</span> == stack.pop());
+    }
+
+    <span class="annotation">@Test</span>
+    <span class="directive">public</span> <span class="type">void</span> testStackList() {
+        MyStackList&lt;<span class="predefined-type">Integer</span>&gt; stack = <span class="keyword">new</span> MyStackList&lt;<span class="predefined-type">Integer</span>&gt;();
+        stack.push(<span class="integer">1</span>);
+        stack.push(<span class="integer">2</span>);
+        stack.push(<span class="integer">3</span>);
+        stack.push(<span class="integer">3</span>);
+        stack.push(<span class="integer">4</span>);
+        assertTrue(<span class="integer">4</span> == stack.pop());
+        assertTrue(<span class="integer">3</span> == stack.pop());
+        assertTrue(<span class="integer">3</span> == stack.pop());
+        assertTrue(<span class="integer">2</span> == stack.pop());
+        assertTrue(<span class="integer">1</span> == stack.pop());
+    }
+
+}</code></pre>
+</div>
+</div>
+<script async="" src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Responsive - Before Support -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3851443674951530" data-ad-slot="2058601532" data-ad-format="auto"></ins>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+</div>
+</div>
+<div class="sect1">
+<h2 id="about-this-website"><a class="link" href="http://www.vogella.com/tutorials/JavaDatastructures/article.html#about-this-website">5. About this website</a></h2>
+<div class="sectionbody">
+<div class="about_vogella_container">
+    <div class="about_vogella">
+    	<a href="http://www.vogella.com/support.html">
+            <h1>Support free content</h1>
+            <img src="./How to implement common datastructures (List, Stack, Map) in plain Java - Tutorial_files/donate.svg" alt="Support free tutorials" title="Support free tutorials" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Donations&#39;, &#39;clicked&#39;, &#39;Buttom tutorial in thank you&#39;]);">
+		</a>
+	</div>
+	<div class="about_vogella">
+    	<a href="http://www.vogella.com/contact.html">
+            <h1>Questions and discussion</h1>
+            <img src="./How to implement common datastructures (List, Stack, Map) in plain Java - Tutorial_files/discussions.svg" alt="Questions and discussion" title="Questions and discussion" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Questions&#39;, &#39;clicked&#39;, &#39;Buttom tutorial in thank you&#39;]);">
+		</a>
+	</div>
+	<div class="about_vogella">
+    	<a href="http://www.vogella.com/license.html">
+            <h1>Tutorial &amp; code license</h1>
+            <img src="./How to implement common datastructures (List, Stack, Map) in plain Java - Tutorial_files/license_new.svg" alt="License" title="License" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;License&#39;, &#39;clicked&#39;, &#39;Buttom tutorial in thank you&#39;]);">
+		</a>
+	</div>
+	<div class="about_vogella">
+    	<a href="http://www.vogella.com/code/index.html">
+            <h1>Get the source code</h1>
+            <img src="./How to implement common datastructures (List, Stack, Map) in plain Java - Tutorial_files/sourcecode.svg" alt="Source Code" title="Source Code" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Source Code&#39;, &#39;clicked&#39;, &#39;Buttom tutorial in thank you&#39;]);">
+		</a>
+	</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="resources"><a class="link" href="http://www.vogella.com/tutorials/JavaDatastructures/article.html#resources">6. Links and Literature</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="http://www.cs.princeton.edu/introcs/home/" data-external="true">Java Book about Algorithms and Data Structures</a></p>
+</div>
+<div class="sect2">
+<h3 id="vogella-gmbh-training-and-consulting-support"><a class="link" href="http://www.vogella.com/tutorials/JavaDatastructures/article.html#vogella-gmbh-training-and-consulting-support">6.1. vogella GmbH training and consulting support</a></h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><a href="http://www.vogella.com/training/">TRAINING</a></th>
+<th class="tableblock halign-left valign-top"><a href="http://www.vogella.com/consulting/">SERVICE &amp; SUPPORT</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The vogella company provides comprehensive <a href="http://www.vogella.com/training/">training and education services</a>
+from experts in the areas of Eclipse RCP, Android, Git, Java, Gradle and Spring.
+We offer both public and inhouse training. Whichever course you decide to take, you are guaranteed to experience
+what many before you refer to as <a href="http://www.vogella.com/training/">“The best IT class I have ever attended”</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The vogella company offers <a href="http://www.vogella.com/consulting/">expert consulting</a> services, development support and coaching.
+Our customers range from Fortune 100 corporations to individual developers.</p></td>
+</tr>
+</tbody>
+</table>
+<div id="ad-afterResources">
+	<script type="text/javascript">googletag.cmd.push(function(){googletag.display('ad-afterResources');});</script>
+<div id="google_ads_iframe_/6839/lqm.javaeclipseandroid.site/afterresources_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/6839/lqm.javaeclipseandroid.site/afterresources_0" title="3rd party ad content" name="google_ads_iframe_/6839/lqm.javaeclipseandroid.site/afterresources_0" width="728" height="90" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" src="./How to implement common datastructures (List, Stack, Map) in plain Java - Tutorial_files/saved_resource(2).html"></iframe></div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="copyright-and-license"><a class="link" href="http://www.vogella.com/tutorials/JavaDatastructures/article.html#copyright-and-license">Appendix A: Copyright and License</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Copyright © 2012-2017 vogella GmbH.
+Free use of the software examples is granted under the terms of the EPL License.
+This tutorial is published under the  <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/de/deed.en" data-external="true">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Germany</a> license.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="http://www.vogella.com/license.html">Licence</a>.</p>
+</div>
+<img src="./How to implement common datastructures (List, Stack, Map) in plain Java - Tutorial_files/33f88432478f46f9ac2dee016b5105e6" width="1" height="1" alt="">
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 1.3<br>
+Last updated 2017-07-11 08:59:39 +02:00
+</div>
+</div>
+<script data-pagespeed-no-defer="">//<![CDATA[
+(function(){window.pagespeed=window.pagespeed||{};var f=window.pagespeed;function h(e,a,c,b){this.f=e;this.a=a;this.b=c;this.g=b}f.beaconUrl="";
+function k(e){var a=e.f,c=window.mod_pagespeed_start,b=Number(new Date)-c,a=a+(-1==a.indexOf("?")?"?":"&"),a=a+"ets="+("load"==e.a?"load:":"unload:"),a=a+b;if("beforeunload"!=e.a||!window.mod_pagespeed_loaded){a+="&r"+e.a+"=";if(window.performance){var b=window.performance.timing,d=b.navigationStart,g=b.requestStart,a=a+(b[e.a+"EventStart"]-d),a=a+("&nav="+(b.fetchStart-d)),a=a+("&dns="+(b.domainLookupEnd-b.domainLookupStart)),a=a+("&connect="+(b.connectEnd-b.connectStart)),a=a+("&req_start="+(g-
+d)),a=a+("&ttfb="+(b.responseStart-g)),a=a+("&dwld="+(b.responseEnd-b.responseStart)),a=a+("&dom_c="+(b.domContentLoadedEventStart-d));window.performance.navigation&&(a+="&nt="+window.performance.navigation.type);d=-1;b.msFirstPaint?d=b.msFirstPaint:window.chrome&&window.chrome.loadTimes&&(d=Math.floor(1E3*window.chrome.loadTimes().firstPaintTime));d=d-g;0<=d&&(a+="&fp="+d)}else a+=b;f.getResourceTimingData&&window.parent==window&&(a+=f.getResourceTimingData());a+=window.parent!=window?"&ifr=1":"&ifr=0";
+"load"==e.a&&(window.mod_pagespeed_loaded=!0,(b=window.mod_pagespeed_num_resources_prefetched)&&(a+="&nrp="+b),(b=window.mod_pagespeed_prefetch_start)&&(a+="&htmlAt="+(c-b)));f.panelLoader&&(c=f.panelLoader.getCsiTimingsString(),""!=c&&(a+="&b_csi="+c));f.criticalCss&&(c=f.criticalCss,a+="&ccis="+c.total_critical_inlined_size+"&cces="+c.total_original_external_size+"&ccos="+c.total_overhead_size+"&ccrl="+c.num_replaced_links+"&ccul="+c.num_unreplaced_links);a+="&dpr="+window.devicePixelRatio;""!=
+e.b&&(a+=e.b);document.referrer&&(a+="&ref="+encodeURIComponent(document.referrer));a+="&url="+encodeURIComponent(e.g);f.beaconUrl=a;(new Image).src=a}}f.c=function(e,a,c,b){var d=new h(e,a,c,b);window.addEventListener?window.addEventListener(a,function(){k(d)},!1):window.attachEvent("on"+a,function(){k(d)})};f.addInstrumentationInit=f.c;})();
+
+pagespeed.addInstrumentationInit('/mod_pagespeed_beacon', 'load', '', 'http://www.vogella.com/tutorials/JavaDatastructures/article.html');
+//]]></script>
+</body></html>

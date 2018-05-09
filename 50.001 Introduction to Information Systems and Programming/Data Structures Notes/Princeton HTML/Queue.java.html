@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0060)http://introcs.cs.princeton.edu/java/43stack/Queue.java.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="shortcut icon" href="http://introcs.cs.princeton.edu/favicon.ico">
+<link rel="stylesheet" href="./Queue.java_files/java.css" type="text/css">
+
+<title>Queue.java</title>
+
+
+<meta name="AUTHOR" content="Robert Sedgewick and Kevin Wayne">
+<meta name="DESCRIPTION" content="Queue code in Java">
+<meta name="TITLE" content="Queue code in Java">
+<meta name="KEYWORDS" content="Queue,java,programming,computer science,algorithm,program,code">
+<meta name="ROBOTS" content="INDEX,FOLLOW">
+
+</head>
+
+
+<body>
+<center><h1>Queue.java</h1></center><p><br>
+
+Below is the syntax highlighted version of <a href="http://introcs.cs.princeton.edu/java/43stack/Queue.java">Queue.java</a>
+from <a href="http://introcs.cs.princeton.edu/java/43stack">§4.3 Stacks and Queues</a>.
+</p><p><br>
+
+<!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+</p><pre><tt><span class="comment">/******************************************************************************</span>
+<span class="comment"> *  Compilation:  javac Queue.java</span>
+<span class="comment"> *  Execution:    java Queue &lt; input.txt</span>
+<span class="comment"> *  Data files:   </span><span class="url">http://introcs.cs.princeton.edu/43stack/tobe.txt</span><span class="comment">  </span>
+<span class="comment"> *</span>
+<span class="comment"> *  A generic queue, implemented using a linked list.</span>
+<span class="comment"> *</span>
+<span class="comment"> *  % java Queue &lt; tobe.txt </span>
+<span class="comment"> *  to be or not to be (2 left on queue)</span>
+<span class="comment"> *</span>
+<span class="comment"> ******************************************************************************/</span>
+
+<span class="preproc">import</span><span class="normal"> java</span><span class="symbol">.</span><span class="normal">util</span><span class="symbol">.</span><span class="normal">Iterator</span><span class="symbol">;</span>
+<span class="preproc">import</span><span class="normal"> java</span><span class="symbol">.</span><span class="normal">util</span><span class="symbol">.</span><span class="normal">NoSuchElementException</span><span class="symbol">;</span>
+
+<span class="comment">/**</span>
+<span class="comment"> *  The {</span><span class="type">@code</span><span class="comment"> Queue} class represents a first-in-first-out (FIFO)</span>
+<span class="comment"> *  queue of generic items.</span>
+<span class="comment"> *  It supports the usual </span><span class="keyword">&lt;em&gt;</span><span class="comment">enqueue</span><span class="keyword">&lt;/em&gt;</span><span class="comment"> and </span><span class="keyword">&lt;em&gt;</span><span class="comment">dequeue</span><span class="keyword">&lt;/em&gt;</span>
+<span class="comment"> *  operations, along with methods for peeking at the top item,</span>
+<span class="comment"> *  testing if the queue is empty, getting the number of items in the</span>
+<span class="comment"> *  queue, and iterating over the items in FIFO order.</span>
+<span class="comment"> *  </span><span class="keyword">&lt;p&gt;</span>
+<span class="comment"> *  This implementation uses a singly-linked list with a nested class for</span>
+<span class="comment"> *  linked-list nodes.</span>
+<span class="comment"> *  The </span><span class="keyword">&lt;em&gt;</span><span class="comment">enqueue</span><span class="keyword">&lt;/em&gt;</span><span class="comment">, </span><span class="keyword">&lt;em&gt;</span><span class="comment">dequeue</span><span class="keyword">&lt;/em&gt;</span><span class="comment">, </span><span class="keyword">&lt;em&gt;</span><span class="comment">peek</span><span class="keyword">&lt;/em&gt;</span><span class="comment">, </span><span class="keyword">&lt;em&gt;</span><span class="comment">size</span><span class="keyword">&lt;/em&gt;</span><span class="comment">, and </span><span class="keyword">&lt;em&gt;</span><span class="comment">is-empty</span><span class="keyword">&lt;/em&gt;</span>
+<span class="comment"> *  operations all take constant time in the worst case.</span>
+<span class="comment"> *  </span><span class="keyword">&lt;p&gt;</span>
+<span class="comment"> *  For additional documentation, see </span><span class="keyword">&lt;a</span><span class="normal"> </span><span class="type">href</span><span class="symbol">=</span><span class="string">"http://introcs.cs.princeton.edu/43stack"</span><span class="keyword">&gt;</span><span class="comment">Section 4.3</span><span class="keyword">&lt;/a&gt;</span><span class="comment"> of</span>
+<span class="comment"> *  </span><span class="keyword">&lt;i&gt;</span><span class="comment">Introduction to Programming in Java: An Interdisciplinary Approach</span><span class="keyword">&lt;/i&gt;</span><span class="comment"> by Robert Sedgewick and Kevin Wayne.</span>
+<span class="comment"> *</span>
+<span class="comment"> *  </span><span class="type">@author</span><span class="comment"> Robert Sedgewick</span>
+<span class="comment"> *  </span><span class="type">@author</span><span class="comment"> Kevin Wayne</span>
+<span class="comment"> *</span>
+<span class="comment"> *  </span><span class="type">@param</span><span class="comment"> </span><span class="keyword">&lt;Item&gt;</span><span class="comment"> the generic type of an item in this queue</span>
+<span class="comment"> */</span>
+<span class="keyword">public</span><span class="normal"> </span><span class="keyword">class</span><span class="normal"> </span><span class="classname">Queue</span><span class="symbol">&lt;</span><span class="normal">Item</span><span class="symbol">&gt;</span><span class="normal"> </span><span class="keyword">implements</span><span class="normal"> Iterable</span><span class="symbol">&lt;</span><span class="normal">Item</span><span class="symbol">&gt;</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="keyword">private</span><span class="normal"> </span><span class="type">int</span><span class="normal"> n</span><span class="symbol">;</span><span class="normal">         </span><span class="comment">// number of elements on queue</span>
+<span class="normal">    </span><span class="keyword">private</span><span class="normal"> </span><span class="usertype">Node</span><span class="normal"> first</span><span class="symbol">;</span><span class="normal">    </span><span class="comment">// beginning of queue</span>
+<span class="normal">    </span><span class="keyword">private</span><span class="normal"> </span><span class="usertype">Node</span><span class="normal"> last</span><span class="symbol">;</span><span class="normal">     </span><span class="comment">// end of queue</span>
+
+<span class="normal">    </span><span class="comment">// helper linked list class</span>
+<span class="normal">    </span><span class="keyword">private</span><span class="normal"> </span><span class="keyword">class</span><span class="normal"> </span><span class="classname">Node</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">private</span><span class="normal"> </span><span class="usertype">Item</span><span class="normal"> item</span><span class="symbol">;</span>
+<span class="normal">        </span><span class="keyword">private</span><span class="normal"> </span><span class="usertype">Node</span><span class="normal"> next</span><span class="symbol">;</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="comment">/**</span>
+<span class="comment">     * Initializes an empty queue.</span>
+<span class="comment">     */</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="function">Queue</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        first </span><span class="symbol">=</span><span class="normal"> </span><span class="keyword">null</span><span class="symbol">;</span>
+<span class="normal">        last  </span><span class="symbol">=</span><span class="normal"> </span><span class="keyword">null</span><span class="symbol">;</span>
+<span class="normal">        n </span><span class="symbol">=</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="comment">/**</span>
+<span class="comment">     * Returns true if this queue is empty.</span>
+<span class="comment">     *</span>
+<span class="comment">     * </span><span class="type">@return</span><span class="comment"> {</span><span class="type">@code</span><span class="comment"> true} if this queue is empty; {</span><span class="type">@code</span><span class="comment"> false} otherwise</span>
+<span class="comment">     */</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="type">boolean</span><span class="normal"> </span><span class="function">isEmpty</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> first </span><span class="symbol">==</span><span class="normal"> </span><span class="keyword">null</span><span class="symbol">;</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="comment">/**</span>
+<span class="comment">     * Returns the number of items in this queue.</span>
+<span class="comment">     *</span>
+<span class="comment">     * </span><span class="type">@return</span><span class="comment"> the number of items in this queue</span>
+<span class="comment">     */</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="type">int</span><span class="normal"> </span><span class="function">size</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> n</span><span class="symbol">;</span><span class="normal">     </span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="comment">/**</span>
+<span class="comment">     * Returns the number of items in this queue.</span>
+<span class="comment">     *</span>
+<span class="comment">     * </span><span class="type">@return</span><span class="comment"> the number of items in this queue</span>
+<span class="comment">     */</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="type">int</span><span class="normal"> </span><span class="function">length</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> n</span><span class="symbol">;</span><span class="normal">     </span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="comment">/**</span>
+<span class="comment">     * Returns the item least recently added to this queue.</span>
+<span class="comment">     *</span>
+<span class="comment">     * </span><span class="type">@return</span><span class="comment"> the item least recently added to this queue</span>
+<span class="comment">     * </span><span class="type">@throws</span><span class="comment"> NoSuchElementException if this queue is empty</span>
+<span class="comment">     */</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="usertype">Item</span><span class="normal"> </span><span class="function">peek</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function">isEmpty</span><span class="symbol">())</span><span class="normal"> </span><span class="keyword">throw</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> </span><span class="function">NoSuchElementException</span><span class="symbol">(</span><span class="string">"Queue underflow"</span><span class="symbol">);</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> first</span><span class="symbol">.</span><span class="normal">item</span><span class="symbol">;</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">   </span><span class="comment">/**</span>
+<span class="comment">     * Add the item to the queue.</span>
+<span class="comment">     */</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">enqueue</span><span class="symbol">(</span><span class="usertype">Item</span><span class="normal"> item</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="usertype">Node</span><span class="normal"> oldlast </span><span class="symbol">=</span><span class="normal"> last</span><span class="symbol">;</span>
+<span class="normal">        last </span><span class="symbol">=</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> </span><span class="function">Node</span><span class="symbol">();</span>
+<span class="normal">        last</span><span class="symbol">.</span><span class="normal">item </span><span class="symbol">=</span><span class="normal"> item</span><span class="symbol">;</span>
+<span class="normal">        last</span><span class="symbol">.</span><span class="normal">next </span><span class="symbol">=</span><span class="normal"> </span><span class="keyword">null</span><span class="symbol">;</span>
+<span class="normal">        </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function">isEmpty</span><span class="symbol">())</span><span class="normal"> first </span><span class="symbol">=</span><span class="normal"> last</span><span class="symbol">;</span>
+<span class="normal">        </span><span class="keyword">else</span><span class="normal">           oldlast</span><span class="symbol">.</span><span class="normal">next </span><span class="symbol">=</span><span class="normal"> last</span><span class="symbol">;</span>
+<span class="normal">        n</span><span class="symbol">++;</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="comment">/**</span>
+<span class="comment">     * Removes and returns the item on this queue that was least recently added.</span>
+<span class="comment">     *</span>
+<span class="comment">     * </span><span class="type">@return</span><span class="comment"> the item on this queue that was least recently added</span>
+<span class="comment">     * </span><span class="type">@throws</span><span class="comment"> NoSuchElementException if this queue is empty</span>
+<span class="comment">     */</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="usertype">Item</span><span class="normal"> </span><span class="function">dequeue</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function">isEmpty</span><span class="symbol">())</span><span class="normal"> </span><span class="keyword">throw</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> </span><span class="function">NoSuchElementException</span><span class="symbol">(</span><span class="string">"Queue underflow"</span><span class="symbol">);</span>
+<span class="normal">        </span><span class="usertype">Item</span><span class="normal"> item </span><span class="symbol">=</span><span class="normal"> first</span><span class="symbol">.</span><span class="normal">item</span><span class="symbol">;</span>
+<span class="normal">        first </span><span class="symbol">=</span><span class="normal"> first</span><span class="symbol">.</span><span class="normal">next</span><span class="symbol">;</span>
+<span class="normal">        n</span><span class="symbol">--;</span>
+<span class="normal">        </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function">isEmpty</span><span class="symbol">())</span><span class="normal"> last </span><span class="symbol">=</span><span class="normal"> </span><span class="keyword">null</span><span class="symbol">;</span><span class="normal">   </span><span class="comment">// to avoid loitering</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> item</span><span class="symbol">;</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="comment">/**</span>
+<span class="comment">     * Returns a string representation of this queue.</span>
+<span class="comment">     *</span>
+<span class="comment">     * </span><span class="type">@return</span><span class="comment"> the sequence of items in FIFO order, separated by spaces</span>
+<span class="comment">     */</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="usertype">String</span><span class="normal"> </span><span class="function">toString</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="usertype">StringBuilder</span><span class="normal"> s </span><span class="symbol">=</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> </span><span class="function">StringBuilder</span><span class="symbol">();</span>
+<span class="normal">        </span><span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">Item</span><span class="normal"> item </span><span class="symbol">:</span><span class="normal"> </span><span class="keyword">this</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">            s</span><span class="symbol">.</span><span class="function">append</span><span class="symbol">(</span><span class="normal">item</span><span class="symbol">);</span>
+<span class="normal">            s</span><span class="symbol">.</span><span class="function">append</span><span class="symbol">(</span><span class="string">' '</span><span class="symbol">);</span>
+<span class="normal">        </span><span class="cbracket">}</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> s</span><span class="symbol">.</span><span class="function">toString</span><span class="symbol">();</span>
+<span class="normal">    </span><span class="cbracket">}</span><span class="normal"> </span>
+<span class="normal"> </span>
+
+<span class="normal">    </span><span class="comment">/**</span>
+<span class="comment">     * Returns an iterator that iterates over the items in this queue in FIFO order.</span>
+<span class="comment">     *</span>
+<span class="comment">     * </span><span class="type">@return</span><span class="comment"> an iterator that iterates over the items in this queue in FIFO order</span>
+<span class="comment">     */</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="usertype">Iterator&lt;Item&gt;</span><span class="normal"> </span><span class="function">iterator</span><span class="symbol">()</span><span class="normal">  </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> </span><span class="function">ListIterator</span><span class="symbol">();</span><span class="normal">  </span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="comment">// an iterator, doesn't implement remove() since it's optional</span>
+<span class="normal">    </span><span class="keyword">private</span><span class="normal"> </span><span class="keyword">class</span><span class="normal"> </span><span class="classname">ListIterator</span><span class="normal"> </span><span class="keyword">implements</span><span class="normal"> Iterator</span><span class="symbol">&lt;</span><span class="normal">Item</span><span class="symbol">&gt;</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">private</span><span class="normal"> </span><span class="usertype">Node</span><span class="normal"> current </span><span class="symbol">=</span><span class="normal"> first</span><span class="symbol">;</span>
+
+<span class="normal">        </span><span class="keyword">public</span><span class="normal"> </span><span class="type">boolean</span><span class="normal"> </span><span class="function">hasNext</span><span class="symbol">()</span><span class="normal">  </span><span class="cbracket">{</span><span class="normal"> </span><span class="keyword">return</span><span class="normal"> current </span><span class="symbol">!=</span><span class="normal"> </span><span class="keyword">null</span><span class="symbol">;</span><span class="normal">                     </span><span class="cbracket">}</span>
+<span class="normal">        </span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">remove</span><span class="symbol">()</span><span class="normal">      </span><span class="cbracket">{</span><span class="normal"> </span><span class="keyword">throw</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> </span><span class="function">UnsupportedOperationException</span><span class="symbol">();</span><span class="normal">  </span><span class="cbracket">}</span>
+
+<span class="normal">        </span><span class="keyword">public</span><span class="normal"> </span><span class="usertype">Item</span><span class="normal"> </span><span class="function">next</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">            </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(!</span><span class="function">hasNext</span><span class="symbol">())</span><span class="normal"> </span><span class="keyword">throw</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> </span><span class="function">NoSuchElementException</span><span class="symbol">();</span>
+<span class="normal">            </span><span class="usertype">Item</span><span class="normal"> item </span><span class="symbol">=</span><span class="normal"> current</span><span class="symbol">.</span><span class="normal">item</span><span class="symbol">;</span>
+<span class="normal">            current </span><span class="symbol">=</span><span class="normal"> current</span><span class="symbol">.</span><span class="normal">next</span><span class="symbol">;</span><span class="normal"> </span>
+<span class="normal">            </span><span class="keyword">return</span><span class="normal"> item</span><span class="symbol">;</span>
+<span class="normal">        </span><span class="cbracket">}</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+
+<span class="normal">    </span><span class="comment">/**</span>
+<span class="comment">     * Unit tests the {</span><span class="type">@code</span><span class="comment"> Queue} data type.</span>
+<span class="comment">     */</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">main</span><span class="symbol">(</span><span class="normal">String</span><span class="symbol">[]</span><span class="normal"> args</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="usertype">Queue&lt;String&gt;</span><span class="normal"> queue </span><span class="symbol">=</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> Queue</span><span class="symbol">&lt;</span><span class="normal">String</span><span class="symbol">&gt;();</span>
+<span class="normal">        </span><span class="keyword">while</span><span class="normal"> </span><span class="symbol">(!</span><span class="normal">StdIn</span><span class="symbol">.</span><span class="function">isEmpty</span><span class="symbol">())</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">            </span><span class="usertype">String</span><span class="normal"> item </span><span class="symbol">=</span><span class="normal"> StdIn</span><span class="symbol">.</span><span class="function">readString</span><span class="symbol">();</span>
+<span class="normal">            </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(!</span><span class="normal">item</span><span class="symbol">.</span><span class="function">equals</span><span class="symbol">(</span><span class="string">"-"</span><span class="symbol">))</span><span class="normal"> queue</span><span class="symbol">.</span><span class="function">enqueue</span><span class="symbol">(</span><span class="normal">item</span><span class="symbol">);</span>
+<span class="normal">            </span><span class="keyword">else</span><span class="normal"> </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(!</span><span class="normal">queue</span><span class="symbol">.</span><span class="function">isEmpty</span><span class="symbol">())</span><span class="normal"> StdOut</span><span class="symbol">.</span><span class="function">print</span><span class="symbol">(</span><span class="normal">queue</span><span class="symbol">.</span><span class="function">dequeue</span><span class="symbol">()</span><span class="normal"> </span><span class="symbol">+</span><span class="normal"> </span><span class="string">" "</span><span class="symbol">);</span>
+<span class="normal">        </span><span class="cbracket">}</span>
+<span class="normal">        StdOut</span><span class="symbol">.</span><span class="function">println</span><span class="symbol">(</span><span class="string">"("</span><span class="normal"> </span><span class="symbol">+</span><span class="normal"> queue</span><span class="symbol">.</span><span class="function">size</span><span class="symbol">()</span><span class="normal"> </span><span class="symbol">+</span><span class="normal"> </span><span class="string">" left on queue)"</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+<span class="cbracket">}</span>
+</tt></pre>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./Queue.java_files/ga.js.download" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-10811519-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+
+
+<p><br></p><address><small>
+Copyright © 2000–2016, Robert Sedgewick and Kevin Wayne.
+<br>Last updated: Wed Nov  2 06:53:07 EDT 2016.
+</small></address>
+
+
+</body></html>

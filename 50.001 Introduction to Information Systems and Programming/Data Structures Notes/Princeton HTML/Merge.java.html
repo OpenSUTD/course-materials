@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0059)http://introcs.cs.princeton.edu/java/42sort/Merge.java.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="shortcut icon" href="http://introcs.cs.princeton.edu/favicon.ico">
+<link rel="stylesheet" href="./Merge.java_files/java.css" type="text/css">
+
+<title>Merge.java</title>
+
+
+<meta name="AUTHOR" content="Robert Sedgewick and Kevin Wayne">
+<meta name="DESCRIPTION" content="Merge code in Java">
+<meta name="TITLE" content="Merge code in Java">
+<meta name="KEYWORDS" content="Merge,java,programming,computer science,algorithm,program,code">
+<meta name="ROBOTS" content="INDEX,FOLLOW">
+
+</head>
+
+
+<body>
+<center><h1>Merge.java</h1></center><p><br>
+
+Below is the syntax highlighted version of <a href="http://introcs.cs.princeton.edu/java/42sort/Merge.java">Merge.java</a>
+from <a href="http://introcs.cs.princeton.edu/java/42sort">§4.2 Sorting and Searching</a>.
+</p><p><br>
+
+<!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+</p><pre><tt><span class="comment">/******************************************************************************</span>
+<span class="comment"> *  Compilation:  javac Merge.java</span>
+<span class="comment"> *  Execution:    java Merge &lt; input.txt</span>
+<span class="comment"> *  Data files:   </span><span class="url">http://www.cs.princeton.edu/introcs/43sort/8words.txt</span>
+<span class="comment"> *                </span><span class="url">http://www.cs.princeton.edu/introcs/43sort/TomSawyer.txt</span>
+<span class="comment"> *</span>
+<span class="comment"> *  A bare-bones n log n implementation of mergesort.</span>
+<span class="comment"> *</span>
+<span class="comment"> *  Remarks</span>
+<span class="comment"> *  ---------</span>
+<span class="comment"> *     - number of comparisons is guaranteed to be at most n lg n</span>
+<span class="comment"> *     - sort is stable</span>
+<span class="comment"> *</span>
+<span class="comment"> *  % java Merge &lt; 8words.txt</span>
+<span class="comment"> *  and but had him his the was you </span>
+<span class="comment"> *</span>
+<span class="comment"> ******************************************************************************/</span>
+
+<span class="keyword">public</span><span class="normal"> </span><span class="keyword">class</span><span class="normal"> </span><span class="classname">Merge</span><span class="normal"> </span><span class="cbracket">{</span>
+
+<span class="normal">   </span><span class="comment">/***************************************************************************</span>
+<span class="comment">    *  Merge the subarrays a[lo] .. a[mid-1] and a[mid] .. a[hi-1] into</span>
+<span class="comment">    *  a[lo] .. a[hi-1] using the auxilliary array aux[] as scratch space.</span>
+<span class="comment">    *</span>
+<span class="comment">    *  Precondition:   the two subarrays are in ascending order</span>
+<span class="comment">    *  Postcondition:  a[lo] .. a[hi-1] is in ascending order</span>
+<span class="comment">    *</span>
+<span class="comment">    ***************************************************************************/</span>
+<span class="normal">    </span><span class="keyword">private</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">merge</span><span class="symbol">(</span><span class="normal">Comparable</span><span class="symbol">[]</span><span class="normal"> a</span><span class="symbol">,</span><span class="normal"> Comparable</span><span class="symbol">[]</span><span class="normal"> aux</span><span class="symbol">,</span><span class="normal"> </span><span class="type">int</span><span class="normal"> lo</span><span class="symbol">,</span><span class="normal"> </span><span class="type">int</span><span class="normal"> mid</span><span class="symbol">,</span><span class="normal"> </span><span class="type">int</span><span class="normal"> hi</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="type">int</span><span class="normal"> i </span><span class="symbol">=</span><span class="normal"> lo</span><span class="symbol">,</span><span class="normal"> j </span><span class="symbol">=</span><span class="normal"> mid</span><span class="symbol">;</span>
+<span class="normal">        </span><span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="type">int</span><span class="normal"> k </span><span class="symbol">=</span><span class="normal"> lo</span><span class="symbol">;</span><span class="normal"> k </span><span class="symbol">&lt;</span><span class="normal"> hi</span><span class="symbol">;</span><span class="normal"> k</span><span class="symbol">++)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">            </span><span class="keyword">if</span><span class="normal">      </span><span class="symbol">(</span><span class="normal">i </span><span class="symbol">==</span><span class="normal"> mid</span><span class="symbol">)</span><span class="normal">                 aux</span><span class="symbol">[</span><span class="normal">k</span><span class="symbol">]</span><span class="normal"> </span><span class="symbol">=</span><span class="normal"> a</span><span class="symbol">[</span><span class="normal">j</span><span class="symbol">++];</span>
+<span class="normal">            </span><span class="keyword">else</span><span class="normal"> </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">j </span><span class="symbol">==</span><span class="normal"> hi</span><span class="symbol">)</span><span class="normal">                  aux</span><span class="symbol">[</span><span class="normal">k</span><span class="symbol">]</span><span class="normal"> </span><span class="symbol">=</span><span class="normal"> a</span><span class="symbol">[</span><span class="normal">i</span><span class="symbol">++];</span>
+<span class="normal">            </span><span class="keyword">else</span><span class="normal"> </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">a</span><span class="symbol">[</span><span class="normal">j</span><span class="symbol">].</span><span class="function">compareTo</span><span class="symbol">(</span><span class="normal">a</span><span class="symbol">[</span><span class="normal">i</span><span class="symbol">])</span><span class="normal"> </span><span class="symbol">&lt;</span><span class="normal"> </span><span class="number">0</span><span class="symbol">)</span><span class="normal"> aux</span><span class="symbol">[</span><span class="normal">k</span><span class="symbol">]</span><span class="normal"> </span><span class="symbol">=</span><span class="normal"> a</span><span class="symbol">[</span><span class="normal">j</span><span class="symbol">++];</span>
+<span class="normal">            </span><span class="keyword">else</span><span class="normal">                               aux</span><span class="symbol">[</span><span class="normal">k</span><span class="symbol">]</span><span class="normal"> </span><span class="symbol">=</span><span class="normal"> a</span><span class="symbol">[</span><span class="normal">i</span><span class="symbol">++];</span>
+<span class="normal">        </span><span class="cbracket">}</span>
+
+<span class="normal">        </span><span class="comment">// copy back</span>
+<span class="normal">        </span><span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="type">int</span><span class="normal"> k </span><span class="symbol">=</span><span class="normal"> lo</span><span class="symbol">;</span><span class="normal"> k </span><span class="symbol">&lt;</span><span class="normal"> hi</span><span class="symbol">;</span><span class="normal"> k</span><span class="symbol">++)</span>
+<span class="normal">            a</span><span class="symbol">[</span><span class="normal">k</span><span class="symbol">]</span><span class="normal"> </span><span class="symbol">=</span><span class="normal"> aux</span><span class="symbol">[</span><span class="normal">k</span><span class="symbol">];</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+
+<span class="normal">   </span><span class="comment">/***************************************************************************</span>
+<span class="comment">    *  Mergesort the subarray a[lo] .. a[hi-1], using the</span>
+<span class="comment">    *  auxilliary array aux[] as scratch space.</span>
+<span class="comment">    ***************************************************************************/</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">sort</span><span class="symbol">(</span><span class="normal">Comparable</span><span class="symbol">[]</span><span class="normal"> a</span><span class="symbol">,</span><span class="normal"> Comparable</span><span class="symbol">[]</span><span class="normal"> aux</span><span class="symbol">,</span><span class="normal"> </span><span class="type">int</span><span class="normal"> lo</span><span class="symbol">,</span><span class="normal"> </span><span class="type">int</span><span class="normal"> hi</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+
+<span class="normal">        </span><span class="comment">// base case</span>
+<span class="normal">        </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">hi </span><span class="symbol">-</span><span class="normal"> lo </span><span class="symbol">&lt;=</span><span class="normal"> </span><span class="number">1</span><span class="symbol">)</span><span class="normal"> </span><span class="keyword">return</span><span class="symbol">;</span>
+
+<span class="normal">        </span><span class="comment">// sort each half, recursively</span>
+<span class="normal">        </span><span class="type">int</span><span class="normal"> mid </span><span class="symbol">=</span><span class="normal"> lo </span><span class="symbol">+</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">hi </span><span class="symbol">-</span><span class="normal"> lo</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">/</span><span class="normal"> </span><span class="number">2</span><span class="symbol">;</span>
+<span class="normal">        </span><span class="function">sort</span><span class="symbol">(</span><span class="normal">a</span><span class="symbol">,</span><span class="normal"> aux</span><span class="symbol">,</span><span class="normal"> lo</span><span class="symbol">,</span><span class="normal"> mid</span><span class="symbol">);</span>
+<span class="normal">        </span><span class="function">sort</span><span class="symbol">(</span><span class="normal">a</span><span class="symbol">,</span><span class="normal"> aux</span><span class="symbol">,</span><span class="normal"> mid</span><span class="symbol">,</span><span class="normal"> hi</span><span class="symbol">);</span>
+
+<span class="normal">        </span><span class="comment">// merge back together</span>
+<span class="normal">        </span><span class="function">merge</span><span class="symbol">(</span><span class="normal">a</span><span class="symbol">,</span><span class="normal"> aux</span><span class="symbol">,</span><span class="normal"> lo</span><span class="symbol">,</span><span class="normal"> mid</span><span class="symbol">,</span><span class="normal"> hi</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+
+<span class="normal">   </span><span class="comment">/***************************************************************************</span>
+<span class="comment">    *  Sort the array a using mergesort.</span>
+<span class="comment">    ***************************************************************************/</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">sort</span><span class="symbol">(</span><span class="normal">Comparable</span><span class="symbol">[]</span><span class="normal"> a</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="type">int</span><span class="normal"> n </span><span class="symbol">=</span><span class="normal"> a</span><span class="symbol">.</span><span class="normal">length</span><span class="symbol">;</span>
+<span class="normal">        Comparable</span><span class="symbol">[]</span><span class="normal"> aux </span><span class="symbol">=</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> Comparable</span><span class="symbol">[</span><span class="normal">n</span><span class="symbol">];</span>
+<span class="normal">        </span><span class="function">sort</span><span class="symbol">(</span><span class="normal">a</span><span class="symbol">,</span><span class="normal"> aux</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> n</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">   </span><span class="comment">/***************************************************************************</span>
+<span class="comment">    *  Sort the subarray a[lo..hi] using mergesort.</span>
+<span class="comment">    ***************************************************************************/</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">sort</span><span class="symbol">(</span><span class="normal">Comparable</span><span class="symbol">[]</span><span class="normal"> a</span><span class="symbol">,</span><span class="normal"> </span><span class="type">int</span><span class="normal"> lo</span><span class="symbol">,</span><span class="normal"> </span><span class="type">int</span><span class="normal"> hi</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="type">int</span><span class="normal"> n </span><span class="symbol">=</span><span class="normal"> hi </span><span class="symbol">-</span><span class="normal"> lo </span><span class="symbol">+</span><span class="normal"> </span><span class="number">1</span><span class="symbol">;</span>
+<span class="normal">        Comparable</span><span class="symbol">[]</span><span class="normal"> aux </span><span class="symbol">=</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> Comparable</span><span class="symbol">[</span><span class="normal">n</span><span class="symbol">];</span>
+<span class="normal">        </span><span class="function">sort</span><span class="symbol">(</span><span class="normal">a</span><span class="symbol">,</span><span class="normal"> aux</span><span class="symbol">,</span><span class="normal"> lo</span><span class="symbol">,</span><span class="normal"> hi</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+
+<span class="normal">   </span><span class="comment">/***************************************************************************</span>
+<span class="comment">    *  Check if array is sorted - useful for debugging.</span>
+<span class="comment">    ***************************************************************************/</span>
+<span class="normal">    </span><span class="keyword">private</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="type">boolean</span><span class="normal"> </span><span class="function">isSorted</span><span class="symbol">(</span><span class="normal">Comparable</span><span class="symbol">[]</span><span class="normal"> a</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="type">int</span><span class="normal"> i </span><span class="symbol">=</span><span class="normal"> </span><span class="number">1</span><span class="symbol">;</span><span class="normal"> i </span><span class="symbol">&lt;</span><span class="normal"> a</span><span class="symbol">.</span><span class="normal">length</span><span class="symbol">;</span><span class="normal"> i</span><span class="symbol">++)</span>
+<span class="normal">            </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">a</span><span class="symbol">[</span><span class="normal">i</span><span class="symbol">].</span><span class="function">compareTo</span><span class="symbol">(</span><span class="normal">a</span><span class="symbol">[</span><span class="normal">i</span><span class="symbol">-</span><span class="number">1</span><span class="symbol">])</span><span class="normal"> </span><span class="symbol">&lt;</span><span class="normal"> </span><span class="number">0</span><span class="symbol">)</span><span class="normal"> </span><span class="keyword">return</span><span class="normal"> </span><span class="keyword">false</span><span class="symbol">;</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> </span><span class="keyword">true</span><span class="symbol">;</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">   </span><span class="comment">/***************************************************************************</span>
+<span class="comment">    *  Show results.</span>
+<span class="comment">    ***************************************************************************/</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">show</span><span class="symbol">(</span><span class="normal">Comparable</span><span class="symbol">[]</span><span class="normal"> a</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="type">int</span><span class="normal"> i </span><span class="symbol">=</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span><span class="normal"> i </span><span class="symbol">&lt;</span><span class="normal"> a</span><span class="symbol">.</span><span class="normal">length</span><span class="symbol">;</span><span class="normal"> i</span><span class="symbol">++)</span>
+<span class="normal">            StdOut</span><span class="symbol">.</span><span class="function">println</span><span class="symbol">(</span><span class="normal">a</span><span class="symbol">[</span><span class="normal">i</span><span class="symbol">]);</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+
+<span class="normal">   </span><span class="comment">/***************************************************************************</span>
+<span class="comment">    *  Test client.</span>
+<span class="comment">    ***************************************************************************/</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">main</span><span class="symbol">(</span><span class="normal">String</span><span class="symbol">[]</span><span class="normal"> args</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        String</span><span class="symbol">[]</span><span class="normal"> a </span><span class="symbol">=</span><span class="normal"> StdIn</span><span class="symbol">.</span><span class="function">readAllStrings</span><span class="symbol">();</span>
+<span class="normal">        Merge</span><span class="symbol">.</span><span class="function">sort</span><span class="symbol">(</span><span class="normal">a</span><span class="symbol">);</span>
+<span class="normal">        </span><span class="keyword">assert</span><span class="normal"> </span><span class="function">isSorted</span><span class="symbol">(</span><span class="normal">a</span><span class="symbol">);</span>
+<span class="normal">        </span><span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="type">int</span><span class="normal"> i </span><span class="symbol">=</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span><span class="normal"> i </span><span class="symbol">&lt;</span><span class="normal"> a</span><span class="symbol">.</span><span class="normal">length</span><span class="symbol">;</span><span class="normal"> i</span><span class="symbol">++)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">            StdOut</span><span class="symbol">.</span><span class="function">print</span><span class="symbol">(</span><span class="normal">a</span><span class="symbol">[</span><span class="normal">i</span><span class="symbol">]</span><span class="normal"> </span><span class="symbol">+</span><span class="normal"> </span><span class="string">" "</span><span class="symbol">);</span>
+<span class="normal">        </span><span class="cbracket">}</span>
+<span class="normal">        StdOut</span><span class="symbol">.</span><span class="function">println</span><span class="symbol">();</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+<span class="cbracket">}</span>
+</tt></pre>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./Merge.java_files/ga.js.download" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-10811519-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+
+
+<p><br></p><address><small>
+Copyright © 2000–2011, Robert Sedgewick and Kevin Wayne.
+<br>Last updated: Tue Aug 30 09:58:33 EDT 2016.
+</small></address>
+
+
+</body></html>

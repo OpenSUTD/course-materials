@@ -1,0 +1,7 @@
+"use strict";(function(){function anti_spam_init(){var i,len,elements,answer='',current_year=new Date().getFullYear(),dynamic_control;elements=document.querySelectorAll('.antispam-group');len=elements.length;for(i=0;i<len;i++){elements[i].style.display='none';}
+elements=document.querySelectorAll('.antispam-control-a');if((elements)&&(elements.length>0)){answer=elements[0].value;}
+elements=document.querySelectorAll('.antispam-control-q');len=elements.length;for(i=0;i<len;i++){elements[i].value=answer;}
+elements=document.querySelectorAll('.antispam-control-e');len=elements.length;for(i=0;i<len;i++){elements[i].value='';}
+dynamic_control=document.createElement('input');dynamic_control.setAttribute('type','hidden');dynamic_control.setAttribute('name','antspm-d');dynamic_control.setAttribute('class','antispam-control antispam-control-d');dynamic_control.setAttribute('value',current_year);elements=document.querySelectorAll('form');len=elements.length;for(i=0;i<len;i++){if((elements[i].id==='comments')||(elements[i].id==='respond')||(elements[i].id==='commentform')){var class_index=elements[i].className.indexOf('anti-spam-form-processed');if(class_index==-1){elements[i].appendChild(dynamic_control);elements[i].className=elements[i].className+' anti-spam-form-processed';}}}}
+if(document.addEventListener){document.addEventListener('DOMContentLoaded',anti_spam_init,false);}
+setTimeout(function(){anti_spam_init();},1000);})();

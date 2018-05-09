@@ -1,0 +1,13 @@
+1. understand DOCUMENT DISTANCE PROBLEM
+	- in L02 P.7
+
+2. understand the 8 python code (docdist1.py to docdist8.py)
+
+3. Know that insertion sort is O(n^2), merge sort is O(nlogn)
+	- the detail of the sorting algorithm is not important now
+
+4. run the 8 python codes
+	- run it with “python docdist1.py file1.txt file2.txt”
+	- run it with “python docdist1.py file3.txt file4.txt”
+	- jot down the running time of running file3 and file4
+	- create your own text file, run it

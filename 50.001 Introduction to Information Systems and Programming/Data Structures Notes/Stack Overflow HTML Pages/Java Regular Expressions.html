@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)https://www.tutorialspoint.com/java/java_regular_expressions.htm -->
+<html class=" js touch csstransforms3d csstransitions" style=""><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Basic -->
+
+<title>Java Regular Expressions</title>
+<meta name="description" content="Java Regular Expressions - Learn Java in simple and easy steps starting from basic to advanced concepts with examples including Java Syntax Object Oriented Language, Methods, Overriding, Inheritance, Polymorphism, Interfaces, Packages, Collections, Networking, Multithreading, Generics, Multimedia, Serialization, GUI.">
+<meta name="keywords" content="Java, Tutorials, Learning, Beginners, Basics, Object Oriented Language, Methods, Overriding, Inheritance, Polymorphism, Interfaces, Packages, Collections, Networking, Multithreading, Generics, Multimedia, Serialization, GUI.">
+<!--<base href="https://www.tutorialspoint.com/">--><base href=".">
+<link rel="shortcut icon" href="https://www.tutorialspoint.com/favicon.ico" type="image/x-icon">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="fb:app_id" content="471319149685276">
+<meta property="og:site_name" content="www.tutorialspoint.com">
+<meta name="robots" content="index, follow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="author" content="tutorialspoint.com">
+<script src="https://securepubads.g.doubleclick.net/gpt/pubads_impl_rendering_167.js"></script><script src="https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&amp;correlator=2404761562793014&amp;output=json_html&amp;callback=googletag.impl.pubads.callbackProxy1&amp;impl=fifs&amp;json_a=1&amp;eid=21061335%2C108809107%2C21060361%2C21061149&amp;sc=1&amp;sfv=1-0-13&amp;iu_parts=60931893%2Ctutorial_right_bottom%2Ctutorial_right_middle%2Ctutorial_right_top%2Ctutorial_bottom_leader_board&amp;enc_prev_ius=%2F0%2F1%2C%2F0%2F2%2C%2F0%2F3%2C%2F0%2F4&amp;prev_iu_szs=300x250%7C300x600%2C300x250%7C300x600%2C300x250%2C600x400%7C300x250%7C480x320%7C468x60%7C336x280%7C600x200%7C580x400&amp;cookie_enabled=1&amp;abxe=1&amp;lmt=1510294160&amp;dt=1510294160047&amp;frm=20&amp;biw=1519&amp;bih=743&amp;oid=3&amp;adxs=0%2C0%2C0%2C0&amp;adys=0%2C0%2C0%2C0&amp;adks=3716823738%2C749877563%2C2359137328%2C2749173601&amp;gut=v2&amp;ifi=1&amp;u_tz=480&amp;u_his=3&amp;u_h=864&amp;u_w=1536&amp;u_ah=834&amp;u_aw=1536&amp;u_cd=24&amp;u_nplug=4&amp;u_nmime=5&amp;u_sd=1.25&amp;flash=0&amp;url=https%3A%2F%2Fwww.tutorialspoint.com%2Fjava%2Fjava_regular_expressions.htm&amp;ref=https%3A%2F%2Fwww.google.com.sg%2F&amp;dssz=18&amp;icsg=14508&amp;std=0&amp;vrg=167&amp;vis=1&amp;ga_vid=2017710734.1499679209&amp;ga_sid=1510294160&amp;ga_hid=1590556259&amp;ga_fc=true"></script><script type="text/javascript" src="./Java Regular Expressions_files/script-min-v4.js.download"></script>
+<link rel="stylesheet" href="./Java Regular Expressions_files/style-min.css">
+<script async="async" src="./Java Regular Expressions_files/gpt.js.download"></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+
+<script>
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/60931893/tutorial_right_bottom', [[300, 250], [300, 600]], 'div-gpt-ad-1510138782906-0').addService(googletag.pubads());
+    googletag.defineSlot('/60931893/tutorial_right_middle', [[300, 250], [300, 600]], 'div-gpt-ad-1510138782906-1').addService(googletag.pubads());
+    googletag.defineSlot('/60931893/tutorial_right_top', [300, 250], 'div-gpt-ad-1510138782906-2').addService(googletag.pubads());
+    googletag.defineSlot('/60931893/tutorial_bottom_leader_board', [[600, 400], [300, 250], [480, 320], [468, 60], [336, 280], [600, 200], [580, 400]], 'div-gpt-ad-1510138782906-3').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+  });
+</script>
+<!-- Head Libs -->
+<!--[if IE 8]>
+<link rel="stylesheet" type="text/css" href="/theme/css/ie8.css">
+<![endif]-->
+<style>
+select{ border:0 !important; outline: 1px inset black !important; outline-offset: -1px !important; }
+ul.nav-list.primary>li a.videolink{    background: none; margin: 0px; padding: 0px; border: 1px solid #d6d6d6;}
+div.feature-box div.feature-box-icon, .col-md-3 .course-box, li.heading, div.footer-copyright { background: #eb4847 url(/images/pattern.png) repeat center center !important;}
+.sub-main-menu .sub-menuu div:hover, .sub-main-menu .viewall, header nav ul.nav-main li a:hover, button.btn-responsive-nav, header div.search button.btn-default { background: #eb4847 !important;}
+.submenu-item{ border-bottom: 2px solid #eb4847 !important; border-top: 2px solid #eb4847 !important }
+.ace_scroller{overflow: auto!important;}
+a.demo{font-family: "Open Sans",Arial,sans-serif; background:#eb4847; color:#fff; font-size:13px; padding:3px 10px; border:1px solid #d6d6d6; position:absolute; right:5px; margin:-6px 17px 0px 0px;}
+a.demo:hover{opacity:.8}
+pre.prettyprint {
+    border: 1px solid #d6d6d6;
+    background-color: #eee;
+    width: 98%;
+    border-radius: 0;
+    padding: 5px;
+    margin: 0;
+    margin-bottom: 10px; margin-top:15px;
+    font-size: 13px;
+    overflow: auto;
+}
+</style>
+<script>
+$(document).ready(function() {
+  $('input[name="q"]').keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+</script>
+<link rel="preload" href="https://adservice.google.com/adsid/integrator.js?domain=www.tutorialspoint.com" as="script"><script type="text/javascript" src="https://adservice.google.com/adsid/integrator.js?domain=www.tutorialspoint.com"></script><script src="https://securepubads.g.doubleclick.net/gpt/pubads_impl_167.js" async=""></script><link rel="prefetch" href="https://tpc.googlesyndication.com/safeframe/1-0-13/html/container.html"><link rel="prefetch" href="https://securepubads.g.doubleclick.net/static/3p_cookie.html"><style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style></head>
+<body onload="prettyPrint()" style="">
+<div class="wrapLoader">
+   <div class="imgLoader">
+      <img src="./Java Regular Expressions_files/loading-cg.gif" alt="" width="70" height="70">
+   </div>
+</div>
+<header>
+   <div class="container">			
+      <h1 class="logo">
+      <a href="https://www.tutorialspoint.com/index.htm" title="tutorialspoint">
+      <img alt="tutorialspoint" src="./Java Regular Expressions_files/logo.png">
+      </a>
+      </h1>			
+      <nav>
+         <ul class="nav nav-pills nav-top">
+            <li><a href="https://www.tutorialspoint.com/about/about_careers.htm" style="background: #fffb09; font-weight: bold;"><i class="icon icon-suitcase"></i> Jobs</a></li>
+            <li> <a target="_blank" href="http://www.qries.com/" data-external="true"><i class="fa fa-send"></i> &nbsp;Qries (Q/A)</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/whiteboard.htm"><img src="./Java Regular Expressions_files/image-editor.png" alt="Whiteboard" title="Whiteboard"> &nbsp;Whiteboard</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/netmeeting.php"><i class="fa-camera"></i> &nbsp;Net Meeting</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/online_dev_tools.htm"> <i class="dev-tools-menu" style="opacity:.5"></i> Tools </a> </li>
+            <li> <a href="https://www.tutorialspoint.com/articles/index.php"><i class="icon icon-file-text-o"></i> &nbsp;Articles</a> </li>            
+            <li class="top-icons">
+              <ul class="social-icons">
+              <li class="facebook"><a href="https://www.facebook.com/tutorialspointindia" target="_blank" data-placement="bottom" title="tutorialspoint @ Facebook" data-external="true">Facebook</a></li>
+              <li class="googleplus"><a href="https://plus.google.com/u/0/116678774017490391259/posts" target="_blank" data-placement="bottom" title="tutorialspoint @ Google+" data-external="true">Google+</a></li>
+              <li class="twitter"><a href="https://www.twitter.com/tutorialspoint" target="_blank" data-placement="bottom" title="tutorialspoint @ Twitter" data-external="true">Twitter</a></li>
+              <li class="linkedin"><a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" data-placement="bottom" title="tutorialspoint @ Linkedin" data-external="true">Linkedin</a></li>
+              <li class="youtube"><a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" data-placement="bottom" title="tutorialspoint YouTube" data-external="true">YouTube</a></li>
+              </ul>
+           </li>
+         </ul>
+      </nav>
+         <!-- search code here  --> 
+      <button class="btn btn-responsive-nav btn-inverse" data-toggle="collapse" data-target=".nav-main-collapse" id="pull" style="top: 24px!important"> <i class="icon icon-bars"></i> </button>
+   </div>
+  
+   <div class="navbar nav-main">
+      <div class="container">
+         <nav class="nav-main mega-menu">
+            <ul class="nav nav-pills nav-main" id="mainMenu">
+               <li class="dropdown no-sub-menu"> <a class="dropdown" href="https://www.tutorialspoint.com/index.htm"><i class="icon icon-home"></i> Home</a> </li>   
+               <li class="dropdown" id="liTL"><a class="dropdown" href="javascript:void(0);" data-external="true"><span class="tut-lib"> Tutorials Library <i class="fa-caret-down"></i></span></a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/codingground.htm"><i class="fa-code"></i> Coding Ground </a> </li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/tutor_connect/index.php"><i class="fa-user"> </i> Tutor Connect</a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fa-toggle-right"></i> Videos </a></li>
+               <li class="dropdown no-sub-menu">
+                  <div class="searchform-popup">
+                     <input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == &#39;Search your favorite tutorials...&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Search your favorite tutorials...&#39;;}" autocomplete="off" style="">
+                     <div class="magnifying-glass"><i class="icon-search"></i> Search </div>
+                 </div>
+               </li>
+            </ul>
+         </nav>
+         <div class="submenu-item sub-main-menu" id="top-sub-menu"></div>
+         
+      </div>
+   </div>	
+</header>
+<div style="clear:both;"></div>
+<div role="main" class="main">
+<div class="container">
+<div class="row">
+<div class="col-md-2">
+<aside class="sidebar">
+<style>
+.ts{
+   vertical-align:middle !important;
+   text-align:center !important;   
+}
+</style>
+<div class="mini-logo">
+<img src="./Java Regular Expressions_files/java-mini-logo.jpg" alt="Java Tutorial">
+</div>
+<ul class="nav nav-list primary left-menu">
+<li><a class="videolink" href="https://www.tutorialspoint.com/java_online_training/index.asp" target="_blank"><img src="./Java Regular Expressions_files/java-video-tutorials.jpg" alt="Java Video Tutorials"></a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Java Tutorial</li>
+<li><a href="https://www.tutorialspoint.com/java/index.htm">Java - Home</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_overview.htm">Java - Overview</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_environment_setup.htm">Java - Environment Setup</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_basic_syntax.htm">Java - Basic Syntax</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_object_classes.htm">Java - Object &amp; Classes</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_basic_datatypes.htm">Java - Basic Datatypes</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_variable_types.htm">Java - Variable Types</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_modifier_types.htm">Java - Modifier Types</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_basic_operators.htm">Java - Basic Operators</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_loop_control.htm">Java - Loop Control</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_decision_making.htm">Java - Decision Making</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_numbers.htm">Java - Numbers</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_characters.htm">Java - Characters</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_strings.htm">Java - Strings</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_arrays.htm">Java - Arrays</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_date_time.htm">Java - Date &amp; Time</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_regular_expressions.htm" style="background-color: rgb(214, 214, 214);">Java - Regular Expressions</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_methods.htm">Java - Methods</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_files_io.htm">Java - Files and I/O</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_exceptions.htm">Java - Exceptions</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_innerclasses.htm">Java - Inner classes</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Java Object Oriented</li>
+<li><a href="https://www.tutorialspoint.com/java/java_inheritance.htm">Java - Inheritance</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_overriding.htm">Java - Overriding</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_polymorphism.htm">Java - Polymorphism</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_abstraction.htm">Java - Abstraction</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_encapsulation.htm">Java - Encapsulation</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_interfaces.htm">Java - Interfaces</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_packages.htm">Java - Packages</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Java Advanced</li>
+<li><a href="https://www.tutorialspoint.com/java/java_data_structures.htm">Java - Data Structures</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_collections.htm">Java - Collections</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_generics.htm">Java - Generics</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_serialization.htm">Java - Serialization</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_networking.htm">Java - Networking</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_sending_email.htm">Java - Sending Email</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_multithreading.htm">Java - Multithreading</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_applet_basics.htm">Java - Applet Basics</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_documentation.htm">Java - Documentation</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Java Useful Resources</li>
+<li><a href="https://www.tutorialspoint.com/java/java_questions_answers.htm">Java - Questions and Answers</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_quick_guide.htm">Java - Quick Guide</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_useful_resources.htm">Java - Useful Resources</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_discussion.htm">Java - Discussion</a></li>
+<li><a href="https://www.tutorialspoint.com/javaexamples/index.htm">Java - Examples</a></li>
+</ul>
+<ul class="nav nav-list primary push-bottom left-menu special">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="https://www.tutorialspoint.com/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</aside>
+</div>
+<!-- PRINTING STARTS HERE -->
+<div class="row">
+<div class="content">
+<div class="col-md-7 middle-col">
+<h1>Java - Regular Expressions</h1>
+<div class="topgooglead">
+<hr>
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr>
+<div class="pre-btn">
+<a href="https://www.tutorialspoint.com/java/java_date_time.htm"><i class="icon icon-arrow-circle-o-left big-font"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="https://www.tutorialspoint.com/java/java_methods.htm">Next Page <i class="icon icon-arrow-circle-o-right big-font"></i>&nbsp;</a>
+</div>
+<div class="clearer"></div>
+<hr>
+<p>Java provides the java.util.regex package for pattern matching with regular expressions. Java regular expressions are very similar to the Perl programming language and very easy to learn.</p>
+<p>A regular expression is a special sequence of characters that helps you match or find other strings or sets of strings, using a specialized syntax held in a pattern. They can be used to search, edit, or manipulate text and data.</p>
+<p>The java.util.regex package primarily consists of the following three classes −</p>
+<ul class="list">
+<li><p><b>Pattern Class</b> − A Pattern object is a compiled representation of a regular expression. The Pattern class provides no public constructors. To create a pattern, you must first invoke one of its public static <b>compile()</b> methods, which will then return a Pattern object. These methods accept a regular expression as the first argument.</p></li>
+<li><p><b>Matcher Class</b> − A Matcher object is the engine that interprets the pattern and performs match operations against an input string. Like the Pattern class, Matcher defines no public constructors. You obtain a Matcher object by invoking the <b>matcher()</b> method on a Pattern object.</p></li>
+<li><p><b>PatternSyntaxException</b> − A PatternSyntaxException object is an unchecked exception that indicates a syntax error in a regular expression pattern.</p></li>
+</ul>
+<h2>Capturing Groups</h2>
+<p>Capturing groups are a way to treat multiple characters as a single unit. They are created by placing the characters to be grouped inside a set of parentheses. For example, the regular expression (dog) creates a single group containing the letters "d", "o", and "g".</p>
+<p>Capturing groups are numbered by counting their opening parentheses from the left to the right. In the expression ((A)(B(C))), for example, there are four such groups −</p>
+<ul class="list">
+<li>((A)(B(C)))</li>
+<li>(A)</li>
+<li>(B(C))</li>
+<li>(C)</li>
+</ul>
+<p>To find out how many groups are present in the expression, call the groupCount method on a matcher object. The groupCount method returns an <b>int</b> showing the number of capturing groups present in the matcher's pattern.</p>
+<p>There is also a special group, group 0, which always represents the entire expression. This group is not included in the total reported by groupCount.</p>
+<p><b>Example</b></p>
+<p>Following example illustrates how to find a digit string from the given alphanumeric string −</p>
+<a href="http://tpcg.io/uY6IP9" target="_blank" rel="nofollow" class="demo" data-external="true"><i class="fa-external-link"></i> Live Demo</a>
+<pre class="prettyprint notranslate prettyprinted" style=""><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">util</span><span class="pun">.</span><span class="pln">regex</span><span class="pun">.</span><span class="typ">Matcher</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">util</span><span class="pun">.</span><span class="pln">regex</span><span class="pun">.</span><span class="typ">Pattern</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">RegexMatches</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> args</span><span class="pun">[]</span><span class="pln"> </span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="com">// String to be scanned to find the pattern.</span><span class="pln">
+      </span><span class="typ">String</span><span class="pln"> line </span><span class="pun">=</span><span class="pln"> </span><span class="str">"This order was placed for QT3000! OK?"</span><span class="pun">;</span><span class="pln">
+      </span><span class="typ">String</span><span class="pln"> pattern </span><span class="pun">=</span><span class="pln"> </span><span class="str">"(.*)(\\d+)(.*)"</span><span class="pun">;</span><span class="pln">
+
+      </span><span class="com">// Create a Pattern object</span><span class="pln">
+      </span><span class="typ">Pattern</span><span class="pln"> r </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Pattern</span><span class="pun">.</span><span class="pln">compile</span><span class="pun">(</span><span class="pln">pattern</span><span class="pun">);</span><span class="pln">
+
+      </span><span class="com">// Now create matcher object.</span><span class="pln">
+      </span><span class="typ">Matcher</span><span class="pln"> m </span><span class="pun">=</span><span class="pln"> r</span><span class="pun">.</span><span class="pln">matcher</span><span class="pun">(</span><span class="pln">line</span><span class="pun">);</span><span class="pln">
+      </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">m</span><span class="pun">.</span><span class="pln">find</span><span class="pun">(</span><span class="pln"> </span><span class="pun">))</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+         </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Found value: "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> m</span><span class="pun">.</span><span class="kwd">group</span><span class="pun">(</span><span class="lit">0</span><span class="pun">)</span><span class="pln"> </span><span class="pun">);</span><span class="pln">
+         </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Found value: "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> m</span><span class="pun">.</span><span class="kwd">group</span><span class="pun">(</span><span class="lit">1</span><span class="pun">)</span><span class="pln"> </span><span class="pun">);</span><span class="pln">
+         </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Found value: "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> m</span><span class="pun">.</span><span class="kwd">group</span><span class="pun">(</span><span class="lit">2</span><span class="pun">)</span><span class="pln"> </span><span class="pun">);</span><span class="pln">
+      </span><span class="pun">}</span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+         </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"NO MATCH"</span><span class="pun">);</span><span class="pln">
+      </span><span class="pun">}</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<p>This will produce the following result −</p>
+<p><b>Output</b></p>
+<pre class="result notranslate">Found value: This order was placed for QT3000! OK?
+Found value: This order was placed for QT300
+Found value: 0
+</pre>
+<h2>Regular Expression Syntax</h2>
+<p>Here is the table listing down all the regular expression metacharacter syntax available in Java −</p>
+<table class="table table-bordered">
+<tbody><tr>
+<th>Subexpression</th>
+<th style="text-align:center;">Matches</th>
+</tr>
+<tr>
+<td style="text-align:center;">^</td>
+<td>Matches the beginning of the line.</td>
+</tr>
+<tr>
+<td style="text-align:center;">$</td>
+<td>Matches the end of the line.</td>
+</tr>
+<tr>
+<td class="ts">.</td>
+<td>Matches any single character except newline. Using <b>m</b> option allows it to match the newline as well.</td>
+</tr>
+<tr>
+<td style="text-align:center;">[...]</td>
+<td>Matches any single character in brackets.</td>
+</tr>
+<tr>
+<td style="text-align:center;">[^...]</td>
+<td>Matches any single character not in brackets.</td>
+</tr>
+<tr>
+<td style="text-align:center;">\A</td>
+<td>Beginning of the entire string.</td>
+</tr>
+<tr>
+<td style="text-align:center;">\z</td>
+<td>End of the entire string.</td>
+</tr>
+<tr>
+<td class="ts">\Z</td>
+<td>End of the entire string except allowable final line terminator.</td>
+</tr>
+<tr>
+<td class="ts">re*</td>
+<td>Matches 0 or more occurrences of the preceding expression.</td>
+</tr>
+<tr>
+<td style="text-align:center;">re+</td>
+<td>Matches 1 or more of the previous thing.</td>
+</tr>
+<tr>
+<td style="text-align:center;">re?</td>
+<td>Matches 0 or 1 occurrence of the preceding expression.</td>
+</tr>
+<tr>
+<td class="ts">re{ n}</td>
+<td>Matches exactly n number of occurrences of the preceding expression.</td>
+</tr>
+<tr>
+<td class="ts">re{ n,}</td>
+<td>Matches n or more occurrences of the preceding expression.</td>
+</tr>
+<tr>
+<td class="ts">re{ n, m}</td>
+<td>Matches at least n and at most m occurrences of the preceding expression.</td>
+</tr>
+<tr>
+<td style="text-align:center;">a| b</td>
+<td>Matches either a or b.</td>
+</tr>
+<tr>
+<td class="ts">(re)</td>
+<td>Groups regular expressions and remembers the matched text.</td>
+</tr>
+<tr>
+<td class="ts">(?: re)</td>
+<td>Groups regular expressions without remembering the matched text.</td>
+</tr>
+<tr>
+<td style="text-align:center;">(?&gt; re)</td>
+<td>Matches the independent pattern without backtracking.</td>
+</tr>
+<tr>
+<td style="text-align:center;">\w</td>
+<td>Matches the word characters.</td>
+</tr>
+<tr>
+<td style="text-align:center;">\W</td>
+<td>Matches the nonword characters.</td>
+</tr>
+<tr>
+<td style="text-align:center;">\s</td>
+<td>Matches the whitespace. Equivalent to [\t\n\r\f].</td>
+</tr>
+<tr>
+<td style="text-align:center;">\S</td>
+<td>Matches the nonwhitespace.</td>
+</tr>
+<tr>
+<td style="text-align:center;">\d</td>
+<td>Matches the digits. Equivalent to [0-9].</td>
+</tr>
+<tr>
+<td style="text-align:center;">\D</td>
+<td>Matches the nondigits.</td>
+</tr>
+<tr>
+<td style="text-align:center;">\A</td>
+<td>Matches the beginning of the string.</td>
+</tr>
+<tr>
+<td class="ts">\Z</td>
+<td>Matches the end of the string. If a newline exists, it matches just before newline.</td>
+</tr>
+<tr>
+<td style="text-align:center;">\z</td>
+<td>Matches the end of the string.</td>
+</tr>
+<tr>
+<td style="text-align:center;">\G</td>
+<td>Matches the point where the last match finished.</td>
+</tr>
+<tr>
+<td style="text-align:center;">\n</td>
+<td>Back-reference to capture group number "n".</td>
+</tr>
+<tr>
+<td class="ts">\b</td>
+<td>Matches the word boundaries when outside the brackets. Matches the backspace (0x08) when inside the brackets.</td>
+</tr>
+<tr>
+<td style="text-align:center;">\B</td>
+<td>Matches the nonword boundaries.</td>
+</tr>
+<tr>
+<td style="text-align:center;">\n, \t, etc.</td>
+<td>Matches newlines, carriage returns, tabs, etc.</td>
+</tr>
+<tr>
+<td style="text-align:center;">\Q</td>
+<td>Escape (quote) all characters up to \E.</td>
+</tr>
+<tr>
+<td style="text-align:center;">\E</td>
+<td>Ends quoting begun with \Q.</td>
+</tr>
+</tbody></table>
+<h2>Methods of the Matcher Class</h2>
+<p>Here is a list of useful instance methods −</p>
+<h3>Index Methods</h3>
+<p>Index methods provide useful index values that show precisely where the match was found in the input string −</p>
+<table class="table table-bordered">
+<tbody><tr>
+<th>Sr.No.</th>
+<th style="text-align:center;">Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>public int start()</b></p>
+<p>Returns the start index of the previous match.</p></td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>public int start(int group)</b></p>
+<p>Returns the start index of the subsequence captured by the given group during the previous match operation.</p></td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>public int end()</b></p>
+<p>Returns the offset after the last character matched.</p></td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>public int end(int group)</b></p>
+<p>Returns the offset after the last character of the subsequence captured by the given group during the previous match operation.</p></td>
+</tr>
+</tbody></table>
+<h3>Study Methods</h3>
+<p>Study methods review the input string and return a Boolean indicating whether or not the pattern is found −</p>
+<table class="table table-bordered">
+<tbody><tr>
+<th>Sr.No.</th>
+<th style="text-align:center;">Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>public boolean lookingAt()</b></p>
+<p>Attempts to match the input sequence, starting at the beginning of the region, against the pattern.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>public boolean find()</b></p>
+<p>Attempts to find the next subsequence of the input sequence that matches the pattern.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>public boolean find(int start)</b></p>
+<p>Resets this matcher and then attempts to find the next subsequence of the input sequence that matches the pattern, starting at the specified index.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>public boolean matches()</b></p>
+<p>Attempts to match the entire region against the pattern.</p>
+</td>
+</tr>
+</tbody></table>
+<h2>Replacement Methods</h2>
+<p>Replacement methods are useful methods for replacing text in an input string −</p>
+<table class="table table-bordered">
+<tbody><tr>
+<th>Sr.No.</th>
+<th style="text-align:center;">Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>public Matcher appendReplacement(StringBuffer sb, String replacement)</b></p>
+<p>Implements a non-terminal append-and-replace step.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>public StringBuffer appendTail(StringBuffer sb)</b></p>
+<p>Implements a terminal append-and-replace step.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>public String replaceAll(String replacement)</b></p>
+<p>Replaces every subsequence of the input sequence that matches the pattern with the given replacement string.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>public String replaceFirst(String replacement)</b></p>
+<p>Replaces the first subsequence of the input sequence that matches the pattern with the given replacement string.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>public static String quoteReplacement(String s)</b></p>
+<p>Returns a literal replacement String for the specified String. This method produces a String that will work as a literal replacement <b>s</b> in the appendReplacement method of the Matcher class.</p>
+</td>
+</tr>
+</tbody></table>
+<h3>The start and end Methods</h3>
+<p>Following is the example that counts the number of times the word "cat" appears in the input string −</p>
+<p><b>Example</b></p>
+<a href="http://tpcg.io/xC7Jt9" target="_blank" rel="nofollow" class="demo" data-external="true"><i class="fa-external-link"></i> Live Demo</a>
+<pre class="prettyprint notranslate prettyprinted" style=""><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">util</span><span class="pun">.</span><span class="pln">regex</span><span class="pun">.</span><span class="typ">Matcher</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">util</span><span class="pun">.</span><span class="pln">regex</span><span class="pun">.</span><span class="typ">Pattern</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">RegexMatches</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+   </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> REGEX </span><span class="pun">=</span><span class="pln"> </span><span class="str">"\\bcat\\b"</span><span class="pun">;</span><span class="pln">
+   </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> INPUT </span><span class="pun">=</span><span class="pln"> </span><span class="str">"cat cat cat cattie cat"</span><span class="pun">;</span><span class="pln">
+
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> args</span><span class="pun">[]</span><span class="pln"> </span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="typ">Pattern</span><span class="pln"> p </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Pattern</span><span class="pun">.</span><span class="pln">compile</span><span class="pun">(</span><span class="pln">REGEX</span><span class="pun">);</span><span class="pln">
+      </span><span class="typ">Matcher</span><span class="pln"> m </span><span class="pun">=</span><span class="pln"> p</span><span class="pun">.</span><span class="pln">matcher</span><span class="pun">(</span><span class="pln">INPUT</span><span class="pun">);</span><span class="pln">   </span><span class="com">// get a matcher object</span><span class="pln">
+      </span><span class="kwd">int</span><span class="pln"> count </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln">
+
+      </span><span class="kwd">while</span><span class="pun">(</span><span class="pln">m</span><span class="pun">.</span><span class="pln">find</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+         count</span><span class="pun">++;</span><span class="pln">
+         </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Match number "</span><span class="pun">+</span><span class="pln">count</span><span class="pun">);</span><span class="pln">
+         </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"start(): "</span><span class="pun">+</span><span class="pln">m</span><span class="pun">.</span><span class="pln">start</span><span class="pun">());</span><span class="pln">
+         </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"end(): "</span><span class="pun">+</span><span class="pln">m</span><span class="pun">.</span><span class="kwd">end</span><span class="pun">());</span><span class="pln">
+      </span><span class="pun">}</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<p>This will produce the following result −</p>
+<p><b>Output</b></p>
+<pre class="result notranslate">Match number 1
+start(): 0
+end(): 3
+Match number 2
+start(): 4
+end(): 7
+Match number 3
+start(): 8
+end(): 11
+Match number 4
+start(): 19
+end(): 22
+</pre>
+<p>You can see that this example uses word boundaries to ensure that the letters "c" "a" "t" are not merely a substring in a longer word. It also gives some useful information about where in the input string the match has occurred.</p>
+<p>The start method returns the start index of the subsequence captured by the given group during the previous match operation, and the end returns the index of the last character matched, plus one.</p>
+<h3>The matches and lookingAt Methods</h3>
+<p>The matches and lookingAt methods both attempt to match an input sequence against a pattern. The difference, however, is that matches requires the entire input sequence to be matched, while lookingAt does not.</p>
+<p>Both methods always start at the beginning of the input string. Here is the example explaining the functionality −</p>
+<p><b>Example</b></p>
+<a href="http://tpcg.io/pH3GXf" target="_blank" rel="nofollow" class="demo" data-external="true"><i class="fa-external-link"></i> Live Demo</a>
+<pre class="prettyprint notranslate prettyprinted" style=""><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">util</span><span class="pun">.</span><span class="pln">regex</span><span class="pun">.</span><span class="typ">Matcher</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">util</span><span class="pun">.</span><span class="pln">regex</span><span class="pun">.</span><span class="typ">Pattern</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">RegexMatches</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+   </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> REGEX </span><span class="pun">=</span><span class="pln"> </span><span class="str">"foo"</span><span class="pun">;</span><span class="pln">
+   </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> INPUT </span><span class="pun">=</span><span class="pln"> </span><span class="str">"fooooooooooooooooo"</span><span class="pun">;</span><span class="pln">
+   </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">Pattern</span><span class="pln"> pattern</span><span class="pun">;</span><span class="pln">
+   </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">Matcher</span><span class="pln"> matcher</span><span class="pun">;</span><span class="pln">
+
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> args</span><span class="pun">[]</span><span class="pln"> </span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      pattern </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Pattern</span><span class="pun">.</span><span class="pln">compile</span><span class="pun">(</span><span class="pln">REGEX</span><span class="pun">);</span><span class="pln">
+      matcher </span><span class="pun">=</span><span class="pln"> pattern</span><span class="pun">.</span><span class="pln">matcher</span><span class="pun">(</span><span class="pln">INPUT</span><span class="pun">);</span><span class="pln">
+
+      </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Current REGEX is: "</span><span class="pun">+</span><span class="pln">REGEX</span><span class="pun">);</span><span class="pln">
+      </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Current INPUT is: "</span><span class="pun">+</span><span class="pln">INPUT</span><span class="pun">);</span><span class="pln">
+
+      </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"lookingAt(): "</span><span class="pun">+</span><span class="pln">matcher</span><span class="pun">.</span><span class="pln">lookingAt</span><span class="pun">());</span><span class="pln">
+      </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"matches(): "</span><span class="pun">+</span><span class="pln">matcher</span><span class="pun">.</span><span class="pln">matches</span><span class="pun">());</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<p>This will produce the following result −</p>
+<p><b>Output</b></p>
+<pre class="result notranslate">Current REGEX is: foo
+Current INPUT is: fooooooooooooooooo
+lookingAt(): true
+matches(): false
+</pre>
+<h3>The replaceFirst and replaceAll Methods</h3>
+<p>The replaceFirst and replaceAll methods replace the text that matches a given regular expression. As their names indicate, replaceFirst replaces the first occurrence, and replaceAll replaces all occurrences.</p>
+<p>Here is the example explaining the functionality −</p>
+<p><b>Example</b></p>
+<a href="http://tpcg.io/hPbUKo" target="_blank" rel="nofollow" class="demo" data-external="true"><i class="fa-external-link"></i> Live Demo</a>
+<pre class="prettyprint notranslate prettyprinted" style=""><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">util</span><span class="pun">.</span><span class="pln">regex</span><span class="pun">.</span><span class="typ">Matcher</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">util</span><span class="pun">.</span><span class="pln">regex</span><span class="pun">.</span><span class="typ">Pattern</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">RegexMatches</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+   </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> REGEX </span><span class="pun">=</span><span class="pln"> </span><span class="str">"dog"</span><span class="pun">;</span><span class="pln">
+   </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> INPUT </span><span class="pun">=</span><span class="pln"> </span><span class="str">"The dog says meow. "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">"All dogs say meow."</span><span class="pun">;</span><span class="pln">
+   </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> REPLACE </span><span class="pun">=</span><span class="pln"> </span><span class="str">"cat"</span><span class="pun">;</span><span class="pln">
+
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pun">[]</span><span class="pln"> args</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="typ">Pattern</span><span class="pln"> p </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Pattern</span><span class="pun">.</span><span class="pln">compile</span><span class="pun">(</span><span class="pln">REGEX</span><span class="pun">);</span><span class="pln">
+      
+      </span><span class="com">// get a matcher object</span><span class="pln">
+      </span><span class="typ">Matcher</span><span class="pln"> m </span><span class="pun">=</span><span class="pln"> p</span><span class="pun">.</span><span class="pln">matcher</span><span class="pun">(</span><span class="pln">INPUT</span><span class="pun">);</span><span class="pln"> 
+      INPUT </span><span class="pun">=</span><span class="pln"> m</span><span class="pun">.</span><span class="pln">replaceAll</span><span class="pun">(</span><span class="pln">REPLACE</span><span class="pun">);</span><span class="pln">
+      </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="pln">INPUT</span><span class="pun">);</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<p>This will produce the following result −</p>
+<p><b>Output</b></p>
+<pre class="result notranslate">The cat says meow. All cats say meow.
+</pre>
+<h3>The appendReplacement and appendTail Methods</h3>
+<p>The Matcher class also provides appendReplacement and appendTail methods for text replacement.</p>
+<p>Here is the example explaining the functionality −</p>
+<p><b>Example</b></p>
+<a href="http://tpcg.io/AvfsqL" target="_blank" rel="nofollow" class="demo" data-external="true"><i class="fa-external-link"></i> Live Demo</a>
+<pre class="prettyprint notranslate prettyprinted" style=""><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">util</span><span class="pun">.</span><span class="pln">regex</span><span class="pun">.</span><span class="typ">Matcher</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">util</span><span class="pun">.</span><span class="pln">regex</span><span class="pun">.</span><span class="typ">Pattern</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">RegexMatches</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+   </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> REGEX </span><span class="pun">=</span><span class="pln"> </span><span class="str">"a*b"</span><span class="pun">;</span><span class="pln">
+   </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> INPUT </span><span class="pun">=</span><span class="pln"> </span><span class="str">"aabfooaabfooabfoob"</span><span class="pun">;</span><span class="pln">
+   </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> REPLACE </span><span class="pun">=</span><span class="pln"> </span><span class="str">"-"</span><span class="pun">;</span><span class="pln">
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pun">[]</span><span class="pln"> args</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+      </span><span class="typ">Pattern</span><span class="pln"> p </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Pattern</span><span class="pun">.</span><span class="pln">compile</span><span class="pun">(</span><span class="pln">REGEX</span><span class="pun">);</span><span class="pln">
+      
+      </span><span class="com">// get a matcher object</span><span class="pln">
+      </span><span class="typ">Matcher</span><span class="pln"> m </span><span class="pun">=</span><span class="pln"> p</span><span class="pun">.</span><span class="pln">matcher</span><span class="pun">(</span><span class="pln">INPUT</span><span class="pun">);</span><span class="pln">
+      </span><span class="typ">StringBuffer</span><span class="pln"> sb </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">StringBuffer</span><span class="pun">();</span><span class="pln">
+      </span><span class="kwd">while</span><span class="pun">(</span><span class="pln">m</span><span class="pun">.</span><span class="pln">find</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+         m</span><span class="pun">.</span><span class="pln">appendReplacement</span><span class="pun">(</span><span class="pln">sb</span><span class="pun">,</span><span class="pln"> REPLACE</span><span class="pun">);</span><span class="pln">
+      </span><span class="pun">}</span><span class="pln">
+      m</span><span class="pun">.</span><span class="pln">appendTail</span><span class="pun">(</span><span class="pln">sb</span><span class="pun">);</span><span class="pln">
+      </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="pln">sb</span><span class="pun">.</span><span class="pln">toString</span><span class="pun">());</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<p>This will produce the following result −</p>
+<p><b>Output</b></p>
+<pre class="result notranslate">-foo-foo-foo-
+</pre>
+<h3>PatternSyntaxException Class Methods</h3>
+<p>A PatternSyntaxException is an unchecked exception that indicates a syntax error in a regular expression pattern. The PatternSyntaxException class provides the following methods to help you determine what went wrong −</p>
+<table class="table table-bordered">
+<tbody><tr>
+<th>Sr.No.</th>
+<th style="text-align:center;">Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>public String getDescription()</b></p>
+<p>Retrieves the description of the error.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>public int getIndex()</b></p>
+<p>Retrieves the error index.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>public String getPattern()</b></p>
+<p>Retrieves the erroneous regular expression pattern.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>public String getMessage()</b></p>
+<p>Returns a multi-line string containing the description of the syntax error and its index, the erroneous regular expression pattern, and a visual indication of the error index within the pattern.</p>
+</td>
+</tr>
+</tbody></table>
+<hr>
+<div class="pre-btn">
+<a href="https://www.tutorialspoint.com/java/java_date_time.htm"><i class="icon icon-arrow-circle-o-left big-font"></i> Previous Page</a>
+</div>
+<div class="print-btn center">
+<a href="https://www.tutorialspoint.com/cgi-bin/printpage.cgi" target="_blank"><i class="icon icon-print big-font"></i> Print</a>
+</div>
+<div class="nxt-btn">
+<a href="https://www.tutorialspoint.com/java/java_methods.htm">Next Page <i class="icon icon-arrow-circle-o-right big-font"></i>&nbsp;</a>
+</div>
+<hr>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div class="bottomadtag">Advertisements</div>
+<!-- /60931893/tutorial_bottom_leader_board -->
+<div id="div-gpt-ad-1510138782906-3">
+<script>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1510138782906-3'); });
+</script>
+<div id="google_ads_iframe_/60931893/tutorial_bottom_leader_board_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/60931893/tutorial_bottom_leader_board_0" title="3rd party ad content" name="google_ads_iframe_/60931893/tutorial_bottom_leader_board_0" width="600" height="400" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" src="./Java Regular Expressions_files/saved_resource.html"></iframe></div></div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-3" id="rightbar">
+<div class="simple-ad">
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://www.facebook.com/sharer.php?u=&#39; + &#39;http://www.tutorialspoint.com/java/java_regular_expressions.htm&#39;,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=456,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;" data-external="true">
+<img src="./Java Regular Expressions_files/facebookIcon.jpg" alt="img">
+</a>
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://twitter.com/share?url=&#39; + &#39;http://www.tutorialspoint.com/java/java_regular_expressions.htm&#39;,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=456,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;" data-external="true">
+<img src="./Java Regular Expressions_files/twitterIcon.jpg" alt="img">
+</a>
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://www.linkedin.com/cws/share?url=&#39; + &#39;http://www.tutorialspoint.com/java/java_regular_expressions.htm&amp;title=&#39;+ document.title,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=456,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;" data-external="true">
+<img src="./Java Regular Expressions_files/linkedinIcon.jpg" alt="img">
+</a>
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://plus.google.com/share?url=http://www.tutorialspoint.com/java/java_regular_expressions.htm&#39;,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=456,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;" data-external="true">
+<img src="./Java Regular Expressions_files/googlePlusIcon.jpg" alt="img">
+</a>
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://www.stumbleupon.com/submit?url=http://www.tutorialspoint.com/java/java_regular_expressions.htm&amp;title=&#39;+ document.title,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=456,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;" data-external="true">
+<img src="./Java Regular Expressions_files/StumbleUponIcon.jpg" alt="img">
+</a>
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://reddit.com/submit?url=http://www.tutorialspoint.com/java/java_regular_expressions.htm&amp;title=&#39;+ document.title,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=656,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;" data-external="true">
+<img src="./Java Regular Expressions_files/reddit.jpg" alt="img">
+</a>
+</div>
+<div class="rightgooglead">
+<!-- /60931893/tutorial_right_top -->
+<div id="div-gpt-ad-1510138782906-2" style="height:250px; width:300px;">
+<script>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1510138782906-2'); });
+</script>
+<div id="google_ads_iframe_/60931893/tutorial_right_top_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/60931893/tutorial_right_top_0" title="3rd party ad content" name="google_ads_iframe_/60931893/tutorial_right_top_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" src="./Java Regular Expressions_files/saved_resource(1).html"></iframe></div></div>
+</div>
+<div class="rightgooglead">
+<!-- /60931893/tutorial_right_middle -->
+<div id="div-gpt-ad-1510138782906-1">
+<script>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1510138782906-1'); });
+</script>
+<div id="google_ads_iframe_/60931893/tutorial_right_middle_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/60931893/tutorial_right_middle_0" title="3rd party ad content" name="google_ads_iframe_/60931893/tutorial_right_middle_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" src="./Java Regular Expressions_files/saved_resource(2).html"></iframe></div></div>
+</div>
+<div class="rightgooglead">
+<!-- /60931893/tutorial_right_bottom -->
+<div id="div-gpt-ad-1510138782906-0">
+<script>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1510138782906-0'); });
+</script>
+<div id="google_ads_iframe_/60931893/tutorial_right_bottom_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/60931893/tutorial_right_bottom_0" title="3rd party ad content" name="google_ads_iframe_/60931893/tutorial_right_bottom_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" src="./Java Regular Expressions_files/saved_resource(3).html"></iframe></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="footer-copyright">
+<div class="container">
+<div class="row">
+<div class="col-md-1">
+<a href="https://www.tutorialspoint.com/index.htm" class="logo"> <img alt="Tutorials Point" class="img-responsive" src="./Java Regular Expressions_files/logo-footer.png"> </a>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+   <nav id="sub-menu">
+      <ul>
+         <li><a href="https://www.tutorialspoint.com/about/tutorials_writing.htm">Write for us</a></li>
+         <li><a href="https://www.tutorialspoint.com/about/faq.htm">FAQ's</a></li>
+         <li><a href="https://www.tutorialspoint.com/about/about_helping.htm">Helping</a></li>
+         <li><a href="https://www.tutorialspoint.com/about/contact_us.htm">Contact</a></li>
+      </ul>
+   </nav>
+</div>
+<div class="col-md-3 col-sm-12 col-xs-12">
+<p>© Copyright 2017. All Rights Reserved.</p>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+   <div class="news-group">
+      <input type="text" class="form-control-foot search" name="textemail" id="textemail" autocomplete="off" placeholder="Enter email for newsletter" onfocus="if (this.value == &#39;Enter email for newsletter...&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Enter email for newsletter...&#39;;}">
+      <span class="input-group-btn"> <button class="btn btn-default btn-footer" id="btnemail" type="submit" onclick="javascript:void(0);">go</button> </span>
+      <div id="newsresponse"></div>
+   </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Libs -->
+<script type="text/javascript" src="./Java Regular Expressions_files/custom-min.js.download"></script><a class="scroll-to-top" href="https://www.tutorialspoint.com/#" id="scrollToTop"><i class="icon icon-chevron-up icon-white"></i></a>
+<script src="./Java Regular Expressions_files/urchin.js.download">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+$('.pg-icon').click(function(){
+   $('.wrapLoader').show();
+});
+</script>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Java Regular Expressions",
+    "name": "Java Regular Expressions",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.tutorialspoint.com/java/java_regular_expressions.htm"
+    },
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://www.tutorialspoint.com/java/images/java-mini-logo.jpg",
+        "width": 255,
+        "height": 194
+    },
+    "author": {
+        "@type": "Organization",
+        "name": "Tutorials Point",
+        "url": "https://www.tutorialspoint.com",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.tutorialspoint.com/images/logo60.png",
+            "width": 210,
+            "height": 60
+        }
+    },
+    "datePublished": "November 04 2017 15:07:15.",
+    "dateModified": "October 31 2017 05:23:11.",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Tutorials Point",
+        "url": "https://www.tutorialspoint.com",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.tutorialspoint.com/images/logo60.png",
+            "width": 210,
+            "height": 60
+        }
+    },
+    "description": "Java provides the java.util.regex package for pattern matching with regular expressions. Java regular expressions are very similar to the Perl programming language and very easy to learn...."
+}
+</script>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+                "name": "www.tutorialspoint.com",
+                "@id": "https://www.tutorialspoint.com"
+            }
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+                "name": "Java",
+                "@id": "https://www.tutorialspoint.com/java"
+            }
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+                "name": "Java - Regular Expressions"
+            }
+        }
+    ]
+}
+</script>
+
+
+
+<div class="autocomplete-suggestions " style="top: 42px; left: 0px; width: 8px;"></div></body></html>

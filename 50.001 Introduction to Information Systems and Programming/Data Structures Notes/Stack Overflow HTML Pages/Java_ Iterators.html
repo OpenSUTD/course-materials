@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0056)https://www.leepoint.net/data/collections/iterators.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="author" content="Fred Swartz (www.fredswartz.com)">
+<meta name="index" content="interators">
+<meta name="level" content="2">
+<link rel="stylesheet" type="text/css" href="./Java_ Iterators_files/notes.css">
+<title>Java: Iterators</title>
+</head>
+<body><div id="content">
+<h1 class="title"><a href="https://www.leepoint.net/index.html">Java Notes</a></h1><h1>Iterators</h1>
+<p>The List and Set collections provide <i>iterators</i>, which are objects that allow
+going over all the elements of a collection in sequence. The <code>java.util.Iterator&lt;E&gt;</code>
+interface provides for one-way traversal and <code>java.util.ListIterator&lt;E&gt;</code>
+provides two-way traversal. <code>Iterator&lt;E&gt;</code> is a replacement for the older
+<code>Enumeration</code> class which was used before collections were added
+to Java.
+</p>
+<h2>Creating an Iterator</h2>
+<p>Iterators are created by calling the <i>iterator()</i> or <i>listIterator()</i>
+method of a List, Set, or other data collection with iterators.</p>
+<h2>Iterator Methods</h2>
+<p>Iterator defines three methods, one of which is optional.</p>
+<table border="1" cellspacing="0" summary="Iterator methods">
+<tbody><tr><th>Result</th><th>Method</th>
+<th>Description</th></tr>
+<tr valign="top"><td align="right"><code>b =&nbsp;</code></td><td><code><i>it</i>.<b>hasNext</b>()</code></td>
+<td><code>true</code> if there are more elements for the iterator.</td></tr>
+<tr valign="top"><td align="right"><code>obj&nbsp;=&nbsp;</code></td><td><code><i>it</i>.<b>next</b>()</code></td>
+<td>Returns the next object. If a generic list is being accessed, the iterator
+will return something of the list's type. Pre-generic Java iterators always returned type
+<code>Object</code>, so a downcast was usually required.</td></tr>
+<tr valign="top"><td align="right"><code>&nbsp;</code></td><td><code><i>it</i>.remove()</code></td>
+<td>Removes the most recent element that was returned by <code>next</code>.
+Not all collections support <code>delete</code>.
+An <i>UnsupportedOperationException</i> will be thrown if the collection
+does not support <i>remove()</i>.</td></tr>
+</tbody></table>
+<h3>Example with Java 5 generics</h3>
+<p>An iterator might be used as follows.</p>
+<pre class="example">ArrayList&lt;String&gt; alist = new ArrayList&lt;String&gt;();
+// . . . Add Strings to alist
+
+for (Iterator&lt;String&gt; it = alist.iterator(); it.hasNext(); ) {
+    String s = it.next();  // No downcasting required.
+    System.out.println(s);
+}</pre>
+<h3>Example as above but with enhanced Java 5 for loop</h3>
+<pre class="example">for (String s : alist) {
+    System.out.println(s);
+}</pre>
+<h3>Example pre Java 5, with explicit iterator and downcasting</h3>
+<p>An iterator might be used as follows, wi.</p>
+<pre class="example">ArrayList alist = new ArrayList(); // This holds type Object.
+// . . . Add Strings to alist
+
+for (Iterator it = alist.iterator(); it.hasNext(); ) {
+    String s = (String)it.next();  // Downcasting is required pre Java 5.
+    System.out.println(s);
+}</pre>
+<h2>ListIterator methods</h2>
+<p><code>ListIterator</code> is implemented
+only by the classes that implement the <code>List</code> interface
+(<code>ArrayList</code>, <code>LinkedList</code>, and <code>Vector</code>).
+ListIterator provides the following.</p>
+<table border="1" cellspacing="0" summary="Iterator methods">
+<tbody><tr><th>Result</th><th>Method</th>
+<th>Description</th></tr>
+<tr valign="top"> <td colspan="3" class="rowheader"><i>Forward iteration</i></td></tr>
+<tr valign="top"><td align="right"><code>b =&nbsp;</code></td><td><code><i>it</i>.<b>hasNext</b>()</code></td>
+<td><code>true</code> if there is a next element in the collection.</td></tr>
+<tr valign="top"><td align="right"><code>obj =&nbsp;</code></td><td><code><i>it</i>.<b>next</b>()</code></td>
+<td>Returns the next object.</td></tr>
+<tr valign="top"> <td colspan="3" class="rowheader"><i>Backward iteration</i></td></tr>
+<tr valign="top"><td align="right"><code>b =&nbsp;</code></td><td><code><i>it</i>.<b>hasPrevious</b>()</code></td>
+<td><code>true</code> if there is a previous element.</td></tr>
+<tr valign="top"><td align="right"><code>obj&nbsp;=&nbsp;</code></td><td><code><i>it</i>.<b>previous</b>()</code></td>
+<td>Returns the previous element.</td></tr>
+<tr valign="top"> <td colspan="3" class="rowheader"><i>Getting the index of an element</i></td></tr>
+<tr valign="top"><td align="right"><code>i =&nbsp;</code></td><td><code><i>it</i>.<b>nextIndex</b>()</code></td>
+<td>Returns index of element that would be returned by subsequent call to <i>next()</i>.</td></tr>
+<tr valign="top"><td align="right"><code>i =&nbsp;</code></td><td><code><i>it</i>.<b>previousIndex</b>()</code></td>
+<td>Returns index of element that would be returned by subsequent call to <i>previous()</i>.</td></tr>
+<tr valign="top"> <td colspan="3" class="rowheader"><i>Optional modification methods. UnsupportedOperationException thrown if unsupported.</i></td></tr>
+<tr valign="top"><td align="right"><code>&nbsp;</code></td><td><code><i>it</i>.add(<i>obj</i>)</code></td>
+<td>Inserts <i>obj</i> in collection before the next element to be returned by <code>next()</code>
+and after an element that would be returned by <code>previous()</code>.</td></tr>
+<tr valign="top"><td align="right"><code>&nbsp;</code></td><td><code><i>it</i>.set()</code></td>
+<td>Replaces the most recent element that was returned by <code>next</code> or <code>previous()</code>.</td></tr>
+<tr valign="top"><td align="right"><code>&nbsp;</code></td><td><code><i>it</i>.remove()</code></td>
+<td>Removes the most recent element that was returned by <code>next()</code> or <code>previous()</code>.</td></tr>
+</tbody></table>
+<h2>BAD BAD BAD</h2>
+<dl>
+<dt>Q: What does this loop do? Note mixing of iterator with index.</dt>
+<dd>
+<pre class="example">ArrayList&lt;String&gt; alist = new ArrayList&lt;String&gt;();
+// . . . Add Strings to alist
+
+int i = 0;
+for (Iterator&lt;String&gt; it = alist.iterator(); it.hasNext(); ) {
+    System.out.println(alist.get(i++));
+}</pre>
+</dd>
+<dt>A: It throws an exception when it goes beyond the end.</dt>
+<dd>After <code>hasNext()</code> returns true, the only way to advance
+the iterator is to call <code>next()</code>. But the element is
+retrived with <code>get()</code>, so the iterator is never advanced.
+<code>hasNext()</code> will continue to always be true (ie, there is a first
+element), and eventually the <code>get()</code> will request something
+beyond the end of the ArrayList. Use either the iterator scheme.
+<pre class="fragment">for (Iterator&lt;String&gt; it = alist.iterator(); it.hasNext(); ) {
+    System.out.println(it.next());
+}</pre>
+Or the indexing scheme, but don't mix them.
+<pre class="fragment">for (int i=0; i &lt; alist.size(); i++) {
+    System.out.println(alist.get(i));
+}</pre>
+</dd>
+</dl>
+<div class="footer">Copyleft 2005 <a href="http://www.fredosaurus.com/">Fred Swartz</a> <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></div>
+</div>
+
+</body></html>

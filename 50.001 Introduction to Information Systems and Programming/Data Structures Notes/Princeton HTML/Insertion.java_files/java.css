@@ -1,0 +1,82 @@
+a         { text-decoration: none; }             
+a:link    { color: #0066cc; }
+a:hover   { color: red; text-decoration: underline;  }
+
+
+body {
+    color:#00000f;   /* make off-black to cut-and-pasting into  powerpoint */
+    background-color: white;
+}
+
+/* for language keywords */
+.keyword {
+    color: #0066cc;
+}
+
+/* for basic types */
+.type {
+    color: #0066cc;
+    font-family: monospace
+}
+
+
+/* for strings and chars */
+.string {
+    color: #116611;
+}
+
+/* for special chars, e.g., \n, \t \\ */
+.specialchar {
+    color: pink;
+}
+
+/* for comments */
+.comment {
+    color: #666666;
+    font-style: italic;
+}
+
+/* for literal numbers */
+.number {
+    color:purple; 
+}
+
+/* for preprocesing directives, e.g., import */
+.preproc {
+    color:darkblue;
+    font-weight: bold;
+}
+
+/* for symbols, e.g., <, >, + */
+.symbol {
+    color:darkred;
+}
+
+/* for function calls and declarations */
+.function {
+    color:#00000f;
+    font-weight: bold;
+}
+
+/* for block brackets, e.g., {, } */
+.cbracket {
+    color:#00000f;
+}
+
+
+/* TODO and FIXME */
+.todo {
+    font-weight: bold;
+}
+
+
+
+
+
+a         { text-decoration: none; }
+a:link    { text-decoration: none; }
+a:visited { text-decoration: none; }
+a:hover   { color: red; text-decoration: underline; }
+a:active  { color: black; }
+h1 { color:black; }
+

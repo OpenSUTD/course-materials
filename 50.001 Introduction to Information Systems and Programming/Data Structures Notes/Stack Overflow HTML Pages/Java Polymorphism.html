@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)https://www.tutorialspoint.com/java/java_polymorphism.htm -->
+<html style="" class=" js touch csstransforms3d csstransitions"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Basic -->
+
+<title>Java Polymorphism</title>
+<meta name="description" content="Java Polymorphism - Learn Java in simple and easy steps starting from basic to advanced concepts with examples including Java Syntax Object Oriented Language, Methods, Overriding, Inheritance, Polymorphism, Interfaces, Packages, Collections, Networking, Multithreading, Generics, Multimedia, Serialization, GUI.">
+<meta name="keywords" content="Java, Tutorials, Learning, Beginners, Basics, Object Oriented Language, Methods, Overriding, Inheritance, Polymorphism, Interfaces, Packages, Collections, Networking, Multithreading, Generics, Multimedia, Serialization, GUI.">
+<!--<base href="https://www.tutorialspoint.com/">--><base href=".">
+<link rel="shortcut icon" href="https://www.tutorialspoint.com/favicon.ico" type="image/x-icon">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="fb:app_id" content="471319149685276">
+<meta property="og:site_name" content="www.tutorialspoint.com">
+<meta name="robots" content="index, follow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="author" content="tutorialspoint.com">
+<script type="text/javascript" src="./Java Polymorphism_files/script-min-v4.js.download"></script>
+<link rel="stylesheet" href="./Java Polymorphism_files/style-min.css">
+<!-- Head Libs -->
+<!--[if IE 8]>
+<link rel="stylesheet" type="text/css" href="/theme/css/ie8.css">
+<![endif]-->
+<style>
+pre.prettyprint.tryit {min-height:37px; background: #eee url(java/images/try-it.jpg) top right no-repeat !important}select{ border:0 !important; outline: 1px inset black !important; outline-offset: -1px !important; }
+ul.nav-list.primary>li a.videolink{    background: none; margin: 0px; padding: 0px; border: 1px solid #d6d6d6;}
+div.feature-box div.feature-box-icon, .col-md-3 .course-box, li.heading, div.footer-copyright { background: #eb4847 url(/images/pattern.png) repeat center center !important;}
+.sub-main-menu .sub-menuu div:hover, .sub-main-menu .viewall, header nav ul.nav-main li a:hover, button.btn-responsive-nav, header div.search button.btn-default { background: #eb4847 !important;}
+.submenu-item{ border-bottom: 2px solid #eb4847 !important; border-top: 2px solid #eb4847 !important }
+.ace_scroller{overflow: auto!important;}
+</style>
+<script>
+$(document).ready(function() {
+  $('input[name="q"]').keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+</script>
+</head>
+<body onload="prettyPrint()" style="">
+<div class="wrapLoader">
+   <div class="imgLoader">
+      <img src="./Java Polymorphism_files/loading-cg.gif" alt="" width="70" height="70">
+   </div>
+</div>
+<header>
+   <div class="container">			
+      <h1 class="logo">
+      <a href="https://www.tutorialspoint.com/index.htm" title="tutorialspoint">
+      <img alt="tutorialspoint" src="./Java Polymorphism_files/logo.png">
+      </a>
+      </h1>			
+      <nav>
+         <ul class="nav nav-pills nav-top">
+            <li><a href="https://www.tutorialspoint.com/about/about_careers.htm" style="background: #fffb09; font-weight: bold;"><i class="icon icon-suitcase"></i> Jobs</a></li>
+            <li> <a href="http://www.sendfiles.net/"><i class="fa fa-send"></i> &nbsp;SENDFiles</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/whiteboard.htm"><img src="./Java Polymorphism_files/image-editor.png" alt="Whiteboard" title="Whiteboard"> &nbsp;Whiteboard</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/netmeeting.php"><i class="fa-camera"></i> &nbsp;Net Meeting</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/online_dev_tools.htm"> <i class="dev-tools-menu" style="opacity:.5"></i> Tools </a> </li>
+            <li> <a href="https://www.tutorialspoint.com/articles/index.php"><i class="icon icon-file-text-o"></i> &nbsp;Articles</a> </li>            
+            <li class="top-icons">
+              <ul class="social-icons">
+              <li class="facebook"><a href="https://www.facebook.com/tutorialspointindia" target="_blank" data-placement="bottom" title="tutorialspoint @ Facebook">Facebook</a></li>
+              <li class="googleplus"><a href="https://plus.google.com/u/0/116678774017490391259/posts" target="_blank" data-placement="bottom" title="tutorialspoint @ Google+">Google+</a></li>
+              <li class="twitter"><a href="https://www.twitter.com/tutorialspoint" target="_blank" data-placement="bottom" title="tutorialspoint @ Twitter">Twitter</a></li>
+              <li class="linkedin"><a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" data-placement="bottom" title="tutorialspoint @ Linkedin">Linkedin</a></li>
+              <li class="youtube"><a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" data-placement="bottom" title="tutorialspoint YouTube">YouTube</a></li>
+              </ul>
+           </li>
+         </ul>
+      </nav>
+         <!-- search code here  --> 
+      <button class="btn btn-responsive-nav btn-inverse" data-toggle="collapse" data-target=".nav-main-collapse" id="pull" style="top: 24px!important"> <i class="icon icon-bars"></i> </button>
+   </div>
+  
+   <div class="navbar nav-main">
+      <div class="container">
+         <nav class="nav-main mega-menu">
+            <ul class="nav nav-pills nav-main" id="mainMenu">
+               <li class="dropdown no-sub-menu"> <a class="dropdown" href="https://www.tutorialspoint.com/index.htm"><i class="icon icon-home"></i> Home</a> </li>   
+               <li class="dropdown" id="liTL"><a class="dropdown" href="javascript:void(0);"><span class="tut-lib"> Tutorials Library <i class="fa-caret-down"></i></span></a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/codingground.htm"><i class="fa-code"></i> Coding Ground </a> </li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/tutor_connect/index.php"><i class="fa-user"> </i> Tutor Connect</a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fa-toggle-right"></i> Videos </a></li>
+               <li class="dropdown no-sub-menu">
+                  <div class="searchform-popup">
+                     <input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == &#39;Search your favorite tutorials...&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Search your favorite tutorials...&#39;;}" autocomplete="off" style="">
+                     <div class="magnifying-glass"><i class="icon-search"></i> Search </div>
+                 </div>
+               </li>
+            </ul>
+         </nav>
+         <div class="submenu-item sub-main-menu" id="top-sub-menu"></div>
+         
+      </div>
+   </div>	
+</header>
+<div style="clear:both;"></div>
+<div role="main" class="main">
+<div class="container">
+<div class="row">
+<div class="col-md-2">
+<aside class="sidebar">
+<div class="mini-logo">
+<img src="./Java Polymorphism_files/java-mini-logo.jpg" alt="Java Tutorial">
+</div>
+<ul class="nav nav-list primary left-menu">
+<li><a class="videolink" href="https://www.tutorialspoint.com/java_online_training/index.asp" target="_blank"><img src="./Java Polymorphism_files/java-video-tutorials.jpg" alt="Java Video Tutorials"></a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Java Tutorial</li>
+<li><a href="https://www.tutorialspoint.com/java/index.htm">Java - Home</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_overview.htm">Java - Overview</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_environment_setup.htm">Java - Environment Setup</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_basic_syntax.htm">Java - Basic Syntax</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_object_classes.htm">Java - Object &amp; Classes</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_basic_datatypes.htm">Java - Basic Datatypes</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_variable_types.htm">Java - Variable Types</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_modifier_types.htm">Java - Modifier Types</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_basic_operators.htm">Java - Basic Operators</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_loop_control.htm">Java - Loop Control</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_decision_making.htm">Java - Decision Making</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_numbers.htm">Java - Numbers</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_characters.htm">Java - Characters</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_strings.htm">Java - Strings</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_arrays.htm">Java - Arrays</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_date_time.htm">Java - Date &amp; Time</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_regular_expressions.htm">Java - Regular Expressions</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_methods.htm">Java - Methods</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_files_io.htm">Java - Files and I/O</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_exceptions.htm">Java - Exceptions</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_innerclasses.htm">Java - Inner classes</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Java Object Oriented</li>
+<li><a href="https://www.tutorialspoint.com/java/java_inheritance.htm">Java - Inheritance</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_overriding.htm">Java - Overriding</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_polymorphism.htm" style="background-color: rgb(214, 214, 214);">Java - Polymorphism</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_abstraction.htm">Java - Abstraction</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_encapsulation.htm">Java - Encapsulation</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_interfaces.htm">Java - Interfaces</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_packages.htm">Java - Packages</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Java Advanced</li>
+<li><a href="https://www.tutorialspoint.com/java/java_data_structures.htm">Java - Data Structures</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_collections.htm">Java - Collections</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_generics.htm">Java - Generics</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_serialization.htm">Java - Serialization</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_networking.htm">Java - Networking</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_sending_email.htm">Java - Sending Email</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_multithreading.htm">Java - Multithreading</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_applet_basics.htm">Java - Applet Basics</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_documentation.htm">Java - Documentation</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Java Useful Resources</li>
+<li><a href="https://www.tutorialspoint.com/java/java_questions_answers.htm">Java - Questions and Answers</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_quick_guide.htm">Java - Quick Guide</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_useful_resources.htm">Java - Useful Resources</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_discussion.htm">Java - Discussion</a></li>
+<li><a href="https://www.tutorialspoint.com/javaexamples/index.htm">Java - Examples</a></li>
+</ul>
+<ul class="nav nav-list primary push-bottom left-menu special">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="https://www.tutorialspoint.com/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</aside>
+</div>
+<!-- PRINTING STARTS HERE -->
+<div class="row">
+<div class="content">
+<div class="col-md-7 middle-col">
+<h1>Java - Polymorphism</h1>
+<div class="topgooglead">
+<hr>
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr>
+<div class="pre-btn">
+<a href="https://www.tutorialspoint.com/java/java_overriding.htm"><i class="icon icon-arrow-circle-o-left big-font"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="https://www.tutorialspoint.com/java/java_abstraction.htm">Next Page <i class="icon icon-arrow-circle-o-right big-font"></i>&nbsp;</a>
+</div>
+<div class="clearer"></div>
+<hr>
+<p>Polymorphism is the ability of an object to take on many forms. The most common use of polymorphism in OOP occurs when a parent class reference is used to refer to a child class object.</p>
+<p>Any Java object that can pass more than one IS-A test is considered to be polymorphic. In Java, all Java objects are polymorphic since any object will pass the IS-A test for their own type and for the class Object.</p>
+<p>It is important to know that the only possible way to access an object is through a reference variable. A reference variable can be of only one type. Once declared, the type of a reference variable cannot be changed.</p>
+<p>The reference variable can be reassigned to other objects provided that it is not declared final. The type of the reference variable would determine the methods that it can invoke on the object.</p>
+<p>A reference variable can refer to any object of its declared type or any subtype of its declared type. A reference variable can be declared as a class or interface type.</p>
+<h3>Example</h3>
+<p>Let us look at an example.</p>
+<pre class="prettyprint notranslate prettyprinted" style=""><span class="kwd">public</span><span class="pln"> </span><span class="kwd">interface</span><span class="pln"> </span><span class="typ">Vegetarian</span><span class="pun">{}</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Animal</span><span class="pun">{}</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Deer</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">Animal</span><span class="pln"> </span><span class="kwd">implements</span><span class="pln"> </span><span class="typ">Vegetarian</span><span class="pun">{}</span></pre>
+<p>Now, the Deer class is considered to be polymorphic since this has multiple inheritance. Following are true for the above examples −</p>
+<ul class="list">
+<li>A Deer IS-A Animal</li>
+<li>A Deer IS-A Vegetarian</li>
+<li>A Deer IS-A Deer</li>
+<li>A Deer IS-A Object</li>
+</ul>
+<p>When we apply the reference variable facts to a Deer object reference, the following declarations are legal −</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate prettyprinted" style=""><span class="typ">Deer</span><span class="pln"> d </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Deer</span><span class="pun">();</span><span class="pln">
+</span><span class="typ">Animal</span><span class="pln"> a </span><span class="pun">=</span><span class="pln"> d</span><span class="pun">;</span><span class="pln">
+</span><span class="typ">Vegetarian</span><span class="pln"> v </span><span class="pun">=</span><span class="pln"> d</span><span class="pun">;</span><span class="pln">
+</span><span class="typ">Object</span><span class="pln"> o </span><span class="pun">=</span><span class="pln"> d</span><span class="pun">;</span></pre>
+<p>All the reference variables d, a, v, o refer to the same Deer object in the heap.</p>
+<h2>Virtual Methods</h2>
+<p>In this section, I will show you how the behavior of overridden methods in Java allows you to take advantage of polymorphism when designing your classes.</p>
+<p>We already have discussed method overriding, where a child class can override a method in its parent. An overridden method is essentially hidden in the parent class, and is not invoked unless the child class uses the super keyword within the overriding method.</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate prettyprinted" id="employee" style=""><span class="com">/* File name : Employee.java */</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Employee</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+   </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> name</span><span class="pun">;</span><span class="pln">
+   </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> address</span><span class="pun">;</span><span class="pln">
+   </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> number</span><span class="pun">;</span><span class="pln">
+
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">Employee</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> name</span><span class="pun">,</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> address</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> number</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Constructing an Employee"</span><span class="pun">);</span><span class="pln">
+      </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">name </span><span class="pun">=</span><span class="pln"> name</span><span class="pun">;</span><span class="pln">
+      </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">address </span><span class="pun">=</span><span class="pln"> address</span><span class="pun">;</span><span class="pln">
+      </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">number </span><span class="pun">=</span><span class="pln"> number</span><span class="pun">;</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> mailCheck</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Mailing a check to "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">name </span><span class="pun">+</span><span class="pln"> </span><span class="str">" "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">address</span><span class="pun">);</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> toString</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="kwd">return</span><span class="pln"> name </span><span class="pun">+</span><span class="pln"> </span><span class="str">" "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> address </span><span class="pun">+</span><span class="pln"> </span><span class="str">" "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> number</span><span class="pun">;</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> getName</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="kwd">return</span><span class="pln"> name</span><span class="pun">;</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> getAddress</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="kwd">return</span><span class="pln"> address</span><span class="pun">;</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> setAddress</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> newAddress</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      address </span><span class="pun">=</span><span class="pln"> newAddress</span><span class="pun">;</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> getNumber</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="kwd">return</span><span class="pln"> number</span><span class="pun">;</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<p>Now suppose we extend Employee class as follows −</p>
+<pre class="prettyprint notranslate prettyprinted" id="salary" style=""><span class="com">/* File name : Salary.java */</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Salary</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">Employee</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+   </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">double</span><span class="pln"> salary</span><span class="pun">;</span><span class="pln"> </span><span class="com">// Annual salary</span><span class="pln">
+   
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">Salary</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> name</span><span class="pun">,</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> address</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> number</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">double</span><span class="pln"> salary</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="kwd">super</span><span class="pun">(</span><span class="pln">name</span><span class="pun">,</span><span class="pln"> address</span><span class="pun">,</span><span class="pln"> number</span><span class="pun">);</span><span class="pln">
+      setSalary</span><span class="pun">(</span><span class="pln">salary</span><span class="pun">);</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+   
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> mailCheck</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Within mailCheck of Salary class "</span><span class="pun">);</span><span class="pln">
+      </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Mailing check to "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> getName</span><span class="pun">()</span><span class="pln">
+      </span><span class="pun">+</span><span class="pln"> </span><span class="str">" with salary "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> salary</span><span class="pun">);</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+   
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">double</span><span class="pln"> getSalary</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="kwd">return</span><span class="pln"> salary</span><span class="pun">;</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+   
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> setSalary</span><span class="pun">(</span><span class="kwd">double</span><span class="pln"> newSalary</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">newSalary </span><span class="pun">&gt;=</span><span class="pln"> </span><span class="lit">0.0</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+         salary </span><span class="pun">=</span><span class="pln"> newSalary</span><span class="pun">;</span><span class="pln">
+      </span><span class="pun">}</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+   
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">double</span><span class="pln"> computePay</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Computing salary pay for "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> getName</span><span class="pun">());</span><span class="pln">
+      </span><span class="kwd">return</span><span class="pln"> salary</span><span class="pun">/</span><span class="lit">52</span><span class="pun">;</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<p>Now, you study the following program carefully and try to determine its output −</p>
+<pre class="prettyprint notranslate tryit prettyprinted" title="employee, salary" style=""><span class="com">/* File name : VirtualDemo.java */</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">VirtualDemo</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> </span><span class="pun">[]</span><span class="pln"> args</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="typ">Salary</span><span class="pln"> s </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Salary</span><span class="pun">(</span><span class="str">"Mohd Mohtashim"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Ambehta, UP"</span><span class="pun">,</span><span class="pln"> </span><span class="lit">3</span><span class="pun">,</span><span class="pln"> </span><span class="lit">3600.00</span><span class="pun">);</span><span class="pln">
+      </span><span class="typ">Employee</span><span class="pln"> e </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Salary</span><span class="pun">(</span><span class="str">"John Adams"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Boston, MA"</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2400.00</span><span class="pun">);</span><span class="pln">
+      </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Call mailCheck using Salary reference --"</span><span class="pun">);</span><span class="pln">   
+      s</span><span class="pun">.</span><span class="pln">mailCheck</span><span class="pun">();</span><span class="pln">
+      </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"\n Call mailCheck using Employee reference--"</span><span class="pun">);</span><span class="pln">
+      e</span><span class="pun">.</span><span class="pln">mailCheck</span><span class="pun">();</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<p>This will produce the following result −</p>
+<h3>Output</h3>
+<pre class="result notranslate">Constructing an Employee
+Constructing an Employee
+
+Call mailCheck using Salary reference --
+Within mailCheck of Salary class
+ailing check to Mohd Mohtashim with salary 3600.0
+
+Call mailCheck using Employee reference--
+Within mailCheck of Salary class
+ailing check to John Adams with salary 2400.0
+</pre>
+<p>Here, we instantiate two Salary objects. One using a Salary reference <b>s</b>, and the other using an Employee reference <b>e</b>.</p>
+<p>While invoking <i>s.mailCheck()</i>, the compiler sees mailCheck() in the Salary class at compile time, and the JVM invokes mailCheck() in the Salary class at run time.</p>
+<p>mailCheck() on <b>e</b> is quite different because <b>e</b> is an Employee reference. When the compiler sees <i>e.mailCheck()</i>, the compiler sees the mailCheck() method in the Employee class.</p>
+<p>Here, at compile time, the compiler used mailCheck() in Employee to validate this statement. At run time, however, the JVM invokes mailCheck() in the Salary class.</p>
+<p>This behavior is referred to as virtual method invocation, and these methods are referred to as virtual methods. An overridden method is invoked at run time, no matter what data type the reference is that was used in the source code at compile time.</p>
+<hr>
+<div class="pre-btn">
+<a href="https://www.tutorialspoint.com/java/java_overriding.htm"><i class="icon icon-arrow-circle-o-left big-font"></i> Previous Page</a>
+</div>
+<div class="print-btn center">
+<a href="https://www.tutorialspoint.com/cgi-bin/printpage.cgi" target="_blank"><i class="icon icon-print big-font"></i> Print</a>
+</div>
+<div class="nxt-btn">
+<a href="https://www.tutorialspoint.com/java/java_abstraction.htm">Next Page <i class="icon icon-arrow-circle-o-right big-font"></i>&nbsp;</a>
+</div>
+<hr>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div class="bottomadtag">Advertisements</div>
+<script type="text/javascript"><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-3" id="rightbar">
+<div class="simple-ad">
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://www.facebook.com/sharer.php?u=&#39; + &#39;http://www.tutorialspoint.com/java/java_polymorphism.htm&#39;,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=456,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;">
+<img src="./Java Polymorphism_files/facebookIcon.jpg" alt="img">
+</a>
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://twitter.com/share?url=&#39; + &#39;http://www.tutorialspoint.com/java/java_polymorphism.htm&#39;,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=456,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;">
+<img src="./Java Polymorphism_files/twitterIcon.jpg" alt="img">
+</a>
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://www.linkedin.com/cws/share?url=&#39; + &#39;http://www.tutorialspoint.com/java/java_polymorphism.htm&amp;title=&#39;+ document.title,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=456,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;">
+<img src="./Java Polymorphism_files/linkedinIcon.jpg" alt="img">
+</a>
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://plus.google.com/share?url=http://www.tutorialspoint.com/java/java_polymorphism.htm&#39;,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=456,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;">
+<img src="./Java Polymorphism_files/googlePlusIcon.jpg" alt="img">
+</a>
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://www.stumbleupon.com/submit?url=http://www.tutorialspoint.com/java/java_polymorphism.htm&amp;title=&#39;+ document.title,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=456,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;">
+<img src="./Java Polymorphism_files/StumbleUponIcon.jpg" alt="img">
+</a>
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://reddit.com/submit?url=http://www.tutorialspoint.com/java/java_polymorphism.htm&amp;title=&#39;+ document.title,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=656,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;">
+<img src="./Java Polymorphism_files/reddit.jpg" alt="img">
+</a>
+</div>
+<div class="rightgooglead">
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="rightgooglead">
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 300;
+google_ad_height = 600;
+google_ad_format = "300x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="rightgooglead">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-2537027957187252";
+/* Right Side Ad */
+google_ad_slot = "right_side_ad";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="footer-copyright">
+<div class="container">
+<div class="row">
+<div class="col-md-1">
+<a href="https://www.tutorialspoint.com/index.htm" class="logo"> <img alt="Tutorials Point" class="img-responsive" src="./Java Polymorphism_files/logo-footer.png"> </a>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+   <nav id="sub-menu">
+      <ul>
+         <li><a href="https://www.tutorialspoint.com/about/tutorials_writing.htm">Write for us</a></li>
+         <li><a href="https://www.tutorialspoint.com/about/faq.htm">FAQ's</a></li>
+         <li><a href="https://www.tutorialspoint.com/about/about_helping.htm">Helping</a></li>
+         <li><a href="https://www.tutorialspoint.com/about/contact_us.htm">Contact</a></li>
+      </ul>
+   </nav>
+</div>
+<div class="col-md-3 col-sm-12 col-xs-12">
+<p>© Copyright 2017. All Rights Reserved.</p>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+   <div class="news-group">
+      <input type="text" class="form-control-foot search" name="textemail" id="textemail" autocomplete="off" placeholder="Enter email for newsletter" onfocus="if (this.value == &#39;Enter email for newsletter...&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Enter email for newsletter...&#39;;}">
+      <span class="input-group-btn"> <button class="btn btn-default btn-footer" id="btnemail" type="submit" onclick="javascript:void(0);">go</button> </span>
+      <div id="newsresponse"></div>
+   </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Libs -->
+<script type="text/javascript" src="./Java Polymorphism_files/custom-min.js.download"></script><a class="scroll-to-top" href="https://www.tutorialspoint.com/#" id="scrollToTop"><i class="icon icon-chevron-up icon-white"></i></a>
+<script src="./Java Polymorphism_files/urchin.js.download">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+$('.pg-icon').click(function(){
+   $('.wrapLoader').show();
+});
+</script>
+<script type="text/javascript" src="./Java Polymorphism_files/jquery.colorbox-min.js.download"></script>
+<script type="text/javascript">
+   var tryit = new $.TryIt('java/try_java.php');
+   tryit.compile();
+</script><div id="source" style="display:none;"></div><div id="supportsource" style="display:none;"></div><div id="utilsource" style="display:none;"></div><div id="extrasource" style="display:none;"></div><div id="inputs" style="display:none;"></div><div id="filename" style="display:none;"></div>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Java Polymorphism",
+    "name": "Java Polymorphism",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.tutorialspoint.com/java/java_polymorphism.htm"
+    },
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://www.tutorialspoint.com/java/images/java-mini-logo.jpg",
+        "width": 255,
+        "height": 194
+    },
+    "author": {
+        "@type": "Organization",
+        "name": "Tutorials Point",
+        "url": "https://www.tutorialspoint.com",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.tutorialspoint.com/images/logo60.png",
+            "width": 210,
+            "height": 60
+        }
+    },
+    "datePublished": "August 15 2017 02:44:32.",
+    "dateModified": "August 15 2017 02:34:17.",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Tutorials Point",
+        "url": "https://www.tutorialspoint.com",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.tutorialspoint.com/images/logo60.png",
+            "width": 210,
+            "height": 60
+        }
+    },
+    "description": "Polymorphism is the ability of an object to take on many forms. The most common use of polymorphism in OOP occurs when a parent class reference is used to refer to a child class object...."
+}
+</script>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+                "name": "www.tutorialspoint.com",
+                "@id": "https://www.tutorialspoint.com"
+            }
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+                "name": "Java",
+                "@id": "https://www.tutorialspoint.com/java"
+            }
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+                "name": "Java - Polymorphism"
+            }
+        }
+    ]
+}
+</script>
+
+
+
+<div class="autocomplete-suggestions " style="top: 694px; left: 0px; width: 8px;"></div><div id="cboxOverlay" style="display: none;"></div><div id="colorbox" class="" role="dialog" tabindex="-1" style="display: none;"><div id="cboxWrapper"><div><div id="cboxTopLeft" style="float: left;"></div><div id="cboxTopCenter" style="float: left;"></div><div id="cboxTopRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxMiddleLeft" style="float: left;"></div><div id="cboxContent" style="float: left;"><div id="cboxTitle" style="float: left;"></div><div id="cboxCurrent" style="float: left;"></div><button type="button" id="cboxPrevious"></button><button type="button" id="cboxNext"></button><button id="cboxSlideshow"></button><div id="cboxLoadingOverlay" style="float: left;"></div><div id="cboxLoadingGraphic" style="float: left;"></div></div><div id="cboxMiddleRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxBottomLeft" style="float: left;"></div><div id="cboxBottomCenter" style="float: left;"></div><div id="cboxBottomRight" style="float: left;"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none; max-width: none;"></div></div></body></html>

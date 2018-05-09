@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0055)http://introcs.cs.princeton.edu/java/44st/BST.java.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="shortcut icon" href="http://introcs.cs.princeton.edu/favicon.ico">
+<link rel="stylesheet" href="./BST.java_files/java.css" type="text/css">
+
+<title>BST.java</title>
+
+
+<meta name="AUTHOR" content="Robert Sedgewick and Kevin Wayne">
+<meta name="DESCRIPTION" content="BST code in Java">
+<meta name="TITLE" content="BST code in Java">
+<meta name="KEYWORDS" content="BST,java,programming,computer science,algorithm,program,code">
+<meta name="ROBOTS" content="INDEX,FOLLOW">
+
+</head>
+
+
+<body>
+<center><h1>BST.java</h1></center><p><br>
+
+Below is the syntax highlighted version of <a href="http://introcs.cs.princeton.edu/java/44st/BST.java">BST.java</a>
+from <a href="http://introcs.cs.princeton.edu/java/44st">§4.4 Symbol Tables</a>.
+</p><p><br>
+
+<!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+</p><pre><tt><span class="comment">/******************************************************************************</span>
+<span class="comment"> *  Compilation:  javac BST.java</span>
+<span class="comment"> *  Execution:    java BST</span>
+<span class="comment"> *  Dependencies: StdIn.java StdOut.java Queue.java</span>
+<span class="comment"> *  Data files:   </span><span class="url">http://introcs.cs.princeton.edu/44st/tinyST.txt</span><span class="comment">  </span>
+<span class="comment"> *</span>
+<span class="comment"> *  A symbol table implemented with a binary search tree.</span>
+<span class="comment"> * </span>
+<span class="comment"> *  % more tinyST.txt</span>
+<span class="comment"> *  S E A R C H E X A M P L E</span>
+<span class="comment"> *  </span>
+<span class="comment"> *  % java BST &lt; tinyST.txt</span>
+<span class="comment"> *  A 8</span>
+<span class="comment"> *  C 4</span>
+<span class="comment"> *  E 12</span>
+<span class="comment"> *  H 5</span>
+<span class="comment"> *  L 11</span>
+<span class="comment"> *  M 9</span>
+<span class="comment"> *  P 10</span>
+<span class="comment"> *  R 3</span>
+<span class="comment"> *  S 0</span>
+<span class="comment"> *  X 7</span>
+<span class="comment"> *</span>
+<span class="comment"> ******************************************************************************/</span>
+
+<span class="preproc">import</span><span class="normal"> java</span><span class="symbol">.</span><span class="normal">util</span><span class="symbol">.</span><span class="normal">NoSuchElementException</span><span class="symbol">;</span>
+
+<span class="comment">/**</span>
+<span class="comment"> *  The {</span><span class="type">@code</span><span class="comment"> BST} class represents an ordered symbol table of generic</span>
+<span class="comment"> *  key-value pairs.</span>
+<span class="comment"> *  It supports the usual </span><span class="keyword">&lt;em&gt;</span><span class="comment">put</span><span class="keyword">&lt;/em&gt;</span><span class="comment">, </span><span class="keyword">&lt;em&gt;</span><span class="comment">get</span><span class="keyword">&lt;/em&gt;</span><span class="comment">, </span><span class="keyword">&lt;em&gt;</span><span class="comment">contains</span><span class="keyword">&lt;/em&gt;</span><span class="comment">,</span>
+<span class="comment"> *  </span><span class="keyword">&lt;em&gt;</span><span class="comment">delete</span><span class="keyword">&lt;/em&gt;</span><span class="comment">, </span><span class="keyword">&lt;em&gt;</span><span class="comment">size</span><span class="keyword">&lt;/em&gt;</span><span class="comment">, and </span><span class="keyword">&lt;em&gt;</span><span class="comment">is-empty</span><span class="keyword">&lt;/em&gt;</span><span class="comment"> methods.</span>
+<span class="comment"> *  It also provides ordered methods for finding the </span><span class="keyword">&lt;em&gt;</span><span class="comment">minimum</span><span class="keyword">&lt;/em&gt;</span><span class="comment">,</span>
+<span class="comment"> *  </span><span class="keyword">&lt;em&gt;</span><span class="comment">maximum</span><span class="keyword">&lt;/em&gt;</span><span class="comment">, </span><span class="keyword">&lt;em&gt;</span><span class="comment">floor</span><span class="keyword">&lt;/em&gt;</span><span class="comment">, </span><span class="keyword">&lt;em&gt;</span><span class="comment">select</span><span class="keyword">&lt;/em&gt;</span><span class="comment">, </span><span class="keyword">&lt;em&gt;</span><span class="comment">ceiling</span><span class="keyword">&lt;/em&gt;</span><span class="comment">.</span>
+<span class="comment"> *  It also provides a </span><span class="keyword">&lt;em&gt;</span><span class="comment">keys</span><span class="keyword">&lt;/em&gt;</span><span class="comment"> method for iterating over all of the keys.</span>
+<span class="comment"> *  A symbol table implements the </span><span class="keyword">&lt;em&gt;</span><span class="comment">associative array</span><span class="keyword">&lt;/em&gt;</span><span class="comment"> abstraction:</span>
+<span class="comment"> *  when associating a value with a key that is already in the symbol table,</span>
+<span class="comment"> *  the convention is to replace the old value with the new value.</span>
+<span class="comment"> *  Unlike {</span><span class="type">@link</span><span class="comment"> java.util.Map}, this class uses the convention that</span>
+<span class="comment"> *  values cannot be {</span><span class="type">@code</span><span class="comment"> null}—setting the</span>
+<span class="comment"> *  value associated with a key to {</span><span class="type">@code</span><span class="comment"> null} is equivalent to deleting the key</span>
+<span class="comment"> *  from the symbol table.</span>
+<span class="comment"> *  </span><span class="keyword">&lt;p&gt;</span>
+<span class="comment"> *  This implementation uses an (unbalanced) binary search tree. It requires that</span>
+<span class="comment"> *  the key type implements the {</span><span class="type">@code</span><span class="comment"> Comparable} interface and calls the</span>
+<span class="comment"> *  {</span><span class="type">@code</span><span class="comment"> compareTo()} and method to compare two keys. It does not call either</span>
+<span class="comment"> *  {</span><span class="type">@code</span><span class="comment"> equals()} or {</span><span class="type">@code</span><span class="comment"> hashCode()}.</span>
+<span class="comment"> *  The </span><span class="keyword">&lt;em&gt;</span><span class="comment">put</span><span class="keyword">&lt;/em&gt;</span><span class="comment">, </span><span class="keyword">&lt;em&gt;</span><span class="comment">contains</span><span class="keyword">&lt;/em&gt;</span><span class="comment">, </span><span class="keyword">&lt;em&gt;</span><span class="comment">remove</span><span class="keyword">&lt;/em&gt;</span><span class="comment">, </span><span class="keyword">&lt;em&gt;</span><span class="comment">minimum</span><span class="keyword">&lt;/em&gt;</span><span class="comment">,</span>
+<span class="comment"> *  </span><span class="keyword">&lt;em&gt;</span><span class="comment">maximum</span><span class="keyword">&lt;/em&gt;</span><span class="comment">, </span><span class="keyword">&lt;em&gt;</span><span class="comment">ceiling</span><span class="keyword">&lt;/em&gt;</span><span class="comment">, </span><span class="keyword">&lt;em&gt;</span><span class="comment">floor</span><span class="keyword">&lt;/em&gt;</span><span class="comment">, </span><span class="keyword">&lt;em&gt;</span><span class="comment">select</span><span class="keyword">&lt;/em&gt;</span><span class="comment">, and</span>
+<span class="comment"> *  </span><span class="keyword">&lt;em&gt;</span><span class="comment">rank</span><span class="keyword">&lt;/em&gt;</span><span class="comment">  operations each take</span>
+<span class="comment"> *  linear time in the worst case, if the tree becomes unbalanced.</span>
+<span class="comment"> *  The </span><span class="keyword">&lt;em&gt;</span><span class="comment">size</span><span class="keyword">&lt;/em&gt;</span><span class="comment">, and </span><span class="keyword">&lt;em&gt;</span><span class="comment">is-empty</span><span class="keyword">&lt;/em&gt;</span><span class="comment"> operations take constant time.</span>
+<span class="comment"> *  Construction takes constant time.</span>
+<span class="comment"> *  </span><span class="keyword">&lt;p&gt;</span>
+<span class="comment"> *  For additional documentation, see </span><span class="keyword">&lt;a</span><span class="normal"> </span><span class="type">href</span><span class="symbol">=</span><span class="string">"http://algs4.cs.princeton.edu/44st"</span><span class="keyword">&gt;</span><span class="comment">Section 4.4</span><span class="keyword">&lt;/a&gt;</span><span class="comment"> of</span>
+<span class="comment"> *  </span><span class="keyword">&lt;i&gt;</span><span class="comment">Introdution to Programming in Java</span><span class="keyword">&lt;/i&gt;</span><span class="comment"> by Robert Sedgewick and Kevin Wayne.</span>
+<span class="comment"> *  For other implementations, see {</span><span class="type">@link</span><span class="comment"> ST}, {</span><span class="type">@link</span><span class="comment"> BinarySearchST},</span>
+<span class="comment"> *  {</span><span class="type">@link</span><span class="comment"> SequentialSearchST}, and {</span><span class="type">@link</span><span class="comment"> HashST}.</span>
+<span class="comment"> *</span>
+<span class="comment"> *  </span><span class="type">@author</span><span class="comment"> Robert Sedgewick</span>
+<span class="comment"> *  </span><span class="type">@author</span><span class="comment"> Kevin Wayne</span>
+<span class="comment"> */</span>
+<span class="keyword">public</span><span class="normal"> </span><span class="keyword">class</span><span class="normal"> </span><span class="classname">BST</span><span class="symbol">&lt;</span><span class="normal">Key </span><span class="usertype">extends</span><span class="normal"> Comparable</span><span class="symbol">&lt;</span><span class="normal">Key</span><span class="symbol">&gt;,</span><span class="normal"> Value</span><span class="symbol">&gt;</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="keyword">private</span><span class="normal"> </span><span class="usertype">Node</span><span class="normal"> root</span><span class="symbol">;</span><span class="normal">             </span><span class="comment">// root of BST</span>
+
+<span class="normal">    </span><span class="keyword">private</span><span class="normal"> </span><span class="keyword">class</span><span class="normal"> </span><span class="classname">Node</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">private</span><span class="normal"> </span><span class="keyword">final</span><span class="normal"> </span><span class="usertype">Key</span><span class="normal"> key</span><span class="symbol">;</span><span class="normal">       </span><span class="comment">// sorted by key</span>
+<span class="normal">        </span><span class="keyword">private</span><span class="normal"> </span><span class="usertype">Value</span><span class="normal"> val</span><span class="symbol">;</span><span class="normal">           </span><span class="comment">// associated data</span>
+<span class="normal">        </span><span class="keyword">private</span><span class="normal"> </span><span class="usertype">Node</span><span class="normal"> left</span><span class="symbol">,</span><span class="normal"> right</span><span class="symbol">;</span><span class="normal">    </span><span class="comment">// left and right subtrees</span>
+<span class="normal">        </span><span class="keyword">private</span><span class="normal"> </span><span class="type">int</span><span class="normal"> size</span><span class="symbol">;</span><span class="normal">            </span><span class="comment">// number of nodes in subtree</span>
+
+<span class="normal">        </span><span class="keyword">public</span><span class="normal"> </span><span class="function">Node</span><span class="symbol">(</span><span class="usertype">Key</span><span class="normal"> key</span><span class="symbol">,</span><span class="normal"> </span><span class="usertype">Value</span><span class="normal"> val</span><span class="symbol">,</span><span class="normal"> </span><span class="type">int</span><span class="normal"> size</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">            </span><span class="keyword">this</span><span class="symbol">.</span><span class="normal">key </span><span class="symbol">=</span><span class="normal"> key</span><span class="symbol">;</span>
+<span class="normal">            </span><span class="keyword">this</span><span class="symbol">.</span><span class="normal">val </span><span class="symbol">=</span><span class="normal"> val</span><span class="symbol">;</span>
+<span class="normal">            </span><span class="keyword">this</span><span class="symbol">.</span><span class="normal">size </span><span class="symbol">=</span><span class="normal"> size</span><span class="symbol">;</span>
+<span class="normal">        </span><span class="cbracket">}</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="comment">/**</span>
+<span class="comment">     * Initializes an empty symbol table.</span>
+<span class="comment">     */</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="function">BST</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="comment">/**</span>
+<span class="comment">     * Returns true if this symbol table is empty.</span>
+<span class="comment">     * </span><span class="type">@return</span><span class="comment"> {</span><span class="type">@code</span><span class="comment"> true} if this symbol table is empty; {</span><span class="type">@code</span><span class="comment"> false} otherwise</span>
+<span class="comment">     */</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="type">boolean</span><span class="normal"> </span><span class="function">isEmpty</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> </span><span class="function">size</span><span class="symbol">()</span><span class="normal"> </span><span class="symbol">==</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="comment">/**</span>
+<span class="comment">     * Returns the number of key-value pairs in this symbol table.</span>
+<span class="comment">     * </span><span class="type">@return</span><span class="comment"> the number of key-value pairs in this symbol table</span>
+<span class="comment">     */</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="type">int</span><span class="normal"> </span><span class="function">size</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> </span><span class="function">size</span><span class="symbol">(</span><span class="normal">root</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="comment">// return number of key-value pairs in BST rooted at x</span>
+<span class="normal">    </span><span class="keyword">private</span><span class="normal"> </span><span class="type">int</span><span class="normal"> </span><span class="function">size</span><span class="symbol">(</span><span class="usertype">Node</span><span class="normal"> x</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">x </span><span class="symbol">==</span><span class="normal"> </span><span class="keyword">null</span><span class="symbol">)</span><span class="normal"> </span><span class="keyword">return</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span>
+<span class="normal">        </span><span class="keyword">else</span><span class="normal"> </span><span class="keyword">return</span><span class="normal"> x</span><span class="symbol">.</span><span class="normal">size</span><span class="symbol">;</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="comment">/**</span>
+<span class="comment">     * Does this symbol table contain the given key?</span>
+<span class="comment">     *</span>
+<span class="comment">     * </span><span class="type">@param</span><span class="comment">  key the key</span>
+<span class="comment">     * </span><span class="type">@return</span><span class="comment"> {</span><span class="type">@code</span><span class="comment"> true} if this symbol table contains {</span><span class="type">@code</span><span class="comment"> key} and</span>
+<span class="comment">     *         {</span><span class="type">@code</span><span class="comment"> false} otherwise</span>
+<span class="comment">     * </span><span class="type">@throws</span><span class="comment"> IllegalArgumentException if {</span><span class="type">@code</span><span class="comment"> key} is {</span><span class="type">@code</span><span class="comment"> null}</span>
+<span class="comment">     */</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="type">boolean</span><span class="normal"> </span><span class="function">contains</span><span class="symbol">(</span><span class="usertype">Key</span><span class="normal"> key</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">key </span><span class="symbol">==</span><span class="normal"> </span><span class="keyword">null</span><span class="symbol">)</span><span class="normal"> </span><span class="keyword">throw</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> </span><span class="function">IllegalArgumentException</span><span class="symbol">(</span><span class="string">"argument to contains() is null"</span><span class="symbol">);</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> </span><span class="function">get</span><span class="symbol">(</span><span class="normal">key</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">!=</span><span class="normal"> </span><span class="keyword">null</span><span class="symbol">;</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="comment">/**</span>
+<span class="comment">     * Returns the value associated with the given key.</span>
+<span class="comment">     *</span>
+<span class="comment">     * </span><span class="type">@param</span><span class="comment">  key the key</span>
+<span class="comment">     * </span><span class="type">@return</span><span class="comment"> the value associated with the given key if the key is in the symbol table</span>
+<span class="comment">     *         and {</span><span class="type">@code</span><span class="comment"> null} if the key is not in the symbol table</span>
+<span class="comment">     * </span><span class="type">@throws</span><span class="comment"> IllegalArgumentException if {</span><span class="type">@code</span><span class="comment"> key} is {</span><span class="type">@code</span><span class="comment"> null}</span>
+<span class="comment">     */</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="usertype">Value</span><span class="normal"> </span><span class="function">get</span><span class="symbol">(</span><span class="usertype">Key</span><span class="normal"> key</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> </span><span class="function">get</span><span class="symbol">(</span><span class="normal">root</span><span class="symbol">,</span><span class="normal"> key</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="keyword">private</span><span class="normal"> </span><span class="usertype">Value</span><span class="normal"> </span><span class="function">get</span><span class="symbol">(</span><span class="usertype">Node</span><span class="normal"> x</span><span class="symbol">,</span><span class="normal"> </span><span class="usertype">Key</span><span class="normal"> key</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">x </span><span class="symbol">==</span><span class="normal"> </span><span class="keyword">null</span><span class="symbol">)</span><span class="normal"> </span><span class="keyword">return</span><span class="normal"> </span><span class="keyword">null</span><span class="symbol">;</span>
+<span class="normal">        </span><span class="type">int</span><span class="normal"> cmp </span><span class="symbol">=</span><span class="normal"> key</span><span class="symbol">.</span><span class="function">compareTo</span><span class="symbol">(</span><span class="normal">x</span><span class="symbol">.</span><span class="normal">key</span><span class="symbol">);</span>
+<span class="normal">        </span><span class="keyword">if</span><span class="normal">      </span><span class="symbol">(</span><span class="normal">cmp </span><span class="symbol">&lt;</span><span class="normal"> </span><span class="number">0</span><span class="symbol">)</span><span class="normal"> </span><span class="keyword">return</span><span class="normal"> </span><span class="function">get</span><span class="symbol">(</span><span class="normal">x</span><span class="symbol">.</span><span class="normal">left</span><span class="symbol">,</span><span class="normal"> key</span><span class="symbol">);</span>
+<span class="normal">        </span><span class="keyword">else</span><span class="normal"> </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cmp </span><span class="symbol">&gt;</span><span class="normal"> </span><span class="number">0</span><span class="symbol">)</span><span class="normal"> </span><span class="keyword">return</span><span class="normal"> </span><span class="function">get</span><span class="symbol">(</span><span class="normal">x</span><span class="symbol">.</span><span class="normal">right</span><span class="symbol">,</span><span class="normal"> key</span><span class="symbol">);</span>
+<span class="normal">        </span><span class="keyword">else</span><span class="normal">              </span><span class="keyword">return</span><span class="normal"> x</span><span class="symbol">.</span><span class="normal">val</span><span class="symbol">;</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="comment">/**</span>
+<span class="comment">     * Inserts the specified key-value pair into the symbol table, overwriting the old </span>
+<span class="comment">     * value with the new value if the symbol table already contains the specified key.</span>
+<span class="comment">     * Deletes the specified key (and its associated value) from this symbol table</span>
+<span class="comment">     * if the specified value is {</span><span class="type">@code</span><span class="comment"> null}.</span>
+<span class="comment">     *</span>
+<span class="comment">     * </span><span class="type">@param</span><span class="comment">  key the key</span>
+<span class="comment">     * </span><span class="type">@param</span><span class="comment">  val the value</span>
+<span class="comment">     * </span><span class="type">@throws</span><span class="comment"> IllegalArgumentException if {</span><span class="type">@code</span><span class="comment"> key} is {</span><span class="type">@code</span><span class="comment"> null}</span>
+<span class="comment">     */</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">put</span><span class="symbol">(</span><span class="usertype">Key</span><span class="normal"> key</span><span class="symbol">,</span><span class="normal"> </span><span class="usertype">Value</span><span class="normal"> val</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">key </span><span class="symbol">==</span><span class="normal"> </span><span class="keyword">null</span><span class="symbol">)</span><span class="normal"> </span><span class="keyword">throw</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> </span><span class="function">IllegalArgumentException</span><span class="symbol">(</span><span class="string">"first argument to put() is null"</span><span class="symbol">);</span>
+<span class="normal">        </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">val </span><span class="symbol">==</span><span class="normal"> </span><span class="keyword">null</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">            </span><span class="function">delete</span><span class="symbol">(</span><span class="normal">key</span><span class="symbol">);</span>
+<span class="normal">            </span><span class="keyword">return</span><span class="symbol">;</span>
+<span class="normal">        </span><span class="cbracket">}</span>
+<span class="normal">        root </span><span class="symbol">=</span><span class="normal"> </span><span class="function">put</span><span class="symbol">(</span><span class="normal">root</span><span class="symbol">,</span><span class="normal"> key</span><span class="symbol">,</span><span class="normal"> val</span><span class="symbol">);</span>
+<span class="normal">        </span><span class="keyword">assert</span><span class="normal"> </span><span class="function">check</span><span class="symbol">();</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="keyword">private</span><span class="normal"> </span><span class="usertype">Node</span><span class="normal"> </span><span class="function">put</span><span class="symbol">(</span><span class="usertype">Node</span><span class="normal"> x</span><span class="symbol">,</span><span class="normal"> </span><span class="usertype">Key</span><span class="normal"> key</span><span class="symbol">,</span><span class="normal"> </span><span class="usertype">Value</span><span class="normal"> val</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">x </span><span class="symbol">==</span><span class="normal"> </span><span class="keyword">null</span><span class="symbol">)</span><span class="normal"> </span><span class="keyword">return</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> </span><span class="function">Node</span><span class="symbol">(</span><span class="normal">key</span><span class="symbol">,</span><span class="normal"> val</span><span class="symbol">,</span><span class="normal"> </span><span class="number">1</span><span class="symbol">);</span>
+<span class="normal">        </span><span class="type">int</span><span class="normal"> cmp </span><span class="symbol">=</span><span class="normal"> key</span><span class="symbol">.</span><span class="function">compareTo</span><span class="symbol">(</span><span class="normal">x</span><span class="symbol">.</span><span class="normal">key</span><span class="symbol">);</span>
+<span class="normal">        </span><span class="keyword">if</span><span class="normal">      </span><span class="symbol">(</span><span class="normal">cmp </span><span class="symbol">&lt;</span><span class="normal"> </span><span class="number">0</span><span class="symbol">)</span><span class="normal"> x</span><span class="symbol">.</span><span class="normal">left  </span><span class="symbol">=</span><span class="normal"> </span><span class="function">put</span><span class="symbol">(</span><span class="normal">x</span><span class="symbol">.</span><span class="normal">left</span><span class="symbol">,</span><span class="normal">  key</span><span class="symbol">,</span><span class="normal"> val</span><span class="symbol">);</span>
+<span class="normal">        </span><span class="keyword">else</span><span class="normal"> </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">cmp </span><span class="symbol">&gt;</span><span class="normal"> </span><span class="number">0</span><span class="symbol">)</span><span class="normal"> x</span><span class="symbol">.</span><span class="normal">right </span><span class="symbol">=</span><span class="normal"> </span><span class="function">put</span><span class="symbol">(</span><span class="normal">x</span><span class="symbol">.</span><span class="normal">right</span><span class="symbol">,</span><span class="normal"> key</span><span class="symbol">,</span><span class="normal"> val</span><span class="symbol">);</span>
+<span class="normal">        </span><span class="keyword">else</span><span class="normal">              x</span><span class="symbol">.</span><span class="normal">val   </span><span class="symbol">=</span><span class="normal"> val</span><span class="symbol">;</span>
+<span class="normal">        x</span><span class="symbol">.</span><span class="normal">size </span><span class="symbol">=</span><span class="normal"> </span><span class="number">1</span><span class="normal"> </span><span class="symbol">+</span><span class="normal"> </span><span class="function">size</span><span class="symbol">(</span><span class="normal">x</span><span class="symbol">.</span><span class="normal">left</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">+</span><span class="normal"> </span><span class="function">size</span><span class="symbol">(</span><span class="normal">x</span><span class="symbol">.</span><span class="normal">right</span><span class="symbol">);</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> x</span><span class="symbol">;</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+
+<span class="normal">    </span><span class="comment">/**</span>
+<span class="comment">     * Removes the smallest key and associated value from the symbol table.</span>
+<span class="comment">     *</span>
+<span class="comment">     * </span><span class="type">@throws</span><span class="comment"> NoSuchElementException if the symbol table is empty</span>
+<span class="comment">     */</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">deleteMin</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function">isEmpty</span><span class="symbol">())</span><span class="normal"> </span><span class="keyword">throw</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> </span><span class="function">NoSuchElementException</span><span class="symbol">(</span><span class="string">"Symbol table underflow"</span><span class="symbol">);</span>
+<span class="normal">        root </span><span class="symbol">=</span><span class="normal"> </span><span class="function">deleteMin</span><span class="symbol">(</span><span class="normal">root</span><span class="symbol">);</span>
+<span class="normal">        </span><span class="keyword">assert</span><span class="normal"> </span><span class="function">check</span><span class="symbol">();</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="keyword">private</span><span class="normal"> </span><span class="usertype">Node</span><span class="normal"> </span><span class="function">deleteMin</span><span class="symbol">(</span><span class="usertype">Node</span><span class="normal"> x</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">x</span><span class="symbol">.</span><span class="normal">left </span><span class="symbol">==</span><span class="normal"> </span><span class="keyword">null</span><span class="symbol">)</span><span class="normal"> </span><span class="keyword">return</span><span class="normal"> x</span><span class="symbol">.</span><span class="normal">right</span><span class="symbol">;</span>
+<span class="normal">        x</span><span class="symbol">.</span><span class="normal">left </span><span class="symbol">=</span><span class="normal"> </span><span class="function">deleteMin</span><span class="symbol">(</span><span class="normal">x</span><span class="symbol">.</span><span class="normal">left</span><span class="symbol">);</span>
+<span class="normal">        x</span><span class="symbol">.</span><span class="normal">size </span><span class="symbol">=</span><span class="normal"> </span><span class="function">size</span><span class="symbol">(</span><span class="normal">x</span><span class="symbol">.</span><span class="normal">left</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">+</span><span class="normal"> </span><span class="function">size</span><span class="symbol">(</span><span class="normal">x</span><span class="symbol">.</span><span class="normal">right</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">+</span><span class="normal"> </span><span class="number">1</span><span class="symbol">;</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> x</span><span class="symbol">;</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="comment">/**</span>
+<span class="comment">     * Removes the largest key and associated value from the symbol table.</span>
+<span class="comment">     *</span>
+<span class="comment">     * </span><span class="type">@throws</span><span class="comment"> NoSuchElementException if the symbol table is empty</span>
+<span class="comment">     */</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">deleteMax</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function">isEmpty</span><span class="symbol">())</span><span class="normal"> </span><span class="keyword">throw</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> </span><span class="function">NoSuchElementException</span><span class="symbol">(</span><span class="string">"Symbol table underflow"</span><span class="symbol">);</span>
+<span class="normal">        root </span><span class="symbol">=</span><span class="normal"> </span><span class="function">deleteMax</span><span class="symbol">(</span><span class="normal">root</span><span class="symbol">);</span>
+<span class="normal">        </span><span class="keyword">assert</span><span class="normal"> </span><span class="function">check</span><span class="symbol">();</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="keyword">private</span><span class="normal"> </span><span class="usertype">Node</span><span class="normal"> </span><span class="function">deleteMax</span><span class="symbol">(</span><span class="usertype">Node</span><span class="normal"> x</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">x</span><span class="symbol">.</span><span class="normal">right </span><span class="symbol">==</span><span class="normal"> </span><span class="keyword">null</span><span class="symbol">)</span><span class="normal"> </span><span class="keyword">return</span><span class="normal"> x</span><span class="symbol">.</span><span class="normal">left</span><span class="symbol">;</span>
+<span class="normal">        x</span><span class="symbol">.</span><span class="normal">right </span><span class="symbol">=</span><span class="normal"> </span><span class="function">deleteMax</span><span class="symbol">(</span><span class="normal">x</span><span class="symbol">.</span><span class="normal">right</span><span class="symbol">);</span>
+<span class="normal">        x</span><span class="symbol">.</span><span class="normal">size </span><span class="symbol">=</span><span class="normal"> </span><span class="function">size</span><span class="symbol">(</span><span class="normal">x</span><span class="symbol">.</span><span class="normal">left</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">+</span><span class="normal"> </span><span class="function">size</span><span class="symbol">(</span><span class="normal">x</span><span class="symbol">.</span><span class="normal">right</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">+</span><span class="normal"> </span><span class="number">1</span><span class="symbol">;</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> x</span><span class="symbol">;</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="comment">/**</span>
+<span class="comment">     * Removes the specified key and its associated value from this symbol table     </span>
+<span class="comment">     * (if the key is in this symbol table).    </span>
+<span class="comment">     *</span>
+<span class="comment">     * </span><span class="type">@param</span><span class="comment">  key the key</span>
+<span class="comment">     * </span><span class="type">@throws</span><span class="comment"> IllegalArgumentException if {</span><span class="type">@code</span><span class="comment"> key} is {</span><span class="type">@code</span><span class="comment"> null}</span>
+<span class="comment">     */</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">delete</span><span class="symbol">(</span><span class="usertype">Key</span><span class="normal"> key</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">if</span><span class="normal"> </span></tt></pre></body></html>

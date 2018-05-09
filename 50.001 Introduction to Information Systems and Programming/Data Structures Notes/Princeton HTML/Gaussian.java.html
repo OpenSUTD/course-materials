@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0062)http://introcs.cs.princeton.edu/java/42sort/Gaussian.java.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="shortcut icon" href="http://introcs.cs.princeton.edu/favicon.ico">
+<link rel="stylesheet" href="./Gaussian.java_files/java.css" type="text/css">
+
+<title>Gaussian.java</title>
+
+
+<meta name="AUTHOR" content="Robert Sedgewick and Kevin Wayne">
+<meta name="DESCRIPTION" content="Gaussian code in Java">
+<meta name="TITLE" content="Gaussian code in Java">
+<meta name="KEYWORDS" content="Gaussian,java,programming,computer science,algorithm,program,code">
+<meta name="ROBOTS" content="INDEX,FOLLOW">
+
+</head>
+
+
+<body>
+<center><h1>Gaussian.java</h1></center><p><br>
+
+Below is the syntax highlighted version of <a href="http://introcs.cs.princeton.edu/java/42sort/Gaussian.java">Gaussian.java</a>
+from <a href="http://introcs.cs.princeton.edu/java/21function">§2.1 Static Methods</a>.
+</p><p><br>
+
+<!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+</p><pre><tt><span class="comment">/******************************************************************************</span>
+<span class="comment"> *  Compilation:  javac Gaussian.java</span>
+<span class="comment"> *  Execution:    java Gaussian x mu sigma</span>
+<span class="comment"> *</span>
+<span class="comment"> *  Function to compute the Gaussian pdf (probability density function)</span>
+<span class="comment"> *  and the Gaussian cdf (cumulative density function)</span>
+<span class="comment"> *</span>
+<span class="comment"> *  % java Gaussian 820 1019 209</span>
+<span class="comment"> *  0.17050966869132111</span>
+<span class="comment"> *</span>
+<span class="comment"> *  % java Gaussian 1500 1019 209</span>
+<span class="comment"> *  0.9893164837383883</span>
+<span class="comment"> *</span>
+<span class="comment"> *  % java Gaussian 1500 1025 231</span>
+<span class="comment"> *  0.9801220907365489</span>
+<span class="comment"> *</span>
+<span class="comment"> *  The approximation is accurate to absolute error less than 8 * 10^(-16).</span>
+<span class="comment"> *  Reference: Evaluating the Normal Distribution by George Marsaglia.</span>
+<span class="comment"> *  </span><span class="url">http://www.jstatsoft.org/v11/a04/paper</span>
+<span class="comment"> *</span>
+<span class="comment"> ******************************************************************************/</span>
+
+<span class="keyword">public</span><span class="normal"> </span><span class="keyword">class</span><span class="normal"> </span><span class="classname">Gaussian</span><span class="normal"> </span><span class="cbracket">{</span>
+
+<span class="normal">    </span><span class="comment">// return pdf(x) = standard Gaussian pdf</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="type">double</span><span class="normal"> </span><span class="function">pdf</span><span class="symbol">(</span><span class="type">double</span><span class="normal"> x</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> Math</span><span class="symbol">.</span><span class="function">exp</span><span class="symbol">(-</span><span class="normal">x</span><span class="symbol">*</span><span class="normal">x </span><span class="symbol">/</span><span class="normal"> </span><span class="number">2</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">/</span><span class="normal"> Math</span><span class="symbol">.</span><span class="function">sqrt</span><span class="symbol">(</span><span class="number">2</span><span class="normal"> </span><span class="symbol">*</span><span class="normal"> Math</span><span class="symbol">.</span><span class="normal">PI</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="comment">// return pdf(x, mu, signma) = Gaussian pdf with mean mu and stddev sigma</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="type">double</span><span class="normal"> </span><span class="function">pdf</span><span class="symbol">(</span><span class="type">double</span><span class="normal"> x</span><span class="symbol">,</span><span class="normal"> </span><span class="type">double</span><span class="normal"> mu</span><span class="symbol">,</span><span class="normal"> </span><span class="type">double</span><span class="normal"> sigma</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> </span><span class="function">pdf</span><span class="symbol">((</span><span class="normal">x </span><span class="symbol">-</span><span class="normal"> mu</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">/</span><span class="normal"> sigma</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">/</span><span class="normal"> sigma</span><span class="symbol">;</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="comment">// return cdf(z) = standard Gaussian cdf using Taylor approximation</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="type">double</span><span class="normal"> </span><span class="function">cdf</span><span class="symbol">(</span><span class="type">double</span><span class="normal"> z</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">z </span><span class="symbol">&lt;</span><span class="normal"> </span><span class="symbol">-</span><span class="number">8.0</span><span class="symbol">)</span><span class="normal"> </span><span class="keyword">return</span><span class="normal"> </span><span class="number">0.0</span><span class="symbol">;</span>
+<span class="normal">        </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">z </span><span class="symbol">&gt;</span><span class="normal">  </span><span class="number">8.0</span><span class="symbol">)</span><span class="normal"> </span><span class="keyword">return</span><span class="normal"> </span><span class="number">1.0</span><span class="symbol">;</span>
+<span class="normal">        </span><span class="type">double</span><span class="normal"> sum </span><span class="symbol">=</span><span class="normal"> </span><span class="number">0.0</span><span class="symbol">,</span><span class="normal"> term </span><span class="symbol">=</span><span class="normal"> z</span><span class="symbol">;</span>
+<span class="normal">        </span><span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="type">int</span><span class="normal"> i </span><span class="symbol">=</span><span class="normal"> </span><span class="number">3</span><span class="symbol">;</span><span class="normal"> sum </span><span class="symbol">+</span><span class="normal"> term </span><span class="symbol">!=</span><span class="normal"> sum</span><span class="symbol">;</span><span class="normal"> i </span><span class="symbol">+=</span><span class="normal"> </span><span class="number">2</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">            sum  </span><span class="symbol">=</span><span class="normal"> sum </span><span class="symbol">+</span><span class="normal"> term</span><span class="symbol">;</span>
+<span class="normal">            term </span><span class="symbol">=</span><span class="normal"> term </span><span class="symbol">*</span><span class="normal"> z </span><span class="symbol">*</span><span class="normal"> z </span><span class="symbol">/</span><span class="normal"> i</span><span class="symbol">;</span>
+<span class="normal">        </span><span class="cbracket">}</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> </span><span class="number">0.5</span><span class="normal"> </span><span class="symbol">+</span><span class="normal"> sum </span><span class="symbol">*</span><span class="normal"> </span><span class="function">pdf</span><span class="symbol">(</span><span class="normal">z</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="comment">// return cdf(z, mu, sigma) = Gaussian cdf with mean mu and stddev sigma</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="type">double</span><span class="normal"> </span><span class="function">cdf</span><span class="symbol">(</span><span class="type">double</span><span class="normal"> z</span><span class="symbol">,</span><span class="normal"> </span><span class="type">double</span><span class="normal"> mu</span><span class="symbol">,</span><span class="normal"> </span><span class="type">double</span><span class="normal"> sigma</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> </span><span class="function">cdf</span><span class="symbol">((</span><span class="normal">z </span><span class="symbol">-</span><span class="normal"> mu</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">/</span><span class="normal"> sigma</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="cbracket">}</span><span class="normal"> </span>
+
+<span class="normal">    </span><span class="comment">// Compute z such that cdf(z) = y via bisection search</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="type">double</span><span class="normal"> </span><span class="function">inverseCDF</span><span class="symbol">(</span><span class="type">double</span><span class="normal"> y</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> </span><span class="function">inverseCDF</span><span class="symbol">(</span><span class="normal">y</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0.00000001</span><span class="symbol">,</span><span class="normal"> </span><span class="symbol">-</span><span class="number">8</span><span class="symbol">,</span><span class="normal"> </span><span class="number">8</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="cbracket">}</span><span class="normal"> </span>
+
+<span class="normal">    </span><span class="comment">// bisection search</span>
+<span class="normal">    </span><span class="keyword">private</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="type">double</span><span class="normal"> </span><span class="function">inverseCDF</span><span class="symbol">(</span><span class="type">double</span><span class="normal"> y</span><span class="symbol">,</span><span class="normal"> </span><span class="type">double</span><span class="normal"> delta</span><span class="symbol">,</span><span class="normal"> </span><span class="type">double</span><span class="normal"> lo</span><span class="symbol">,</span><span class="normal"> </span><span class="type">double</span><span class="normal"> hi</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="type">double</span><span class="normal"> mid </span><span class="symbol">=</span><span class="normal"> lo </span><span class="symbol">+</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">hi </span><span class="symbol">-</span><span class="normal"> lo</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">/</span><span class="normal"> </span><span class="number">2</span><span class="symbol">;</span>
+<span class="normal">        </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">hi </span><span class="symbol">-</span><span class="normal"> lo </span><span class="symbol">&lt;</span><span class="normal"> delta</span><span class="symbol">)</span><span class="normal"> </span><span class="keyword">return</span><span class="normal"> mid</span><span class="symbol">;</span>
+<span class="normal">        </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function">cdf</span><span class="symbol">(</span><span class="normal">mid</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">&gt;</span><span class="normal"> y</span><span class="symbol">)</span><span class="normal"> </span><span class="keyword">return</span><span class="normal"> </span><span class="function">inverseCDF</span><span class="symbol">(</span><span class="normal">y</span><span class="symbol">,</span><span class="normal"> delta</span><span class="symbol">,</span><span class="normal"> lo</span><span class="symbol">,</span><span class="normal"> mid</span><span class="symbol">);</span>
+<span class="normal">        </span><span class="keyword">else</span><span class="normal">              </span><span class="keyword">return</span><span class="normal"> </span><span class="function">inverseCDF</span><span class="symbol">(</span><span class="normal">y</span><span class="symbol">,</span><span class="normal"> delta</span><span class="symbol">,</span><span class="normal"> mid</span><span class="symbol">,</span><span class="normal"> hi</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+
+<span class="normal">    </span><span class="comment">// return phi(x) = standard Gaussian pdf</span>
+<span class="normal">    @Deprecated</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="type">double</span><span class="normal"> </span><span class="function">phi</span><span class="symbol">(</span><span class="type">double</span><span class="normal"> x</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> </span><span class="function">pdf</span><span class="symbol">(</span><span class="normal">x</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="comment">// return phi(x, mu, signma) = Gaussian pdf with mean mu and stddev sigma</span>
+<span class="normal">    @Deprecated</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="type">double</span><span class="normal"> </span><span class="function">phi</span><span class="symbol">(</span><span class="type">double</span><span class="normal"> x</span><span class="symbol">,</span><span class="normal"> </span><span class="type">double</span><span class="normal"> mu</span><span class="symbol">,</span><span class="normal"> </span><span class="type">double</span><span class="normal"> sigma</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> </span><span class="function">pdf</span><span class="symbol">(</span><span class="normal">x</span><span class="symbol">,</span><span class="normal"> mu</span><span class="symbol">,</span><span class="normal"> sigma</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="comment">// return Phi(z) = standard Gaussian cdf using Taylor approximation</span>
+<span class="normal">    @Deprecated</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="type">double</span><span class="normal"> </span><span class="function">Phi</span><span class="symbol">(</span><span class="type">double</span><span class="normal"> z</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> </span><span class="function">cdf</span><span class="symbol">(</span><span class="normal">z</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="comment">// return Phi(z, mu, sigma) = Gaussian cdf with mean mu and stddev sigma</span>
+<span class="normal">    @Deprecated</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="type">double</span><span class="normal"> </span><span class="function">Phi</span><span class="symbol">(</span><span class="type">double</span><span class="normal"> z</span><span class="symbol">,</span><span class="normal"> </span><span class="type">double</span><span class="normal"> mu</span><span class="symbol">,</span><span class="normal"> </span><span class="type">double</span><span class="normal"> sigma</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> </span><span class="function">cdf</span><span class="symbol">(</span><span class="normal">z</span><span class="symbol">,</span><span class="normal"> mu</span><span class="symbol">,</span><span class="normal"> sigma</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="cbracket">}</span><span class="normal"> </span>
+
+<span class="normal">    </span><span class="comment">// Compute z such that Phi(z) = y via bisection search</span>
+<span class="normal">    @Deprecated</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="type">double</span><span class="normal"> </span><span class="function">PhiInverse</span><span class="symbol">(</span><span class="type">double</span><span class="normal"> y</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> </span><span class="function">inverseCDF</span><span class="symbol">(</span><span class="normal">y</span><span class="symbol">);</span>
+<span class="normal">    </span><span class="cbracket">}</span><span class="normal"> </span>
+
+<span class="normal">    </span><span class="comment">// test client</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">main</span><span class="symbol">(</span><span class="normal">String</span><span class="symbol">[]</span><span class="normal"> args</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="type">double</span><span class="normal"> z     </span><span class="symbol">=</span><span class="normal"> Double</span><span class="symbol">.</span><span class="function">parseDouble</span><span class="symbol">(</span><span class="normal">args</span><span class="symbol">[</span><span class="number">0</span><span class="symbol">]);</span>
+<span class="normal">        </span><span class="type">double</span><span class="normal"> mu    </span><span class="symbol">=</span><span class="normal"> Double</span><span class="symbol">.</span><span class="function">parseDouble</span><span class="symbol">(</span><span class="normal">args</span><span class="symbol">[</span><span class="number">1</span><span class="symbol">]);</span>
+<span class="normal">        </span><span class="type">double</span><span class="normal"> sigma </span><span class="symbol">=</span><span class="normal"> Double</span><span class="symbol">.</span><span class="function">parseDouble</span><span class="symbol">(</span><span class="normal">args</span><span class="symbol">[</span><span class="number">2</span><span class="symbol">]);</span>
+<span class="normal">        StdOut</span><span class="symbol">.</span><span class="function">println</span><span class="symbol">(</span><span class="function">cdf</span><span class="symbol">(</span><span class="normal">z</span><span class="symbol">,</span><span class="normal"> mu</span><span class="symbol">,</span><span class="normal"> sigma</span><span class="symbol">));</span>
+<span class="normal">        </span><span class="type">double</span><span class="normal"> y </span><span class="symbol">=</span><span class="normal"> </span><span class="function">cdf</span><span class="symbol">(</span><span class="normal">z</span><span class="symbol">);</span>
+<span class="normal">        StdOut</span><span class="symbol">.</span><span class="function">println</span><span class="symbol">(</span><span class="function">inverseCDF</span><span class="symbol">(</span><span class="normal">y</span><span class="symbol">));</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+<span class="cbracket">}</span>
+</tt></pre>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./Gaussian.java_files/ga.js.download" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-10811519-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+
+
+<p><br></p><address><small>
+Copyright © 2000–2016, Robert Sedgewick and Kevin Wayne.
+<br>Last updated: Mon Jan 16 17:39:53 EST 2017.
+</small></address>
+
+
+</body></html>

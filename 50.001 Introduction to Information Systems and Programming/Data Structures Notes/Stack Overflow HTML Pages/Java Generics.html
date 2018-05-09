@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)https://www.tutorialspoint.com/java/java_generics.htm -->
+<html style="" class=" js no-touch csstransforms3d csstransitions"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Basic -->
+
+<title>Java Generics</title>
+<meta name="description" content="Java Generics - Learn Java in simple and easy steps starting from basic to advanced concepts with examples including Java Syntax Object Oriented Language, Methods, Overriding, Inheritance, Polymorphism, Interfaces, Packages, Collections, Networking, Multithreading, Generics, Multimedia, Serialization, GUI.">
+<meta name="keywords" content="Java, Tutorials, Learning, Beginners, Basics, Object Oriented Language, Methods, Overriding, Inheritance, Polymorphism, Interfaces, Packages, Collections, Networking, Multithreading, Generics, Multimedia, Serialization, GUI.">
+<!--<base href="https://www.tutorialspoint.com/">--><base href=".">
+<link rel="shortcut icon" href="https://www.tutorialspoint.com/favicon.ico" type="image/x-icon">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="fb:app_id" content="471319149685276">
+<meta property="og:site_name" content="www.tutorialspoint.com">
+<meta name="robots" content="index, follow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="author" content="tutorialspoint.com">
+<script type="text/javascript" src="./Java Generics_files/script-min-v4.js.download"></script>
+<link rel="stylesheet" href="./Java Generics_files/style-min.css">
+<!-- Head Libs -->
+<!--[if IE 8]>
+<link rel="stylesheet" type="text/css" href="/theme/css/ie8.css">
+<![endif]-->
+<style>
+pre.prettyprint.tryit {min-height:37px; background: #eee url(java/images/try-it.jpg) top right no-repeat !important}select{ border:0 !important; outline: 1px inset black !important; outline-offset: -1px !important; }
+ul.nav-list.primary>li a.videolink{    background: none; margin: 0px; padding: 0px; border: 1px solid #d6d6d6;}
+div.feature-box div.feature-box-icon, .col-md-3 .course-box, li.heading, div.footer-copyright { background: #eb4847 url(/images/pattern.png) repeat center center !important;}
+.sub-main-menu .sub-menuu div:hover, .sub-main-menu .viewall, header nav ul.nav-main li a:hover, button.btn-responsive-nav, header div.search button.btn-default { background: #eb4847 !important;}
+.submenu-item{ border-bottom: 2px solid #eb4847 !important; border-top: 2px solid #eb4847 !important }
+.ace_scroller{overflow: auto!important;}
+</style>
+<script>
+$(document).ready(function() {
+  $('input[name="q"]').keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+</script>
+</head>
+<body onload="prettyPrint()" style="">
+<div class="wrapLoader">
+   <div class="imgLoader">
+      <img src="./Java Generics_files/loading-cg.gif" alt="" width="70" height="70">
+   </div>
+</div>
+<header>
+   <div class="container">			
+      <h1 class="logo">
+      <a href="https://www.tutorialspoint.com/index.htm" title="tutorialspoint">
+      <img alt="tutorialspoint" src="./Java Generics_files/logo.png">
+      </a>
+      </h1>			
+      <nav>
+         <ul class="nav nav-pills nav-top">
+            <li><a href="https://www.tutorialspoint.com/about/about_careers.htm" style="background: #fffb09; font-weight: bold;"><i class="icon icon-suitcase"></i> Jobs</a></li>
+            <li> <a href="http://www.sendfiles.net/"><i class="fa fa-send"></i> &nbsp;SENDFiles</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/whiteboard.htm"><img src="./Java Generics_files/image-editor.png" alt="Whiteboard" title="Whiteboard"> &nbsp;Whiteboard</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/netmeeting.php"><i class="fa-camera"></i> &nbsp;Net Meeting</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/online_dev_tools.htm"> <i class="dev-tools-menu" style="opacity:.5"></i> Tools </a> </li>
+            <li> <a href="https://www.tutorialspoint.com/articles/index.php"><i class="icon icon-file-text-o"></i> &nbsp;Articles</a> </li>            
+            <li class="top-icons">
+              <ul class="social-icons">
+              <li class="facebook"><a href="https://www.facebook.com/tutorialspointindia" target="_blank" data-placement="bottom" title="tutorialspoint @ Facebook">Facebook</a></li>
+              <li class="googleplus"><a href="https://plus.google.com/u/0/116678774017490391259/posts" target="_blank" data-placement="bottom" title="tutorialspoint @ Google+">Google+</a></li>
+              <li class="twitter"><a href="https://www.twitter.com/tutorialspoint" target="_blank" data-placement="bottom" title="tutorialspoint @ Twitter">Twitter</a></li>
+              <li class="linkedin"><a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" data-placement="bottom" title="tutorialspoint @ Linkedin">Linkedin</a></li>
+              <li class="youtube"><a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" data-placement="bottom" title="tutorialspoint YouTube">YouTube</a></li>
+              </ul>
+           </li>
+         </ul>
+      </nav>
+         <!-- search code here  --> 
+      <button class="btn btn-responsive-nav btn-inverse" data-toggle="collapse" data-target=".nav-main-collapse" id="pull" style="top: 24px!important"> <i class="icon icon-bars"></i> </button>
+   </div>
+  
+   <div class="navbar nav-main">
+      <div class="container">
+         <nav class="nav-main mega-menu">
+            <ul class="nav nav-pills nav-main" id="mainMenu">
+               <li class="dropdown no-sub-menu"> <a class="dropdown" href="https://www.tutorialspoint.com/index.htm"><i class="icon icon-home"></i> Home</a> </li>   
+               <li class="dropdown" id="liTL"><a class="dropdown" href="javascript:void(0);"><span class="tut-lib"> Tutorials Library <i class="fa-caret-down"></i></span></a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/codingground.htm"><i class="fa-code"></i> Coding Ground </a> </li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/tutor_connect/index.php"><i class="fa-user"> </i> Tutor Connect</a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fa-toggle-right"></i> Videos </a></li>
+               <li class="dropdown no-sub-menu">
+                  <div class="searchform-popup">
+                     <input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == &#39;Search your favorite tutorials...&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Search your favorite tutorials...&#39;;}" autocomplete="off">
+                     <div class="magnifying-glass"><i class="icon-search"></i> Search </div>
+                 </div>
+               </li>
+            </ul>
+         </nav>
+         <div class="submenu-item sub-main-menu" id="top-sub-menu"></div>
+         
+      </div>
+   </div>	
+</header>
+<div style="clear:both;"></div>
+<div role="main" class="main">
+<div class="container">
+<div class="row">
+<div class="col-md-2">
+<aside class="sidebar">
+<div class="mini-logo">
+<img src="./Java Generics_files/java-mini-logo.jpg" alt="Java Tutorial">
+</div>
+<ul class="nav nav-list primary left-menu">
+<li><a class="videolink" href="https://www.tutorialspoint.com/java_online_training/index.asp" target="_blank"><img src="./Java Generics_files/java-video-tutorials.jpg" alt="Java Video Tutorials"></a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Java Tutorial</li>
+<li><a href="https://www.tutorialspoint.com/java/index.htm">Java - Home</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_overview.htm">Java - Overview</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_environment_setup.htm">Java - Environment Setup</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_basic_syntax.htm">Java - Basic Syntax</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_object_classes.htm">Java - Object &amp; Classes</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_basic_datatypes.htm">Java - Basic Datatypes</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_variable_types.htm">Java - Variable Types</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_modifier_types.htm">Java - Modifier Types</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_basic_operators.htm">Java - Basic Operators</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_loop_control.htm">Java - Loop Control</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_decision_making.htm">Java - Decision Making</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_numbers.htm">Java - Numbers</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_characters.htm">Java - Characters</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_strings.htm">Java - Strings</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_arrays.htm">Java - Arrays</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_date_time.htm">Java - Date &amp; Time</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_regular_expressions.htm">Java - Regular Expressions</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_methods.htm">Java - Methods</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_files_io.htm">Java - Files and I/O</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_exceptions.htm">Java - Exceptions</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_innerclasses.htm">Java - Inner classes</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Java Object Oriented</li>
+<li><a href="https://www.tutorialspoint.com/java/java_inheritance.htm">Java - Inheritance</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_overriding.htm">Java - Overriding</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_polymorphism.htm">Java - Polymorphism</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_abstraction.htm">Java - Abstraction</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_encapsulation.htm">Java - Encapsulation</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_interfaces.htm">Java - Interfaces</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_packages.htm">Java - Packages</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Java Advanced</li>
+<li><a href="https://www.tutorialspoint.com/java/java_data_structures.htm">Java - Data Structures</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_collections.htm">Java - Collections</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_generics.htm" style="background-color: rgb(214, 214, 214);">Java - Generics</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_serialization.htm">Java - Serialization</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_networking.htm">Java - Networking</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_sending_email.htm">Java - Sending Email</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_multithreading.htm">Java - Multithreading</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_applet_basics.htm">Java - Applet Basics</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_documentation.htm">Java - Documentation</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Java Useful Resources</li>
+<li><a href="https://www.tutorialspoint.com/java/java_questions_answers.htm">Java - Questions and Answers</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_quick_guide.htm">Java - Quick Guide</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_useful_resources.htm">Java - Useful Resources</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_discussion.htm">Java - Discussion</a></li>
+<li><a href="https://www.tutorialspoint.com/javaexamples/index.htm">Java - Examples</a></li>
+</ul>
+<ul class="nav nav-list primary push-bottom left-menu special">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="https://www.tutorialspoint.com/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</aside>
+</div>
+<!-- PRINTING STARTS HERE -->
+<div class="row">
+<div class="content">
+<div class="col-md-7 middle-col">
+<h1>Java - Generics</h1>
+<div class="topgooglead">
+<hr>
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr>
+<div class="pre-btn">
+<a href="https://www.tutorialspoint.com/java/java_collections.htm"><i class="icon icon-arrow-circle-o-left big-font"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="https://www.tutorialspoint.com/java/java_serialization.htm">Next Page <i class="icon icon-arrow-circle-o-right big-font"></i>&nbsp;</a>
+</div>
+<div class="clearer"></div>
+<hr>
+<p>It would be nice if we could write a single sort method that could sort the elements in an Integer array, a String array, or an array of any type that supports ordering.</p>
+<p>Java <b>Generic</b> methods and generic classes enable programmers to specify, with a single method declaration, a set of related methods, or with a single class declaration, a set of related types, respectively.</p>
+<p>Generics also provide compile-time type safety that allows programmers to catch invalid types at compile time.</p>
+<p>Using Java Generic concept, we might write a generic method for sorting an array of objects, then invoke the generic method with Integer arrays, Double arrays, String arrays and so on, to sort the array elements.</p>
+<h2>Generic Methods</h2>
+<p>You can write a single generic method declaration that can be called with arguments of different types. Based on the types of the arguments passed to the generic method, the compiler handles each method call appropriately. Following are the rules to define Generic Methods −</p>
+<ul class="list">
+<li><p>All generic method declarations have a type parameter section delimited by angle brackets (&lt; and &gt;) that precedes the method's return type ( &lt; E &gt; in the next example).</p></li>
+<li><p>Each type parameter section contains one or more type parameters separated by commas. A type parameter, also known as a type variable, is an identifier that specifies a generic type name.</p></li>
+<li><p>The type parameters can be used to declare the return type and act as placeholders for the types of the arguments passed to the generic method, which are known as actual type arguments.</p></li>
+<li><p>A generic method's body is declared like that of any other method. Note that type parameters can represent only reference types, not primitive types (like int, double and char).</p></li>
+</ul>
+<h3>Example</h3>
+<p>Following example illustrates how we can print an array of different type using a single Generic method −</p>
+<pre class="prettyprint notranslate tryit prettyprinted" style=""><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">GenericMethodTest</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+   </span><span class="com">// generic method printArray</span><span class="pln">
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln"> E </span><span class="pun">&gt;</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> printArray</span><span class="pun">(</span><span class="pln"> E</span><span class="pun">[]</span><span class="pln"> inputArray </span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="com">// Display array elements</span><span class="pln">
+      </span><span class="kwd">for</span><span class="pun">(</span><span class="pln">E element </span><span class="pun">:</span><span class="pln"> inputArray</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+         </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">printf</span><span class="pun">(</span><span class="str">"%s "</span><span class="pun">,</span><span class="pln"> element</span><span class="pun">);</span><span class="pln">
+      </span><span class="pun">}</span><span class="pln">
+      </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">();</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> args</span><span class="pun">[])</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="com">// Create arrays of Integer, Double and Character</span><span class="pln">
+      </span><span class="typ">Integer</span><span class="pun">[]</span><span class="pln"> intArray </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> </span><span class="lit">3</span><span class="pun">,</span><span class="pln"> </span><span class="lit">4</span><span class="pun">,</span><span class="pln"> </span><span class="lit">5</span><span class="pln"> </span><span class="pun">};</span><span class="pln">
+      </span><span class="typ">Double</span><span class="pun">[]</span><span class="pln"> doubleArray </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="lit">1.1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2.2</span><span class="pun">,</span><span class="pln"> </span><span class="lit">3.3</span><span class="pun">,</span><span class="pln"> </span><span class="lit">4.4</span><span class="pln"> </span><span class="pun">};</span><span class="pln">
+      </span><span class="typ">Character</span><span class="pun">[]</span><span class="pln"> charArray </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="str">'H'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'E'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'L'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'L'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'O'</span><span class="pln"> </span><span class="pun">};</span><span class="pln">
+
+      </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Array integerArray contains:"</span><span class="pun">);</span><span class="pln">
+      printArray</span><span class="pun">(</span><span class="pln">intArray</span><span class="pun">);</span><span class="pln">   </span><span class="com">// pass an Integer array</span><span class="pln">
+
+      </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"\nArray doubleArray contains:"</span><span class="pun">);</span><span class="pln">
+      printArray</span><span class="pun">(</span><span class="pln">doubleArray</span><span class="pun">);</span><span class="pln">   </span><span class="com">// pass a Double array</span><span class="pln">
+
+      </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"\nArray characterArray contains:"</span><span class="pun">);</span><span class="pln">
+      printArray</span><span class="pun">(</span><span class="pln">charArray</span><span class="pun">);</span><span class="pln">   </span><span class="com">// pass a Character array</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<p>This will produce the following result −</p>
+<h3>Output</h3>
+<pre class="result notranslate">Array integerArray contains:
+1 2 3 4 5 
+
+Array doubleArray contains:
+1.1 2.2 3.3 4.4 
+
+Array characterArray contains:
+H E L L O
+</pre>
+<h2>Bounded Type Parameters</h2>
+<p>There may be times when you'll want to restrict the kinds of types that are allowed to be passed to a type parameter. For example, a method that operates on numbers might only want to accept instances of Number or its subclasses. This is what bounded type parameters are for.</p>
+<p>To declare a bounded type parameter, list the type parameter's name, followed by the extends keyword, followed by its upper bound.</p>
+<h3>Example</h3>
+<p>Following example illustrates how extends is used in a general sense to mean either "extends" (as in classes) or "implements" (as in interfaces). This example is Generic method to return the largest of three Comparable objects −</p>
+<pre class="prettyprint notranslate tryit prettyprinted" style=""><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">MaximumTest</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+   </span><span class="com">// determines the largest of three Comparable objects</span><span class="pln">
+   
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">T </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">Comparable</span><span class="pun">&lt;</span><span class="pln">T</span><span class="pun">&gt;&gt;</span><span class="pln"> T maximum</span><span class="pun">(</span><span class="pln">T x</span><span class="pun">,</span><span class="pln"> T y</span><span class="pun">,</span><span class="pln"> T z</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      T max </span><span class="pun">=</span><span class="pln"> x</span><span class="pun">;</span><span class="pln">   </span><span class="com">// assume x is initially the largest</span><span class="pln">
+      
+      </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">y</span><span class="pun">.</span><span class="pln">compareTo</span><span class="pun">(</span><span class="pln">max</span><span class="pun">)</span><span class="pln"> </span><span class="pun">&gt;</span><span class="pln"> </span><span class="lit">0</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+         max </span><span class="pun">=</span><span class="pln"> y</span><span class="pun">;</span><span class="pln">   </span><span class="com">// y is the largest so far</span><span class="pln">
+      </span><span class="pun">}</span><span class="pln">
+      
+      </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">z</span><span class="pun">.</span><span class="pln">compareTo</span><span class="pun">(</span><span class="pln">max</span><span class="pun">)</span><span class="pln"> </span><span class="pun">&gt;</span><span class="pln"> </span><span class="lit">0</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+         max </span><span class="pun">=</span><span class="pln"> z</span><span class="pun">;</span><span class="pln">   </span><span class="com">// z is the largest now                 </span><span class="pln">
+      </span><span class="pun">}</span><span class="pln">
+      </span><span class="kwd">return</span><span class="pln"> max</span><span class="pun">;</span><span class="pln">   </span><span class="com">// returns the largest object   </span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+   
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> args</span><span class="pun">[])</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">printf</span><span class="pun">(</span><span class="str">"Max of %d, %d and %d is %d\n\n"</span><span class="pun">,</span><span class="pln"> 
+         </span><span class="lit">3</span><span class="pun">,</span><span class="pln"> </span><span class="lit">4</span><span class="pun">,</span><span class="pln"> </span><span class="lit">5</span><span class="pun">,</span><span class="pln"> maximum</span><span class="pun">(</span><span class="pln"> </span><span class="lit">3</span><span class="pun">,</span><span class="pln"> </span><span class="lit">4</span><span class="pun">,</span><span class="pln"> </span><span class="lit">5</span><span class="pln"> </span><span class="pun">));</span><span class="pln">
+
+      </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">printf</span><span class="pun">(</span><span class="str">"Max of %.1f,%.1f and %.1f is %.1f\n\n"</span><span class="pun">,</span><span class="pln">
+         </span><span class="lit">6.6</span><span class="pun">,</span><span class="pln"> </span><span class="lit">8.8</span><span class="pun">,</span><span class="pln"> </span><span class="lit">7.7</span><span class="pun">,</span><span class="pln"> maximum</span><span class="pun">(</span><span class="pln"> </span><span class="lit">6.6</span><span class="pun">,</span><span class="pln"> </span><span class="lit">8.8</span><span class="pun">,</span><span class="pln"> </span><span class="lit">7.7</span><span class="pln"> </span><span class="pun">));</span><span class="pln">
+
+      </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">printf</span><span class="pun">(</span><span class="str">"Max of %s, %s and %s is %s\n"</span><span class="pun">,</span><span class="str">"pear"</span><span class="pun">,</span><span class="pln">
+         </span><span class="str">"apple"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"orange"</span><span class="pun">,</span><span class="pln"> maximum</span><span class="pun">(</span><span class="str">"pear"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"apple"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"orange"</span><span class="pun">));</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<p>This will produce the following result −</p>
+<h3>Output</h3>
+<pre class="result notranslate">Max of 3, 4 and 5 is 5
+
+Max of 6.6,8.8 and 7.7 is 8.8
+
+Max of pear, apple and orange is pear
+</pre>
+<h2>Generic Classes</h2>
+<p>A generic class declaration looks like a non-generic class declaration, except that the class name is followed by a type parameter section.</p>
+<p>As with generic methods, the type parameter section of a generic class can have one or more type parameters separated by commas. These classes are known as parameterized classes or parameterized types because they accept one or more parameters.</p>
+<h3>Example</h3>
+<p>Following example illustrates how we can define a generic class −</p>
+<pre class="prettyprint notranslate tryit prettyprinted" style=""><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Box</span><span class="pun">&lt;</span><span class="pln">T</span><span class="pun">&gt;</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+   </span><span class="kwd">private</span><span class="pln"> T t</span><span class="pun">;</span><span class="pln">
+
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> add</span><span class="pun">(</span><span class="pln">T t</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">t </span><span class="pun">=</span><span class="pln"> t</span><span class="pun">;</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+
+   </span><span class="kwd">public</span><span class="pln"> T </span><span class="kwd">get</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="kwd">return</span><span class="pln"> t</span><span class="pun">;</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pun">[]</span><span class="pln"> args</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="typ">Box</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">&gt;</span><span class="pln"> integerBox </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Box</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">&gt;();</span><span class="pln">
+      </span><span class="typ">Box</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">&gt;</span><span class="pln"> stringBox </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Box</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">&gt;();</span><span class="pln">
+    
+      integerBox</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Integer</span><span class="pun">(</span><span class="lit">10</span><span class="pun">));</span><span class="pln">
+      stringBox</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">String</span><span class="pun">(</span><span class="str">"Hello World"</span><span class="pun">));</span><span class="pln">
+
+      </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">printf</span><span class="pun">(</span><span class="str">"Integer Value :%d\n\n"</span><span class="pun">,</span><span class="pln"> integerBox</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">());</span><span class="pln">
+      </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">printf</span><span class="pun">(</span><span class="str">"String Value :%s\n"</span><span class="pun">,</span><span class="pln"> stringBox</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">());</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<p>This will produce the following result −</p>
+<h3>Output</h3>
+<pre class="result notranslate">Integer Value :10
+String Value :Hello World
+</pre>
+<hr>
+<div class="pre-btn">
+<a href="https://www.tutorialspoint.com/java/java_collections.htm"><i class="icon icon-arrow-circle-o-left big-font"></i> Previous Page</a>
+</div>
+<div class="print-btn center">
+<a href="https://www.tutorialspoint.com/cgi-bin/printpage.cgi" target="_blank"><i class="icon icon-print big-font"></i> Print</a>
+</div>
+<div class="nxt-btn">
+<a href="https://www.tutorialspoint.com/java/java_serialization.htm">Next Page <i class="icon icon-arrow-circle-o-right big-font"></i>&nbsp;</a>
+</div>
+<hr>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div class="bottomadtag">Advertisements</div>
+<script type="text/javascript"><!--
+var width = 580;
+var height = 400;
+var format = "580x400_as";
+if( window.innerWidth < 468 ){
+   width = 300;
+   height = 250;
+   format = "300x250_as";
+}
+google_ad_client = "pub-7133395778201029";
+google_ad_width = width;
+google_ad_height = height;
+google_ad_format = format;
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-3" id="rightbar">
+<div class="simple-ad">
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://www.facebook.com/sharer.php?u=&#39; + &#39;http://www.tutorialspoint.com/java/java_generics.htm&#39;,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=456,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;">
+<img src="./Java Generics_files/facebookIcon.jpg" alt="img">
+</a>
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://twitter.com/share?url=&#39; + &#39;http://www.tutorialspoint.com/java/java_generics.htm&#39;,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=456,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;">
+<img src="./Java Generics_files/twitterIcon.jpg" alt="img">
+</a>
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://www.linkedin.com/cws/share?url=&#39; + &#39;http://www.tutorialspoint.com/java/java_generics.htm&amp;title=&#39;+ document.title,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=456,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;">
+<img src="./Java Generics_files/linkedinIcon.jpg" alt="img">
+</a>
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://plus.google.com/share?url=http://www.tutorialspoint.com/java/java_generics.htm&#39;,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=456,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;">
+<img src="./Java Generics_files/googlePlusIcon.jpg" alt="img">
+</a>
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://www.stumbleupon.com/submit?url=http://www.tutorialspoint.com/java/java_generics.htm&amp;title=&#39;+ document.title,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=456,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;">
+<img src="./Java Generics_files/StumbleUponIcon.jpg" alt="img">
+</a>
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://reddit.com/submit?url=http://www.tutorialspoint.com/java/java_generics.htm&amp;title=&#39;+ document.title,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=656,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;">
+<img src="./Java Generics_files/reddit.jpg" alt="img">
+</a>
+</div>
+<div class="rightgooglead">
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="rightgooglead">
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 300;
+google_ad_height = 600;
+google_ad_format = "300x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<div class="rightgooglead">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-2537027957187252";
+/* Right Side Ad */
+google_ad_slot = "right_side_ad";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="footer-copyright">
+<div class="container">
+<div class="row">
+<div class="col-md-1">
+<a href="https://www.tutorialspoint.com/index.htm" class="logo"> <img alt="Tutorials Point" class="img-responsive" src="./Java Generics_files/logo-footer.png"> </a>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+   <nav id="sub-menu">
+      <ul>
+         <li><a href="https://www.tutorialspoint.com/about/tutorials_writing.htm">Write for us</a></li>
+         <li><a href="https://www.tutorialspoint.com/about/faq.htm">FAQ's</a></li>
+         <li><a href="https://www.tutorialspoint.com/about/about_helping.htm">Helping</a></li>
+         <li><a href="https://www.tutorialspoint.com/about/contact_us.htm">Contact</a></li>
+      </ul>
+   </nav>
+</div>
+<div class="col-md-3 col-sm-12 col-xs-12">
+<p>© Copyright 2017. All Rights Reserved.</p>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+   <div class="news-group">
+      <input type="text" class="form-control-foot search" name="textemail" id="textemail" autocomplete="off" placeholder="Enter email for newsletter" onfocus="if (this.value == &#39;Enter email for newsletter...&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Enter email for newsletter...&#39;;}">
+      <span class="input-group-btn"> <button class="btn btn-default btn-footer" id="btnemail" type="submit" onclick="javascript:void(0);">go</button> </span>
+      <div id="newsresponse"></div>
+   </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Libs -->
+<script type="text/javascript" src="./Java Generics_files/custom-min.js.download"></script><a class="scroll-to-top" href="https://www.tutorialspoint.com/#" id="scrollToTop"><i class="icon icon-chevron-up icon-white"></i></a>
+<script src="./Java Generics_files/urchin.js.download">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+$('.pg-icon').click(function(){
+   $('.wrapLoader').show();
+});
+</script>
+<script type="text/javascript" src="./Java Generics_files/jquery.colorbox-min.js.download"></script>
+<script type="text/javascript">
+   var tryit = new $.TryIt('java/try_java.php');
+   tryit.compile();
+</script><div id="source" style="display:none;"></div><div id="supportsource" style="display:none;"></div><div id="utilsource" style="display:none;"></div><div id="extrasource" style="display:none;"></div><div id="inputs" style="display:none;"></div><div id="filename" style="display:none;"></div>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Java Generics",
+    "name": "Java Generics",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.tutorialspoint.com/java/java_generics.htm"
+    },
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://www.tutorialspoint.com/java/images/java-mini-logo.jpg",
+        "width": 255,
+        "height": 194
+    },
+    "author": {
+        "@type": "Organization",
+        "name": "Tutorials Point",
+        "url": "https://www.tutorialspoint.com",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.tutorialspoint.com/images/logo60.png",
+            "width": 210,
+            "height": 60
+        }
+    },
+    "datePublished": "August 15 2017 02:44:32.",
+    "dateModified": "August 15 2017 02:34:17.",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Tutorials Point",
+        "url": "https://www.tutorialspoint.com",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.tutorialspoint.com/images/logo60.png",
+            "width": 210,
+            "height": 60
+        }
+    },
+    "description": "It would be nice if we could write a single sort method that could sort the elements in an Integer array, a String array, or an array of any type that supports ordering...."
+}
+</script>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+                "name": "www.tutorialspoint.com",
+                "@id": "https://www.tutorialspoint.com"
+            }
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+                "name": "Java",
+                "@id": "https://www.tutorialspoint.com/java"
+            }
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+                "name": "Java - Generics"
+            }
+        }
+    ]
+}
+</script>
+
+
+
+<div class="autocomplete-suggestions "></div><div id="cboxOverlay" style="display: none;"></div><div id="colorbox" class="" role="dialog" tabindex="-1" style="display: none;"><div id="cboxWrapper"><div><div id="cboxTopLeft" style="float: left;"></div><div id="cboxTopCenter" style="float: left;"></div><div id="cboxTopRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxMiddleLeft" style="float: left;"></div><div id="cboxContent" style="float: left;"><div id="cboxTitle" style="float: left;"></div><div id="cboxCurrent" style="float: left;"></div><button type="button" id="cboxPrevious"></button><button type="button" id="cboxNext"></button><button id="cboxSlideshow"></button><div id="cboxLoadingOverlay" style="float: left;"></div><div id="cboxLoadingGraphic" style="float: left;"></div></div><div id="cboxMiddleRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxBottomLeft" style="float: left;"></div><div id="cboxBottomCenter" style="float: left;"></div><div id="cboxBottomRight" style="float: left;"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none; max-width: none;"></div></div></body></html>

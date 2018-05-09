@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0068)http://introcs.cs.princeton.edu/java/42sort/FrequencyCount.java.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="shortcut icon" href="http://introcs.cs.princeton.edu/favicon.ico">
+<link rel="stylesheet" href="./FrequencyCount.java_files/java.css" type="text/css">
+
+<title>FrequencyCount.java</title>
+
+
+<meta name="AUTHOR" content="Robert Sedgewick and Kevin Wayne">
+<meta name="DESCRIPTION" content="FrequencyCount code in Java">
+<meta name="TITLE" content="FrequencyCount code in Java">
+<meta name="KEYWORDS" content="FrequencyCount,java,programming,computer science,algorithm,program,code">
+<meta name="ROBOTS" content="INDEX,FOLLOW">
+
+</head>
+
+
+<body>
+<center><h1>FrequencyCount.java</h1></center><p><br>
+
+Below is the syntax highlighted version of <a href="http://introcs.cs.princeton.edu/java/42sort/FrequencyCount.java">FrequencyCount.java</a>
+from <a href="http://introcs.cs.princeton.edu/java/42sort">§4.2 Sorting and Searching</a>.
+</p><p><br>
+
+<!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+</p><pre><tt><span class="comment">/******************************************************************************</span>
+<span class="comment"> *  Compilation:  javac FrequencyCount.java</span>
+<span class="comment"> *  Execution:    java FrequencyCount &lt; file.txt</span>
+<span class="comment"> *  Dependencies: StdIn.java Counter.java</span>
+<span class="comment"> *  Data files:   </span><span class="url">http://www.cs.princeton.edu/introcs/43sort/mobydicks.txt</span>
+<span class="comment"> *                </span><span class="url">http://www.cs.princeton.edu/introcs/43sort/Leipzig1M.txt</span>
+<span class="comment"> *                </span><span class="url">http://www.cs.princeton.edu/introcs/43sort/Leipzig100K.txt</span>
+<span class="comment"> *                </span><span class="url">http://www.cs.princeton.edu/introcs/43sort/Leipzig200KM.txt</span>
+<span class="comment"> *</span>
+<span class="comment"> *  Read in a sequence of words, separated by whitespace.</span>
+<span class="comment"> *  Compute the number of times each word appears, and print,</span>
+<span class="comment"> *  sorted by frequency.</span>
+<span class="comment"> *</span>
+<span class="comment"> *  % java FrequencyCount &lt; mobydick.txt</span>
+<span class="comment"> *  the: 13527</span>
+<span class="comment"> *  of: 6374</span>
+<span class="comment"> *  and: 5857</span>
+<span class="comment"> *  a: 4457</span>
+<span class="comment"> *  to: 4388</span>
+<span class="comment"> *  in: 3773</span>
+<span class="comment"> *  that: 2666</span>
+<span class="comment"> *  his: 2404</span>
+<span class="comment"> *  I: 1742</span>
+<span class="comment"> *  with: 1615</span>
+<span class="comment"> *  ...</span>
+<span class="comment"> *</span>
+<span class="comment"> ******************************************************************************/</span>
+
+<span class="keyword">public</span><span class="normal"> </span><span class="keyword">class</span><span class="normal"> </span><span class="classname">FrequencyCount</span><span class="normal"> </span><span class="cbracket">{</span>
+
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">main</span><span class="symbol">(</span><span class="normal">String</span><span class="symbol">[]</span><span class="normal"> args</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+
+<span class="normal">        </span><span class="comment">// read in the words as an array</span>
+<span class="normal">        </span><span class="usertype">String</span><span class="normal"> s </span><span class="symbol">=</span><span class="normal"> StdIn</span><span class="symbol">.</span><span class="function">readAll</span><span class="symbol">();</span>
+<span class="normal">        String</span><span class="symbol">[]</span><span class="normal"> words </span><span class="symbol">=</span><span class="normal"> s</span><span class="symbol">.</span><span class="function">split</span><span class="symbol">(</span><span class="string">"</span><span class="specialchar">\\</span><span class="string">s+"</span><span class="symbol">);</span>
+
+<span class="normal">        </span><span class="comment">// sort the words</span>
+<span class="normal">        Merge</span><span class="symbol">.</span><span class="function">sort</span><span class="symbol">(</span><span class="normal">words</span><span class="symbol">);</span>
+
+<span class="normal">        </span><span class="comment">// tabulate frequencies of each word</span>
+<span class="normal">        Counter</span><span class="symbol">[]</span><span class="normal"> zipf </span><span class="symbol">=</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> Counter</span><span class="symbol">[</span><span class="normal">words</span><span class="symbol">.</span><span class="normal">length</span><span class="symbol">];</span>
+<span class="normal">        </span><span class="type">int</span><span class="normal"> m </span><span class="symbol">=</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span><span class="normal">                                        </span><span class="comment">// number of distinct words</span>
+<span class="normal">        </span><span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="type">int</span><span class="normal"> i </span><span class="symbol">=</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span><span class="normal"> i </span><span class="symbol">&lt;</span><span class="normal"> words</span><span class="symbol">.</span><span class="normal">length</span><span class="symbol">;</span><span class="normal"> i</span><span class="symbol">++)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">            </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">i </span><span class="symbol">==</span><span class="normal"> </span><span class="number">0</span><span class="normal"> </span><span class="symbol">||</span><span class="normal"> </span><span class="symbol">!</span><span class="normal">words</span><span class="symbol">[</span><span class="normal">i</span><span class="symbol">].</span><span class="function">equals</span><span class="symbol">(</span><span class="normal">words</span><span class="symbol">[</span><span class="normal">i</span><span class="symbol">-</span><span class="number">1</span><span class="symbol">]))</span><span class="normal">   </span><span class="comment">// short-circuiting OR</span>
+<span class="normal">                zipf</span><span class="symbol">[</span><span class="normal">m</span><span class="symbol">++]</span><span class="normal"> </span><span class="symbol">=</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> </span><span class="function">Counter</span><span class="symbol">(</span><span class="normal">words</span><span class="symbol">[</span><span class="normal">i</span><span class="symbol">],</span><span class="normal"> words</span><span class="symbol">.</span><span class="normal">length</span><span class="symbol">);</span>
+<span class="normal">            zipf</span><span class="symbol">[</span><span class="normal">m</span><span class="symbol">-</span><span class="number">1</span><span class="symbol">].</span><span class="function">increment</span><span class="symbol">();</span>
+<span class="normal">        </span><span class="cbracket">}</span>
+
+<span class="normal">        </span><span class="comment">// sort by frequency and print</span>
+<span class="normal">        Merge</span><span class="symbol">.</span><span class="function">sort</span><span class="symbol">(</span><span class="normal">zipf</span><span class="symbol">,</span><span class="normal"> </span><span class="number">0</span><span class="symbol">,</span><span class="normal"> m</span><span class="symbol">);</span><span class="normal">                           </span><span class="comment">// sorting a subarray</span>
+<span class="normal">        </span><span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="type">int</span><span class="normal"> j </span><span class="symbol">=</span><span class="normal"> m</span><span class="symbol">-</span><span class="number">1</span><span class="symbol">;</span><span class="normal"> j </span><span class="symbol">&gt;=</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span><span class="normal"> j</span><span class="symbol">--)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">            StdOut</span><span class="symbol">.</span><span class="function">println</span><span class="symbol">(</span><span class="normal">zipf</span><span class="symbol">[</span><span class="normal">j</span><span class="symbol">]);</span>
+<span class="normal">        </span><span class="cbracket">}</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+<span class="cbracket">}</span>
+</tt></pre>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./FrequencyCount.java_files/ga.js.download" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-10811519-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+
+
+<p><br></p><address><small>
+Copyright © 2000–2011, Robert Sedgewick and Kevin Wayne.
+<br>Last updated: Tue Aug 30 09:58:33 EDT 2016.
+</small></address>
+
+
+</body></html>

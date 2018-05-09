@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)https://www.javatpoint.com/java-regex -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Java Regex | Regular Expression - javatpoint</title><link rel="SHORTCUT ICON" href="https://www.javatpoint.com/images/logo/icon.png"><link rel="stylesheet" type="text/css" href="./Java Regex _ Regular Expression - javatpoint_files/link.css"><meta name="keywords" content="java, regex, regular, expression, tester, example, character classes, quantifiers, meta characters, api, matcher, pattern, class"><meta name="description" content="Java Regex tutorial - Regular Expression in java with examples, api, matcher, pattern, regex character classes, regex quantifiers and regex meta characters."><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="canonical" href="https://www.javatpoint.com/java-regex">
+<meta itemprop="name" content="Java Regex | Regular Expression - javatpoint"><meta itemprop="description" content="Java Regex tutorial - Regular Expression in java with examples, api, matcher, pattern, regex character classes, regex quantifiers and regex meta characters."><meta property="og:title" content="Java Regex | Regular Expression - javatpoint"><meta property="og:description" content="Java Regex tutorial - Regular Expression in java with examples, api, matcher, pattern, regex character classes, regex quantifiers and regex meta characters.">
+<meta property="og:locale" content="en_US"><meta property="og:type" content="article"><meta name="twitter:title" property="og:title" content="Java Regex | Regular Expression - javatpoint"><meta name="twitter:description" property="og:description" content="Java Regex tutorial - Regular Expression in java with examples, api, matcher, pattern, regex character classes, regex quantifiers and regex meta characters."><meta property="og:url" content="https://www.javatpoint.com/java-regex"><meta property="og:site_name" content="www.javatpoint.com"><meta name="twitter:card" content="summary"><meta name="twitter:site" content="@pagejavatpoint"><meta name="twitter:domain" content="www.javatpoint.com"><meta name="twitter:creator" content="@pagejavatpoint"><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style></head> 
+<body onload="highlightlink()"> <button onclick="topFunction()" id="myBtn" title="Go to top" style="display: none;">⇧</button>
+<div id="page" style="margin:-8px;background-color:#f5f5f4;"><div id="container"> <div class="header"><!--<p style="font-weight:bold;padding:7px;color:white;background-color:gray;margin:0px"><marquee>JavaTpoint will be down for 2 to 4 hours tonight. Sorry for inconvenience.</marquee></p>-->
+
+<table style="width:100%;margin-bottom:5px"><tbody><tr><td><div id="headerlink" style="padding:0px;margin:0px"><span style="margin-right:20px;width:45%px"></span><span style="float:right;margin-right:5px;width:45%"> 
+
+</span>
+
+
+</div> </td></tr><tr><td>
+<div style="clear:both;float:left;width:230px;margin-top:-5px;margin-left:20px"><a href="https://www.javatpoint.com/"><img src="./Java Regex _ Regular Expression - javatpoint_files/jtp_logo.png" alt="Javatpoint Logo"></a></div>
+
+<div style="float:left;width:60%;"><form class="navbar-search" method="get" action="https://www.google.com/search" target="_blank"> <input type="text" name="q" class="search-query span2" placeholder="Search on javatpoint..." title="Search on Javatpoint"><input type="hidden" name="sitesearch" value="www.javatpoint.com"></form><!--<span style="margin-left:100px;color:orange;font-size:20px;font-weight:bold;">Happy </span><span style="color:red;font-size:20px;font-weight:bold;">New </span><span style="color:#666600;font-size:20px;font-weight:bold;">Year</span><span style="color:#666600;font-size:30px;font-weight:bold;"> 2015</span>--></div>
+
+</td></tr></tbody></table> </div>
+<div class="headermobile">
+<div style="margin-top:10px;padding:0px;text-align:left;">
+<span style="float:left"><input type="image" src="./Java Regex _ Regular Expression - javatpoint_files/menuhome64.png" onclick="showmenu()"></span>
+<span style="float:left"><a href="https://www.javatpoint.com/"><img src="./Java Regex _ Regular Expression - javatpoint_files/jtp_logo.png" alt="Javatpoint Logo"></a></span>
+</div>
+<div style="margin:0px;padding:0px;clear:both"><form class="navbar-search-m" method="get" action="https://www.google.com/search" target="_blank"> <input type="text" name="q" class="search-query span2-m" placeholder="Search on javatpoint..." title="Search on Javatpoint"><input type="hidden" name="sitesearch" value="www.javatpoint.com"></form></div></div>
+<div id="link" style="clear:both"> <div id="smoothmenu1" class="ddsmoothmenu">
+<ul>
+<li><a href="https://www.javatpoint.com/">Home</a></li>
+<li><a href="https://www.javatpoint.com/c-programming-language-tutorial">C</a></li>
+<li><a href="https://www.javatpoint.com/cpp-tutorial">C++</a></li>
+<li><a href="https://www.javatpoint.com/c-sharp-tutorial">C#</a></li>
+<li><a href="https://www.javatpoint.com/java-tutorial" class="selected">Java</a></li>
+<li><a href="https://www.javatpoint.com/servlet-tutorial">Servlet</a></li>
+<li><a href="https://www.javatpoint.com/jsp-tutorial">JSP</a></li>
+<li><a href="https://www.javatpoint.com/ejb-tutorial">EJB</a></li>
+<li><a href="https://www.javatpoint.com/struts-2-tutorial">Struts2</a></li>
+<li><a href="https://www.javatpoint.com/java-mail-api-tutorial">Mail</a></li>
+<li><a href="https://www.javatpoint.com/hibernate-tutorial">Hibernate</a></li>
+<li><a href="https://www.javatpoint.com/spring-tutorial">Spring</a></li>
+<li><a href="https://www.javatpoint.com/android-tutorial">Android</a></li>
+<li><a href="https://www.javatpoint.com/design-patterns-in-java">Design P</a></li>
+<li><a href="https://www.javatpoint.com/examaccess">Quiz</a></li>
+<li><a href="https://www.javatpoint.com/free-java-projects">Projects</a></li>
+<li><a href="https://www.javatpoint.com/corejava-interview-questions">Interview Q</a>
+</li><li><a href="https://www.javatpoint.com/comment.jsp">Comment</a>
+</li><li><a href="https://www.javatpoint.com/forum">Forum</a>
+</li><li><a href="https://www.javatpoint.com/training">Training</a>
+</li>
+</ul>
+<br style="clear: left">
+</div>
+</div><div class="mobilemenu" style="clear:both"> </div>
+
+<div id="menu"><div class="leftmenu2">
+<a href="https://www.javatpoint.com/java-tutorial"><span>Basics of Java </span></a>
+<a href="https://www.javatpoint.com/java-oops-concepts"><span>OOPs Concepts</span></a>
+<a href="https://www.javatpoint.com/java-string"><span>Java String</span></a>
+</div>
+
+<div class="leftmenu2">
+<h2 class="spanh2"><span class="spanh2">Java Regex</span></h2>
+</div>
+<div class="leftmenu">
+<a href="https://www.javatpoint.com/java-regex" style="color: black;"><strong>Java Regex API</strong> <img src="./Java Regex _ Regular Expression - javatpoint_files/open-12.png" alt="open link"></a>
+</div>
+
+<div class="leftmenu2">
+<a href="https://www.javatpoint.com/exception-handling-in-java"><span>Exception Handling</span></a>
+<a href="https://www.javatpoint.com/java-inner-class"><span>Java Inner classes</span></a>
+<a href="https://www.javatpoint.com/multithreading-in-java"><span>Java Multithreading</span></a>
+<a href="https://www.javatpoint.com/java-io"><span>Java I/O</span></a>
+<a href="https://www.javatpoint.com/java-networking"><span>Java Networking</span></a>
+<a href="https://www.javatpoint.com/java-awt"><span>Java AWT</span></a>
+<a href="https://www.javatpoint.com/java-swing"><span>Java Swing</span></a>
+<a href="https://www.javatpoint.com/java-applet"><span>Java Applet</span></a>
+<a href="https://www.javatpoint.com/java-reflection"><span>Java Reflection</span></a>
+<a href="https://www.javatpoint.com/java-date"><span>Java Date</span></a>
+<a href="https://www.javatpoint.com/java-string-to-int"><span>Java Conversion</span></a>
+<a href="https://www.javatpoint.com/collections-in-java"><span>Java Collection</span></a>
+<a href="https://www.javatpoint.com/java-jdbc"><span>Java JDBC</span></a>
+<a href="https://www.javatpoint.com/New-features-in-java"><span>Java New Features</span></a>
+<a href="https://www.javatpoint.com/RMI"><span>RMI</span></a>
+<a href="https://www.javatpoint.com/internationalization-in-java"><span>Internationalization</span></a>
+<a href="https://www.javatpoint.com/corejava-interview-questions"><span>Interview Questions</span></a>
+</div>
+
+<table id="leftad"><tbody><tr><td><img src="./Java Regex _ Regular Expression - javatpoint_files/wh.JPG" alt="space"></td></tr><tr><td>
+<script type="text/javascript" async="" src="./Java Regex _ Regular Expression - javatpoint_files/ga.js.download"></script><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-4699858549023382" data-ad-slot="4476401222"></ins> <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
+</td></tr></tbody></table>
+
+</div><div class="onlycontent">
+
+
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- CM_JTP_Leaderbaord -->
+<ins class="adsbygoogle cm_jtp_leaderbaord" style="display:inline-block" data-ad-client="ca-pub-4699858549023382" data-ad-slot="9201901915"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<div style="margin-left:0px;">
+<div id="city">
+<table>
+<tbody><tr><td>
+<div id="bottomnextup">
+
+<a class="next" href="https://www.javatpoint.com/exception-handling-in-java">next →</a>
+<a class="next" href="https://www.javatpoint.com/string-tokenizer-in-java">← prev</a>
+</div>
+
+<h1 class="h1">Java Regex</h1>
+<p>The <b>Java Regex</b> or Regular Expression is an API to <i>define pattern for searching or manipulating strings</i>.</p>
+<p>It is widely used to define constraint on strings such as password and email validation. After learning java regex tutorial, you will be able to test your own regular expressions by the Java Regex Tester Tool.</p>
+<p>Java Regex API provides 1 interface and 3 classes in <b>java.util.regex</b> package.</p>
+
+<h4 class="h4">java.util.regex package</h4>
+<p>It provides following classes and interface for regular expressions. The Matcher and Pattern classes are widely used in java regular expression.</p>
+<ol>
+<li>MatchResult interface</li>
+<li>Matcher class</li>
+<li>Pattern class</li>
+<li>PatternSyntaxException class</li>
+</ol>
+<hr>
+<h2 class="h2">Matcher class</h2>
+<p>It implements <b>MatchResult</b> interface. It is a <i>regex engine</i> i.e. used to perform match operations on a character sequence.</p>
+<table class="alt">
+<tbody><tr><th>No.</th><th>Method</th><th>Description</th></tr>
+<tr><td>1</td><td>boolean matches()</td><td>test whether the regular expression matches the pattern.</td></tr>
+<tr><td>2</td><td>boolean find()</td><td>finds the next expression that matches the pattern.</td></tr>
+<tr><td>3</td><td>boolean find(int start)</td><td>finds the next expression that matches the pattern from the given start number.</td></tr>
+<tr><td>4</td><td>String group()</td><td>returns the matched subsequence.</td></tr>
+<tr><td>5</td><td>int start()</td><td>returns the starting index of the matched subsequence.</td></tr>
+<tr><td>6</td><td>int end()</td><td>returns the ending index of the matched subsequence.</td></tr>
+<tr><td>7</td><td>int groupCount()</td><td>returns the total number of the matched subsequence.</td></tr>
+</tbody></table>
+
+<hr>
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- CM_JTP_WTC_Responsive -->
+<ins class="adsbygoogle cm_jtp_wtc_responsive" style="display:inline-block" data-ad-client="ca-pub-4699858549023382" data-ad-slot="6746133113"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<h2 class="h2">Pattern class</h2>
+<p>It is the <i>compiled version of a regular expression</i>.  It is used to define a pattern for the regex engine.</p>
+
+<table class="alt">
+<tbody><tr><th>No.</th><th>Method</th><th>Description</th></tr>
+<tr><td>1</td><td>static Pattern compile(String regex)</td><td>compiles the given regex and return the instance of pattern.</td></tr>
+<tr><td>2</td><td>Matcher matcher(CharSequence input)</td><td>creates a matcher that matches the given input with pattern.</td></tr>
+<tr><td>3</td><td>static boolean matches(String regex, CharSequence input)</td><td>It works as the combination of compile and matcher methods. It compiles the regular expression and matches the given input with the pattern.</td></tr>
+<tr><td>4</td><td>String[] split(CharSequence input)</td><td>splits the given input string around matches of given pattern. </td></tr>
+<tr><td>5</td><td>String pattern()</td><td>returns the regex pattern.</td></tr>
+</tbody></table>
+
+<hr>
+<h3 class="h2">Example of Java Regular Expressions</h3>
+<p>There are three ways to write the regex example in java.</p>
+
+<div class="codeblock"><div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://www.javatpoint.com/java-regex#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/java-regex#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/java-regex#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;"></a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">import</span><span>&nbsp;java.util.regex.*;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;RegexExample1{&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;main(String&nbsp;args[]){&nbsp;&nbsp;</span></span></li><li class=""><span><span class="comment">//1st&nbsp;way</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>Pattern&nbsp;p&nbsp;=&nbsp;Pattern.compile(<span class="string">".s"</span><span>);</span><span class="comment">//.&nbsp;represents&nbsp;single&nbsp;character</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>Matcher&nbsp;m&nbsp;=&nbsp;p.matcher(<span class="string">"as"</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">boolean</span><span>&nbsp;b&nbsp;=&nbsp;m.matches();&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span><span class="comment">//2nd&nbsp;way</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">boolean</span><span>&nbsp;b2=Pattern.compile(</span><span class="string">".s"</span><span>).matcher(</span><span class="string">"as"</span><span>).matches();&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span><span class="comment">//3rd&nbsp;way</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">boolean</span><span>&nbsp;b3&nbsp;=&nbsp;Pattern.matches(</span><span class="string">".s"</span><span>,&nbsp;</span><span class="string">"as"</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>System.out.println(b+<span class="string">"&nbsp;"</span><span>+b2+</span><span class="string">"&nbsp;"</span><span>+b3);&nbsp;&nbsp;</span></span></li><li class=""><span>}}&nbsp;&nbsp;</span></li></ol></div><textarea name="code" class="java" style="display: none;">import java.util.regex.*;
+public class RegexExample1{
+public static void main(String args[]){
+//1st way
+Pattern p = Pattern.compile(".s");//. represents single character
+Matcher m = p.matcher("as");
+boolean b = m.matches();
+
+//2nd way
+boolean b2=Pattern.compile(".s").matcher("as").matches();
+
+//3rd way
+boolean b3 = Pattern.matches(".s", "as");
+
+System.out.println(b+" "+b2+" "+b3);
+}}
+</textarea></div>
+
+<span class="testit"><a href="http://www.javatpoint.com/opr/test.jsp?filename=RegexExample1" target="_blank">Test it Now</a></span>
+
+<h4 class="h4">Output</h4>
+<div class="codeblock3"><pre>true true true
+</pre></div>
+<hr>
+
+<h2 class="h2">Regular Expression . Example</h2>
+<p>The . (dot) represents a single character.</p>
+<div class="codeblock"><div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://www.javatpoint.com/java-regex#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/java-regex#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/java-regex#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;"></a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">import</span><span>&nbsp;java.util.regex.*;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">class</span><span>&nbsp;RegexExample2{&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;main(String&nbsp;args[]){&nbsp;&nbsp;</span></span></li><li class=""><span>System.out.println(Pattern.matches(<span class="string">".s"</span><span>,&nbsp;</span><span class="string">"as"</span><span>));</span><span class="comment">//true&nbsp;(2nd&nbsp;char&nbsp;is&nbsp;s)</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>System.out.println(Pattern.matches(<span class="string">".s"</span><span>,&nbsp;</span><span class="string">"mk"</span><span>));</span><span class="comment">//false&nbsp;(2nd&nbsp;char&nbsp;is&nbsp;not&nbsp;s)</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>System.out.println(Pattern.matches(<span class="string">".s"</span><span>,&nbsp;</span><span class="string">"mst"</span><span>));</span><span class="comment">//false&nbsp;(has&nbsp;more&nbsp;than&nbsp;2&nbsp;char)</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>System.out.println(Pattern.matches(<span class="string">".s"</span><span>,&nbsp;</span><span class="string">"amms"</span><span>));</span><span class="comment">//false&nbsp;(has&nbsp;more&nbsp;than&nbsp;2&nbsp;char)</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>System.out.println(Pattern.matches(<span class="string">"..s"</span><span>,&nbsp;</span><span class="string">"mas"</span><span>));</span><span class="comment">//true&nbsp;(3rd&nbsp;char&nbsp;is&nbsp;s)</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>}}&nbsp;&nbsp;</span></li></ol></div><textarea name="code" class="java" style="display: none;">import java.util.regex.*;
+class RegexExample2{
+public static void main(String args[]){
+System.out.println(Pattern.matches(".s", "as"));//true (2nd char is s)
+System.out.println(Pattern.matches(".s", "mk"));//false (2nd char is not s)
+System.out.println(Pattern.matches(".s", "mst"));//false (has more than 2 char)
+System.out.println(Pattern.matches(".s", "amms"));//false (has more than 2 char)
+System.out.println(Pattern.matches("..s", "mas"));//true (3rd char is s)
+}}
+</textarea></div>
+
+<span class="testit"><a href="http://www.javatpoint.com/opr/test.jsp?filename=RegexExample2" target="_blank">Test it Now</a></span>
+
+<hr>
+
+<h2 class="h2">Regex Character classes</h2>
+
+<table class="alt">
+<tbody><tr><th>No.</th><th>Character Class</th><th>Description</th></tr>
+<tr><td>1</td><td>[abc]</td><td>a, b, or c (simple class)</td></tr>
+<tr><td>2</td><td>[^abc]</td><td>Any character except a, b, or c (negation)</td></tr>
+<tr><td>3</td><td>[a-zA-Z]</td><td>a through z or A through Z, inclusive (range)</td></tr>
+<tr><td>4</td><td>[a-d[m-p]]</td><td>a through d, or m through p: [a-dm-p] (union)</td></tr>
+<tr><td>5</td><td>[a-z&amp;&amp;[def]]</td><td>d, e, or f (intersection)</td></tr>
+<tr><td>6</td><td>[a-z&amp;&amp;[^bc]]</td><td>a through z, except for b and c: [ad-z] (subtraction)</td></tr>
+<tr><td>7</td><td>[a-z&amp;&amp;[^m-p]]</td><td>a through z, and not m through p: [a-lq-z](subtraction)</td></tr>
+</tbody></table>
+<hr>
+<h2 class="h2">Regular Expression Character classes Example</h2>
+<div class="codeblock"><div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://www.javatpoint.com/java-regex#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/java-regex#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/java-regex#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;"></a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">import</span><span>&nbsp;java.util.regex.*;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">class</span><span>&nbsp;RegexExample3{&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;main(String&nbsp;args[]){&nbsp;&nbsp;</span></span></li><li class=""><span>System.out.println(Pattern.matches(<span class="string">"[amn]"</span><span>,&nbsp;</span><span class="string">"abcd"</span><span>));</span><span class="comment">//false&nbsp;(not&nbsp;a&nbsp;or&nbsp;m&nbsp;or&nbsp;n)</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>System.out.println(Pattern.matches(<span class="string">"[amn]"</span><span>,&nbsp;</span><span class="string">"a"</span><span>));</span><span class="comment">//true&nbsp;(among&nbsp;a&nbsp;or&nbsp;m&nbsp;or&nbsp;n)</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>System.out.println(Pattern.matches(<span class="string">"[amn]"</span><span>,&nbsp;</span><span class="string">"ammmna"</span><span>));</span><span class="comment">//false&nbsp;(m&nbsp;and&nbsp;a&nbsp;comes&nbsp;more&nbsp;than&nbsp;once)</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>}}&nbsp;&nbsp;</span></li></ol></div><textarea name="code" class="java" style="display: none;">import java.util.regex.*;
+class RegexExample3{
+public static void main(String args[]){
+System.out.println(Pattern.matches("[amn]", "abcd"));//false (not a or m or n)
+System.out.println(Pattern.matches("[amn]", "a"));//true (among a or m or n)
+System.out.println(Pattern.matches("[amn]", "ammmna"));//false (m and a comes more than once)
+}}
+</textarea></div>
+
+<span class="testit"><a href="http://www.javatpoint.com/opr/test.jsp?filename=RegexExample3" target="_blank">Test it Now</a></span>
+
+
+<hr>
+<h2 class="h2">Regex Quantifiers</h2>
+<p>The quantifiers specify the number of occurrences of a character. </p>
+
+<table class="alt">
+<tbody><tr><th>Regex</th><th>Description</th></tr>
+<tr><td>X?</td><td>X occurs once or not at all</td></tr>
+<tr><td>X+</td><td>X occurs once or more times</td></tr>
+<tr><td>X*</td><td>X occurs zero or more times</td></tr>
+<tr><td>X{n}</td><td>X occurs n times only</td></tr>
+<tr><td>X{n,}</td><td>X occurs n or more times</td></tr>
+<tr><td>X{y,z}</td><td>X occurs at least y times but less than z times</td></tr>
+</tbody></table>
+
+<hr>
+<h2 class="h2">Regular Expression Character classes and Quantifiers Example</h2>
+
+<div class="codeblock"><div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://www.javatpoint.com/java-regex#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/java-regex#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/java-regex#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;"></a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">import</span><span>&nbsp;java.util.regex.*;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">class</span><span>&nbsp;RegexExample4{&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;main(String&nbsp;args[]){&nbsp;&nbsp;</span></span></li><li class=""><span>System.out.println(<span class="string">"?&nbsp;quantifier&nbsp;...."</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>System.out.println(Pattern.matches(<span class="string">"[amn]?"</span><span>,&nbsp;</span><span class="string">"a"</span><span>));</span><span class="comment">//true&nbsp;(a&nbsp;or&nbsp;m&nbsp;or&nbsp;n&nbsp;comes&nbsp;one&nbsp;time)</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>System.out.println(Pattern.matches(<span class="string">"[amn]?"</span><span>,&nbsp;</span><span class="string">"aaa"</span><span>));</span><span class="comment">//false&nbsp;(a&nbsp;comes&nbsp;more&nbsp;than&nbsp;one&nbsp;time)</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>System.out.println(Pattern.matches(<span class="string">"[amn]?"</span><span>,&nbsp;</span><span class="string">"aammmnn"</span><span>));</span><span class="comment">//false&nbsp;(a&nbsp;m&nbsp;and&nbsp;n&nbsp;comes&nbsp;more&nbsp;than&nbsp;one&nbsp;time)</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>System.out.println(Pattern.matches(<span class="string">"[amn]?"</span><span>,&nbsp;</span><span class="string">"aazzta"</span><span>));</span><span class="comment">//false&nbsp;(a&nbsp;comes&nbsp;more&nbsp;than&nbsp;one&nbsp;time)</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>System.out.println(Pattern.matches(<span class="string">"[amn]?"</span><span>,&nbsp;</span><span class="string">"am"</span><span>));</span><span class="comment">//false&nbsp;(a&nbsp;or&nbsp;m&nbsp;or&nbsp;n&nbsp;must&nbsp;come&nbsp;one&nbsp;time)</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>System.out.println(<span class="string">"+&nbsp;quantifier&nbsp;...."</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>System.out.println(Pattern.matches(<span class="string">"[amn]+"</span><span>,&nbsp;</span><span class="string">"a"</span><span>));</span><span class="comment">//true&nbsp;(a&nbsp;or&nbsp;m&nbsp;or&nbsp;n&nbsp;once&nbsp;or&nbsp;more&nbsp;times)</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>System.out.println(Pattern.matches(<span class="string">"[amn]+"</span><span>,&nbsp;</span><span class="string">"aaa"</span><span>));</span><span class="comment">//true&nbsp;(a&nbsp;comes&nbsp;more&nbsp;than&nbsp;one&nbsp;time)</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>System.out.println(Pattern.matches(<span class="string">"[amn]+"</span><span>,&nbsp;</span><span class="string">"aammmnn"</span><span>));</span><span class="comment">//true&nbsp;(a&nbsp;or&nbsp;m&nbsp;or&nbsp;n&nbsp;comes&nbsp;more&nbsp;than&nbsp;once)</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>System.out.println(Pattern.matches(<span class="string">"[amn]+"</span><span>,&nbsp;</span><span class="string">"aazzta"</span><span>));</span><span class="comment">//false&nbsp;(z&nbsp;and&nbsp;t&nbsp;are&nbsp;not&nbsp;matching&nbsp;pattern)</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>System.out.println(<span class="string">"*&nbsp;quantifier&nbsp;...."</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>System.out.println(Pattern.matches(<span class="string">"[amn]*"</span><span>,&nbsp;</span><span class="string">"ammmna"</span><span>));</span><span class="comment">//true&nbsp;(a&nbsp;or&nbsp;m&nbsp;or&nbsp;n&nbsp;may&nbsp;come&nbsp;zero&nbsp;or&nbsp;more&nbsp;times)</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>}}&nbsp;&nbsp;</span></li></ol></div><textarea name="code" class="java" style="display: none;">import java.util.regex.*;
+class RegexExample4{
+public static void main(String args[]){
+System.out.println("? quantifier ....");
+System.out.println(Pattern.matches("[amn]?", "a"));//true (a or m or n comes one time)
+System.out.println(Pattern.matches("[amn]?", "aaa"));//false (a comes more than one time)
+System.out.println(Pattern.matches("[amn]?", "aammmnn"));//false (a m and n comes more than one time)
+System.out.println(Pattern.matches("[amn]?", "aazzta"));//false (a comes more than one time)
+System.out.println(Pattern.matches("[amn]?", "am"));//false (a or m or n must come one time)
+
+System.out.println("+ quantifier ....");
+System.out.println(Pattern.matches("[amn]+", "a"));//true (a or m or n once or more times)
+System.out.println(Pattern.matches("[amn]+", "aaa"));//true (a comes more than one time)
+System.out.println(Pattern.matches("[amn]+", "aammmnn"));//true (a or m or n comes more than once)
+System.out.println(Pattern.matches("[amn]+", "aazzta"));//false (z and t are not matching pattern)
+
+System.out.println("* quantifier ....");
+System.out.println(Pattern.matches("[amn]*", "ammmna"));//true (a or m or n may come zero or more times)
+
+}}
+</textarea></div>
+
+<span class="testit"><a href="http://www.javatpoint.com/opr/test.jsp?filename=RegexExample4" target="_blank">Test it Now</a></span>
+
+
+
+
+<hr>
+<h2 class="h2">Regex Metacharacters</h2>
+<p>The regular expression metacharacters work as a short codes.</p>
+
+<table class="alt">
+<tbody><tr><th>Regex</th><th>Description</th></tr>
+<tr><td>.</td><td>Any character (may or may not match terminator)</td></tr>
+<tr><td>\d</td><td>Any digits, short of [0-9]</td></tr>
+<tr><td>\D</td><td>Any non-digit, short for [^0-9]</td></tr>
+<tr><td>\s</td><td>Any whitespace character, short for [\t\n\x0B\f\r]</td></tr>
+<tr><td>\S</td><td>Any non-whitespace character, short for [^\s]</td></tr>
+<tr><td>\w</td><td>Any word character, short for [a-zA-Z_0-9]</td></tr>
+<tr><td>\W</td><td>Any non-word character, short for [^\w]</td></tr>
+<tr><td>\b</td><td>A word boundary</td></tr>
+<tr><td>\B</td><td>A non word boundary</td></tr>
+</tbody></table>
+
+
+
+<hr>
+
+
+
+<h2 class="h2">Regular Expression Metacharacters Example</h2>
+
+<div class="codeblock"><div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://www.javatpoint.com/java-regex#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/java-regex#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/java-regex#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;"></a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">import</span><span>&nbsp;java.util.regex.*;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">class</span><span>&nbsp;RegexExample5{&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;main(String&nbsp;args[]){&nbsp;&nbsp;</span></span></li><li class=""><span>System.out.println(<span class="string">"metacharacters&nbsp;d...."</span><span>);\\d&nbsp;means&nbsp;digit&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>System.out.println(Pattern.matches(<span class="string">"\\d"</span><span>,&nbsp;</span><span class="string">"abc"</span><span>));</span><span class="comment">//false&nbsp;(non-digit)</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>System.out.println(Pattern.matches(<span class="string">"\\d"</span><span>,&nbsp;</span><span class="string">"1"</span><span>));</span><span class="comment">//true&nbsp;(digit&nbsp;and&nbsp;comes&nbsp;once)</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>System.out.println(Pattern.matches(<span class="string">"\\d"</span><span>,&nbsp;</span><span class="string">"4443"</span><span>));</span><span class="comment">//false&nbsp;(digit&nbsp;but&nbsp;comes&nbsp;more&nbsp;than&nbsp;once)</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>System.out.println(Pattern.matches(<span class="string">"\\d"</span><span>,&nbsp;</span><span class="string">"323abc"</span><span>));</span><span class="comment">//false&nbsp;(digit&nbsp;and&nbsp;char)</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>System.out.println(<span class="string">"metacharacters&nbsp;D...."</span><span>);\\D&nbsp;means&nbsp;non-digit&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>System.out.println(Pattern.matches(<span class="string">"\\D"</span><span>,&nbsp;</span><span class="string">"abc"</span><span>));</span><span class="comment">//false&nbsp;(non-digit&nbsp;but&nbsp;comes&nbsp;more&nbsp;than&nbsp;once)</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>System.out.println(Pattern.matches(<span class="string">"\\D"</span><span>,&nbsp;</span><span class="string">"1"</span><span>));</span><span class="comment">//false&nbsp;(digit)</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>System.out.println(Pattern.matches(<span class="string">"\\D"</span><span>,&nbsp;</span><span class="string">"4443"</span><span>));</span><span class="comment">//false&nbsp;(digit)</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>System.out.println(Pattern.matches(<span class="string">"\\D"</span><span>,&nbsp;</span><span class="string">"323abc"</span><span>));</span><span class="comment">//false&nbsp;(digit&nbsp;and&nbsp;char)</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>System.out.println(Pattern.matches(<span class="string">"\\D"</span><span>,&nbsp;</span><span class="string">"m"</span><span>));</span><span class="comment">//true&nbsp;(non-digit&nbsp;and&nbsp;comes&nbsp;once)</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>System.out.println(<span class="string">"metacharacters&nbsp;D&nbsp;with&nbsp;quantifier...."</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>System.out.println(Pattern.matches(<span class="string">"\\D*"</span><span>,&nbsp;</span><span class="string">"mak"</span><span>));</span><span class="comment">//true&nbsp;(non-digit&nbsp;and&nbsp;may&nbsp;come&nbsp;0&nbsp;or&nbsp;more&nbsp;times)</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>}}&nbsp;&nbsp;</span></li></ol></div><textarea name="code" class="java" style="display: none;">import java.util.regex.*;
+class RegexExample5{
+public static void main(String args[]){
+System.out.println("metacharacters d....");\\d means digit
+
+System.out.println(Pattern.matches("\\d", "abc"));//false (non-digit)
+System.out.println(Pattern.matches("\\d", "1"));//true (digit and comes once)
+System.out.println(Pattern.matches("\\d", "4443"));//false (digit but comes more than once)
+System.out.println(Pattern.matches("\\d", "323abc"));//false (digit and char)
+
+System.out.println("metacharacters D....");\\D means non-digit
+
+System.out.println(Pattern.matches("\\D", "abc"));//false (non-digit but comes more than once)
+System.out.println(Pattern.matches("\\D", "1"));//false (digit)
+System.out.println(Pattern.matches("\\D", "4443"));//false (digit)
+System.out.println(Pattern.matches("\\D", "323abc"));//false (digit and char)
+System.out.println(Pattern.matches("\\D", "m"));//true (non-digit and comes once)
+
+System.out.println("metacharacters D with quantifier....");
+System.out.println(Pattern.matches("\\D*", "mak"));//true (non-digit and may come 0 or more times)
+
+}}
+</textarea></div>
+
+<span class="testit"><a href="http://www.javatpoint.com/opr/test.jsp?filename=RegexExample5" target="_blank">Test it Now</a></span>
+
+<hr>
+
+<h2 class="h2">Regular Expression Question 1</h2>
+<div class="codeblock"><div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://www.javatpoint.com/java-regex#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/java-regex#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/java-regex#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;"></a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="comment">/*Create&nbsp;a&nbsp;regular&nbsp;expression&nbsp;that&nbsp;accepts&nbsp;alpha&nbsp;numeric&nbsp;characters&nbsp;only.&nbsp;Its</span>&nbsp;</span></li><li class=""><span><span class="comment">length&nbsp;must&nbsp;be&nbsp;6&nbsp;characters&nbsp;long&nbsp;only.*/</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span><span class="keyword">import</span><span>&nbsp;java.util.regex.*;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">class</span><span>&nbsp;RegexExample6{&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;main(String&nbsp;args[]){&nbsp;&nbsp;</span></span></li><li class="alt"><span>System.out.println(Pattern.matches(<span class="string">"[a-zA-Z0-9]{6}"</span><span>,&nbsp;</span><span class="string">"arun32"</span><span>));</span><span class="comment">//true</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>System.out.println(Pattern.matches(<span class="string">"[a-zA-Z0-9]{6}"</span><span>,&nbsp;</span><span class="string">"kkvarun32"</span><span>));</span><span class="comment">//false&nbsp;(more&nbsp;than&nbsp;6&nbsp;char)</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>System.out.println(Pattern.matches(<span class="string">"[a-zA-Z0-9]{6}"</span><span>,&nbsp;</span><span class="string">"JA2Uk2"</span><span>));</span><span class="comment">//true</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>System.out.println(Pattern.matches(<span class="string">"[a-zA-Z0-9]{6}"</span><span>,&nbsp;</span><span class="string">"arun$2"</span><span>));</span><span class="comment">//false&nbsp;($&nbsp;is&nbsp;not&nbsp;matched)</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>}}&nbsp;&nbsp;</span></li></ol></div><textarea name="code" class="java" style="display: none;">/*Create a regular expression that accepts alpha numeric characters only. Its
+length must be 6 characters long only.*/
+
+import java.util.regex.*;
+class RegexExample6{
+public static void main(String args[]){
+System.out.println(Pattern.matches("[a-zA-Z0-9]{6}", "arun32"));//true
+System.out.println(Pattern.matches("[a-zA-Z0-9]{6}", "kkvarun32"));//false (more than 6 char)
+System.out.println(Pattern.matches("[a-zA-Z0-9]{6}", "JA2Uk2"));//true
+System.out.println(Pattern.matches("[a-zA-Z0-9]{6}", "arun$2"));//false ($ is not matched)
+}}
+</textarea></div>
+<hr>
+
+<span class="testit"><a href="http://www.javatpoint.com/opr/test.jsp?filename=RegexExample6" target="_blank">Test it Now</a></span>
+
+
+<h2 class="h2">Regular Expression Question 2</h2>
+<div class="codeblock"><div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://www.javatpoint.com/java-regex#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/java-regex#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/java-regex#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;"></a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="comment">/*Create&nbsp;a&nbsp;regular&nbsp;expression&nbsp;that&nbsp;accepts&nbsp;10&nbsp;digit&nbsp;numeric&nbsp;characters</span>&nbsp;</span></li><li class=""><span><span class="comment">&nbsp;starting&nbsp;with&nbsp;7,&nbsp;8&nbsp;or&nbsp;9&nbsp;only.*/</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span><span class="keyword">import</span><span>&nbsp;java.util.regex.*;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">class</span><span>&nbsp;RegexExample7{&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;main(String&nbsp;args[]){&nbsp;&nbsp;</span></span></li><li class="alt"><span>System.out.println(<span class="string">"by&nbsp;character&nbsp;classes&nbsp;and&nbsp;quantifiers&nbsp;..."</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>System.out.println(Pattern.matches(<span class="string">"[789]{1}[0-9]{9}"</span><span>,&nbsp;</span><span class="string">"9953038949"</span><span>));</span><span class="comment">//true</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>System.out.println(Pattern.matches(<span class="string">"[789][0-9]{9}"</span><span>,&nbsp;</span><span class="string">"9953038949"</span><span>));</span><span class="comment">//true</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>System.out.println(Pattern.matches(<span class="string">"[789][0-9]{9}"</span><span>,&nbsp;</span><span class="string">"99530389490"</span><span>));</span><span class="comment">//false&nbsp;(11&nbsp;characters)</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>System.out.println(Pattern.matches(<span class="string">"[789][0-9]{9}"</span><span>,&nbsp;</span><span class="string">"6953038949"</span><span>));</span><span class="comment">//false&nbsp;(starts&nbsp;from&nbsp;6)</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>System.out.println(Pattern.matches(<span class="string">"[789][0-9]{9}"</span><span>,&nbsp;</span><span class="string">"8853038949"</span><span>));</span><span class="comment">//true</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>System.out.println(<span class="string">"by&nbsp;metacharacters&nbsp;..."</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>System.out.println(Pattern.matches(<span class="string">"[789]{1}\\d{9}"</span><span>,&nbsp;</span><span class="string">"8853038949"</span><span>));</span><span class="comment">//true</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>System.out.println(Pattern.matches(<span class="string">"[789]{1}\\d{9}"</span><span>,&nbsp;</span><span class="string">"3853038949"</span><span>));</span><span class="comment">//false&nbsp;(starts&nbsp;from&nbsp;3)</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>}}&nbsp;&nbsp;</span></li></ol></div><textarea name="code" class="java" style="display: none;">/*Create a regular expression that accepts 10 digit numeric characters
+ starting with 7, 8 or 9 only.*/
+
+import java.util.regex.*;
+class RegexExample7{
+public static void main(String args[]){
+System.out.println("by character classes and quantifiers ...");
+System.out.println(Pattern.matches("[789]{1}[0-9]{9}", "9953038949"));//true
+System.out.println(Pattern.matches("[789][0-9]{9}", "9953038949"));//true
+
+System.out.println(Pattern.matches("[789][0-9]{9}", "99530389490"));//false (11 characters)
+System.out.println(Pattern.matches("[789][0-9]{9}", "6953038949"));//false (starts from 6)
+System.out.println(Pattern.matches("[789][0-9]{9}", "8853038949"));//true
+
+System.out.println("by metacharacters ...");
+System.out.println(Pattern.matches("[789]{1}\\d{9}", "8853038949"));//true
+System.out.println(Pattern.matches("[789]{1}\\d{9}", "3853038949"));//false (starts from 3)
+
+}}
+</textarea></div>
+
+<span class="testit"><a href="http://www.javatpoint.com/opr/test.jsp?filename=RegexExample7" target="_blank">Test it Now</a></span>
+
+<h2 class="h2">Java Regex Finder Example</h2>
+<div class="codeblock"><div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://www.javatpoint.com/java-regex#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/java-regex#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/java-regex#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;"></a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">import</span><span>&nbsp;java.util.regex.Pattern;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">import</span><span>&nbsp;java.util.Scanner;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">import</span><span>&nbsp;java.util.regex.Matcher;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;RegexExample8{&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;main(String[]&nbsp;args){&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scanner&nbsp;sc=<span class="keyword">new</span><span>&nbsp;Scanner(System.in);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">while</span><span>&nbsp;(</span><span class="keyword">true</span><span>)&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"Enter&nbsp;regex&nbsp;pattern:"</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pattern&nbsp;pattern&nbsp;=&nbsp;Pattern.compile(sc.nextLine());&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"Enter&nbsp;text:"</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Matcher&nbsp;matcher&nbsp;=&nbsp;pattern.matcher(sc.nextLine());&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">boolean</span><span>&nbsp;found&nbsp;=&nbsp;</span><span class="keyword">false</span><span>;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">while</span><span>&nbsp;(matcher.find())&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"I&nbsp;found&nbsp;the&nbsp;text&nbsp;"</span><span>+matcher.group()+</span><span class="string">"&nbsp;starting&nbsp;at&nbsp;index&nbsp;"</span><span>+&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matcher.start()+<span class="string">"&nbsp;and&nbsp;ending&nbsp;at&nbsp;index&nbsp;"</span><span>+matcher.end());&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;found&nbsp;=&nbsp;<span class="keyword">true</span><span>;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>(!found){&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"No&nbsp;match&nbsp;found."</span><span>);&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>}&nbsp;&nbsp;&nbsp;&nbsp;</span></li></ol></div><textarea name="code" class="java" style="display: none;">import java.util.regex.Pattern;
+import java.util.Scanner;
+import java.util.regex.Matcher;  
+public class RegexExample8{  
+    public static void main(String[] args){  
+        Scanner sc=new Scanner(System.in);
+        while (true) {  
+        	System.out.println("Enter regex pattern:");
+            Pattern pattern = Pattern.compile(sc.nextLine());  
+            System.out.println("Enter text:");
+            Matcher matcher = pattern.matcher(sc.nextLine());  
+            boolean found = false;  
+            while (matcher.find()) {  
+                System.out.println("I found the text "+matcher.group()+" starting at index "+  
+                 matcher.start()+" and ending at index "+matcher.end());  
+                found = true;  
+            }  
+            if(!found){  
+                System.out.println("No match found.");  
+            }  
+        }  
+    }  
+}  
+</textarea></div>
+<p>Output:</p>
+<div class="codeblock3"><pre>Enter regex pattern: java
+Enter text: this is java, do you know java
+I found the text java starting at index 8 and ending at index 12
+I found the text java starting at index 26 and ending at index 30
+</pre></div>
+
+<div class="nexttopicdiv">
+<span class="nexttopictext">Next Topic</span><span class="nexttopiclink"><a href="https://www.javatpoint.com/exception-handling-in-java">Java Exception Handling</a></span>
+</div>
+
+
+
+<br><br>
+<div id="bottomnext">
+<a style="float:left" class="next" href="https://www.javatpoint.com/string-tokenizer-in-java">← prev</a>
+
+
+<a style="float:right" class="next" href="https://www.javatpoint.com/exception-handling-in-java">next →</a>
+</div>
+<br><br>
+
+</td></tr>
+</tbody></table>
+</div>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-8834194653550774";
+/* Cm_javatpoint_336x280 */
+google_ad_slot = "2097800745";
+google_ad_width = 336;
+google_ad_height = 280;
+//-->
+</script>
+<script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+
+
+<h2 class="h2">Please Share</h2>
+<a rel="nofollow" title="Facebook" target="_blank" href="http://www.facebook.com/sharer.php?u=https://www.javatpoint.com/java-regex"><img src="./Java Regex _ Regular Expression - javatpoint_files/facebook32.png" alt="facebook"></a>
+<a rel="nofollow" title="Twitter" target="_blank" href="http://twitter.com/share?url=https://www.javatpoint.com/java-regex&amp;text=Java%20Regex%20|%20Regular%20Expression%20-%20javatpoint"><img src="./Java Regex _ Regular Expression - javatpoint_files/twitter32.png" alt="twitter"></a>
+<a rel="nofollow" title="Google+" target="_blank" href="https://plusone.google.com/_/+1/confirm?hl=en&amp;url=https://www.javatpoint.com/java-regex"><img src="./Java Regex _ Regular Expression - javatpoint_files/google-plus32.png" alt="google plus"></a>
+<a rel="nofollow" title="Pinterest" target="_blank" href="https://www.pinterest.com/pin/create/button/?url=https://www.javatpoint.com/java-regex&amp;description=Java%20Regex%20|%20Regular%20Expression%20-%20javatpoint"><img src="./Java Regex _ Regular Expression - javatpoint_files/pinterest32.png" alt="pinterest"></a>
+<a rel="nofollow" title="Tumblr" target="_blank" href="http://www.tumblr.com/share/link?url=https://www.javatpoint.com/java-regex"><img src="./Java Regex _ Regular Expression - javatpoint_files/tumblr32.png" alt="tumbler"></a>
+
+
+
+<!-- latest tutorials start -->
+<h2 class="h2">Learn Latest Tutorials</h2>
+<div class="firsthomecontent">
+
+<a href="https://www.javatpoint.com/materialize-css-tutorial">
+<div class="homecontent">
+<img src="./Java Regex _ Regular Expression - javatpoint_files/materialize-home.png" alt="Materialize CSS tutorial"><span class="homespan">Materialize</span>
+</div>
+</a>
+
+<a href="https://www.javatpoint.com/software-installation-in-ubuntu">
+<div class="homecontent">
+<img src="./Java Regex _ Regular Expression - javatpoint_files/software-installation-in-ubuntu.png" alt="Software Installation in Ubuntu tutorial"><span class="homespan">In Ubuntu</span>
+</div>
+</a>
+
+<a href="https://www.javatpoint.com/go-tutorial">
+<div class="homecontent">
+<img src="./Java Regex _ Regular Expression - javatpoint_files/go-home.jpg" alt="Learn Go tutorial"><span class="homespan">Go</span>
+</div>
+</a>
+
+<a href="https://www.javatpoint.com/pure-css-tutorial">
+<div class="homecontent">
+<img src="./Java Regex _ Regular Expression - javatpoint_files/pure-css-home.png" alt="Pure.CSS tutorial"><span class="homespan">Pure.CSS</span>
+</div>
+</a>
+
+
+</div>
+
+</div>
+
+
+<br><br><div class="mobilemenu" style="clear:both">
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- responsivemobilefooter --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4699858549023382" data-ad-slot="8222866318" data-ad-format="auto"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div></div>
+<div id="right" style="width:15%;float:left;margin-left:10px;margin-top:10px;">
+
+
+
+
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-4699858549023382" data-ad-slot="3155368314"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script><br><br><br>
+
+
+
+<br><br>
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-8834194653550774";
+/* Cm_JavaTpoint_160x600 */
+google_ad_slot = "5786673902";
+google_ad_width = 160;
+google_ad_height = 600;
+//-->
+</script>
+<script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+
+
+
+
+</div>
+<div class="right1024" style="float:left;margin-left:10px;margin-top:120px;"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- right1024only --><ins class="adsbygoogle" style="display:inline-block;width:120px;height:600px" data-ad-client="ca-pub-4699858549023382" data-ad-slot="2180118716"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<br><br>
+</div>
+<br>
+<div id="footer" style="clear:both;width:100%">
+
+<!--<div style="width:100%;float:center;margin-top:-20px;color:white;background-image: linear-gradient(145deg,#90715c,#523b1f);line-height:28px;">
+    <h2 style="padding:60px 0px 0px 20px">Summer Training</h2>
+    <p style="padding:0px 20px 60px 20px">JavaTpoint offers <strong>Summer Internship Training</strong> on Java, PHP, .Net, Hadoop, Data Analytics, R Programming, SAP, Android, Python, Oracle, Seleninum, Linux, C++ and many more technologies in Delhi/NCR, India. For more visit <a style="color:white" href="http://training.javatpoint.com"><img src="images/linkglobe12.png" alt="javatpoint training"/>training.javatpoint.com</a>
+    <br>
+    Course Fee: &#8377; 6000 Only<br>
+    Duration: 6 Week
+    </p>
+</div>
+-->
+<div style="width:100%;float:center;margin-top:10px;color:white;background-image: linear-gradient(145deg,#52a2fc,#480fcc);line-height:28px;">
+    <h2 style="padding:60px 0px 0px 20px">Website Development Services</h2>
+    <p style="padding:0px 20px 0px 20px">JavaTpoint (SSS IT Pvt Ltd) provides website development services in affordable cost. We develop websites on WordPress, Core PHP, CakePHP, CodeIgnitor, Open Cart, Servlet-JSP, Struts 2 and Spring technologies. Send us your requirement at hr@javatpoint.com. We will show you a free demo first, then we will proceed further.
+    </p>
+    <table style="width:400px;padding:0px 20px 60px 20px">
+        <tbody><tr><td>Personal Blog</td><td>$150 Only</td></tr>
+        <tr><td>School Website</td><td>$200 Only</td></tr>
+        <tr><td>Company Website</td><td>$300 Only</td></tr>
+        <tr><td>Showroom Website</td><td>$300 Only</td></tr>
+        <tr><td>News Portal</td><td>$400 Only</td></tr>
+        <tr><td>E-Commerce Website</td><td>$500 Only</td></tr>
+        <tr><td>Multivendor E-Commerce (PHP)</td><td>$3000 Only</td></tr>
+        <tr><td>Multivendor E-Commerce (Java)</td><td>$18000 Approx</td></tr>
+        
+        <tr><td></td><td></td></tr>
+    </tbody></table>
+</div>
+<div style="width:100%;float:center;margin-top:-20px;color:white;background-image: linear-gradient(145deg,#dc8140,#b16b15);line-height:28px;">
+    <h2 style="padding:60px 0px 0px 20px">Training For College Campus</h2>
+    <p style="padding:0px 20px 60px 20px">JavaTpoint offers college campus training on Core Java, Advance Java, .Net, Android, Hadoop, PHP, Web Technology and Python. Please mail your requirement at hr@javatpoint.com.
+    <br>
+    Course Fee: ₹ 2000 Per Student<br>
+    </p>
+</div>
+
+<!--<div class="homebox2">
+<h2>Our Initiatives</h2>
+<marquee behavior="alternate">
+<a rel="nofollow" href="https://www.hindi100.com">
+<div class="box2">
+<img class="box2img" src="https://www.hindi100.com/resources/images/javatpoint.png" alt="javatpoint"/>
+<p>Hindi100</p>
+</div>
+</a>
+
+<a rel="nofollow" href="https://www.lyricsia.com">
+<div class="box2">
+<img class="box2img" src="https://www.hindi100.com/resources/images/lyrics.png" alt="lyrics"/>
+<p>Lyricsia</p>
+</div>
+</a>
+
+<a rel="nofollow" href="http://www.hindi-typing.com">
+<div class="box2">
+<img class="box2img" src="https://www.hindi100.com/resources/images/hindi-typing.png" alt="hindi-typing"/>
+<p>Hindi-Typing</p>
+</div>
+</a>
+</marquee>
+</div>
+-->
+<script type="text/javascript"> var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-24880427-1']); _gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();</script>
+<div style="margin-top:5px;text-align:center">
+    <sup style="font:16px arial;">Like/Subscribe us for latest updates or newsletter </sup>
+    <a target="_blank" href="https://feeds.feedburner.com/javatpointsonoo" data-external="true"><img src="./Java Regex _ Regular Expression - javatpoint_files/rss1.png" alt="RSS Feed"></a>
+    <a target="_blank" href="https://feedburner.google.com/fb/a/mailverify?uri=javatpointsonoo" data-external="true"><img src="./Java Regex _ Regular Expression - javatpoint_files/mail1.png" alt="Subscribe to Get Email Alerts"></a>
+    <a target="_blank" href="https://www.facebook.com/javatpoint" data-external="true"><img src="./Java Regex _ Regular Expression - javatpoint_files/facebook1.jpg" alt="Facebook Page"></a>
+    <a target="_blank" href="https://plus.google.com/u/0/+javatpoint" data-external="true"><img src="./Java Regex _ Regular Expression - javatpoint_files/google1.png" alt="Google Page"></a>
+    <a target="_blank" href="https://twitter.com/pagejavatpoint" data-external="true"><img src="./Java Regex _ Regular Expression - javatpoint_files/twitter1.png" alt="Twitter Page"></a>
+    <a target="_blank" href="https://www.youtube.com/channel/UCUnYvQVCrJoFWZhKK3O2xLg" data-external="true"><img src="./Java Regex _ Regular Expression - javatpoint_files/youtube32.png" alt="YouTube"></a>
+    <a target="_blank" href="https://javatpoint.blogspot.com/" data-external="true"><img src="./Java Regex _ Regular Expression - javatpoint_files/blog.png" alt="Blog Page"></a>
+    <!--<a href="#" style="font:bold 18px arial;text-decoration:none;"><sup>&uarr;Top</sup></a>-->
+</div>
+
+<footer class="footer1">
+<div class="column4">
+<h3>Learn Tutorials</h3>
+<a href="https://www.javatpoint.com/java-tutorial">Learn Java Tutorial</a>
+<a href="https://www.javatpoint.com/c-programming-language-tutorial">Learn C Tutorial</a>
+<a href="https://www.javatpoint.com/cpp-tutorial">Learn C++ Tutorial</a>
+<a href="https://www.javatpoint.com/c-sharp-tutorial">Learn C# Tutorial</a>
+<a href="https://www.javatpoint.com/php-tutorial">Learn PHP Tutorial</a>
+<a href="https://www.javatpoint.com/html-tutorial">Learn HTML Tutorial</a>
+<a href="https://www.javatpoint.com/css-tutorial">Learn CSS Tutorial</a>
+<a href="https://www.javatpoint.com/javascript-tutorial">Learn JavaScript Tutorial</a>
+<a href="https://www.javatpoint.com/jquery-tutorial">Learn jQuery Tutorial</a>
+<a href="https://www.javatpoint.com/spring-tutorial">Learn Spring Tutorial</a>
+</div>
+<div class="column4">
+<h3>Our Websites</h3>
+<a rel="nofollow" target="_blank" href="https://www.javatpoint.com/">Javatpoint.com</a>
+<a rel="nofollow" target="_blank" href="https://www.hindi100.com/" data-external="true">Hindi100.com</a>
+<a rel="nofollow" target="_blank" href="https://www.lyricsia.com/" data-external="true">Lyricsia.com</a>
+<a rel="nofollow" target="_blank" href="https://www.quoteperson.com/" data-external="true">Quoteperson.com</a>
+<a rel="nofollow" target="_blank" href="http://www.hindi-typing.com/" data-external="true">Hindi-typing.com</a>
+<a rel="nofollow" target="_blank" href="http://www.shayaree.com/" data-external="true">Shayaree.com</a>
+<a rel="nofollow" target="_blank" href="https://www.wordcountee.com/" data-external="true">Wordcountee.com</a>
+<a rel="nofollow" target="_blank" href="https://www.charactercountee.com/" data-external="true">Charactercountee.com</a>
+<a rel="nofollow" target="_blank" href="https://www.jobandplacement.com/" data-external="true">Jobandplacement.com</a>
+</div>
+<div class="column4">
+<h3>Our Services</h3>
+<p>Website Development</p>
+<p>Android Development</p>
+<p>Website Designing</p>
+<p>Digital Marketing</p>
+<p>Summer Training</p>
+<p>Industrial Training</p>
+<p>College Campus Training</p>
+</div>
+<div class="column4">
+<h3>Contact</h3>
+<p>Address: G-13, 2nd Floor, Sec-3</p>
+<p>Noida, UP, 201301, India</p>
+<p>Contact No: 0120-4256464, 9990449935</p>
+<a href="https://www.javatpoint.com/contact-us">Contact Us</a> 
+<a href="https://www.javatpoint.com/subscribe.jsp">Subscribe Us</a> 
+<a href="https://www.javatpoint.com/privacy-policy">Privacy Policy</a>
+
+</div>
+</footer>
+
+<footer class="footer2">
+<p>© Copyright 2011-2017 www.javatpoint.com. All rights reserved.  <a rel="nofollow" target="_blank" href="https://www.sssit.org/" data-external="true">Developed by SSS IT Pvt Ltd (JavaTpoint)</a> </p>
+</footer>
+
+
+</div></div></div>
+<script src="./Java Regex _ Regular Expression - javatpoint_files/shcoreandbrush.js.download"></script><script type="text/javascript" src="./Java Regex _ Regular Expression - javatpoint_files/google.js.download"></script>
+<script type="text/javascript"> dp.SyntaxHighlighter.HighlightAll('code'); </script>
+
+  </body></html>

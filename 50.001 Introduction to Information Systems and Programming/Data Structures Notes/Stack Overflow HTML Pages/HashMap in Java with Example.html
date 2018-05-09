@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)https://beginnersbook.com/2013/12/hashmap-in-java-with-example/ -->
+<html lang="en-US" prefix="og: http://ogp.me/ns#"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>HashMap in Java with Example</title><meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- This site is optimized with the Yoast SEO plugin v5.3.2 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="HashMap is a Map based collection class that is used for storing Key &amp; value pairs, it is denoted as HashMap&lt;Key, Value&gt; or HashMap&lt;K, V&gt;. ">
+<link rel="canonical" href="https://beginnersbook.com/2013/12/hashmap-in-java-with-example/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HashMap in Java with Example">
+<meta property="og:description" content="HashMap is a Map based collection class that is used for storing Key &amp; value pairs, it is denoted as HashMap&lt;Key, Value&gt; or HashMap&lt;K, V&gt;. ">
+<meta property="og:url" content="https://beginnersbook.com/2013/12/hashmap-in-java-with-example/">
+<meta property="og:site_name" content="beginnersbook.com">
+<meta property="article:tag" content="HashMap">
+<meta property="article:section" content="Java Collections">
+<meta property="article:published_time" content="2013-12-08T12:06:33+00:00">
+<meta property="article:modified_time" content="2017-08-08T10:01:50+00:00">
+<meta property="og:updated_time" content="2017-08-08T10:01:50+00:00">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:description" content="HashMap is a Map based collection class that is used for storing Key &amp; value pairs, it is denoted as HashMap&lt;Key, Value&gt; or HashMap&lt;K, V&gt;. ">
+<meta name="twitter:title" content="HashMap in Java with Example">
+<script async="" src="./HashMap in Java with Example_files/analytics.js.download"></script><script type="application/ld+json">{"@context":"http:\/\/schema.org","@type":"WebSite","@id":"#website","url":"https:\/\/beginnersbook.com\/","name":"beginnersbook.com","potentialAction":{"@type":"SearchAction","target":"https:\/\/beginnersbook.com\/?s={search_term_string}","query-input":"required name=search_term_string"}}</script>
+<!-- / Yoast SEO plugin. -->
+
+<link rel="dns-prefetch" href="https://beginnersbook.com/">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="beginnersbook.com » Feed" href="https://feeds.feedburner.com/BeginnersBookFeed">
+<link rel="alternate" type="application/rss+xml" title="beginnersbook.com » Comments Feed" href="https://beginnersbook.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="beginnersbook.com » HashMap in Java with Example Comments Feed" href="https://beginnersbook.com/2013/12/hashmap-in-java-with-example/feed/">
+<link rel="stylesheet" id="news-pro-theme-css" href="./HashMap in Java with Example_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="google-fonts-css" href="./HashMap in Java with Example_files/css" type="text/css" media="all">
+<!--[if lt IE 9]>
+<script type='text/javascript' src='https://beginnersbook.com/wp-content/themes/genesis/lib/js/html5shiv.js?ver=3.7.3'></script>
+<![endif]-->
+<script type="text/javascript" src="./HashMap in Java with Example_files/jquery.js.download"></script>
+<script type="text/javascript" src="./HashMap in Java with Example_files/jquery-migrate.min.js.download"></script>
+<script type="text/javascript" src="./HashMap in Java with Example_files/responsive-menu.js.download"></script>
+<link rel="https://api.w.org/" href="https://beginnersbook.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://beginnersbook.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://beginnersbook.com/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 4.8.2">
+<link rel="shortlink" href="https://beginnersbook.com/?p=4344">
+<link rel="alternate" type="application/json+oembed" href="https://beginnersbook.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fbeginnersbook.com%2F2013%2F12%2Fhashmap-in-java-with-example%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://beginnersbook.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fbeginnersbook.com%2F2013%2F12%2Fhashmap-in-java-with-example%2F&amp;format=xml">
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-1952308982289269",
+    enable_page_level_ads: true
+  });
+</script><style type="text/css">.site-title a { background: url(https://beginnersbook.com/wp-content/uploads/2017/02/cropped-bbook_logo_17.png) no-repeat !important; }</style>
+<link rel="icon" href="https://beginnersbook.com/wp-content/uploads/2016/03/favicon2.png" sizes="32x32">
+<link rel="icon" href="https://beginnersbook.com/wp-content/uploads/2016/03/favicon2.png" sizes="192x192">
+<link rel="apple-touch-icon-precomposed" href="https://beginnersbook.com/wp-content/uploads/2016/03/favicon2.png">
+<meta name="msapplication-TileImage" content="https://beginnersbook.com/wp-content/uploads/2016/03/favicon2.png">
+</head>
+<body class="post-template-default single single-post postid-4344 single-format-standard custom-header header-image header-full-width sidebar-content-sidebar news-pro-green" itemscope="" itemtype="https://schema.org/WebPage"><div class="site-container"><header class="site-header" itemscope="" itemtype="https://schema.org/WPHeader"><div class="wrap"></div></header><nav class="nav-primary" itemscope="" itemtype="https://schema.org/SiteNavigationElement"><div class="wrap"><div class="responsive-menu-icon"></div><ul id="menu-main-menu" class="menu genesis-nav-menu menu-primary responsive-menu"><li id="menu-item-6105" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-6105"><a href="https://beginnersbook.com/" itemprop="url"><span itemprop="name">Home</span></a></li>
+<li id="menu-item-5678" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5678"><a href="https://beginnersbook.com/java-tutorial-for-beginners-with-examples/" itemprop="url"><span itemprop="name">Core Java</span></a></li>
+<li id="menu-item-5682" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5682"><a href="https://beginnersbook.com/2013/04/oops-concepts/" itemprop="url"><span itemprop="name">OOPs</span></a></li>
+<li id="menu-item-6236" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6236"><a href="https://beginnersbook.com/java-collections-tutorials/" itemprop="url"><span itemprop="name">Collections</span></a></li>
+<li id="menu-item-6237" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6237"><a href="https://beginnersbook.com/java-io-tutorial-with-examples/" itemprop="url"><span itemprop="name">Java I/O</span></a></li>
+<li id="menu-item-6242" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6242"><a href="https://beginnersbook.com/2015/04/json-tutorial/" itemprop="url"><span itemprop="name">JSON</span></a></li>
+<li id="menu-item-5679" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5679"><a href="https://beginnersbook.com/jsp-tutorial-for-beginners/" itemprop="url"><span itemprop="name">JSP</span></a></li>
+<li id="menu-item-6235" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6235"><a href="https://beginnersbook.com/jsp-jstl-tutorial-jstl-functions-and-core-tags/" itemprop="url"><span itemprop="name">JSTL</span></a></li>
+<li id="menu-item-7076" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-7076"><a href="https://beginnersbook.com/2013/05/servlet-tutorial/" itemprop="url"><span itemprop="name">Servlet</span></a></li>
+<li id="menu-item-6239" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6239"><a href="https://beginnersbook.com/2014/01/c-tutorial-for-beginners-with-examples/" itemprop="url"><span itemprop="name">C Tutorial</span></a></li>
+<li id="menu-item-6241" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6241"><a href="https://beginnersbook.com/2015/04/dbms-tutorial/" itemprop="url"><span itemprop="name">DBMS</span></a></li>
+<li id="menu-item-6243" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6243"><a href="https://beginnersbook.com/2017/02/perl-tutorial-for-beginners/" itemprop="url"><span itemprop="name">Perl</span></a></li>
+</ul></div></nav><div class="site-inner"><div class="content-sidebar-wrap"><main class="content"><article class="post-4344 post type-post status-publish format-standard category-java-collections tag-hashmap entry" itemscope="" itemtype="https://schema.org/CreativeWork"><header class="entry-header"><h1 class="entry-title" itemprop="headline">HashMap in Java with Example</h1>
+<p class="entry-meta">By <span class="entry-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person"><span class="entry-author-name" itemprop="name">Chaitanya Singh</span></span> | <span class="entry-categories">Filed Under: <a href="https://beginnersbook.com/category/java-collections/" rel="category tag">Java Collections</a></span> </p><style type="text/css">
+.bbook_responsive_top { display: block; width: 320px; height: 100px; margin: 15px auto; }
+@media(min-width: 500px) { .bbook_responsive_top {  width: 300px; height: 250px; margin: 15px auto; } }
+@media(min-width: 800px) { .bbook_responsive_top { margin: 15px auto; width: 728px; height: 90px; margin-left: 0; } }
+</style>
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- bbook_top_center -->
+<ins class="adsbygoogle bbook_responsive_top" style="display:block" data-ad-client="ca-pub-1952308982289269" data-ad-slot="3105487525"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</header><div class="entry-content" itemprop="text"><p>HashMap is a Map based collection class that is used for storing Key &amp; value pairs, it is denoted as HashMap&lt;Key, Value&gt; or HashMap&lt;K, V&gt;.&nbsp;This class makes no guarantees as to the order of the map. It is similar to the Hashtable class except that it is unsynchronized and permits nulls(null values and null key).</p>
+<p>It is not an ordered collection which means it does not return the keys and values in the same order in which they have been inserted into the HashMap. It does not sort the stored keys and Values. You must need to import <code>java.util.HashMap</code> or its super class in order to use the HashMap class and methods.</p>
+<h2>HashMap Example in Java:</h2>
+<p>In this example we have demonstrated almost all the important methods of HashMap class.</p>
+<pre class="prettyprint prettyprinted" style=""><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">util</span><span class="pun">.</span><span class="typ">HashMap</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">util</span><span class="pun">.</span><span class="typ">Map</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">util</span><span class="pun">.</span><span class="typ">Iterator</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">util</span><span class="pun">.</span><span class="typ">Set</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Details</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> args</span><span class="pun">[])</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+      </span><span class="com">/* This is how to declare HashMap */</span><span class="pln">
+      </span><span class="typ">HashMap</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">,</span><span class="pln"> </span><span class="typ">String</span><span class="pun">&gt;</span><span class="pln"> hmap </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">HashMap</span><span class="pun">&lt;</span><span class="typ">Integer</span><span class="pun">,</span><span class="pln"> </span><span class="typ">String</span><span class="pun">&gt;();</span><span class="pln">
+
+      </span><span class="com">/*Adding elements to HashMap*/</span><span class="pln">
+      hmap</span><span class="pun">.</span><span class="pln">put</span><span class="pun">(</span><span class="lit">12</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Chaitanya"</span><span class="pun">);</span><span class="pln">
+      hmap</span><span class="pun">.</span><span class="pln">put</span><span class="pun">(</span><span class="lit">2</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Rahul"</span><span class="pun">);</span><span class="pln">
+      hmap</span><span class="pun">.</span><span class="pln">put</span><span class="pun">(</span><span class="lit">7</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Singh"</span><span class="pun">);</span><span class="pln">
+      hmap</span><span class="pun">.</span><span class="pln">put</span><span class="pun">(</span><span class="lit">49</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Ajeet"</span><span class="pun">);</span><span class="pln">
+      hmap</span><span class="pun">.</span><span class="pln">put</span><span class="pun">(</span><span class="lit">3</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Anuj"</span><span class="pun">);</span><span class="pln">
+
+      </span><span class="com">/* Display content using Iterator*/</span><span class="pln">
+      </span><span class="typ">Set</span><span class="pln"> </span><span class="kwd">set</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> hmap</span><span class="pun">.</span><span class="pln">entrySet</span><span class="pun">();</span><span class="pln">
+      </span><span class="typ">Iterator</span><span class="pln"> iterator </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">set</span><span class="pun">.</span><span class="pln">iterator</span><span class="pun">();</span><span class="pln">
+      </span><span class="kwd">while</span><span class="pun">(</span><span class="pln">iterator</span><span class="pun">.</span><span class="pln">hasNext</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+         </span><span class="typ">Map</span><span class="pun">.</span><span class="typ">Entry</span><span class="pln"> mentry </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Map</span><span class="pun">.</span><span class="typ">Entry</span><span class="pun">)</span><span class="pln">iterator</span><span class="pun">.</span><span class="kwd">next</span><span class="pun">();</span><span class="pln">
+         </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="str">"key is: "</span><span class="pun">+</span><span class="pln"> mentry</span><span class="pun">.</span><span class="pln">getKey</span><span class="pun">()</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">" &amp; Value is: "</span><span class="pun">);</span><span class="pln">
+         </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="pln">mentry</span><span class="pun">.</span><span class="pln">getValue</span><span class="pun">());</span><span class="pln">
+      </span><span class="pun">}</span><span class="pln">
+
+      </span><span class="com">/* Get values based on key*/</span><span class="pln">
+      </span><span class="typ">String</span><span class="pln"> </span><span class="kwd">var</span><span class="pun">=</span><span class="pln"> hmap</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="lit">2</span><span class="pun">);</span><span class="pln">
+      </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Value at index 2 is: "</span><span class="pun">+</span><span class="kwd">var</span><span class="pun">);</span><span class="pln">
+
+      </span><span class="com">/* Remove values based on key*/</span><span class="pln">
+      hmap</span><span class="pun">.</span><span class="pln">remove</span><span class="pun">(</span><span class="lit">3</span><span class="pun">);</span><span class="pln">
+      </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Map key and values after removal:"</span><span class="pun">);</span><span class="pln">
+      </span><span class="typ">Set</span><span class="pln"> set2 </span><span class="pun">=</span><span class="pln"> hmap</span><span class="pun">.</span><span class="pln">entrySet</span><span class="pun">();</span><span class="pln">
+      </span><span class="typ">Iterator</span><span class="pln"> iterator2 </span><span class="pun">=</span><span class="pln"> set2</span><span class="pun">.</span><span class="pln">iterator</span><span class="pun">();</span><span class="pln">
+      </span><span class="kwd">while</span><span class="pun">(</span><span class="pln">iterator2</span><span class="pun">.</span><span class="pln">hasNext</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+          </span><span class="typ">Map</span><span class="pun">.</span><span class="typ">Entry</span><span class="pln"> mentry2 </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Map</span><span class="pun">.</span><span class="typ">Entry</span><span class="pun">)</span><span class="pln">iterator2</span><span class="pun">.</span><span class="kwd">next</span><span class="pun">();</span><span class="pln">
+          </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="str">"Key is: "</span><span class="pun">+</span><span class="pln">mentry2</span><span class="pun">.</span><span class="pln">getKey</span><span class="pun">()</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">" &amp; Value is: "</span><span class="pun">);</span><span class="pln">
+          </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="pln">mentry2</span><span class="pun">.</span><span class="pln">getValue</span><span class="pun">());</span><span class="pln">
+       </span><span class="pun">}</span><span class="pln">
+
+   </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<p>Output:</p><div class="googlead"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-format="fluid" data-ad-layout="in-article" data-ad-client="ca-pub-1952308982289269" data-ad-slot="7043774673"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+<pre class="prettyprint prettyprinted" style=""><span class="pln">key </span><span class="kwd">is</span><span class="pun">:</span><span class="pln"> </span><span class="lit">49</span><span class="pln"> </span><span class="pun">&amp;</span><span class="pln"> </span><span class="typ">Value</span><span class="pln"> </span><span class="kwd">is</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Ajeet</span><span class="pln">
+key </span><span class="kwd">is</span><span class="pun">:</span><span class="pln"> </span><span class="lit">2</span><span class="pln"> </span><span class="pun">&amp;</span><span class="pln"> </span><span class="typ">Value</span><span class="pln"> </span><span class="kwd">is</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Rahul</span><span class="pln">
+key </span><span class="kwd">is</span><span class="pun">:</span><span class="pln"> </span><span class="lit">3</span><span class="pln"> </span><span class="pun">&amp;</span><span class="pln"> </span><span class="typ">Value</span><span class="pln"> </span><span class="kwd">is</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Anuj</span><span class="pln">
+key </span><span class="kwd">is</span><span class="pun">:</span><span class="pln"> </span><span class="lit">7</span><span class="pln"> </span><span class="pun">&amp;</span><span class="pln"> </span><span class="typ">Value</span><span class="pln"> </span><span class="kwd">is</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Singh</span><span class="pln">
+key </span><span class="kwd">is</span><span class="pun">:</span><span class="pln"> </span><span class="lit">12</span><span class="pln"> </span><span class="pun">&amp;</span><span class="pln"> </span><span class="typ">Value</span><span class="pln"> </span><span class="kwd">is</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Chaitanya</span><span class="pln">
+</span><span class="typ">Value</span><span class="pln"> at index </span><span class="lit">2</span><span class="pln"> </span><span class="kwd">is</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Rahul</span><span class="pln">
+</span><span class="typ">Map</span><span class="pln"> key </span><span class="kwd">and</span><span class="pln"> values after removal</span><span class="pun">:</span><span class="pln">
+</span><span class="typ">Key</span><span class="pln"> </span><span class="kwd">is</span><span class="pun">:</span><span class="pln"> </span><span class="lit">49</span><span class="pln"> </span><span class="pun">&amp;</span><span class="pln"> </span><span class="typ">Value</span><span class="pln"> </span><span class="kwd">is</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Ajeet</span><span class="pln">
+</span><span class="typ">Key</span><span class="pln"> </span><span class="kwd">is</span><span class="pun">:</span><span class="pln"> </span><span class="lit">2</span><span class="pln"> </span><span class="pun">&amp;</span><span class="pln"> </span><span class="typ">Value</span><span class="pln"> </span><span class="kwd">is</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Rahul</span><span class="pln">
+</span><span class="typ">Key</span><span class="pln"> </span><span class="kwd">is</span><span class="pun">:</span><span class="pln"> </span><span class="lit">7</span><span class="pln"> </span><span class="pun">&amp;</span><span class="pln"> </span><span class="typ">Value</span><span class="pln"> </span><span class="kwd">is</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Singh</span><span class="pln">
+</span><span class="typ">Key</span><span class="pln"> </span><span class="kwd">is</span><span class="pun">:</span><span class="pln"> </span><span class="lit">12</span><span class="pln"> </span><span class="pun">&amp;</span><span class="pln"> </span><span class="typ">Value</span><span class="pln"> </span><span class="kwd">is</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Chaitanya</span></pre>
+<h2>HashMap Class Methods</h2>
+<p>Here is the list of methods available in HashMap class. I have also covered examples using these methods at the end of this post.</p>
+<ol>
+<li><strong>void clear()</strong>: It removes all the key and value pairs from the specified Map.</li>
+<li><strong>Object clone()</strong>: It returns a copy of all the mappings of a map and used for cloning them into another map.</li>
+<li><strong>boolean containsKey(Object key)</strong>: It is a boolean function which returns true or false based on whether the specified key is found in the map.</li>
+<li><strong>boolean containsValue(Object Value)</strong>: Similar to containsKey() method, however it looks for the specified value instead of key.</li>
+<li><strong>Value get(Object key)</strong>: It returns the value for the specified key.</li>
+<li><strong>boolean isEmpty()</strong>: It checks whether the map is empty. If there are no key-value mapping present in the map then this function returns true else false.</li>
+<li><strong>Set keySet()</strong>: It returns the Set of the keys fetched from the map.</li>
+<li><strong>value put(Key k, Value v)</strong>: Inserts key value mapping into the map. Used in the above example.</li>
+<li><strong>int size()</strong>: Returns the size of the map – Number of key-value mappings.</li>
+<li><strong>Collection values()</strong>: It returns a collection of values of map.</li>
+<li><strong>Value remove(Object key)</strong>: It removes the key-value pair for the specified key. Used in the above example.</li>
+<li><strong>void putAll(Map m)</strong>: Copies all the elements of a map to the another specified map.</li>
+</ol>
+<h2>HashMap Tutorials</h2>
+<p>Here is the list of tutorials published on HashMap class. Happy Learning:)</p>
+<h4>HashMap Basics</h4>
+<ol>
+<li><a href="https://beginnersbook.com/2013/12/how-to-loop-hashmap-in-java/">How to iterate HashMap</a></li>
+<li><a href="https://beginnersbook.com/2013/12/how-to-sort-hashmap-in-java-by-keys-and-values/">Sort HashMap by Keys and values</a></li>
+<li><a href="https://beginnersbook.com/2014/07/java-get-size-of-hashmap-example/">Get Size of HashMap</a></li>
+<li><a href="https://beginnersbook.com/2014/07/java-remove-mapping-from-hashmap-example/">Remove Key-value mapping from HashMap</a></li>
+<li><a href="https://beginnersbook.com/2014/07/java-remove-all-mappings-from-hashmap-example/">Remove all mapping from HashMap</a></li>
+<li><a href="https://beginnersbook.com/2014/08/how-to-check-if-a-hashmap-is-empty-or-not/">How to check if HashMap is empty or not?</a></li>
+</ol>
+<h4>Get/Search</h4>
+<ol>
+<li><a href="https://beginnersbook.com/2014/07/java-check-if-a-particular-key-exists-in-hashmap-example/">Check if particular key exists in HashMap</a></li>
+<li><a href="https://beginnersbook.com/2014/07/java-check-if-a-particular-value-exists-in-hashmap-example/">Check if particular value exists in HashMap</a></li>
+</ol>
+<h4>Serialize/Synchronize</h4>
+<ol>
+<li><a href="https://beginnersbook.com/2013/12/how-to-serialize-hashmap-in-java/">Serialize HashMap</a></li>
+<li><a title="How to synchronize HashMap in Java with example" href="https://beginnersbook.com/2013/12/how-to-synchronize-hashmap-in-java-with-example/">Synchronize HashMap</a></li>
+</ol>
+<h4>Differences</h4>
+<ol>
+<li><a title="Difference between ArrayList and HashMap in Java" href="https://beginnersbook.com/2013/12/difference-between-arraylist-and-hashmap-in-java/">HashMap vs ArrayList</a></li>
+<li><a title="Difference between HashMap and Hashtable" href="https://beginnersbook.com/2014/06/difference-between-hashmap-and-hashtable/">HashMap vs Hashtable</a></li>
+<li><a href="https://beginnersbook.com/2014/08/hashset-vs-hashmap-java/">HashSet vs HashMap</a></li>
+</ol>
+<h4>Other Tutorials</h4>
+<ol>
+<li><a href="https://beginnersbook.com/2014/07/java-hashmap-iterator-example/">HashMap Iterator example</a></li>
+<li><a href="https://beginnersbook.com/2014/08/how-to-copy-one-hashmap-content-to-another-hashmap/">Copy one HashMap to another</a></li>
+<li><a href="https://beginnersbook.com/2014/08/hashmap-get-value-from-key-example/">Get value from HashMap using Key</a></li>
+<li><a href="https://beginnersbook.com/2014/08/java-get-set-view-of-keys-from-hashmap/">Get Set view of keys from HashMap</a></li>
+<li><a href="https://beginnersbook.com/2014/08/clone-a-hashmap-in-java/">Clone a HashMap</a></li>
+</ol>
+<h4>Reference:</h4>
+<p><a href="https://docs.oracle.com/javase/7/docs/api/java/util/HashMap.html" target="_blank" rel="noopener">HashMap Documentation</a></p>
+</div><style>
+.bbook_responsive_bottom { display: block; width: 300px; height: 250px; margin: 15px auto; }
+@media(min-width: 800px) { .bbook_responsive_bottom { margin: 15px auto; width: 728px; height: 90px; margin-left: 0; } }
+</style>
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- bbook_bottom_center -->
+<ins class="adsbygoogle bbook_responsive_bottom" style="display:block" data-ad-client="ca-pub-1952308982289269" data-ad-slot="6278445773"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<footer class="entry-footer"></footer></article><div class="entry-comments" id="comments"><h3>Comments</h3><ol class="comment-list">
+	<li class="comment even thread-even depth-1" id="comment-2415">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<img alt="" src="./HashMap in Java with Example_files/600de8fa49d028ddbeba19ba6534fb60" srcset="https://secure.gravatar.com/avatar/600de8fa49d028ddbeba19ba6534fb60?s=96&amp;d=monsterid&amp;r=g 2x" class="avatar avatar-48 photo" height="48" width="48"><span itemprop="name">Raju</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2014-03-31T16:27:43+00:00" itemprop="datePublished"><a href="https://beginnersbook.com/2013/12/hashmap-in-java-with-example/#comment-2415" class="comment-time-link" itemprop="url">March 31, 2014 at 4:27 PM</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Mind Blowing……</p>
+<p>Do something so that your website can have more views………this is very much useful for beginners……………….</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://beginnersbook.com/2013/12/hashmap-in-java-with-example/?replytocom=2415#respond" onclick="return addComment.moveForm( &quot;comment-2415&quot;, &quot;2415&quot;, &quot;respond&quot;, &quot;4344&quot; )" aria-label="Reply to Raju">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment byuser comment-author-cpsingh bypostauthor odd alt depth-2" id="comment-2613">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<img alt="" src="./HashMap in Java with Example_files/6589689a49b9fc28b4ab1aee34ba1acb" srcset="https://secure.gravatar.com/avatar/6589689a49b9fc28b4ab1aee34ba1acb?s=96&amp;d=monsterid&amp;r=g 2x" class="avatar avatar-48 photo" height="48" width="48"><span itemprop="name">Chaitanya Singh</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2014-04-06T15:33:15+00:00" itemprop="datePublished"><a href="https://beginnersbook.com/2013/12/hashmap-in-java-with-example/#comment-2613" class="comment-time-link" itemprop="url">April 6, 2014 at 3:33 PM</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Thanks for your kind words Raju :)</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://beginnersbook.com/2013/12/hashmap-in-java-with-example/?replytocom=2613#respond" onclick="return addComment.moveForm( &quot;comment-2613&quot;, &quot;2613&quot;, &quot;respond&quot;, &quot;4344&quot; )" aria-label="Reply to Chaitanya Singh">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment even depth-3" id="comment-5566">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<img alt="" src="./HashMap in Java with Example_files/e04b8b82fbad8dfa1f2d759c799c1671" srcset="https://secure.gravatar.com/avatar/e04b8b82fbad8dfa1f2d759c799c1671?s=96&amp;d=monsterid&amp;r=g 2x" class="avatar avatar-48 photo" height="48" width="48"><span itemprop="name">piyush shukla</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2014-07-26T15:44:41+00:00" itemprop="datePublished"><a href="https://beginnersbook.com/2013/12/hashmap-in-java-with-example/#comment-5566" class="comment-time-link" itemprop="url">July 26, 2014 at 3:44 PM</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>very good explanation…</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://beginnersbook.com/2013/12/hashmap-in-java-with-example/?replytocom=5566#respond" onclick="return addComment.moveForm( &quot;comment-5566&quot;, &quot;5566&quot;, &quot;respond&quot;, &quot;4344&quot; )" aria-label="Reply to piyush shukla">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-5262">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<img alt="" src="./HashMap in Java with Example_files/9f1f133c8a79fef1ce909abe8eeefd10" srcset="https://secure.gravatar.com/avatar/9f1f133c8a79fef1ce909abe8eeefd10?s=96&amp;d=monsterid&amp;r=g 2x" class="avatar avatar-48 photo" height="48" width="48"><span itemprop="name">May</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2014-07-17T14:59:42+00:00" itemprop="datePublished"><a href="https://beginnersbook.com/2013/12/hashmap-in-java-with-example/#comment-5262" class="comment-time-link" itemprop="url">July 17, 2014 at 2:59 PM</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Hi Chaitanya,<br>
+This tutorial is really very understandable.<br>
+I have been trying to learn Java from a long time but am not really able to get to undertsand the concepts well enough to use them wherever needed. Can you please suggest me how to learn so I can use the concepts in my day today job.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://beginnersbook.com/2013/12/hashmap-in-java-with-example/?replytocom=5262#respond" onclick="return addComment.moveForm( &quot;comment-5262&quot;, &quot;5262&quot;, &quot;respond&quot;, &quot;4344&quot; )" aria-label="Reply to May">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-even depth-1" id="comment-39952">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<img alt="" src="./HashMap in Java with Example_files/0037a3c54a75cdf00e0285b5b4646374" srcset="https://secure.gravatar.com/avatar/0037a3c54a75cdf00e0285b5b4646374?s=96&amp;d=monsterid&amp;r=g 2x" class="avatar avatar-48 photo" height="48" width="48"><span itemprop="name">Farhan Ali</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-10-25T18:51:24+00:00" itemprop="datePublished"><a href="https://beginnersbook.com/2013/12/hashmap-in-java-with-example/#comment-39952" class="comment-time-link" itemprop="url">October 25, 2015 at 6:51 PM</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Hello Sir,<br>
+I don’t understand why have you used set for iterating while it can be easily done with keySet();.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://beginnersbook.com/2013/12/hashmap-in-java-with-example/?replytocom=39952#respond" onclick="return addComment.moveForm( &quot;comment-39952&quot;, &quot;39952&quot;, &quot;respond&quot;, &quot;4344&quot; )" aria-label="Reply to Farhan Ali">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment odd alt depth-2" id="comment-56878">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<img alt="" src="./HashMap in Java with Example_files/434a343cb736333bbecf4476b7d8ba0c" srcset="https://secure.gravatar.com/avatar/434a343cb736333bbecf4476b7d8ba0c?s=96&amp;d=monsterid&amp;r=g 2x" class="avatar avatar-48 photo" height="48" width="48"><span itemprop="name">sunny</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2016-06-14T06:12:15+00:00" itemprop="datePublished"><a href="https://beginnersbook.com/2013/12/hashmap-in-java-with-example/#comment-56878" class="comment-time-link" itemprop="url">June 14, 2016 at 6:12 AM</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>keyset() also return SET.<br>
+but if you use KeySet() – it will just return all keys in one go but if you want to traverse each key and do some operation you required something else and the same was explained by Chaitanya..</p>
+<p>Hope this help!</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://beginnersbook.com/2013/12/hashmap-in-java-with-example/?replytocom=56878#respond" onclick="return addComment.moveForm( &quot;comment-56878&quot;, &quot;56878&quot;, &quot;respond&quot;, &quot;4344&quot; )" aria-label="Reply to sunny">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-55381">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<img alt="" src="./HashMap in Java with Example_files/d40c5fe96a3a03394c8e1d85ed1d131d" srcset="https://secure.gravatar.com/avatar/d40c5fe96a3a03394c8e1d85ed1d131d?s=96&amp;d=monsterid&amp;r=g 2x" class="avatar avatar-48 photo" height="48" width="48"><span itemprop="name">Line</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2016-05-18T15:24:29+00:00" itemprop="datePublished"><a href="https://beginnersbook.com/2013/12/hashmap-in-java-with-example/#comment-55381" class="comment-time-link" itemprop="url">May 18, 2016 at 3:24 PM</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Why do I get NullPointerException?</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://beginnersbook.com/2013/12/hashmap-in-java-with-example/?replytocom=55381#respond" onclick="return addComment.moveForm( &quot;comment-55381&quot;, &quot;55381&quot;, &quot;respond&quot;, &quot;4344&quot; )" aria-label="Reply to Line">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment odd alt depth-2" id="comment-63716">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<img alt="" src="./HashMap in Java with Example_files/7904ae483b393ab2381370da20333289" srcset="https://secure.gravatar.com/avatar/7904ae483b393ab2381370da20333289?s=96&amp;d=monsterid&amp;r=g 2x" class="avatar avatar-48 photo" height="48" width="48"><span itemprop="name">Tamil selvan s</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2016-11-22T04:17:38+00:00" itemprop="datePublished"><a href="https://beginnersbook.com/2013/12/hashmap-in-java-with-example/#comment-63716" class="comment-time-link" itemprop="url">November 22, 2016 at 4:17 AM</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>There may be no objects available at that area or space in which you are accessing.</p>
+<p>For example we can take an array </p>
+<p>int a[] = new int[5];<br>
+here the available values are a[0],a[1],a[2],a[3],a[4] if u try to fix values for a[5] then you will get nullpointerexception!!!!!!!</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://beginnersbook.com/2013/12/hashmap-in-java-with-example/?replytocom=63716#respond" onclick="return addComment.moveForm( &quot;comment-63716&quot;, &quot;63716&quot;, &quot;respond&quot;, &quot;4344&quot; )" aria-label="Reply to Tamil selvan s">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment even thread-even depth-1" id="comment-70012">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<img alt="" src="./HashMap in Java with Example_files/8620b601b4744924c4b0ddc4090890a8" srcset="https://secure.gravatar.com/avatar/8620b601b4744924c4b0ddc4090890a8?s=96&amp;d=monsterid&amp;r=g 2x" class="avatar avatar-48 photo" height="48" width="48"><span itemprop="name">Andrew</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2017-04-30T17:26:34+00:00" itemprop="datePublished"><a href="https://beginnersbook.com/2013/12/hashmap-in-java-with-example/#comment-70012" class="comment-time-link" itemprop="url">April 30, 2017 at 5:26 PM</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>I want to know why the order of the output is not the same as we input them. Would you mind email me your reply? Thanks!</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://beginnersbook.com/2013/12/hashmap-in-java-with-example/?replytocom=70012#respond" onclick="return addComment.moveForm( &quot;comment-70012&quot;, &quot;70012&quot;, &quot;respond&quot;, &quot;4344&quot; )" aria-label="Reply to Andrew">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment odd alt depth-2" id="comment-73331">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<img alt="" src="./HashMap in Java with Example_files/a4ee04b4ab77d25cd071dc2afe78d35b" srcset="https://secure.gravatar.com/avatar/a4ee04b4ab77d25cd071dc2afe78d35b?s=96&amp;d=monsterid&amp;r=g 2x" class="avatar avatar-48 photo" height="48" width="48"><span itemprop="name">Max Bradley</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2017-08-17T11:20:45+00:00" itemprop="datePublished"><a href="https://beginnersbook.com/2013/12/hashmap-in-java-with-example/#comment-73331" class="comment-time-link" itemprop="url">August 17, 2017 at 11:20 AM</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Hi Andrew,</p>
+<p>I was wondering the same, I think it is just a property of HashMaps that there is no ordering. When you add items to them you are not adding after any existing entries, you are just added to a pool of key-value pairs.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://beginnersbook.com/2013/12/hashmap-in-java-with-example/?replytocom=73331#respond" onclick="return addComment.moveForm( &quot;comment-73331&quot;, &quot;73331&quot;, &quot;respond&quot;, &quot;4344&quot; )" aria-label="Reply to Max Bradley">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ol></div>	<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://beginnersbook.com/2013/12/hashmap-in-java-with-example/#respond" style="display:none;">Cancel reply</a></small></h3>			<form action="https://beginnersbook.com/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate="">
+				<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p><p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" aria-required="true" required="required"></textarea></p><p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" aria-required="true" required="required"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="email" value="" size="30" maxlength="100" aria-describedby="email-notes" aria-required="true" required="required"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="url" value="" size="30" maxlength="200"></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="4344" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="eee62679bd"></p><p style="display: none;"></p>			<input type="hidden" id="ak_js" name="ak_js" value="1506663695751"></form>
+			</div><!-- #respond -->
+	</main><aside class="sidebar sidebar-primary widget-area" role="complementary" aria-label="Primary Sidebar" itemscope="" itemtype="https://schema.org/WPSideBar"><section id="search-2" class="widget widget_search"><div class="widget-wrap"><form class="search-form" itemprop="potentialAction" itemscope="" itemtype="https://schema.org/SearchAction" method="get" action="https://beginnersbook.com/" role="search"><meta itemprop="target" content="https://beginnersbook.com/?s={s}"><input itemprop="query-input" type="search" name="s" placeholder="Search this website …"><input type="submit" value="Search"></form></div></section>
+<section id="custom_html-2" class="widget_text widget widget_custom_html"><div class="widget_text widget-wrap"><div class="textwidget custom-html-widget"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- BB_Top_Responsive -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1952308982289269" data-ad-slot="1008192093" data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div></div></section>
+<section id="custom_html-9" class="widget_text widget widget_custom_html"><div class="widget_text widget-wrap"><div class="textwidget custom-html-widget"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- bbook_right_sidebar_responsive -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1952308982289269" data-ad-slot="5732385980" data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div></div></section>
+</aside></div><aside class="sidebar sidebar-secondary widget-area" role="complementary" aria-label="Secondary Sidebar" itemscope="" itemtype="https://schema.org/WPSideBar"><section id="custom_html-4" class="widget_text widget widget_custom_html"><div class="widget_text widget-wrap"><h4 class="widget-title widgettitle">Java Tutorial</h4>
+<div class="textwidget custom-html-widget"><ul>
+<li><a href="https://beginnersbook.com/java-tutorial-for-beginners-with-examples/">Java Tutorial</a></li>
+<li><a href="https://beginnersbook.com/2013/04/oops-concepts/">OOPs Concepts</a></li>
+</ul>
+<h4 class="widget-title">Java Collections</h4>
+<ul>
+<li><a href="https://beginnersbook.com/2013/12/java-arraylist/">ArrayList</a></li>
+<li><a href="https://beginnersbook.com/2013/12/linkedlist-in-java-with-example/">LinkedList</a></li>
+<li><a href="https://beginnersbook.com/2013/12/difference-between-arraylist-and-linkedlist-in-java/">ArrayList vs LinkedList</a></li>
+<li><a href="https://beginnersbook.com/2013/12/vector-in-java/">Vector</a></li>
+<li><a href="https://beginnersbook.com/2013/12/difference-between-arraylist-and-vector-in-java/">ArrayList vs Vector</a></li>
+<li><a href="https://beginnersbook.com/2013/12/hashmap-in-java-with-example/">HashMap</a></li>
+<li><a href="https://beginnersbook.com/2013/12/treemap-in-java-with-example/">TreeMap</a></li>
+<li><a href="https://beginnersbook.com/2013/12/linkedhashmap-in-java/">LinkedHashMap</a></li>
+<li><a href="https://beginnersbook.com/2013/12/hashset-class-in-java-with-example/">HashSet</a></li>
+<li><a href="https://beginnersbook.com/2013/12/treeset-class-in-java-with-example/">TreeSet</a></li>
+<li><a href="https://beginnersbook.com/2013/12/linkedhashset-class-in-java-with-example/">LinkedHashSet</a></li>
+<li><a href="https://beginnersbook.com/2014/07/hashtable-in-java-with-example/">Hashtable</a></li>
+<li><a href="https://beginnersbook.com/2014/06/difference-between-hashmap-and-hashtable/">HashMap vs Hashtable</a></li>
+<li><a href="https://beginnersbook.com/2017/08/queue-interface-in-java-collections/">Queue</a></li>
+<li><a href="https://beginnersbook.com/2017/08/java-collections-priorityqueue-interface/">PriorityQueue</a></li>
+<li><a href="https://beginnersbook.com/2017/08/java-collections-deque-interface/">Deque &amp; ArrayDeque</a></li>
+<li><a href="https://beginnersbook.com/2014/06/java-iterator-with-examples/">Iterator</a></li>
+<li><a href="https://beginnersbook.com/2014/06/listiterator-in-java-with-examples/">ListIterator</a></li>
+<li><a href="https://beginnersbook.com/2017/08/comparable-interface-in-java-with-example/">Comparable Interface</a></li>
+<li><a href="https://beginnersbook.com/2017/08/comparator-interface-in-java/">Comparator Interface</a></li>
+<li><a href="https://beginnersbook.com/2015/03/java-collections-interview-questions-and-answers/">Java Collections Interview Q</a></li>
+</ul>
+<h4 class="widget-title">MORE ...</h4>
+<ul>
+ 	<li><a href="https://beginnersbook.com/2013/12/java-strings/">Java String</a></li>
+ 	<li><a href="https://beginnersbook.com/2013/04/java-exception-handling/">Exception handling</a></li>
+ 	<li><a href="https://beginnersbook.com/2013/03/multithreading-in-java/">Java Multithreading</a></li>
+ 	<li><a href="https://beginnersbook.com/java-io-tutorial-with-examples/">Java I/O</a></li>
+ 	<li><a href="https://beginnersbook.com/2014/07/java-serialization/">Java Serialization</a></li>
+	<li><a href="https://beginnersbook.com/2014/08/java-regex-tutorial/">Java Regex</a></li>
+	<li><a href="https://beginnersbook.com/2015/06/java-awt-tutorial/">Java AWT</a></li>
+	<li><a href="https://beginnersbook.com/2015/07/java-swing-tutorial/">Java Swing</a></li>
+<li><a href="https://beginnersbook.com/2014/09/java-enum-examples/">Java Enum</a></li>
+<li><a href="https://beginnersbook.com/2014/09/java-annotations/">Java Annotations</a></li>
+</ul></div></div></section>
+</aside></div><footer class="site-footer" itemscope="" itemtype="https://schema.org/WPFooter"><div class="wrap"><p>Copyright © 2012 – 2017 BeginnersBook - All Rights Reserved || <a href="https://beginnersbook.com/sitemap_index.xml" title="Sitemap">Sitemap</a></p></div></footer></div><script type="text/javascript" src="./HashMap in Java with Example_files/prettify.js.download"></script>
+<script type="text/javascript" charset="utf-8">
+jQuery(document).ready(function($) {
+       $('pre').addClass("prettyprint");
+       prettyPrint();
+});
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35249844-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script src="./HashMap in Java with Example_files/platform.js.download" async="" defer="" gapi_processed="true"></script><script type="text/javascript" src="./HashMap in Java with Example_files/comment-reply.min.js.download"></script>
+<script type="text/javascript" src="./HashMap in Java with Example_files/wp-embed.min.js.download"></script>
+<script type="text/javascript" src="./HashMap in Java with Example_files/form.js.download"></script>
+
+</body></html>

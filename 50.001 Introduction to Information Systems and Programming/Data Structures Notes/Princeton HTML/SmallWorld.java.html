@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0065)http://introcs.cs.princeton.edu/java/45graph/SmallWorld.java.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="shortcut icon" href="http://introcs.cs.princeton.edu/favicon.ico">
+<link rel="stylesheet" href="./SmallWorld.java_files/java.css" type="text/css">
+
+<title>SmallWorld.java</title>
+
+
+<meta name="AUTHOR" content="Robert Sedgewick and Kevin Wayne">
+<meta name="DESCRIPTION" content="SmallWorld code in Java">
+<meta name="TITLE" content="SmallWorld code in Java">
+<meta name="KEYWORDS" content="SmallWorld,java,programming,computer science,algorithm,program,code">
+<meta name="ROBOTS" content="INDEX,FOLLOW">
+
+</head>
+
+
+<body>
+<center><h1>SmallWorld.java</h1></center><p><br>
+
+Below is the syntax highlighted version of <a href="http://introcs.cs.princeton.edu/java/45graph/SmallWorld.java">SmallWorld.java</a>
+from <a href="http://introcs.cs.princeton.edu/java/45graph">§4.5 Case Study: Small World</a>.
+</p><p><br>
+
+<!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+</p><pre><tt><span class="comment">/******************************************************************************</span>
+<span class="comment"> *  Compilation:  javac SmallWorld.java</span>
+<span class="comment"> *  Execution:    java SmallWorld filename delimiter</span>
+<span class="comment"> *  Dependencies: Graph.java PathFinder.java StdOut.java In.java</span>
+<span class="comment"> *  Data files:   </span><span class="url">http://introcs.cs.princeton.edu/45graph/tinyGraph.txt</span>
+<span class="comment"> *</span>
+<span class="comment"> *  %  java SmallWorld tinyGraph.txt " "</span>
+<span class="comment"> *  number of vertices     =       5</span>
+<span class="comment"> *  number of edges        =       7</span>
+<span class="comment"> *  average degree         =   2.800</span>
+<span class="comment"> *  maximum degree         =       4</span>
+<span class="comment"> *  average degree         =   2.800</span>
+<span class="comment"> *  average path length    =   1.300</span>
+<span class="comment"> *  clustering coefficient =   0.767</span>
+<span class="comment"> *</span>
+<span class="comment"> ******************************************************************************/</span>
+
+<span class="keyword">public</span><span class="normal"> </span><span class="keyword">class</span><span class="normal"> </span><span class="classname">SmallWorld</span><span class="normal"> </span><span class="cbracket">{</span>
+
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="type">double</span><span class="normal"> </span><span class="function">averageDegree</span><span class="symbol">(</span><span class="usertype">Graph</span><span class="normal"> G</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> </span><span class="symbol">(</span><span class="type">double</span><span class="symbol">)</span><span class="normal"> </span><span class="number">2</span><span class="normal"> </span><span class="symbol">*</span><span class="normal"> G</span><span class="symbol">.</span><span class="function">E</span><span class="symbol">()</span><span class="normal"> </span><span class="symbol">/</span><span class="normal"> G</span><span class="symbol">.</span><span class="function">V</span><span class="symbol">();</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="type">double</span><span class="normal"> </span><span class="function">averagePathLength</span><span class="symbol">(</span><span class="usertype">Graph</span><span class="normal"> G</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="type">int</span><span class="normal"> sum </span><span class="symbol">=</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span>
+<span class="normal">        </span><span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">String</span><span class="normal"> v </span><span class="symbol">:</span><span class="normal"> G</span><span class="symbol">.</span><span class="function">vertices</span><span class="symbol">())</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">            </span><span class="usertype">PathFinder</span><span class="normal"> pf </span><span class="symbol">=</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> </span><span class="function">PathFinder</span><span class="symbol">(</span><span class="normal">G</span><span class="symbol">,</span><span class="normal"> v</span><span class="symbol">);</span>
+<span class="normal">            </span><span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">String</span><span class="normal"> w </span><span class="symbol">:</span><span class="normal"> G</span><span class="symbol">.</span><span class="function">vertices</span><span class="symbol">())</span>
+<span class="normal">                sum </span><span class="symbol">+=</span><span class="normal"> pf</span><span class="symbol">.</span><span class="function">distanceTo</span><span class="symbol">(</span><span class="normal">w</span><span class="symbol">);</span>
+<span class="normal">        </span><span class="cbracket">}</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> </span><span class="symbol">(</span><span class="type">double</span><span class="symbol">)</span><span class="normal"> sum </span><span class="symbol">/</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">G</span><span class="symbol">.</span><span class="function">V</span><span class="symbol">()</span><span class="normal"> </span><span class="symbol">*</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">G</span><span class="symbol">.</span><span class="function">V</span><span class="symbol">()</span><span class="normal"> </span><span class="symbol">-</span><span class="normal"> </span><span class="number">1</span><span class="symbol">));</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+
+<span class="normal">    </span><span class="comment">// Compute clustering coefficient.</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="type">double</span><span class="normal"> </span><span class="function">clusteringCoefficient</span><span class="symbol">(</span><span class="usertype">Graph</span><span class="normal"> G</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="type">double</span><span class="normal"> total </span><span class="symbol">=</span><span class="normal"> </span><span class="number">0.0</span><span class="symbol">;</span>
+<span class="normal">        </span><span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">String</span><span class="normal"> v </span><span class="symbol">:</span><span class="normal"> G</span><span class="symbol">.</span><span class="function">vertices</span><span class="symbol">())</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">            </span><span class="comment">// Cumulate local clustering coefficient of vertex v.</span>
+<span class="normal">            </span><span class="type">int</span><span class="normal"> possible </span><span class="symbol">=</span><span class="normal"> G</span><span class="symbol">.</span><span class="function">degree</span><span class="symbol">(</span><span class="normal">v</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">*</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">G</span><span class="symbol">.</span><span class="function">degree</span><span class="symbol">(</span><span class="normal">v</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">-</span><span class="normal"> </span><span class="number">1</span><span class="symbol">);</span>
+<span class="normal">            </span><span class="type">int</span><span class="normal"> actual </span><span class="symbol">=</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span>
+<span class="normal">            </span><span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">String</span><span class="normal"> u </span><span class="symbol">:</span><span class="normal"> G</span><span class="symbol">.</span><span class="function">adjacentTo</span><span class="symbol">(</span><span class="normal">v</span><span class="symbol">))</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">                </span><span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">String</span><span class="normal"> w </span><span class="symbol">:</span><span class="normal"> G</span><span class="symbol">.</span><span class="function">adjacentTo</span><span class="symbol">(</span><span class="normal">v</span><span class="symbol">))</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">                    </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">G</span><span class="symbol">.</span><span class="function">hasEdge</span><span class="symbol">(</span><span class="normal">u</span><span class="symbol">,</span><span class="normal"> w</span><span class="symbol">))</span>
+<span class="normal">                        actual</span><span class="symbol">++;</span>
+<span class="normal">                </span><span class="cbracket">}</span>
+<span class="normal">            </span><span class="cbracket">}</span>
+<span class="normal">            </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">possible </span><span class="symbol">&gt;</span><span class="normal"> </span><span class="number">0</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">                total </span><span class="symbol">+=</span><span class="normal"> </span><span class="number">1.0</span><span class="normal"> </span><span class="symbol">*</span><span class="normal"> actual </span><span class="symbol">/</span><span class="normal"> possible</span><span class="symbol">;</span>
+<span class="normal">            </span><span class="cbracket">}</span>
+<span class="normal">        </span><span class="cbracket">}</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> total </span><span class="symbol">/</span><span class="normal"> G</span><span class="symbol">.</span><span class="function">V</span><span class="symbol">();</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="comment">// return maximum degree of any vertex</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="type">int</span><span class="normal"> </span><span class="function">maxDegree</span><span class="symbol">(</span><span class="usertype">Graph</span><span class="normal"> G</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="type">int</span><span class="normal"> max </span><span class="symbol">=</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span>
+<span class="normal">        </span><span class="keyword">for</span><span class="normal"> </span><span class="symbol">(</span><span class="usertype">String</span><span class="normal"> v </span><span class="symbol">:</span><span class="normal"> G</span><span class="symbol">.</span><span class="function">vertices</span><span class="symbol">())</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">            </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">G</span><span class="symbol">.</span><span class="function">degree</span><span class="symbol">(</span><span class="normal">v</span><span class="symbol">)</span><span class="normal"> </span><span class="symbol">&gt;</span><span class="normal"> max</span><span class="symbol">)</span>
+<span class="normal">                max </span><span class="symbol">=</span><span class="normal"> G</span><span class="symbol">.</span><span class="function">degree</span><span class="symbol">(</span><span class="normal">v</span><span class="symbol">);</span>
+<span class="normal">        </span><span class="cbracket">}</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> max</span><span class="symbol">;</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">main</span><span class="symbol">(</span><span class="normal">String</span><span class="symbol">[]</span><span class="normal"> args</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="usertype">String</span><span class="normal"> filename  </span><span class="symbol">=</span><span class="normal"> args</span><span class="symbol">[</span><span class="number">0</span><span class="symbol">];</span>
+<span class="normal">        </span><span class="usertype">String</span><span class="normal"> delimiter </span><span class="symbol">=</span><span class="normal"> args</span><span class="symbol">[</span><span class="number">1</span><span class="symbol">];</span>
+<span class="normal">        </span><span class="usertype">Graph</span><span class="normal"> graph </span><span class="symbol">=</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> </span><span class="function">Graph</span><span class="symbol">(</span><span class="normal">filename</span><span class="symbol">,</span><span class="normal"> delimiter</span><span class="symbol">);</span>
+
+<span class="normal">        StdOut</span><span class="symbol">.</span><span class="function">printf</span><span class="symbol">(</span><span class="string">"number of vertices     = %7d</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">,</span><span class="normal"> graph</span><span class="symbol">.</span><span class="function">V</span><span class="symbol">());</span>
+<span class="normal">        StdOut</span><span class="symbol">.</span><span class="function">printf</span><span class="symbol">(</span><span class="string">"number of edges        = %7d</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">,</span><span class="normal"> graph</span><span class="symbol">.</span><span class="function">E</span><span class="symbol">());</span>
+<span class="normal">        StdOut</span><span class="symbol">.</span><span class="function">printf</span><span class="symbol">(</span><span class="string">"average degree         = %7.3f</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">,</span><span class="normal"> </span><span class="function">averageDegree</span><span class="symbol">(</span><span class="normal">graph</span><span class="symbol">));</span>
+<span class="normal">        StdOut</span><span class="symbol">.</span><span class="function">printf</span><span class="symbol">(</span><span class="string">"maximum degree         = %7d</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">,</span><span class="normal">   </span><span class="function">maxDegree</span><span class="symbol">(</span><span class="normal">graph</span><span class="symbol">));</span>
+<span class="normal">        StdOut</span><span class="symbol">.</span><span class="function">printf</span><span class="symbol">(</span><span class="string">"average path length    = %7.3f</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">,</span><span class="normal"> </span><span class="function">averagePathLength</span><span class="symbol">(</span><span class="normal">graph</span><span class="symbol">));</span>
+<span class="normal">        StdOut</span><span class="symbol">.</span><span class="function">printf</span><span class="symbol">(</span><span class="string">"clustering coefficient = %7.3f</span><span class="specialchar">\n</span><span class="string">"</span><span class="symbol">,</span><span class="normal"> </span><span class="function">clusteringCoefficient</span><span class="symbol">(</span><span class="normal">graph</span><span class="symbol">));</span>
+
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="cbracket">}</span>
+</tt></pre>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./SmallWorld.java_files/ga.js.download" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-10811519-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+
+
+<p><br></p><address><small>
+Copyright © 2000–2016, Robert Sedgewick and Kevin Wayne.
+<br>Last updated: Sun Oct 30 17:45:15 EDT 2016.
+</small></address>
+
+
+</body></html>

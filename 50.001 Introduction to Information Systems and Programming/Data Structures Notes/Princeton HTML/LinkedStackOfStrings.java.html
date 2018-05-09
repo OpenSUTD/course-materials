@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0075)http://introcs.cs.princeton.edu/java/43stack/LinkedStackOfStrings.java.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="shortcut icon" href="http://introcs.cs.princeton.edu/favicon.ico">
+<link rel="stylesheet" href="./LinkedStackOfStrings.java_files/java.css" type="text/css">
+
+<title>LinkedStackOfStrings.java</title>
+
+
+<meta name="AUTHOR" content="Robert Sedgewick and Kevin Wayne">
+<meta name="DESCRIPTION" content="LinkedStackOfStrings code in Java">
+<meta name="TITLE" content="LinkedStackOfStrings code in Java">
+<meta name="KEYWORDS" content="LinkedStackOfStrings,java,programming,computer science,algorithm,program,code">
+<meta name="ROBOTS" content="INDEX,FOLLOW">
+
+</head>
+
+
+<body>
+<center><h1>LinkedStackOfStrings.java</h1></center><p><br>
+
+Below is the syntax highlighted version of <a href="http://introcs.cs.princeton.edu/java/43stack/LinkedStackOfStrings.java">LinkedStackOfStrings.java</a>
+from <a href="http://introcs.cs.princeton.edu/java/43stack">§4.3 Stacks and Queues</a>.
+</p><p><br>
+
+<!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+</p><pre><tt><span class="comment">/******************************************************************************</span>
+<span class="comment"> *  Compilation:  javac LinkedStackOfStrings.java</span>
+<span class="comment"> *  Execution:    java LinkedStackOfStrings</span>
+<span class="comment"> *  Data files:   </span><span class="url">http://introcs.cs.princeton.edu/43stack/tobe.txt</span>
+<span class="comment"> *</span>
+<span class="comment"> *  A stack of strings, implemented using a linked list.</span>
+<span class="comment"> *  </span>
+<span class="comment"> *  % more tobe.txt </span>
+<span class="comment"> *  to be or not to - be - - that - - - is </span>
+<span class="comment"> * </span>
+<span class="comment"> *  % java LinkedStackOfStrings &lt; tobe.txt </span>
+<span class="comment"> *  to be not that or be</span>
+<span class="comment"> *  </span>
+<span class="comment"> ******************************************************************************/</span>
+
+<span class="preproc">import</span><span class="normal"> java</span><span class="symbol">.</span><span class="normal">util</span><span class="symbol">.</span><span class="normal">NoSuchElementException</span><span class="symbol">;</span>
+
+<span class="keyword">public</span><span class="normal"> </span><span class="keyword">class</span><span class="normal"> </span><span class="classname">LinkedStackOfStrings</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="keyword">private</span><span class="normal"> </span><span class="type">int</span><span class="normal"> n</span><span class="symbol">;</span><span class="normal">          </span><span class="comment">// size of the stack</span>
+<span class="normal">    </span><span class="keyword">private</span><span class="normal"> </span><span class="usertype">Node</span><span class="normal"> first</span><span class="symbol">;</span><span class="normal">     </span><span class="comment">// top of stack</span>
+
+<span class="normal">    </span><span class="comment">// helper Node class</span>
+<span class="normal">    </span><span class="keyword">private</span><span class="normal"> </span><span class="keyword">class</span><span class="normal"> </span><span class="classname">Node</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">private</span><span class="normal"> </span><span class="usertype">String</span><span class="normal"> item</span><span class="symbol">;</span>
+<span class="normal">        </span><span class="keyword">private</span><span class="normal"> </span><span class="usertype">Node</span><span class="normal"> next</span><span class="symbol">;</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="comment">// is the stack empty?</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="type">boolean</span><span class="normal"> </span><span class="function">isEmpty</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> first </span><span class="symbol">==</span><span class="normal"> </span><span class="keyword">null</span><span class="symbol">;</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="comment">// number of elements on the stack</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="type">int</span><span class="normal"> </span><span class="function">size</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> n</span><span class="symbol">;</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+
+<span class="normal">    </span><span class="comment">// add an element to the stack</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">push</span><span class="symbol">(</span><span class="usertype">String</span><span class="normal"> item</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="usertype">Node</span><span class="normal"> oldfirst </span><span class="symbol">=</span><span class="normal"> first</span><span class="symbol">;</span>
+<span class="normal">        first </span><span class="symbol">=</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> </span><span class="function">Node</span><span class="symbol">();</span>
+<span class="normal">        first</span><span class="symbol">.</span><span class="normal">item </span><span class="symbol">=</span><span class="normal"> item</span><span class="symbol">;</span>
+<span class="normal">        first</span><span class="symbol">.</span><span class="normal">next </span><span class="symbol">=</span><span class="normal"> oldfirst</span><span class="symbol">;</span>
+<span class="normal">        n</span><span class="symbol">++;</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="comment">// delete and return the most recently added element</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="usertype">String</span><span class="normal"> </span><span class="function">pop</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="function">isEmpty</span><span class="symbol">())</span><span class="normal"> </span><span class="keyword">throw</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> </span><span class="function">NoSuchElementException</span><span class="symbol">(</span><span class="string">"stack underflow"</span><span class="symbol">);</span>
+<span class="normal">        </span><span class="usertype">String</span><span class="normal"> item </span><span class="symbol">=</span><span class="normal"> first</span><span class="symbol">.</span><span class="normal">item</span><span class="symbol">;</span><span class="normal">      </span><span class="comment">// save item to return</span>
+<span class="normal">        first </span><span class="symbol">=</span><span class="normal"> first</span><span class="symbol">.</span><span class="normal">next</span><span class="symbol">;</span><span class="normal">            </span><span class="comment">// delete first node</span>
+<span class="normal">        n</span><span class="symbol">--;</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> item</span><span class="symbol">;</span><span class="normal">                   </span><span class="comment">// return the saved item</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+
+<span class="normal">    </span><span class="comment">// test client</span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">main</span><span class="symbol">(</span><span class="normal">String</span><span class="symbol">[]</span><span class="normal"> args</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="usertype">LinkedStackOfStrings</span><span class="normal"> stack </span><span class="symbol">=</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> </span><span class="function">LinkedStackOfStrings</span><span class="symbol">();</span>
+<span class="normal">        </span><span class="keyword">while</span><span class="normal"> </span><span class="symbol">(!</span><span class="normal">StdIn</span><span class="symbol">.</span><span class="function">isEmpty</span><span class="symbol">())</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">            </span><span class="usertype">String</span><span class="normal"> item </span><span class="symbol">=</span><span class="normal"> StdIn</span><span class="symbol">.</span><span class="function">readString</span><span class="symbol">();</span>
+<span class="normal">            </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(!</span><span class="normal">item</span><span class="symbol">.</span><span class="function">equals</span><span class="symbol">(</span><span class="string">"-"</span><span class="symbol">))</span><span class="normal">     stack</span><span class="symbol">.</span><span class="function">push</span><span class="symbol">(</span><span class="normal">item</span><span class="symbol">);</span><span class="normal"> </span>
+<span class="normal">            </span><span class="keyword">else</span><span class="normal"> </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(</span><span class="normal">stack</span><span class="symbol">.</span><span class="function">isEmpty</span><span class="symbol">())</span><span class="normal">  StdOut</span><span class="symbol">.</span><span class="function">println</span><span class="symbol">(</span><span class="string">"BAD INPUT"</span><span class="symbol">);</span><span class="normal"> </span>
+<span class="normal">            </span><span class="keyword">else</span><span class="normal">                       StdOut</span><span class="symbol">.</span><span class="function">print</span><span class="symbol">(</span><span class="normal">stack</span><span class="symbol">.</span><span class="function">pop</span><span class="symbol">());</span>
+<span class="normal">        </span><span class="cbracket">}</span><span class="normal"> </span>
+<span class="normal">    </span><span class="cbracket">}</span><span class="normal"> </span>
+
+
+<span class="cbracket">}</span>
+</tt></pre>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./LinkedStackOfStrings.java_files/ga.js.download" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-10811519-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+
+
+<p><br></p><address><small>
+Copyright © 2000–2016, Robert Sedgewick and Kevin Wayne.
+<br>Last updated: Wed Nov  2 06:46:50 EDT 2016.
+</small></address>
+
+
+</body></html>

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)https://www.javatpoint.com/java-list -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Java List - javatpoint</title><link rel="SHORTCUT ICON" href="https://www.javatpoint.com/images/logo/icon.png"><link rel="stylesheet" type="text/css" href="./Java List - javatpoint_files/link.css"><meta name="keywords" content="List,ListIterator,interface,methods,example,java"><meta name="description" content="java List Interface with methods and examples, ListIterator interface extends the List interface.This interface provides the facility to traverse the elements in backward and forward direaction."><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="canonical" href="https://www.javatpoint.com/java-list">
+<meta itemprop="name" content="Java List - javatpoint"><meta itemprop="description" content="java List Interface with methods and examples, ListIterator interface extends the List interface.This interface provides the facility to traverse the elements in backward and forward direaction."><meta property="og:title" content="Java List - javatpoint"><meta property="og:description" content="java List Interface with methods and examples, ListIterator interface extends the List interface.This interface provides the facility to traverse the elements in backward and forward direaction.">
+<meta property="og:locale" content="en_US"><meta property="og:type" content="article"><meta name="twitter:title" property="og:title" content="Java List - javatpoint"><meta name="twitter:description" property="og:description" content="java List Interface with methods and examples, ListIterator interface extends the List interface.This interface provides the facility to traverse the elements in backward and forward direaction."><meta property="og:url" content="https://www.javatpoint.com/java-list"><meta property="og:site_name" content="www.javatpoint.com"><meta name="twitter:card" content="summary"><meta name="twitter:site" content="@pagejavatpoint"><meta name="twitter:domain" content="www.javatpoint.com"><meta name="twitter:creator" content="@pagejavatpoint"><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style></head> 
+<body onload="highlightlink()"> <button onclick="topFunction()" id="myBtn" title="Go to top">⇧</button>
+<div id="page" style="margin:-8px;background-color:#f5f5f4;"><div id="container"> <div class="header"><!--<p style="font-weight:bold;padding:7px;color:white;background-color:gray;margin:0px"><marquee>JavaTpoint will be down for 2 to 4 hours tonight. Sorry for inconvenience.</marquee></p>-->
+
+<table style="width:100%"><tbody><tr><td><div id="headerlink" style="padding:0px;margin:0px"><span style="margin-right:20px;width:45%px"></span><span style="float:right;margin-right:5px;width:45%"> 
+
+</span>
+
+<hr class="upperhr">
+</div> </td></tr><tr><td>
+<div style="clear:both;float:left;width:230px;margin-left:20px"><a href="https://www.javatpoint.com/"><img src="./Java List - javatpoint_files/jtp_logo.png" alt="Javatpoint Logo"></a></div>
+
+<div style="float:left;width:60%;"><form class="navbar-search" method="get" action="https://www.google.com/search" target="_blank"> <input type="text" name="q" class="search-query span2" placeholder="Search on javatpoint..." title="Search on Javatpoint"><input type="hidden" name="sitesearch" value="www.javatpoint.com"></form><!--<span style="margin-left:100px;color:orange;font-size:20px;font-weight:bold;">Happy </span><span style="color:red;font-size:20px;font-weight:bold;">New </span><span style="color:#666600;font-size:20px;font-weight:bold;">Year</span><span style="color:#666600;font-size:30px;font-weight:bold;"> 2015</span>--></div>
+
+</td></tr></tbody></table> </div>
+<div class="headermobile">
+<div style="margin-top:10px;padding:0px;text-align:left;">
+<span style="float:left"><input type="image" src="./Java List - javatpoint_files/menuhome64.png" onclick="showmenu()"></span>
+<span style="float:left"><a href="https://www.javatpoint.com/"><img src="./Java List - javatpoint_files/jtp_logo.png" alt="Javatpoint Logo"></a></span>
+</div>
+<div style="margin:0px;padding:0px;clear:both"><form class="navbar-search-m" method="get" action="https://www.google.com/search" target="_blank"> <input type="text" name="q" class="search-query span2-m" placeholder="Search on javatpoint..." title="Search on Javatpoint"><input type="hidden" name="sitesearch" value="www.javatpoint.com"></form></div></div>
+<div id="link" style="clear:both"> <div id="smoothmenu1" class="ddsmoothmenu">
+<ul>
+<li><a href="https://www.javatpoint.com/">Home</a></li>
+<li><a href="https://www.javatpoint.com/c-programming-language-tutorial">C</a></li>
+<li><a href="https://www.javatpoint.com/cpp-tutorial">C++</a></li>
+<li><a href="https://www.javatpoint.com/c-sharp-tutorial">C#</a></li>
+<li><a href="https://www.javatpoint.com/java-tutorial" class="selected">Java</a></li>
+<li><a href="https://www.javatpoint.com/servlet-tutorial">Servlet</a></li>
+<li><a href="https://www.javatpoint.com/jsp-tutorial">JSP</a></li>
+<li><a href="https://www.javatpoint.com/ejb-tutorial">EJB</a></li>
+<li><a href="https://www.javatpoint.com/struts-2-tutorial">Struts2</a></li>
+<li><a href="https://www.javatpoint.com/java-mail-api-tutorial">Mail</a></li>
+<li><a href="https://www.javatpoint.com/hibernate-tutorial">Hibernate</a></li>
+<li><a href="https://www.javatpoint.com/spring-tutorial">Spring</a></li>
+<li><a href="https://www.javatpoint.com/android-tutorial">Android</a></li>
+<li><a href="https://www.javatpoint.com/design-patterns-in-java">Design P</a></li>
+<li><a href="https://www.javatpoint.com/examaccess">Quiz</a></li>
+<li><a href="https://www.javatpoint.com/free-java-projects">Projects</a></li>
+<li><a href="https://www.javatpoint.com/corejava-interview-questions">Interview Q</a>
+</li><li><a href="https://www.javatpoint.com/comment.jsp">Comment</a>
+</li><li><a href="https://www.javatpoint.com/forum">Forum</a>
+</li><li><a href="https://www.javatpoint.com/training">Training</a>
+</li>
+</ul>
+<br style="clear: left">
+</div>
+</div><div class="mobilemenu" style="clear:both"> </div>
+
+<div id="menu"><div class="leftmenu2">
+<a href="https://www.javatpoint.com/java-tutorial"><span>Basics of Java </span></a>
+<a href="https://www.javatpoint.com/java-oops-concepts"><span>OOPs Concepts</span></a>
+<a href="https://www.javatpoint.com/java-string"><span>Java String</span></a>
+<a href="https://www.javatpoint.com/java-regex"><span>Java Regex</span></a>
+<a href="https://www.javatpoint.com/exception-handling-in-java"><span>Exception Handling</span></a>
+<a href="https://www.javatpoint.com/java-inner-class"><span>Java Inner classes</span></a>
+<a href="https://www.javatpoint.com/multithreading-in-java"><span>Java Multithreading</span></a>
+<a href="https://www.javatpoint.com/java-io"><span>Java I/O</span></a>
+<a href="https://www.javatpoint.com/java-networking"><span>Java Networking</span></a>
+<a href="https://www.javatpoint.com/java-awt"><span>Java AWT</span></a>
+<a href="https://www.javatpoint.com/java-swing"><span>Java Swing</span></a>
+<a href="https://www.javatpoint.com/java-applet"><span>Java Applet</span></a>
+<a href="https://www.javatpoint.com/java-reflection"><span>Java Reflection</span></a>
+<a href="https://www.javatpoint.com/java-date"><span>Java Date</span></a>
+<a href="https://www.javatpoint.com/java-string-to-int"><span>Java Conversion</span></a>
+</div>
+<div class="leftmenu2">
+<h2 class="spanh2"><span class="spanh2">Java Collections</span></h2>
+</div>
+
+<div class="leftmenu">
+<a href="https://www.javatpoint.com/collections-in-java">Collection Framework</a>
+<a href="https://www.javatpoint.com/java-arraylist">Java ArrayList</a>
+<a href="https://www.javatpoint.com/java-linkedlist">Java LinkedList</a>
+<a href="https://www.javatpoint.com/difference-between-arraylist-and-linkedlist">ArrayList vs LinkedList</a>
+<a href="https://www.javatpoint.com/java-list" style="color: black;"><strong>Java List Interface</strong> <img src="./Java List - javatpoint_files/open-12.png" alt="open link"></a>
+<a href="https://www.javatpoint.com/java-hashset">Java HashSet</a>
+<a href="https://www.javatpoint.com/java-linkedhashset">Java LinkedHashSet</a>
+<a href="https://www.javatpoint.com/java-treeset">Java TreeSet</a>
+<a href="https://www.javatpoint.com/java-priorityqueue">Queue &amp; PriorityQueue</a>
+<a href="https://www.javatpoint.com/java-deque-arraydeque">Deque &amp; ArrayDeque</a>
+<a href="https://www.javatpoint.com/java-map">Java Map Interface</a>
+<a href="https://www.javatpoint.com/java-hashmap">Java HashMap</a>
+<a href="https://www.javatpoint.com/java-linkedhashmap">Java LinkedHashMap</a>
+<a href="https://www.javatpoint.com/java-treemap">Java TreeMap</a>
+<a href="https://www.javatpoint.com/java-hashtable">Java Hashtable</a>
+<a href="https://www.javatpoint.com/difference-between-hashmap-and-hashtable">HashMap vs Hashtable</a>
+<a href="https://www.javatpoint.com/java-enumset">Java EnumSet</a>
+<a href="https://www.javatpoint.com/java-enummap">Java EnumMap</a>
+<a href="https://www.javatpoint.com/java-collections-class">Collections class</a>
+<a href="https://www.javatpoint.com/Sorting-in-collection-framework">Sorting Collections</a>
+<a href="https://www.javatpoint.com/Comparable-interface-in-collection-framework">Comparable interface</a>
+<a href="https://www.javatpoint.com/Comparator-interface-in-collection-framework">Comparator interface</a>
+<a href="https://www.javatpoint.com/difference-between-comparable-and-comparator">Comparable vs Comparator</a>
+<a href="https://www.javatpoint.com/properties-class-in-java">Properties class</a>
+<a href="https://www.javatpoint.com/difference-between-arraylist-and-vector">ArrayList vs Vector</a>
+<a href="https://www.javatpoint.com/directload.jsp?val=92">Collection Quiz-1</a>
+</div>
+
+<div class="leftmenu2">
+<a href="https://www.javatpoint.com/java-jdbc"><span>Java JDBC</span></a>
+<a href="https://www.javatpoint.com/New-features-in-java"><span>Java New Features</span></a>
+<a href="https://www.javatpoint.com/RMI"><span>RMI</span></a>
+<a href="https://www.javatpoint.com/internationalization-in-java"><span>Internationalization</span></a>
+<a href="https://www.javatpoint.com/corejava-interview-questions"><span>Interview Questions</span></a>
+</div>
+
+<table id="leftad"><tbody><tr><td><img src="./Java List - javatpoint_files/wh.JPG" alt="space"></td></tr><tr><td>
+<script type="text/javascript" async="" src="./Java List - javatpoint_files/ga.js.download"></script><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-4699858549023382" data-ad-slot="4476401222"></ins> <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
+</td></tr></tbody></table>
+
+</div><div class="onlycontent">
+
+
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- CM_JTP_Leaderbaord -->
+<ins class="adsbygoogle cm_jtp_leaderbaord" style="display:inline-block" data-ad-client="ca-pub-4699858549023382" data-ad-slot="9201901915"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<div style="margin-left:0px;">
+<div id="city">
+<table>
+<tbody><tr><td>
+<div id="bottomnextup">
+<a class="next" href="https://www.javatpoint.com/java-hashset">next →</a>
+<a class="next" href="https://www.javatpoint.com/java-linkedlist">← prev</a>
+</div>
+
+
+
+<h1 class="h1">Java List Interface</h1>
+<p>List Interface is the subinterface of Collection.It contains methods to insert and delete elements in index basis.It is a factory of ListIterator interface.
+</p>
+<h3 class="h3">List Interface declaration</h3>
+<div class="codeblock"><div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://www.javatpoint.com/java-list#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/java-list#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/java-list#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;"></a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">interface</span><span>&nbsp;List&lt;E&gt;&nbsp;</span><span class="keyword">extends</span><span>&nbsp;Collection&lt;E&gt;&nbsp;&nbsp;</span></span></li></ol></div><textarea name="code" class="java" style="display: none;">public interface List&lt;E&gt; extends Collection&lt;E&gt;
+</textarea></div>
+<h3 class="h3">Methods of Java List Interface</h3>
+<table class="alt">
+     <tbody><tr>
+         <th>Method</th>
+		 <th>Description</th>
+     </tr>
+     <tr>
+         <td>void add(int index,Object element)</td>
+         <td>It is used to insert element into the invoking list at the index passed in the index.</td>
+     </tr>
+     <tr>
+         <td>boolean addAll(int index,Collection c)</td>
+         <td>It is used to insert all elements of c into the invoking list at the index passed in the index.</td>
+     </tr>
+     <tr>
+         <td>object get(int index)</td>
+         <td>It is used to return the object stored at the specified index within the invoking collection.</td>
+     </tr>
+     <tr>
+	          <td>object set(int index,Object element)</td>
+	          <td>It is used to assign element to the location specified by index within the invoking list.</td>
+     </tr>
+     <tr>
+	 	          <td>object remove(int index)</td>
+	 	          <td>It is used to remove the element at position index from the invoking list and return the deleted element.</td>
+     </tr>
+     <tr>
+	 	          <td>ListIterator listIterator()</td>
+	 	          <td>It is used to return an iterator to the start of the invoking list.</td>
+     </tr>
+       <tr>
+	 	 	          <td>ListIterator listIterator(int index)</td>
+	 	 	          <td>It is used to return an iterator to the invoking list that begins at the specified index.</td>
+     </tr>
+</tbody></table>
+<h3 class="h3">Java List Example</h3>
+<div class="codeblock"><div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://www.javatpoint.com/java-list#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/java-list#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/java-list#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;"></a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">import</span><span>&nbsp;java.util.*;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;ListExample{&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;main(String&nbsp;args[]){&nbsp;&nbsp;</span></span></li><li class=""><span>ArrayList&lt;String&gt;&nbsp;al=<span class="keyword">new</span><span>&nbsp;ArrayList&lt;String&gt;();&nbsp;&nbsp;</span></span></li><li class="alt"><span>al.add(<span class="string">"Amit"</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>al.add(<span class="string">"Vijay"</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>al.add(<span class="string">"Kumar"</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>al.add(<span class="number">1</span><span>,</span><span class="string">"Sachin"</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>System.out.println(<span class="string">"Element&nbsp;at&nbsp;2nd&nbsp;position:&nbsp;"</span><span>+al.get(</span><span class="number">2</span><span>));&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">for</span><span>(String&nbsp;s:al){&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;System.out.println(s);&nbsp;&nbsp;</span></li><li class=""><span>}&nbsp;&nbsp;</span></li><li class="alt"><span>}&nbsp;&nbsp;</span></li><li class=""><span>}&nbsp;&nbsp;</span></li></ol></div><textarea name="code" class="java" style="display: none;">import java.util.*;
+public class ListExample{
+public static void main(String args[]){
+ArrayList&lt;String&gt; al=new ArrayList&lt;String&gt;();
+al.add("Amit");
+al.add("Vijay");
+al.add("Kumar");
+al.add(1,"Sachin");
+System.out.println("Element at 2nd position: "+al.get(2));
+for(String s:al){
+ System.out.println(s);
+}
+}
+}
+</textarea></div>
+<p>Output:</p>
+<div class="codeblock3"><pre>Element at 2nd position: Vijay
+Amit
+Sachin
+Vijay
+Kumar
+</pre></div>
+
+<h2 class="h2">Java ListIterator Interface</h2>
+<p>ListIterator Interface is used to traverse the element in backward and forward direction. </p>
+<h3 class="h3">ListIterator Interface declaration</h3>
+<div class="codeblock"><div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://www.javatpoint.com/java-list#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/java-list#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/java-list#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;"></a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">interface</span><span>&nbsp;ListIterator&lt;E&gt;&nbsp;</span><span class="keyword">extends</span><span>&nbsp;Iterator&lt;E&gt;&nbsp;&nbsp;</span></span></li></ol></div><textarea name="code" class="java" style="display: none;">public interface ListIterator&lt;E&gt; extends Iterator&lt;E&gt;
+</textarea></div>
+<h3 class="h3">Methods of Java ListIterator Interface:</h3>
+<table class="alt">
+     <tbody><tr>
+         <th>Method</th>
+		 <th>Description</th>
+     </tr>
+     <tr>
+         <td>boolean hasNext()</td>
+         <td>This method return true if the list iterator has more elements when traversing the list in the forward direction.</td>
+     </tr>
+     <tr>
+	          <td>Object next()</td>
+	          <td>This method return the next element in the list and advances the cursor position.</td>
+     </tr>
+     <tr>
+	          <td>boolean hasPrevious()</td>
+	          <td>This method return true if this list iterator has more elements when traversing the list in the reverse direction.</td>
+     </tr>
+     <tr>
+	          <td>Object previous()</td>
+	          <td>This method return the previous element in the list and moves the cursor position backwards.</td>
+     </tr>
+     </tbody></table>
+<h3 class="h3">Example of ListIterator Interface</h3>
+<div class="codeblock"><div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://www.javatpoint.com/java-list#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/java-list#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/java-list#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;"></a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">import</span><span>&nbsp;java.util.*;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;TestCollection8{&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;main(String&nbsp;args[]){&nbsp;&nbsp;</span></span></li><li class=""><span>ArrayList&lt;String&gt;&nbsp;al=<span class="keyword">new</span><span>&nbsp;ArrayList&lt;String&gt;();&nbsp;&nbsp;</span></span></li><li class="alt"><span>al.add(<span class="string">"Amit"</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>al.add(<span class="string">"Vijay"</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>al.add(<span class="string">"Kumar"</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>al.add(<span class="number">1</span><span>,</span><span class="string">"Sachin"</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>System.out.println(<span class="string">"element&nbsp;at&nbsp;2nd&nbsp;position:&nbsp;"</span><span>+al.get(</span><span class="number">2</span><span>));&nbsp;&nbsp;</span></span></li><li class=""><span>ListIterator&lt;String&gt;&nbsp;itr=al.listIterator();&nbsp;&nbsp;</span></li><li class="alt"><span>System.out.println(<span class="string">"traversing&nbsp;elements&nbsp;in&nbsp;forward&nbsp;direction..."</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">while</span><span>(itr.hasNext()){&nbsp;&nbsp;</span></span></li><li class="alt"><span>System.out.println(itr.next());&nbsp;&nbsp;</span></li><li class=""><span>}&nbsp;&nbsp;</span></li><li class="alt"><span>System.out.println(<span class="string">"traversing&nbsp;elements&nbsp;in&nbsp;backward&nbsp;direction..."</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">while</span><span>(itr.hasPrevious()){&nbsp;&nbsp;</span></span></li><li class="alt"><span>System.out.println(itr.previous());&nbsp;&nbsp;</span></li><li class=""><span>}&nbsp;&nbsp;</span></li><li class="alt"><span>}&nbsp;&nbsp;</span></li><li class=""><span>}&nbsp;&nbsp;</span></li></ol></div><textarea name="code" class="java" style="display: none;">import java.util.*;
+public class TestCollection8{
+public static void main(String args[]){
+ArrayList&lt;String&gt; al=new ArrayList&lt;String&gt;();
+al.add("Amit");
+al.add("Vijay");
+al.add("Kumar");
+al.add(1,"Sachin");
+System.out.println("element at 2nd position: "+al.get(2));
+ListIterator&lt;String&gt; itr=al.listIterator();
+System.out.println("traversing elements in forward direction...");
+while(itr.hasNext()){
+System.out.println(itr.next());
+}
+System.out.println("traversing elements in backward direction...");
+while(itr.hasPrevious()){
+System.out.println(itr.previous());
+}
+}
+}
+</textarea></div>
+
+<span class="testit"><a href="http://www.javatpoint.com/opr/test.jsp?filename=TestCollection8" target="_blank">Test it Now</a></span>
+<p>Output:</p>
+<div class="codeblock3"><pre>element at 2nd position: Vijay
+traversing elements in forward direction...
+Amit
+Sachin
+Vijay
+Kumar
+traversing elements in backward direction...
+Kumar
+Vijay
+Sachin
+Amit
+</pre></div>
+<h3 class="h3">Example of ListIterator Interface: Book</h3>
+<div class="codeblock"><div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://www.javatpoint.com/java-list#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/java-list#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/java-list#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;"></a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">import</span><span>&nbsp;java.util.*;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">class</span><span>&nbsp;Book&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">int</span><span>&nbsp;id;&nbsp;&nbsp;</span></span></li><li class=""><span>String&nbsp;name,author,publisher;&nbsp;&nbsp;</span></li><li class="alt"><span><span class="keyword">int</span><span>&nbsp;quantity;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">public</span><span>&nbsp;Book(</span><span class="keyword">int</span><span>&nbsp;id,&nbsp;String&nbsp;name,&nbsp;String&nbsp;author,&nbsp;String&nbsp;publisher,&nbsp;</span><span class="keyword">int</span><span>&nbsp;quantity)&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this</span><span>.id&nbsp;=&nbsp;id;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this</span><span>.name&nbsp;=&nbsp;name;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this</span><span>.author&nbsp;=&nbsp;author;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this</span><span>.publisher&nbsp;=&nbsp;publisher;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this</span><span>.quantity&nbsp;=&nbsp;quantity;&nbsp;&nbsp;</span></span></li><li class=""><span>}&nbsp;&nbsp;</span></li><li class="alt"><span>}&nbsp;&nbsp;</span></li><li class=""><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;ListExample&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;main(String[]&nbsp;args)&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//Creating&nbsp;list&nbsp;of&nbsp;Books</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;List&lt;Book&gt;&nbsp;list=<span class="keyword">new</span><span>&nbsp;ArrayList&lt;Book&gt;();&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//Creating&nbsp;Books</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;Book&nbsp;b1=<span class="keyword">new</span><span>&nbsp;Book(</span><span class="number">101</span><span>,</span><span class="string">"Let&nbsp;us&nbsp;C"</span><span>,</span><span class="string">"Yashwant&nbsp;Kanetkar"</span><span>,</span><span class="string">"BPB"</span><span>,</span><span class="number">8</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;Book&nbsp;b2=<span class="keyword">new</span><span>&nbsp;Book(</span><span class="number">102</span><span>,</span><span class="string">"Data&nbsp;Communications&nbsp;&amp;&nbsp;Networking"</span><span>,</span><span class="string">"Forouzan"</span><span>,</span><span class="string">"Mc&nbsp;Graw&nbsp;Hill"</span><span>,</span><span class="number">4</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;Book&nbsp;b3=<span class="keyword">new</span><span>&nbsp;Book(</span><span class="number">103</span><span>,</span><span class="string">"Operating&nbsp;System"</span><span>,</span><span class="string">"Galvin"</span><span>,</span><span class="string">"Wiley"</span><span>,</span><span class="number">6</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//Adding&nbsp;Books&nbsp;to&nbsp;list</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;list.add(b1);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;list.add(b2);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;list.add(b3);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//Traversing&nbsp;list</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span><span>(Book&nbsp;b:list){&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(b.id+<span class="string">"&nbsp;"</span><span>+b.name+</span><span class="string">"&nbsp;"</span><span>+b.author+</span><span class="string">"&nbsp;"</span><span>+b.publisher+</span><span class="string">"&nbsp;"</span><span>+b.quantity);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>}&nbsp;&nbsp;</span></li><li class="alt"><span>}&nbsp;&nbsp;</span></li></ol></div><textarea name="code" class="java" style="display: none;">import java.util.*;
+class Book {
+int id;
+String name,author,publisher;
+int quantity;
+public Book(int id, String name, String author, String publisher, int quantity) {
+	this.id = id;
+	this.name = name;
+	this.author = author;
+	this.publisher = publisher;
+	this.quantity = quantity;
+}
+}
+public class ListExample {
+public static void main(String[] args) {
+	//Creating list of Books
+	List&lt;Book&gt; list=new ArrayList&lt;Book&gt;();
+	//Creating Books
+	Book b1=new Book(101,"Let us C","Yashwant Kanetkar","BPB",8);
+	Book b2=new Book(102,"Data Communications &amp; Networking","Forouzan","Mc Graw Hill",4);
+	Book b3=new Book(103,"Operating System","Galvin","Wiley",6);
+	//Adding Books to list
+	list.add(b1);
+	list.add(b2);
+	list.add(b3);
+	//Traversing list
+	for(Book b:list){
+	System.out.println(b.id+" "+b.name+" "+b.author+" "+b.publisher+" "+b.quantity);
+	}
+}
+}
+</textarea></div>
+<p>Output:</p>
+<div class="codeblock3"><pre>101 Let us C Yashwant Kanetkar BPB 8
+102 Data Communications &amp; Networking Forouzan Mc Graw Hill 4
+103 Operating System Galvin Wiley 6
+</pre></div>
+<div class="nexttopicdiv">
+<span class="nexttopictext">Next Topic</span><span class="nexttopiclink"><a href="https://www.javatpoint.com/java-hashset">Java HashSet class</a></span>
+</div>
+
+<!-- link -->
+<br><br>
+<div id="bottomnext">
+<a style="float:left" class="next" href="https://www.javatpoint.com/java-linkedlist">← prev</a>
+<a style="float:right" class="next" href="https://www.javatpoint.com/java-hashset">next →</a>
+</div>
+
+<br><br>
+
+</td></tr>
+</tbody></table>
+</div>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-8834194653550774";
+/* Cm_javatpoint_336x280 */
+google_ad_slot = "2097800745";
+google_ad_width = 336;
+google_ad_height = 280;
+//-->
+</script>
+<script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+
+
+<h2 class="h2">Please Share</h2>
+<a rel="nofollow" title="Facebook" target="_blank" href="http://www.facebook.com/sharer.php?u=https://www.javatpoint.com/java-list"><img src="./Java List - javatpoint_files/facebook32.png" alt="facebook"></a>
+<a rel="nofollow" title="Twitter" target="_blank" href="http://twitter.com/share?url=https://www.javatpoint.com/java-list&amp;text=Java%20List%20-%20javatpoint"><img src="./Java List - javatpoint_files/twitter32.png" alt="twitter"></a>
+<a rel="nofollow" title="Google+" target="_blank" href="https://plusone.google.com/_/+1/confirm?hl=en&amp;url=https://www.javatpoint.com/java-list"><img src="./Java List - javatpoint_files/google-plus32.png" alt="google plus"></a>
+<a rel="nofollow" title="Pinterest" target="_blank" href="https://www.pinterest.com/pin/create/button/?url=https://www.javatpoint.com/java-list&amp;description=Java%20List%20-%20javatpoint"><img src="./Java List - javatpoint_files/pinterest32.png" alt="pinterest"></a>
+<a rel="nofollow" title="Tumblr" target="_blank" href="http://www.tumblr.com/share/link?url=https://www.javatpoint.com/java-list"><img src="./Java List - javatpoint_files/tumblr32.png" alt="tumbler"></a>
+
+
+
+<!-- latest tutorials start -->
+<h2 class="h2">Latest 4 Tutorials</h2>
+<div class="firsthomecontent">
+
+<a href="https://www.javatpoint.com/pouchdb-tutorial">
+<div class="homecontent">
+<img src="./Java List - javatpoint_files/pouchdb-home.png" alt="PouchDB tutorial"><span class="homespan">PouchDB</span>
+</div>
+</a>
+
+<a href="https://www.javatpoint.com/db2-tutorial">
+<div class="homecontent">
+<img src="./Java List - javatpoint_files/db2-home.png" alt="MariaDB tutorial"><span class="homespan">DB2</span>
+</div>
+</a>
+
+<a href="https://www.javatpoint.com/mariadb-tutorial">
+<div class="homecontent">
+<img src="./Java List - javatpoint_files/mariadb-home.png" alt="MariaDB tutorial"><span class="homespan">MariaDB</span>
+</div>
+</a>
+
+<a href="https://www.javatpoint.com/ado-net-tutorial">
+<div class="homecontent">
+<img src="./Java List - javatpoint_files/ado-net-home.jpg" alt="ADO.NET tutorial"><span class="homespan">ADO.NET</span>
+</div>
+</a>
+
+</div>
+
+</div>
+
+
+<br><div class="mobilemenu" style="clear:both">
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- responsivemobilefooter --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4699858549023382" data-ad-slot="8222866318" data-ad-format="auto"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div></div>
+<div id="right" style="width:15%;float:left;margin-left:10px;margin-top:10px;">
+
+
+
+
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-4699858549023382" data-ad-slot="3155368314"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script><br><br><br>
+
+
+
+<br><br>
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-8834194653550774";
+/* Cm_JavaTpoint_160x600 */
+google_ad_slot = "5786673902";
+google_ad_width = 160;
+google_ad_height = 600;
+//-->
+</script>
+<script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+
+
+
+
+</div>
+<div class="right1024" style="float:left;margin-left:10px;margin-top:120px;"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- right1024only --><ins class="adsbygoogle" style="display:inline-block;width:120px;height:600px" data-ad-client="ca-pub-4699858549023382" data-ad-slot="2180118716"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<br><br>
+</div>
+
+<div id="footer" style="clear:both;width:100%">
+
+<!--<div style="width:100%;float:center;margin-top:-20px;color:white;background-image: linear-gradient(145deg,#90715c,#523b1f);line-height:28px;">
+    <h2 style="padding:60px 0px 0px 20px">Summer Training</h2>
+    <p style="padding:0px 20px 60px 20px">JavaTpoint offers <strong>Summer Internship Training</strong> on Java, PHP, .Net, Hadoop, Data Analytics, R Programming, SAP, Android, Python, Oracle, Seleninum, Linux, C++ and many more technologies in Delhi/NCR, India. For more visit <a style="color:white" href="http://training.javatpoint.com"><img src="images/linkglobe12.png" alt="javatpoint training"/>training.javatpoint.com</a>
+    <br>
+    Course Fee: &#8377; 6000 Only<br>
+    Duration: 6 Week
+    </p>
+</div>
+-->
+<div style="width:100%;float:center;margin-top:10px;color:white;background-image: linear-gradient(145deg,#52a2fc,#480fcc);line-height:28px;">
+    <h2 style="padding:60px 0px 0px 20px">Website Development Services</h2>
+    <p style="padding:0px 20px 0px 20px">JavaTpoint (SSS IT Pvt Ltd) provides website development services in affordable cost. We develop websites on WordPress, Core PHP, CakePHP, CodeIgnitor, Open Cart, Servlet-JSP, Struts 2 and Spring technologies. Send us your requirement at hr@javatpoint.com. We will show you a free demo first, then we will proceed further.
+    </p>
+    <table style="width:400px;padding:0px 20px 60px 20px">
+        <tbody><tr><td>Personal Blog</td><td>$150 Only</td></tr>
+        <tr><td>School Website</td><td>$200 Only</td></tr>
+        <tr><td>Company Website</td><td>$300 Only</td></tr>
+        <tr><td>Showroom Website</td><td>$300 Only</td></tr>
+        <tr><td>News Portal</td><td>$400 Only</td></tr>
+        <tr><td>E-Commerce Website</td><td>$500 Only</td></tr>
+        <tr><td>Multivendor E-Commerce (PHP)</td><td>$3000 Only</td></tr>
+        <tr><td>Multivendor E-Commerce (Java)</td><td>$18000 Approx</td></tr>
+        
+        <tr><td></td><td></td></tr>
+    </tbody></table>
+</div>
+<div style="width:100%;float:center;margin-top:-20px;color:white;background-image: linear-gradient(145deg,#dc8140,#b16b15);line-height:28px;">
+    <h2 style="padding:60px 0px 0px 20px">Training For College Campus</h2>
+    <p style="padding:0px 20px 60px 20px">JavaTpoint offers college campus training on Core Java, Advance Java, .Net, Android, Hadoop, PHP, Web Technology and Python. Please mail your requirement at hr@javatpoint.com.
+    <br>
+    Course Fee: ₹ 2000 Per Student<br>
+    </p>
+</div>
+
+<!--<div class="homebox2">
+<h2>Our Initiatives</h2>
+<marquee behavior="alternate">
+<a rel="nofollow" href="https://www.hindi100.com">
+<div class="box2">
+<img class="box2img" src="https://www.hindi100.com/resources/images/javatpoint.png" alt="javatpoint"/>
+<p>Hindi100</p>
+</div>
+</a>
+
+<a rel="nofollow" href="https://www.lyricsia.com">
+<div class="box2">
+<img class="box2img" src="https://www.hindi100.com/resources/images/lyrics.png" alt="lyrics"/>
+<p>Lyricsia</p>
+</div>
+</a>
+
+<a rel="nofollow" href="http://www.hindi-typing.com">
+<div class="box2">
+<img class="box2img" src="https://www.hindi100.com/resources/images/hindi-typing.png" alt="hindi-typing"/>
+<p>Hindi-Typing</p>
+</div>
+</a>
+</marquee>
+</div>
+-->
+<script type="text/javascript"> var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-24880427-1']); _gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();</script>
+<div style="margin-top:5px;text-align:center">
+    <sup style="font:16px arial;">Like/Subscribe us for latest updates or newsletter </sup>
+    <a target="_blank" href="https://feeds.feedburner.com/javatpointsonoo"><img src="./Java List - javatpoint_files/rss1.png" alt="RSS Feed"></a>
+    <a target="_blank" href="https://feedburner.google.com/fb/a/mailverify?uri=javatpointsonoo"><img src="./Java List - javatpoint_files/mail1.png" alt="Subscribe to Get Email Alerts"></a>
+    <a target="_blank" href="https://www.facebook.com/javatpoint"><img src="./Java List - javatpoint_files/facebook1.jpg" alt="Facebook Page"></a>
+    <a target="_blank" rel="author" href="https://plus.google.com/u/0/113973042385691981314/posts"><img src="./Java List - javatpoint_files/google1.png" alt="Google Page"></a>
+    <a target="_blank" href="https://twitter.com/pagejavatpoint"><img src="./Java List - javatpoint_files/twitter1.png" alt="Twitter Page"></a>
+    <a target="_blank" href="https://javatpoint.blogspot.com/"><img src="./Java List - javatpoint_files/blog.png" alt="Blog Page"></a>
+    <!--<a href="#" style="font:bold 18px arial;text-decoration:none;"><sup>&uarr;Top</sup></a>-->
+</div>
+
+<footer class="footer1">
+<div class="column4">
+<h3>Popular Topics</h3>
+<a href="https://www.javatpoint.com/java-tutorial">Java Tutorial</a>
+<a href="https://www.javatpoint.com/c-programming-language-tutorial">C Tutorial</a>
+<a href="https://www.javatpoint.com/cpp-tutorial">C++ Tutorial</a>
+<a href="https://www.javatpoint.com/c-sharp-tutorial">C# Tutorial</a>
+<a href="https://www.javatpoint.com/php-tutorial">PHP Tutorial</a>
+<a href="https://www.javatpoint.com/html-tutorial">HTML Tutorial</a>
+<a href="https://www.javatpoint.com/css-tutorial">CSS Tutorial</a>
+<a href="https://www.javatpoint.com/javascript-tutorial">JavaScript Tutorial</a>
+<a href="https://www.javatpoint.com/jquery-tutorial">jQuery Tutorial</a>
+<a href="https://www.javatpoint.com/spring-tutorial">Spring Tutorial</a>
+</div>
+<div class="column4">
+<h3>Our Websites</h3>
+<a rel="nofollow" target="_blank" href="https://www.javatpoint.com/">Javatpoint.com</a>
+<a rel="nofollow" target="_blank" href="https://www.hindi100.com/">Hindi100.com</a>
+<a rel="nofollow" target="_blank" href="https://www.lyricsia.com/">Lyricsia.com</a>
+<a rel="nofollow" target="_blank" href="https://www.quoteperson.com/">Quoteperson.com</a>
+<a rel="nofollow" target="_blank" href="http://www.hindi-typing.com/">Hindi-typing.com</a>
+<a rel="nofollow" target="_blank" href="http://www.shayaree.com/">Shayaree.com</a>
+<a rel="nofollow" target="_blank" href="https://www.wordcountee.com/">Wordcountee.com</a>
+<a rel="nofollow" target="_blank" href="https://www.charactercountee.com/">Charactercountee.com</a>
+<a rel="nofollow" target="_blank" href="https://www.jobandplacement.com/">Jobandplacement.com</a>
+</div>
+<div class="column4">
+<h3>Our Services</h3>
+<p>Website Development</p>
+<p>Android Development</p>
+<p>Website Designing</p>
+<p>Digital Marketing</p>
+<p>Summer Training</p>
+<p>Industrial Training</p>
+<p>College Campus Training</p>
+</div>
+<div class="column4">
+<h3>Contact</h3>
+<p>Address: G-13, 2nd Floor, Sec-3</p>
+<p>Noida, UP, 201301, India</p>
+<p>Contact No: 0120-4256464, 9990449935</p>
+<p>Email: hr@javatpoint.com</p>
+<a href="https://www.javatpoint.com/contact-us">Contact Us</a> 
+<a href="https://www.javatpoint.com/subscribe.jsp">Subscribe Us</a> 
+<a href="https://www.javatpoint.com/privacy-policy">Privacy Policy</a>
+
+</div>
+</footer>
+
+<footer class="footer2">
+<p>© Copyright 2011-2017 www.javatpoint.com. All rights reserved.  <a rel="nofollow" target="_blank" href="https://www.sssit.org/">Developed by SSS IT Pvt Ltd (JavaTpoint)</a> </p>
+</footer>
+
+
+</div></div></div>
+<script src="./Java List - javatpoint_files/shcoreandbrush.js.download"></script><script type="text/javascript" src="./Java List - javatpoint_files/google.js.download"></script>
+<script type="text/javascript"> dp.SyntaxHighlighter.HighlightAll('code'); </script>
+
+  </body></html>

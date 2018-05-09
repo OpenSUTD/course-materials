@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)https://www.javatpoint.com/generics-in-java -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Generics in Java - javatpoint</title><link rel="SHORTCUT ICON" href="https://www.javatpoint.com/images/logo/icon.png"><link rel="stylesheet" type="text/css" href="./Generics in Java - javatpoint_files/link.css"><meta name="keywords" content="java generics, generics in java"><meta name="description" content="The Java Generics programming is introduced in J2SE 5 to deal with type-safe objects. It is widely used today. All the collection classes have be converted into Generic type since JDK 1.5."><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="canonical" href="https://www.javatpoint.com/generics-in-java">
+<meta itemprop="name" content="Generics in Java - javatpoint"><meta itemprop="description" content="The Java Generics programming is introduced in J2SE 5 to deal with type-safe objects. It is widely used today. All the collection classes have be converted into Generic type since JDK 1.5."><meta property="og:title" content="Generics in Java - javatpoint"><meta property="og:description" content="The Java Generics programming is introduced in J2SE 5 to deal with type-safe objects. It is widely used today. All the collection classes have be converted into Generic type since JDK 1.5.">
+<meta property="og:locale" content="en_US"><meta property="og:type" content="article"><meta name="twitter:title" property="og:title" content="Generics in Java - javatpoint"><meta name="twitter:description" property="og:description" content="The Java Generics programming is introduced in J2SE 5 to deal with type-safe objects. It is widely used today. All the collection classes have be converted into Generic type since JDK 1.5."><meta property="og:url" content="https://www.javatpoint.com/generics-in-java"><meta property="og:site_name" content="www.javatpoint.com"><meta name="twitter:card" content="summary"><meta name="twitter:site" content="@pagejavatpoint"><meta name="twitter:domain" content="www.javatpoint.com"><meta name="twitter:creator" content="@pagejavatpoint"><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style></head> 
+<body onload="highlightlink()"> <button onclick="topFunction()" id="myBtn" title="Go to top">⇧</button>
+<div id="page" style="margin:-8px;background-color:#f5f5f4;"><div id="container"> <div class="header"><!--<p style="font-weight:bold;padding:7px;color:white;background-color:gray;margin:0px"><marquee>JavaTpoint will be down for 2 to 4 hours tonight. Sorry for inconvenience.</marquee></p>-->
+
+<table style="width:100%"><tbody><tr><td><div id="headerlink" style="padding:0px;margin:0px"><span style="margin-right:20px;width:45%px"></span><span style="float:right;margin-right:5px;width:45%"> 
+
+</span>
+
+<hr class="upperhr">
+</div> </td></tr><tr><td>
+<div style="clear:both;float:left;width:230px;margin-left:20px"><a href="https://www.javatpoint.com/"><img src="./Generics in Java - javatpoint_files/jtp_logo.png" alt="Javatpoint Logo"></a></div>
+
+<div style="float:left;width:60%;"><form class="navbar-search" method="get" action="https://www.google.com/search" target="_blank"> <input type="text" name="q" class="search-query span2" placeholder="Search on javatpoint..." title="Search on Javatpoint"><input type="hidden" name="sitesearch" value="www.javatpoint.com"></form><!--<span style="margin-left:100px;color:orange;font-size:20px;font-weight:bold;">Happy </span><span style="color:red;font-size:20px;font-weight:bold;">New </span><span style="color:#666600;font-size:20px;font-weight:bold;">Year</span><span style="color:#666600;font-size:30px;font-weight:bold;"> 2015</span>--></div>
+
+</td></tr></tbody></table> </div>
+<div class="headermobile">
+<div style="margin-top:10px;padding:0px;text-align:left;">
+<span style="float:left"><input type="image" src="./Generics in Java - javatpoint_files/menuhome64.png" onclick="showmenu()"></span>
+<span style="float:left"><a href="https://www.javatpoint.com/"><img src="./Generics in Java - javatpoint_files/jtp_logo.png" alt="Javatpoint Logo"></a></span>
+</div>
+<div style="margin:0px;padding:0px;clear:both"><form class="navbar-search-m" method="get" action="https://www.google.com/search" target="_blank"> <input type="text" name="q" class="search-query span2-m" placeholder="Search on javatpoint..." title="Search on Javatpoint"><input type="hidden" name="sitesearch" value="www.javatpoint.com"></form></div></div>
+<div id="link" style="clear:both"> <div id="smoothmenu1" class="ddsmoothmenu">
+<ul>
+<li><a href="https://www.javatpoint.com/">Home</a></li>
+<li><a href="https://www.javatpoint.com/c-programming-language-tutorial">C</a></li>
+<li><a href="https://www.javatpoint.com/cpp-tutorial">C++</a></li>
+<li><a href="https://www.javatpoint.com/c-sharp-tutorial">C#</a></li>
+<li><a href="https://www.javatpoint.com/java-tutorial" class="selected">Java</a></li>
+<li><a href="https://www.javatpoint.com/servlet-tutorial">Servlet</a></li>
+<li><a href="https://www.javatpoint.com/jsp-tutorial">JSP</a></li>
+<li><a href="https://www.javatpoint.com/ejb-tutorial">EJB</a></li>
+<li><a href="https://www.javatpoint.com/struts-2-tutorial">Struts2</a></li>
+<li><a href="https://www.javatpoint.com/java-mail-api-tutorial">Mail</a></li>
+<li><a href="https://www.javatpoint.com/hibernate-tutorial">Hibernate</a></li>
+<li><a href="https://www.javatpoint.com/spring-tutorial">Spring</a></li>
+<li><a href="https://www.javatpoint.com/android-tutorial">Android</a></li>
+<li><a href="https://www.javatpoint.com/design-patterns-in-java">Design P</a></li>
+<li><a href="https://www.javatpoint.com/examaccess">Quiz</a></li>
+<li><a href="https://www.javatpoint.com/free-java-projects">Projects</a></li>
+<li><a href="https://www.javatpoint.com/corejava-interview-questions">Interview Q</a>
+</li><li><a href="https://www.javatpoint.com/comment.jsp">Comment</a>
+</li><li><a href="https://www.javatpoint.com/forum">Forum</a>
+</li><li><a href="https://www.javatpoint.com/training">Training</a>
+</li>
+</ul>
+<br style="clear: left">
+</div>
+</div><div class="mobilemenu" style="clear:both"> </div>
+
+<div id="menu"><div class="leftmenu2">
+<a href="https://www.javatpoint.com/java-tutorial"><span>Basics of Java </span></a>
+<a href="https://www.javatpoint.com/java-oops-concepts"><span>OOPs Concepts</span></a>
+<a href="https://www.javatpoint.com/java-string"><span>Java String</span></a>
+<a href="https://www.javatpoint.com/java-regex"><span>Java Regex</span></a>
+<a href="https://www.javatpoint.com/exception-handling-in-java"><span>Exception Handling</span></a>
+<a href="https://www.javatpoint.com/java-inner-class"><span>Java Inner classes</span></a>
+<a href="https://www.javatpoint.com/multithreading-in-java"><span>Java Multithreading</span></a>
+<a href="https://www.javatpoint.com/java-io"><span>Java I/O</span></a>
+<a href="https://www.javatpoint.com/java-networking"><span>Java Networking</span></a>
+<a href="https://www.javatpoint.com/java-awt"><span>Java AWT</span></a>
+<a href="https://www.javatpoint.com/java-swing"><span>Java Swing</span></a>
+<a href="https://www.javatpoint.com/java-applet"><span>Java Applet</span></a>
+<a href="https://www.javatpoint.com/java-reflection"><span>Java Reflection</span></a>
+<a href="https://www.javatpoint.com/java-date"><span>Java Date</span></a>
+<a href="https://www.javatpoint.com/java-string-to-int"><span>Java Conversion</span></a>
+<a href="https://www.javatpoint.com/collections-in-java"><span>Java Collection</span></a>
+<a href="https://www.javatpoint.com/java-jdbc"><span>Java JDBC</span></a>
+</div>
+<div class="leftmenu2">
+<h2 class="spanh2"><span class="spanh2">Java New Features</span></h2>
+</div>
+<div class="leftmenu">
+<a href="https://www.javatpoint.com/New-features-in-java" class="l1">Java New Features</a>
+</div>
+<div class="leftmenu2">
+<h2 class="spanh2"><span class="spanh2">Java 8 Features</span></h2>
+</div>
+<div class="leftmenu">
+<a href="https://www.javatpoint.com/java-8-features" class="l1">Java 8 Features</a>
+<a href="https://www.javatpoint.com/java-lambda-expressions" class="l1">Lambda Expressions</a>
+<a href="https://www.javatpoint.com/java-8-method-reference" class="l1">Method References</a>
+<a href="https://www.javatpoint.com/java-8-functional-interfaces" class="l1">Functional Interfaces</a>
+<a href="https://www.javatpoint.com/java-8-stream" class="l1">Stream API</a>
+<a href="https://www.javatpoint.com/java-8-stream-filter" class="l1">Stream Filter</a>
+<a href="https://www.javatpoint.com/java-base64-encode-decode" class="l1">Base64 Encode Decode</a>
+<a href="https://www.javatpoint.com/java-default-methods" class="l1">Default Methods</a>
+<a href="https://www.javatpoint.com/java-8-foreach" class="l1">forEach() method</a>
+<a href="https://www.javatpoint.com/java-8-collectors" class="l1">Collectors class</a>
+<a href="https://www.javatpoint.com/java-stringjoiner" class="l1">StringJoiner class</a>
+<a href="https://www.javatpoint.com/java-8-optional" class="l1">Optional class</a>
+<a href="https://www.javatpoint.com/java-nashorn" class="l1">JavaScript Nashorn</a>
+<a href="https://www.javatpoint.com/java-8-parallel-array-sorting" class="l1">Parallel Array Sort</a>
+<a href="https://www.javatpoint.com/java-8-type-inference" class="l1">Type Inference</a>
+<a href="https://www.javatpoint.com/java-8-method-parameter-reflection" class="l1">Parameter Reflection</a>
+<a href="https://www.javatpoint.com/java-8-type-annotations-and-repeating-annotations" class="l1">Type Annotations</a>
+<a href="https://www.javatpoint.com/java-8-jdbc-improvements" class="l1">JDBC Improvements</a>
+</div>
+<div class="leftmenu2">
+<h2 class="spanh2"><span class="spanh2">Java 7 Features</span></h2>
+</div>
+<div class="leftmenu">
+<a href="https://www.javatpoint.com/java-binary-literals" class="l1">Binary Literals</a>
+<a href="https://www.javatpoint.com/java-switch-with-string" class="l1">Switch with String</a>
+<a href="https://www.javatpoint.com/java-7-catch-multiple-exceptions" class="l1">Java 7 Multi Catch</a>
+<a href="https://www.javatpoint.com/java-try-with-resources" class="l1">Try with Resources</a>
+<a href="https://www.javatpoint.com/java-type-inference-for-generics" class="l1">Type Inference</a>
+<a href="https://www.javatpoint.com/java-numeric-literals-with-underscore" class="l1">Numeric Literals</a>
+<a href="https://www.javatpoint.com/java-7-jdbc-improvement" class="l1">Java 7 JDBC</a>
+</div>
+<div class="leftmenu2">
+<h2 class="spanh2"><span class="spanh2">Java 4/5 Features</span></h2>
+</div>
+<div class="leftmenu">
+<a href="https://www.javatpoint.com/assertion-in-java" class="l1">Assertion</a>
+<a href="https://www.javatpoint.com/for-each-loop" class="l1">For-each loop</a>
+<a href="https://www.javatpoint.com/varargs" class="l1">Varargs</a>
+<a href="https://www.javatpoint.com/static-import-in-java" class="l1">Static Import</a>
+<a href="https://www.javatpoint.com/autoboxing-and-unboxing" class="l1">Autoboxing and Unboxing</a>
+<a href="https://www.javatpoint.com/enum-in-java" class="l1">Enum Type</a>
+<a href="https://www.javatpoint.com/java-annotation" class="l1">Annotation</a>
+<a href="https://www.javatpoint.com/custom-annotation" class="l1">Custom Annotation</a>
+<a href="https://www.javatpoint.com/generics-in-java" class="l1" style="color: black;"><strong>Generics</strong> <img src="./Generics in Java - javatpoint_files/open-12.png" alt="open link"></a>
+</div>
+<div class="leftmenu2">
+<a href="https://www.javatpoint.com/RMI"><span>RMI</span></a>
+<a href="https://www.javatpoint.com/internationalization-in-java"><span>Internationalization</span></a>
+</div>
+
+<table id="leftad"><tbody><tr><td><img src="./Generics in Java - javatpoint_files/wh.JPG" alt="space"></td></tr><tr><td>
+<script type="text/javascript" async="" src="./Generics in Java - javatpoint_files/ga.js.download"></script><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-4699858549023382" data-ad-slot="4476401222"></ins> <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
+</td></tr></tbody></table>
+
+</div><div class="onlycontent">
+
+
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- CM_JTP_Leaderbaord -->
+<ins class="adsbygoogle cm_jtp_leaderbaord" style="display:inline-block" data-ad-client="ca-pub-4699858549023382" data-ad-slot="9201901915"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<div style="margin-left:0px;">
+<div id="city">
+<table>
+<tbody><tr><td>
+<div id="bottomnextup">
+
+<a class="next" href="https://www.javatpoint.com/RMI">next&gt;&gt;</a>
+<a class="next" href="https://www.javatpoint.com/custom-annotation">&lt;&lt;prev</a>
+</div>
+
+<h1 class="h1">Generics in Java</h1>
+
+<p>The <b>Java Generics</b> programming is introduced in J2SE 5 to deal with type-safe objects.</p>
+<p>Before generics, we can store any type of objects in collection i.e. non-generic. Now generics, forces the java programmer to store specific type of objects.</p>
+<h4 class="h4">Advantage of Java Generics</h4>
+<p>There are mainly 3 advantages of generics. They are as follows:</p>
+<p><b>1)	Type-safety :</b> We can hold only a single type of objects in generics. It doesn’t allow to store other objects.</p>
+<p><b>2)	Type casting is not required:</b> There is no need to typecast the object.</p>
+<p>Before Generics, we need to type cast.</p>
+<div class="codeblock"><div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;"></a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span>List&nbsp;list&nbsp;=&nbsp;</span><span class="keyword">new</span><span>&nbsp;ArrayList();&nbsp;&nbsp;</span></span></li><li class=""><span>list.add(<span class="string">"hello"</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>String&nbsp;s&nbsp;=&nbsp;(String)&nbsp;list.get(<span class="number">0</span><span>);</span><span class="comment">//typecasting</span><span>&nbsp;&nbsp;</span></span></li></ol></div><textarea name="code" class="java" style="display: none;">List list = new ArrayList();
+list.add("hello");
+String s = (String) list.get(0);//typecasting
+</textarea></div>
+
+<p>After Generics, we don't need to typecast the object.</p>
+<div class="codeblock"><div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;"></a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span>List&lt;String&gt;&nbsp;list&nbsp;=&nbsp;</span><span class="keyword">new</span><span>&nbsp;ArrayList&lt;String&gt;();&nbsp;&nbsp;</span></span></li><li class=""><span>list.add(<span class="string">"hello"</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>String&nbsp;s&nbsp;=&nbsp;list.get(<span class="number">0</span><span>);&nbsp;&nbsp;</span></span></li></ol></div><textarea name="code" class="java" style="display: none;">List&lt;String&gt; list = new ArrayList&lt;String&gt;();
+list.add("hello");
+String s = list.get(0);
+</textarea></div>
+
+
+<p><b>3)	Compile-Time Checking:</b> It is checked at compile time so problem will not occur at runtime.  The good programming strategy says it is far better to handle the problem at compile time than runtime.</p>
+<div class="codeblock"><div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;"></a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span>List&lt;String&gt;&nbsp;list&nbsp;=&nbsp;</span><span class="keyword">new</span><span>&nbsp;ArrayList&lt;String&gt;();&nbsp;&nbsp;</span></span></li><li class=""><span>list.add(<span class="string">"hello"</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>list.add(<span class="number">32</span><span>);</span><span class="comment">//Compile&nbsp;Time&nbsp;Error</span><span>&nbsp;&nbsp;</span></span></li></ol></div><textarea name="code" class="java" style="display: none;">List&lt;String&gt; list = new ArrayList&lt;String&gt;();
+list.add("hello");
+list.add(32);//Compile Time Error
+</textarea></div>
+
+<hr>
+
+<p><b>Syntax</b> to use generic collection</p>
+<div class="codeblock"><div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;"></a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span>ClassOrInterface&lt;Type&gt;&nbsp;&nbsp;</span></span></li></ol></div><textarea name="code" class="java" style="display: none;">ClassOrInterface&lt;Type&gt;
+</textarea></div>
+<p><b>Example</b> to use Generics in java</p>
+<div class="codeblock"><div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;"></a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span>ArrayList&lt;String&gt;&nbsp;&nbsp;</span></span></li></ol></div><textarea name="code" class="java" style="display: none;">ArrayList&lt;String&gt;
+</textarea></div>
+
+<hr>
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- CM_JTP_WTC_Responsive -->
+<ins class="adsbygoogle cm_jtp_wtc_responsive" style="display:inline-block" data-ad-client="ca-pub-4699858549023382" data-ad-slot="6746133113"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<h2 class="h2">Full Example of Generics in Java</h2>
+<p>Here, we are using the ArrayList class, but you can use any collection class such as ArrayList, LinkedList, HashSet, TreeSet, HashMap, Comparator etc.
+</p>
+<div class="codeblock"><div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;"></a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">import</span><span>&nbsp;java.util.*;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">class</span><span>&nbsp;TestGenerics1{&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;main(String&nbsp;args[]){&nbsp;&nbsp;</span></span></li><li class=""><span>ArrayList&lt;String&gt;&nbsp;list=<span class="keyword">new</span><span>&nbsp;ArrayList&lt;String&gt;();&nbsp;&nbsp;</span></span></li><li class="alt"><span>list.add(<span class="string">"rahul"</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>list.add(<span class="string">"jai"</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="comment">//list.add(32);//compile&nbsp;time&nbsp;error</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>String&nbsp;s=list.get(<span class="number">1</span><span>);</span><span class="comment">//type&nbsp;casting&nbsp;is&nbsp;not&nbsp;required</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>System.out.println(<span class="string">"element&nbsp;is:&nbsp;"</span><span>+s);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>Iterator&lt;String&gt;&nbsp;itr=list.iterator();&nbsp;&nbsp;</span></li><li class="alt"><span><span class="keyword">while</span><span>(itr.hasNext()){&nbsp;&nbsp;</span></span></li><li class=""><span>System.out.println(itr.next());&nbsp;&nbsp;</span></li><li class="alt"><span>}&nbsp;&nbsp;</span></li><li class=""><span>}&nbsp;&nbsp;</span></li><li class="alt"><span>}&nbsp;&nbsp;</span></li></ol></div><textarea name="code" class="java" style="display: none;">import java.util.*;
+class TestGenerics1{
+public static void main(String args[]){
+ArrayList&lt;String&gt; list=new ArrayList&lt;String&gt;();
+list.add("rahul");
+list.add("jai");
+//list.add(32);//compile time error
+
+String s=list.get(1);//type casting is not required
+System.out.println("element is: "+s);
+
+Iterator&lt;String&gt; itr=list.iterator();
+while(itr.hasNext()){
+System.out.println(itr.next());
+}
+}
+}
+</textarea></div>
+
+<span class="testit"><a href="http://www.javatpoint.com/opr/test.jsp?filename=TestGenerics1" target="_blank">Test it Now</a></span>
+
+<div class="codeblock3"><pre>Output:element is: jai
+       rahul
+       jai 
+</pre></div>
+
+<hr>
+<h2 class="h2">Example of Java Generics using Map</h2>
+<p>Now we are going to use map elements using generics. Here, we need to pass key and value. Let us understand it by a simple example:</p>
+<div class="codeblock"><div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;"></a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">import</span><span>&nbsp;java.util.*;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">class</span><span>&nbsp;TestGenerics2{&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;main(String&nbsp;args[]){&nbsp;&nbsp;</span></span></li><li class=""><span>Map&lt;Integer,String&gt;&nbsp;map=<span class="keyword">new</span><span>&nbsp;HashMap&lt;Integer,String&gt;();&nbsp;&nbsp;</span></span></li><li class="alt"><span>map.put(<span class="number">1</span><span>,</span><span class="string">"vijay"</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>map.put(<span class="number">4</span><span>,</span><span class="string">"umesh"</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>map.put(<span class="number">2</span><span>,</span><span class="string">"ankit"</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span><span class="comment">//Now&nbsp;use&nbsp;Map.Entry&nbsp;for&nbsp;Set&nbsp;and&nbsp;Iterator</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>Set&lt;Map.Entry&lt;Integer,String&gt;&gt;&nbsp;set=map.entrySet();&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>Iterator&lt;Map.Entry&lt;Integer,String&gt;&gt;&nbsp;itr=set.iterator();&nbsp;&nbsp;</span></li><li class="alt"><span><span class="keyword">while</span><span>(itr.hasNext()){&nbsp;&nbsp;</span></span></li><li class=""><span>Map.Entry&nbsp;e=itr.next();<span class="comment">//no&nbsp;need&nbsp;to&nbsp;typecast</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>System.out.println(e.getKey()+<span class="string">"&nbsp;"</span><span>+e.getValue());&nbsp;&nbsp;</span></span></li><li class=""><span>}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>}}&nbsp;&nbsp;</span></li></ol></div><textarea name="code" class="java" style="display: none;">import java.util.*;
+class TestGenerics2{
+public static void main(String args[]){
+Map&lt;Integer,String&gt; map=new HashMap&lt;Integer,String&gt;();
+map.put(1,"vijay");
+map.put(4,"umesh");
+map.put(2,"ankit");
+
+//Now use Map.Entry for Set and Iterator
+Set&lt;Map.Entry&lt;Integer,String&gt;&gt; set=map.entrySet();
+
+Iterator&lt;Map.Entry&lt;Integer,String&gt;&gt; itr=set.iterator();
+while(itr.hasNext()){
+Map.Entry e=itr.next();//no need to typecast
+System.out.println(e.getKey()+" "+e.getValue());
+}
+
+}}
+</textarea></div>
+
+<span class="testit"><a href="http://www.javatpoint.com/opr/test.jsp?filename=TestGenerics2" target="_blank">Test it Now</a></span>
+
+<div class="codeblock3"><pre>Output:1 vijay
+       2 ankit 
+       4 umesh
+</pre></div>
+
+<hr>
+<h2 class="h2">Generic class</h2>
+<p>A class that can refer to any type is known as generic class. Here, we are using <b>T</b> type parameter to create the generic class of specific type.</p>
+<p>Let’s see the simple example to create and use the generic class.</p>
+
+<b>Creating generic class:</b>
+<div class="codeblock"><div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;"></a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">class</span><span>&nbsp;MyGen&lt;T&gt;{&nbsp;&nbsp;</span></span></li><li class=""><span>T&nbsp;obj;&nbsp;&nbsp;</span></li><li class="alt"><span><span class="keyword">void</span><span>&nbsp;add(T&nbsp;obj){</span><span class="keyword">this</span><span>.obj=obj;}&nbsp;&nbsp;</span></span></li><li class=""><span>T&nbsp;get(){<span class="keyword">return</span><span>&nbsp;obj;}&nbsp;&nbsp;</span></span></li><li class="alt"><span>}&nbsp;&nbsp;</span></li></ol></div><textarea name="code" class="java" style="display: none;">class MyGen&lt;T&gt;{
+T obj;
+void add(T obj){this.obj=obj;}
+T get(){return obj;}
+}
+</textarea></div>
+<p>The T type indicates that it can refer to any type (like String, Integer, Employee etc.). The type you specify for the class, will be used to store and retrieve the data.</p>
+
+<b>Using generic class:</b>
+<p>Let’s see the code to use the generic class.</p>
+<div class="codeblock"><div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;"></a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">class</span><span>&nbsp;TestGenerics3{&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;main(String&nbsp;args[]){&nbsp;&nbsp;</span></span></li><li class="alt"><span>MyGen&lt;Integer&gt;&nbsp;m=<span class="keyword">new</span><span>&nbsp;MyGen&lt;Integer&gt;();&nbsp;&nbsp;</span></span></li><li class=""><span>m.add(<span class="number">2</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="comment">//m.add("vivek");//Compile&nbsp;time&nbsp;error</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>System.out.println(m.get());&nbsp;&nbsp;</span></li><li class="alt"><span>}}&nbsp;&nbsp;</span></li></ol></div><textarea name="code" class="java" style="display: none;">class TestGenerics3{
+public static void main(String args[]){
+MyGen&lt;Integer&gt; m=new MyGen&lt;Integer&gt;();
+m.add(2);
+//m.add("vivek");//Compile time error
+System.out.println(m.get());
+}}
+</textarea></div>
+
+<!--
+<span class="testit"><a href="http://www.javatpoint.com/opr/test.jsp?filename=TestGenerics3" target="_blank">Test it Now</a></span>
+-->
+
+<div class="codeblock3"><pre>Output:2
+</pre></div>
+
+<hr>
+<h2 class="h2">Type Parameters</h2>
+<p>The type parameters naming conventions are important to learn generics thoroughly. The commonly type parameters are as follows:</p>
+<ol>
+<li>T - Type</li>
+<li>E - Element </li>
+<li>K - Key</li>
+<li>N - Number</li>
+<li>V - Value</li>
+</ol>
+<hr>
+<h2 class="h2">Generic Method</h2>
+<p>Like generic class, we can create generic method that can accept any type of argument.</p>
+<p>Let’s see a simple example of java generic method to print array elements. We are using here <b>E</b> to denote the element.</p>
+<div class="codeblock"><div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;"></a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;TestGenerics4{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;&lt;&nbsp;E&nbsp;&gt;&nbsp;</span><span class="keyword">void</span><span>&nbsp;printArray(E[]&nbsp;elements)&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span><span>&nbsp;(&nbsp;E&nbsp;element&nbsp;:&nbsp;elements){&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(element&nbsp;);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println();&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;main(&nbsp;String&nbsp;args[]&nbsp;)&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Integer[]&nbsp;intArray&nbsp;=&nbsp;{&nbsp;<span class="number">10</span><span>,&nbsp;</span><span class="number">20</span><span>,&nbsp;</span><span class="number">30</span><span>,&nbsp;</span><span class="number">40</span><span>,&nbsp;</span><span class="number">50</span><span>&nbsp;};&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Character[]&nbsp;charArray&nbsp;=&nbsp;{&nbsp;<span class="string">'J'</span><span>,&nbsp;</span><span class="string">'A'</span><span>,&nbsp;</span><span class="string">'V'</span><span>,&nbsp;</span><span class="string">'A'</span><span>,&nbsp;</span><span class="string">'T'</span><span>,</span><span class="string">'P'</span><span>,</span><span class="string">'O'</span><span>,</span><span class="string">'I'</span><span>,</span><span class="string">'N'</span><span>,</span><span class="string">'T'</span><span>&nbsp;};&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&nbsp;<span class="string">"Printing&nbsp;Integer&nbsp;Array"</span><span>&nbsp;);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printArray(&nbsp;intArray&nbsp;&nbsp;);&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&nbsp;<span class="string">"Printing&nbsp;Character&nbsp;Array"</span><span>&nbsp;);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printArray(&nbsp;charArray&nbsp;);&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>}&nbsp;&nbsp;</span></li></ol></div><textarea name="code" class="java" style="display: none;">public class TestGenerics4{
+
+   public static &lt; E &gt; void printArray(E[] elements) {
+        for ( E element : elements){        
+            System.out.println(element );
+         }
+         System.out.println();
+    }
+    public static void main( String args[] ) {
+        Integer[] intArray = { 10, 20, 30, 40, 50 };
+        Character[] charArray = { 'J', 'A', 'V', 'A', 'T','P','O','I','N','T' };
+
+        System.out.println( "Printing Integer Array" );
+        printArray( intArray  ); 
+
+       System.out.println( "Printing Character Array" );
+        printArray( charArray ); 
+    } 
+}
+</textarea></div>
+
+<span class="testit"><a href="http://www.javatpoint.com/opr/test.jsp?filename=TestGenerics4" target="_blank">Test it Now</a></span>
+
+<div class="codeblock3"><pre>Output:Printing Integer Array
+        10
+        20
+        30
+        40
+        50
+        Printing Character Array
+        J
+        A
+        V
+        A
+        T
+        P
+        O
+        I
+        N
+        T
+</pre></div>
+<hr>
+<h2 class="h2">Wildcard in Java Generics</h2>
+<p>The ? (question mark) symbol represents wildcard element. It means any type. If we write &lt;? extends Number&gt;, it means any child class of Number e.g. Integer, Float, double etc. Now we can call the method of Number class through any child class object.</p>
+<p>Let's understand it by the example given below:</p>
+
+<div class="codeblock"><div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;"></a><a href="https://www.javatpoint.com/generics-in-java#" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;"></a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">import</span><span>&nbsp;java.util.*;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">abstract</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;Shape{&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">abstract</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;draw();&nbsp;&nbsp;</span></span></li><li class=""><span>}&nbsp;&nbsp;</span></li><li class="alt"><span><span class="keyword">class</span><span>&nbsp;Rectangle&nbsp;</span><span class="keyword">extends</span><span>&nbsp;Shape{&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">void</span><span>&nbsp;draw(){System.out.println(</span><span class="string">"drawing&nbsp;rectangle"</span><span>);}&nbsp;&nbsp;</span></span></li><li class="alt"><span>}&nbsp;&nbsp;</span></li><li class=""><span><span class="keyword">class</span><span>&nbsp;Circle&nbsp;</span><span class="keyword">extends</span><span>&nbsp;Shape{&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">void</span><span>&nbsp;draw(){System.out.println(</span><span class="string">"drawing&nbsp;circle"</span><span>);}&nbsp;&nbsp;</span></span></li><li class=""><span>}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span><span class="keyword">class</span><span>&nbsp;GenericTest{&nbsp;&nbsp;</span></span></li><li class=""><span><span class="comment">//creating&nbsp;a&nbsp;method&nbsp;that&nbsp;accepts&nbsp;only&nbsp;child&nbsp;class&nbsp;of&nbsp;Shape</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;drawShapes(List&lt;?&nbsp;</span><span class="keyword">extends</span><span>&nbsp;Shape&gt;&nbsp;lists){&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">for</span><span>(Shape&nbsp;s:lists){&nbsp;&nbsp;</span></span></li><li class="alt"><span>s.draw();<span class="comment">//calling&nbsp;method&nbsp;of&nbsp;Shape&nbsp;class&nbsp;by&nbsp;child&nbsp;class&nbsp;instance</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>}&nbsp;&nbsp;</span></li><li class="alt"><span>}&nbsp;&nbsp;</span></li><li class=""><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;main(String&nbsp;args[]){&nbsp;&nbsp;</span></span></li><li class="alt"><span>List&lt;Rectangle&gt;&nbsp;list1=<span class="keyword">new</span><span>&nbsp;ArrayList&lt;Rectangle&gt;();&nbsp;&nbsp;</span></span></li><li class=""><span>list1.add(<span class="keyword">new</span><span>&nbsp;Rectangle());&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>List&lt;Circle&gt;&nbsp;list2=<span class="keyword">new</span><span>&nbsp;ArrayList&lt;Circle&gt;();&nbsp;&nbsp;</span></span></li><li class="alt"><span>list2.add(<span class="keyword">new</span><span>&nbsp;Circle());&nbsp;&nbsp;</span></span></li><li class=""><span>list2.add(<span class="keyword">new</span><span>&nbsp;Circle());&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>drawShapes(list1);&nbsp;&nbsp;</span></li><li class="alt"><span>drawShapes(list2);&nbsp;&nbsp;</span></li><li class=""><span>}}&nbsp;&nbsp;</span></li></ol></div><textarea name="code" class="java" style="display: none;">import java.util.*;
+abstract class Shape{
+abstract void draw();
+}
+class Rectangle extends Shape{
+void draw(){System.out.println("drawing rectangle");}
+}
+class Circle extends Shape{
+void draw(){System.out.println("drawing circle");}
+}
+
+
+class GenericTest{
+//creating a method that accepts only child class of Shape
+public static void drawShapes(List&lt;? extends Shape&gt; lists){
+for(Shape s:lists){
+s.draw();//calling method of Shape class by child class instance
+}
+}
+public static void main(String args[]){
+List&lt;Rectangle&gt; list1=new ArrayList&lt;Rectangle&gt;();
+list1.add(new Rectangle());
+
+List&lt;Circle&gt; list2=new ArrayList&lt;Circle&gt;();
+list2.add(new Circle());
+list2.add(new Circle());
+
+drawShapes(list1);
+drawShapes(list2);
+}}
+</textarea></div>
+<div class="codeblock3"><pre>drawing rectangle
+drawing circle
+drawing circle
+</pre></div>
+
+<div class="nexttopicdiv">
+<span class="nexttopictext">Next Topic</span><span class="nexttopiclink"><a href="https://www.javatpoint.com/RMI">RMI</a></span>
+</div>
+
+
+
+<br><br>
+<div id="bottomnext">
+<a style="float:left" class="next" href="https://www.javatpoint.com/custom-annotation">&lt;&lt;prev</a>
+
+
+<a style="float:right" class="next" href="https://www.javatpoint.com/RMI">next&gt;&gt;</a>
+</div>
+<br><br>
+
+</td></tr>
+</tbody></table>
+</div>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-8834194653550774";
+/* Cm_javatpoint_336x280 */
+google_ad_slot = "2097800745";
+google_ad_width = 336;
+google_ad_height = 280;
+//-->
+</script>
+<script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+
+
+<h2 class="h2">Please Share</h2>
+<a rel="nofollow" title="Facebook" target="_blank" href="http://www.facebook.com/sharer.php?u=https://www.javatpoint.com/generics-in-java"><img src="./Generics in Java - javatpoint_files/facebook32.png" alt="facebook"></a>
+<a rel="nofollow" title="Twitter" target="_blank" href="http://twitter.com/share?url=https://www.javatpoint.com/generics-in-java&amp;text=Generics%20in%20Java%20-%20javatpoint"><img src="./Generics in Java - javatpoint_files/twitter32.png" alt="twitter"></a>
+<a rel="nofollow" title="Google+" target="_blank" href="https://plusone.google.com/_/+1/confirm?hl=en&amp;url=https://www.javatpoint.com/generics-in-java"><img src="./Generics in Java - javatpoint_files/google-plus32.png" alt="google plus"></a>
+<a rel="nofollow" title="Pinterest" target="_blank" href="https://www.pinterest.com/pin/create/button/?url=https://www.javatpoint.com/generics-in-java&amp;description=Generics%20in%20Java%20-%20javatpoint"><img src="./Generics in Java - javatpoint_files/pinterest32.png" alt="pinterest"></a>
+<a rel="nofollow" title="Tumblr" target="_blank" href="http://www.tumblr.com/share/link?url=https://www.javatpoint.com/generics-in-java"><img src="./Generics in Java - javatpoint_files/tumblr32.png" alt="tumbler"></a>
+
+
+
+<!-- latest tutorials start -->
+<h2 class="h2">Latest 4 Tutorials</h2>
+<div class="firsthomecontent">
+
+<a href="https://www.javatpoint.com/pouchdb-tutorial">
+<div class="homecontent">
+<img src="./Generics in Java - javatpoint_files/pouchdb-home.png" alt="PouchDB tutorial"><span class="homespan">PouchDB</span>
+</div>
+</a>
+
+<a href="https://www.javatpoint.com/db2-tutorial">
+<div class="homecontent">
+<img src="./Generics in Java - javatpoint_files/db2-home.png" alt="MariaDB tutorial"><span class="homespan">DB2</span>
+</div>
+</a>
+
+<a href="https://www.javatpoint.com/mariadb-tutorial">
+<div class="homecontent">
+<img src="./Generics in Java - javatpoint_files/mariadb-home.png" alt="MariaDB tutorial"><span class="homespan">MariaDB</span>
+</div>
+</a>
+
+<a href="https://www.javatpoint.com/ado-net-tutorial">
+<div class="homecontent">
+<img src="./Generics in Java - javatpoint_files/ado-net-home.jpg" alt="ADO.NET tutorial"><span class="homespan">ADO.NET</span>
+</div>
+</a>
+
+</div>
+
+</div>
+
+
+<br><div class="mobilemenu" style="clear:both">
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- responsivemobilefooter --><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4699858549023382" data-ad-slot="8222866318" data-ad-format="auto"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div></div>
+<div id="right" style="width:15%;float:left;margin-left:10px;margin-top:10px;">
+
+
+
+
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-4699858549023382" data-ad-slot="3155368314"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script><br><br><br>
+
+
+
+<br><br>
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-8834194653550774";
+/* Cm_JavaTpoint_160x600 */
+google_ad_slot = "5786673902";
+google_ad_width = 160;
+google_ad_height = 600;
+//-->
+</script>
+<script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+
+
+
+
+</div>
+<div class="right1024" style="float:left;margin-left:10px;margin-top:120px;"><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- right1024only --><ins class="adsbygoogle" style="display:inline-block;width:120px;height:600px" data-ad-client="ca-pub-4699858549023382" data-ad-slot="2180118716"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<br><br>
+</div>
+
+<div id="footer" style="clear:both;width:100%">
+
+<!--<div style="width:100%;float:center;margin-top:-20px;color:white;background-image: linear-gradient(145deg,#90715c,#523b1f);line-height:28px;">
+    <h2 style="padding:60px 0px 0px 20px">Summer Training</h2>
+    <p style="padding:0px 20px 60px 20px">JavaTpoint offers <strong>Summer Internship Training</strong> on Java, PHP, .Net, Hadoop, Data Analytics, R Programming, SAP, Android, Python, Oracle, Seleninum, Linux, C++ and many more technologies in Delhi/NCR, India. For more visit <a style="color:white" href="http://training.javatpoint.com"><img src="images/linkglobe12.png" alt="javatpoint training"/>training.javatpoint.com</a>
+    <br>
+    Course Fee: &#8377; 6000 Only<br>
+    Duration: 6 Week
+    </p>
+</div>
+-->
+<div style="width:100%;float:center;margin-top:10px;color:white;background-image: linear-gradient(145deg,#52a2fc,#480fcc);line-height:28px;">
+    <h2 style="padding:60px 0px 0px 20px">Website Development Services</h2>
+    <p style="padding:0px 20px 0px 20px">JavaTpoint (SSS IT Pvt Ltd) provides website development services in affordable cost. We develop websites on WordPress, Core PHP, CakePHP, CodeIgnitor, Open Cart, Servlet-JSP, Struts 2 and Spring technologies. Send us your requirement at hr@javatpoint.com. We will show you a free demo first, then we will proceed further.
+    </p>
+    <table style="width:400px;padding:0px 20px 60px 20px">
+        <tbody><tr><td>Personal Blog</td><td>$150 Only</td></tr>
+        <tr><td>School Website</td><td>$200 Only</td></tr>
+        <tr><td>Company Website</td><td>$300 Only</td></tr>
+        <tr><td>Showroom Website</td><td>$300 Only</td></tr>
+        <tr><td>News Portal</td><td>$400 Only</td></tr>
+        <tr><td>E-Commerce Website</td><td>$500 Only</td></tr>
+        <tr><td>Multivendor E-Commerce (PHP)</td><td>$3000 Only</td></tr>
+        <tr><td>Multivendor E-Commerce (Java)</td><td>$18000 Approx</td></tr>
+        
+        <tr><td></td><td></td></tr>
+    </tbody></table>
+</div>
+<div style="width:100%;float:center;margin-top:-20px;color:white;background-image: linear-gradient(145deg,#dc8140,#b16b15);line-height:28px;">
+    <h2 style="padding:60px 0px 0px 20px">Training For College Campus</h2>
+    <p style="padding:0px 20px 60px 20px">JavaTpoint offers college campus training on Core Java, Advance Java, .Net, Android, Hadoop, PHP, Web Technology and Python. Please mail your requirement at hr@javatpoint.com.
+    <br>
+    Course Fee: ₹ 2000 Per Student<br>
+    </p>
+</div>
+
+<!--<div class="homebox2">
+<h2>Our Initiatives</h2>
+<marquee behavior="alternate">
+<a rel="nofollow" href="https://www.hindi100.com">
+<div class="box2">
+<img class="box2img" src="https://www.hindi100.com/resources/images/javatpoint.png" alt="javatpoint"/>
+<p>Hindi100</p>
+</div>
+</a>
+
+<a rel="nofollow" href="https://www.lyricsia.com">
+<div class="box2">
+<img class="box2img" src="https://www.hindi100.com/resources/images/lyrics.png" alt="lyrics"/>
+<p>Lyricsia</p>
+</div>
+</a>
+
+<a rel="nofollow" href="http://www.hindi-typing.com">
+<div class="box2">
+<img class="box2img" src="https://www.hindi100.com/resources/images/hindi-typing.png" alt="hindi-typing"/>
+<p>Hindi-Typing</p>
+</div>
+</a>
+</marquee>
+</div>
+-->
+<script type="text/javascript"> var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-24880427-1']); _gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();</script>
+<div style="margin-top:5px;text-align:center">
+    <sup style="font:16px arial;">Like/Subscribe us for latest updates or newsletter </sup>
+    <a target="_blank" href="https://feeds.feedburner.com/javatpointsonoo"><img src="./Generics in Java - javatpoint_files/rss1.png" alt="RSS Feed"></a>
+    <a target="_blank" href="https://feedburner.google.com/fb/a/mailverify?uri=javatpointsonoo"><img src="./Generics in Java - javatpoint_files/mail1.png" alt="Subscribe to Get Email Alerts"></a>
+    <a target="_blank" href="https://www.facebook.com/javatpoint"><img src="./Generics in Java - javatpoint_files/facebook1.jpg" alt="Facebook Page"></a>
+    <a target="_blank" rel="author" href="https://plus.google.com/u/0/113973042385691981314/posts"><img src="./Generics in Java - javatpoint_files/google1.png" alt="Google Page"></a>
+    <a target="_blank" href="https://twitter.com/pagejavatpoint"><img src="./Generics in Java - javatpoint_files/twitter1.png" alt="Twitter Page"></a>
+    <a target="_blank" href="https://javatpoint.blogspot.com/"><img src="./Generics in Java - javatpoint_files/blog.png" alt="Blog Page"></a>
+    <!--<a href="#" style="font:bold 18px arial;text-decoration:none;"><sup>&uarr;Top</sup></a>-->
+</div>
+
+<footer class="footer1">
+<div class="column4">
+<h3>Popular Topics</h3>
+<a href="https://www.javatpoint.com/java-tutorial">Java Tutorial</a>
+<a href="https://www.javatpoint.com/c-programming-language-tutorial">C Tutorial</a>
+<a href="https://www.javatpoint.com/cpp-tutorial">C++ Tutorial</a>
+<a href="https://www.javatpoint.com/c-sharp-tutorial">C# Tutorial</a>
+<a href="https://www.javatpoint.com/php-tutorial">PHP Tutorial</a>
+<a href="https://www.javatpoint.com/html-tutorial">HTML Tutorial</a>
+<a href="https://www.javatpoint.com/css-tutorial">CSS Tutorial</a>
+<a href="https://www.javatpoint.com/javascript-tutorial">JavaScript Tutorial</a>
+<a href="https://www.javatpoint.com/jquery-tutorial">jQuery Tutorial</a>
+<a href="https://www.javatpoint.com/spring-tutorial">Spring Tutorial</a>
+</div>
+<div class="column4">
+<h3>Our Websites</h3>
+<a rel="nofollow" target="_blank" href="https://www.javatpoint.com/">Javatpoint.com</a>
+<a rel="nofollow" target="_blank" href="https://www.hindi100.com/">Hindi100.com</a>
+<a rel="nofollow" target="_blank" href="https://www.lyricsia.com/">Lyricsia.com</a>
+<a rel="nofollow" target="_blank" href="https://www.quoteperson.com/">Quoteperson.com</a>
+<a rel="nofollow" target="_blank" href="http://www.hindi-typing.com/">Hindi-typing.com</a>
+<a rel="nofollow" target="_blank" href="http://www.shayaree.com/">Shayaree.com</a>
+<a rel="nofollow" target="_blank" href="https://www.wordcountee.com/">Wordcountee.com</a>
+<a rel="nofollow" target="_blank" href="https://www.charactercountee.com/">Charactercountee.com</a>
+<a rel="nofollow" target="_blank" href="https://www.jobandplacement.com/">Jobandplacement.com</a>
+</div>
+<div class="column4">
+<h3>Our Services</h3>
+<p>Website Development</p>
+<p>Android Development</p>
+<p>Website Designing</p>
+<p>Digital Marketing</p>
+<p>Summer Training</p>
+<p>Industrial Training</p>
+<p>College Campus Training</p>
+</div>
+<div class="column4">
+<h3>Contact</h3>
+<p>Address: G-13, 2nd Floor, Sec-3</p>
+<p>Noida, UP, 201301, India</p>
+<p>Contact No: 0120-4256464, 9990449935</p>
+<p>Email: hr@javatpoint.com</p>
+<a href="https://www.javatpoint.com/contact-us">Contact Us</a> 
+<a href="https://www.javatpoint.com/subscribe.jsp">Subscribe Us</a> 
+<a href="https://www.javatpoint.com/privacy-policy">Privacy Policy</a>
+
+</div>
+</footer>
+
+<footer class="footer2">
+<p>© Copyright 2011-2017 www.javatpoint.com. All rights reserved.  <a rel="nofollow" target="_blank" href="https://www.sssit.org/">Developed by SSS IT Pvt Ltd (JavaTpoint)</a> </p>
+</footer>
+
+
+</div></div></div>
+<script src="./Generics in Java - javatpoint_files/shcoreandbrush.js.download"></script><script type="text/javascript" src="./Generics in Java - javatpoint_files/google.js.download"></script>
+<script type="text/javascript"> dp.SyntaxHighlighter.HighlightAll('code'); </script>
+
+  </body></html>

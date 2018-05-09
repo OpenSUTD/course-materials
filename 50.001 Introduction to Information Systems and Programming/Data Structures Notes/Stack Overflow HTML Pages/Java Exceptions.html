@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)https://www.tutorialspoint.com/java/java_exceptions.htm -->
+<html style="" class=" js no-touch csstransforms3d csstransitions"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Basic -->
+
+<title>Java Exceptions</title>
+<meta name="description" content="Java Exceptions - Learn Java in simple and easy steps starting from basic to advanced concepts with examples including Java Syntax Object Oriented Language, Methods, Overriding, Inheritance, Polymorphism, Interfaces, Packages, Collections, Networking, Multithreading, Generics, Multimedia, Serialization, GUI.">
+<meta name="keywords" content="Java, Tutorials, Learning, Beginners, Basics, Object Oriented Language, Methods, Overriding, Inheritance, Polymorphism, Interfaces, Packages, Collections, Networking, Multithreading, Generics, Multimedia, Serialization, GUI.">
+<!--<base href="https://www.tutorialspoint.com/">--><base href=".">
+<link rel="shortcut icon" href="https://www.tutorialspoint.com/favicon.ico" type="image/x-icon">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="fb:app_id" content="471319149685276">
+<meta property="og:site_name" content="www.tutorialspoint.com">
+<meta name="robots" content="index, follow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="author" content="tutorialspoint.com">
+<script src="https://securepubads.g.doubleclick.net/gpt/pubads_impl_rendering_167.js"></script><script src="https://securepubads.g.doubleclick.net/gampad/ads?gdfp_req=1&amp;correlator=2516204488173778&amp;output=json_html&amp;callback=googletag.impl.pubads.callbackProxy1&amp;impl=fifs&amp;json_a=1&amp;eid=108809107%2C21060361%2C21061149%2C21061026&amp;sc=1&amp;sfv=1-0-13&amp;iu_parts=60931893%2Ctutorial_right_bottom%2Ctutorial_right_middle%2Ctutorial_right_top%2Ctutorial_bottom_leader_board&amp;enc_prev_ius=%2F0%2F1%2C%2F0%2F2%2C%2F0%2F3%2C%2F0%2F4&amp;prev_iu_szs=300x250%7C300x600%2C300x250%7C300x600%2C300x250%2C600x400%7C300x250%7C480x320%7C468x60%7C336x280%7C600x200%7C580x400&amp;cookie_enabled=1&amp;abxe=1&amp;lmt=1510191496&amp;dt=1510191496124&amp;frm=20&amp;biw=1519&amp;bih=743&amp;oid=3&amp;adxs=0%2C0%2C0%2C0&amp;adys=0%2C0%2C0%2C0&amp;adks=3716823738%2C749877563%2C2359137328%2C2749173601&amp;gut=v2&amp;ifi=1&amp;u_tz=480&amp;u_his=3&amp;u_h=864&amp;u_w=1536&amp;u_ah=834&amp;u_aw=1536&amp;u_cd=24&amp;u_nplug=4&amp;u_nmime=5&amp;u_sd=1.25&amp;flash=0&amp;url=https%3A%2F%2Fwww.tutorialspoint.com%2Fjava%2Fjava_exceptions.htm&amp;ref=https%3A%2F%2Fwww.google.com.sg%2F&amp;dssz=18&amp;icsg=14508&amp;std=0&amp;vrg=167&amp;vis=1&amp;ga_vid=2017710734.1499679209&amp;ga_sid=1510191496&amp;ga_hid=1879130147&amp;ga_fc=true"></script><script type="text/javascript" src="./Java Exceptions_files/script-min-v4.js.download"></script>
+<link rel="stylesheet" href="./Java Exceptions_files/style-min.css">
+<script async="async" src="./Java Exceptions_files/gpt.js.download"></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+
+<script>
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/60931893/tutorial_right_bottom', [[300, 250], [300, 600]], 'div-gpt-ad-1510138782906-0').addService(googletag.pubads());
+    googletag.defineSlot('/60931893/tutorial_right_middle', [[300, 250], [300, 600]], 'div-gpt-ad-1510138782906-1').addService(googletag.pubads());
+    googletag.defineSlot('/60931893/tutorial_right_top', [300, 250], 'div-gpt-ad-1510138782906-2').addService(googletag.pubads());
+    googletag.defineSlot('/60931893/tutorial_bottom_leader_board', [[600, 400], [300, 250], [480, 320], [468, 60], [336, 280], [600, 200], [580, 400]], 'div-gpt-ad-1510138782906-3').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+  });
+</script>
+<!-- Head Libs -->
+<!--[if IE 8]>
+<link rel="stylesheet" type="text/css" href="/theme/css/ie8.css">
+<![endif]-->
+<style>
+select{ border:0 !important; outline: 1px inset black !important; outline-offset: -1px !important; }
+ul.nav-list.primary>li a.videolink{    background: none; margin: 0px; padding: 0px; border: 1px solid #d6d6d6;}
+div.feature-box div.feature-box-icon, .col-md-3 .course-box, li.heading, div.footer-copyright { background: #eb4847 url(/images/pattern.png) repeat center center !important;}
+.sub-main-menu .sub-menuu div:hover, .sub-main-menu .viewall, header nav ul.nav-main li a:hover, button.btn-responsive-nav, header div.search button.btn-default { background: #eb4847 !important;}
+.submenu-item{ border-bottom: 2px solid #eb4847 !important; border-top: 2px solid #eb4847 !important }
+.ace_scroller{overflow: auto!important;}
+a.demo{font-family: "Open Sans",Arial,sans-serif; background:#eb4847; color:#fff; font-size:13px; padding:3px 10px; border:1px solid #d6d6d6; position:absolute; right:5px; margin:-6px 17px 0px 0px;}
+a.demo:hover{opacity:.8}
+pre.prettyprint {
+    border: 1px solid #d6d6d6;
+    background-color: #eee;
+    width: 98%;
+    border-radius: 0;
+    padding: 5px;
+    margin: 0;
+    margin-bottom: 10px; margin-top:15px;
+    font-size: 13px;
+    overflow: auto;
+}
+</style>
+<script>
+$(document).ready(function() {
+  $('input[name="q"]').keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+</script>
+<link rel="preload" href="https://adservice.google.com/adsid/integrator.js?domain=www.tutorialspoint.com" as="script"><script type="text/javascript" src="https://adservice.google.com/adsid/integrator.js?domain=www.tutorialspoint.com"></script><script src="https://securepubads.g.doubleclick.net/gpt/pubads_impl_167.js" async=""></script><link rel="prefetch" href="https://tpc.googlesyndication.com/safeframe/1-0-13/html/container.html"><link rel="prefetch" href="https://securepubads.g.doubleclick.net/static/3p_cookie.html"><style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style></head>
+<body onload="prettyPrint()" style="">
+<div class="wrapLoader">
+   <div class="imgLoader">
+      <img src="./Java Exceptions_files/loading-cg.gif" alt="" width="70" height="70">
+   </div>
+</div>
+<header>
+   <div class="container">			
+      <h1 class="logo">
+      <a href="https://www.tutorialspoint.com/index.htm" title="tutorialspoint">
+      <img alt="tutorialspoint" src="./Java Exceptions_files/logo.png">
+      </a>
+      </h1>			
+      <nav>
+         <ul class="nav nav-pills nav-top">
+            <li><a href="https://www.tutorialspoint.com/about/about_careers.htm" style="background: #fffb09; font-weight: bold;"><i class="icon icon-suitcase"></i> Jobs</a></li>
+            <li> <a target="_blank" href="http://www.qries.com/" data-external="true"><i class="fa fa-send"></i> &nbsp;Qries (Q/A)</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/whiteboard.htm"><img src="./Java Exceptions_files/image-editor.png" alt="Whiteboard" title="Whiteboard"> &nbsp;Whiteboard</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/netmeeting.php"><i class="fa-camera"></i> &nbsp;Net Meeting</a> </li>
+            <li> <a href="https://www.tutorialspoint.com/online_dev_tools.htm"> <i class="dev-tools-menu" style="opacity:.5"></i> Tools </a> </li>
+            <li> <a href="https://www.tutorialspoint.com/articles/index.php"><i class="icon icon-file-text-o"></i> &nbsp;Articles</a> </li>            
+            <li class="top-icons">
+              <ul class="social-icons">
+              <li class="facebook"><a href="https://www.facebook.com/tutorialspointindia" target="_blank" data-placement="bottom" title="tutorialspoint @ Facebook" data-external="true">Facebook</a></li>
+              <li class="googleplus"><a href="https://plus.google.com/u/0/116678774017490391259/posts" target="_blank" data-placement="bottom" title="tutorialspoint @ Google+" data-external="true">Google+</a></li>
+              <li class="twitter"><a href="https://www.twitter.com/tutorialspoint" target="_blank" data-placement="bottom" title="tutorialspoint @ Twitter" data-external="true">Twitter</a></li>
+              <li class="linkedin"><a href="https://www.linkedin.com/company/tutorialspoint" target="_blank" data-placement="bottom" title="tutorialspoint @ Linkedin" data-external="true">Linkedin</a></li>
+              <li class="youtube"><a href="https://www.youtube.com/channel/UCVLbzhxVTiTLiVKeGV7WEBg" target="_blank" data-placement="bottom" title="tutorialspoint YouTube" data-external="true">YouTube</a></li>
+              </ul>
+           </li>
+         </ul>
+      </nav>
+         <!-- search code here  --> 
+      <button class="btn btn-responsive-nav btn-inverse" data-toggle="collapse" data-target=".nav-main-collapse" id="pull" style="top: 2210.800048828125px!important"> <i class="icon icon-bars"></i> </button>
+   </div>
+  
+   <div class="navbar nav-main">
+      <div class="container">
+         <nav class="nav-main mega-menu">
+            <ul class="nav nav-pills nav-main" id="mainMenu">
+               <li class="dropdown no-sub-menu"> <a class="dropdown" href="https://www.tutorialspoint.com/index.htm"><i class="icon icon-home"></i> Home</a> </li>   
+               <li class="dropdown" id="liTL"><a class="dropdown" href="javascript:void(0);" data-external="true"><span class="tut-lib"> Tutorials Library <i class="fa-caret-down"></i></span></a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/codingground.htm"><i class="fa-code"></i> Coding Ground </a> </li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/tutor_connect/index.php"><i class="fa-user"> </i> Tutor Connect</a></li>
+               <li class="dropdown no-sub-menu"><a class="dropdown" href="https://www.tutorialspoint.com/videotutorials/index.htm"><i class="fa-toggle-right"></i> Videos </a></li>
+               <li class="dropdown no-sub-menu">
+                  <div class="searchform-popup">
+                     <input class="header-search-box" type="text" id="search-string" name="q" placeholder="Search your favorite tutorials..." onfocus="if (this.value == &#39;Search your favorite tutorials...&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Search your favorite tutorials...&#39;;}" autocomplete="off" style="">
+                     <div class="magnifying-glass"><i class="icon-search"></i> Search </div>
+                 </div>
+               </li>
+            </ul>
+         </nav>
+         <div class="submenu-item sub-main-menu" id="top-sub-menu"></div>
+         
+      </div>
+   </div>	
+</header>
+<div style="clear:both;"></div>
+<div role="main" class="main">
+<div class="container">
+<div class="row">
+<div class="col-md-2">
+<aside class="sidebar">
+<style>
+.ts{
+   vertical-align:middle !important;
+   text-align:center !important;   
+}
+</style>
+<div class="mini-logo">
+<img src="./Java Exceptions_files/java-mini-logo.jpg" alt="Java Tutorial">
+</div>
+<ul class="nav nav-list primary left-menu">
+<li><a class="videolink" href="https://www.tutorialspoint.com/java_online_training/index.asp" target="_blank"><img src="./Java Exceptions_files/java-video-tutorials.jpg" alt="Java Video Tutorials"></a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Java Tutorial</li>
+<li><a href="https://www.tutorialspoint.com/java/index.htm">Java - Home</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_overview.htm">Java - Overview</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_environment_setup.htm">Java - Environment Setup</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_basic_syntax.htm">Java - Basic Syntax</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_object_classes.htm">Java - Object &amp; Classes</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_basic_datatypes.htm">Java - Basic Datatypes</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_variable_types.htm">Java - Variable Types</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_modifier_types.htm">Java - Modifier Types</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_basic_operators.htm">Java - Basic Operators</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_loop_control.htm">Java - Loop Control</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_decision_making.htm">Java - Decision Making</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_numbers.htm">Java - Numbers</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_characters.htm">Java - Characters</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_strings.htm">Java - Strings</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_arrays.htm">Java - Arrays</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_date_time.htm">Java - Date &amp; Time</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_regular_expressions.htm">Java - Regular Expressions</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_methods.htm">Java - Methods</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_files_io.htm">Java - Files and I/O</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_exceptions.htm" style="background-color: rgb(214, 214, 214);">Java - Exceptions</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_innerclasses.htm">Java - Inner classes</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Java Object Oriented</li>
+<li><a href="https://www.tutorialspoint.com/java/java_inheritance.htm">Java - Inheritance</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_overriding.htm">Java - Overriding</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_polymorphism.htm">Java - Polymorphism</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_abstraction.htm">Java - Abstraction</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_encapsulation.htm">Java - Encapsulation</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_interfaces.htm">Java - Interfaces</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_packages.htm">Java - Packages</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Java Advanced</li>
+<li><a href="https://www.tutorialspoint.com/java/java_data_structures.htm">Java - Data Structures</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_collections.htm">Java - Collections</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_generics.htm">Java - Generics</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_serialization.htm">Java - Serialization</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_networking.htm">Java - Networking</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_sending_email.htm">Java - Sending Email</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_multithreading.htm">Java - Multithreading</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_applet_basics.htm">Java - Applet Basics</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_documentation.htm">Java - Documentation</a></li>
+</ul>
+<ul class="nav nav-list primary left-menu">
+<li class="heading">Java Useful Resources</li>
+<li><a href="https://www.tutorialspoint.com/java/java_questions_answers.htm">Java - Questions and Answers</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_quick_guide.htm">Java - Quick Guide</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_useful_resources.htm">Java - Useful Resources</a></li>
+<li><a href="https://www.tutorialspoint.com/java/java_discussion.htm">Java - Discussion</a></li>
+<li><a href="https://www.tutorialspoint.com/javaexamples/index.htm">Java - Examples</a></li>
+</ul>
+<ul class="nav nav-list primary push-bottom left-menu special">
+<li class="sreading">Selected Reading</li>
+<li><a target="_top" href="https://www.tutorialspoint.com/developers_best_practices/index.htm">Developer's Best Practices</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/questions_and_answers.htm">Questions and Answers</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/effective_resume_writing.htm">Effective Resume Writing</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/hr_interview_questions/index.htm">HR Interview Questions</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/computer_glossary.htm">Computer Glossary</a></li>
+<li><a target="_top" href="https://www.tutorialspoint.com/computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</aside>
+</div>
+<!-- PRINTING STARTS HERE -->
+<div class="row">
+<div class="content">
+<div class="col-md-7 middle-col">
+<h1>Java - Exceptions</h1>
+<div class="topgooglead">
+<hr>
+<div style="padding-bottom:5px;padding-left:10px;">Advertisements</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript" src="https://pagead2.googlesyndication.com/pagead/show_ads.js"> 
+</script>
+</div>
+<hr>
+<div class="pre-btn">
+<a href="https://www.tutorialspoint.com/java/java_files_io.htm"><i class="icon icon-arrow-circle-o-left big-font"></i> Previous Page</a>
+</div>
+<div class="nxt-btn">
+<a href="https://www.tutorialspoint.com/java/java_innerclasses.htm">Next Page <i class="icon icon-arrow-circle-o-right big-font"></i>&nbsp;</a>
+</div>
+<div class="clearer"></div>
+<hr>
+<p>An exception (or exceptional event) is a problem that arises during the execution of a program. When an <b>Exception</b> occurs the normal flow of the program is disrupted and the program/Application terminates abnormally, which is not recommended, therefore, these exceptions are to be handled.</p>
+<p>An exception can occur for many different reasons. Following are some scenarios where an exception occurs.</p>
+<ul class="list">
+<li><p>A user has entered an invalid data.</p></li>
+<li><p>A file that needs to be opened cannot be found.</p></li>
+<li><p>A network connection has been lost in the middle of communications or the JVM has run out of memory.</p></li>
+</ul>
+<p>Some of these exceptions are caused by user error, others by programmer error, and others by physical resources that have failed in some manner.</p>
+<p>Based on these, we have three categories of Exceptions. You need to understand them to know how exception handling works in Java.</p>
+<ul class="list">
+<li><p><b>Checked exceptions</b> − A checked exception is an exception that occurs at the compile time, these are also called as compile time exceptions. These exceptions cannot simply be ignored at the time of compilation, the programmer should take care of (handle) these exceptions.</p></li>
+</ul>
+<p>For example, if you use <b>FileReader</b> class in your program to read data from a file, if the file specified in its constructor doesn't exist, then a <i>FileNotFoundException</i> occurs, and the compiler prompts the programmer to handle the exception.</p>
+<h3>Example</h3>
+<a href="http://tpcg.io/9u4a5O" target="_blank" rel="nofollow" class="demo" data-external="true"><i class="fa-external-link"></i> Live Demo</a>
+<pre class="prettyprint notranslate prettyprinted" style=""><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">io</span><span class="pun">.</span><span class="typ">File</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">io</span><span class="pun">.</span><span class="typ">FileReader</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">FilenotFound_Demo</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> args</span><span class="pun">[])</span><span class="pln"> </span><span class="pun">{</span><span class="pln">		
+      </span><span class="typ">File</span><span class="pln"> file </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">File</span><span class="pun">(</span><span class="str">"E://file.txt"</span><span class="pun">);</span><span class="pln">
+      </span><span class="typ">FileReader</span><span class="pln"> fr </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">FileReader</span><span class="pun">(</span><span class="pln">file</span><span class="pun">);</span><span class="pln"> 
+   </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<p>If you try to compile the above program, you will get the following exceptions.</p>
+<h3>Output</h3>
+<pre class="result notranslate">C:\&gt;javac FilenotFound_Demo.java
+FilenotFound_Demo.java:8: error: unreported exception FileNotFoundException; must be caught or declared to be thrown
+      FileReader fr = new FileReader(file);
+                      ^
+1 error
+</pre>
+<p><b>Note</b> − Since the methods <b>read()</b> and <b>close()</b> of FileReader class throws IOException, you can observe that the compiler notifies to handle IOException, along with FileNotFoundException.</p>
+<ul class="list">
+<li><p><b>Unchecked exceptions</b> − An unchecked exception is an exception that occurs at the time of execution. These are also called as <b>Runtime Exceptions</b>. These include programming bugs, such as logic errors or improper use of an API. Runtime exceptions are ignored at the time of compilation.</p></li>
+</ul>
+<p>For example, if you have declared an array of size 5 in your program, and trying to call the 6<sup>th</sup> element of the array then an <i>ArrayIndexOutOfBoundsExceptionexception</i> occurs.</p>
+<h3>Example</h3>
+<a href="http://tpcg.io/7CUnsL" target="_blank" rel="nofollow" class="demo" data-external="true"><i class="fa-external-link"></i> Live Demo</a>
+<pre class="prettyprint notranslate prettyprinted" style=""><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Unchecked_Demo</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+   
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> args</span><span class="pun">[])</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="kwd">int</span><span class="pln"> num</span><span class="pun">[]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> </span><span class="lit">3</span><span class="pun">,</span><span class="pln"> </span><span class="lit">4</span><span class="pun">};</span><span class="pln">
+      </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="pln">num</span><span class="pun">[</span><span class="lit">5</span><span class="pun">]);</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<p>If you compile and execute the above program, you will get the following exception.</p>
+<h3>Output</h3>
+<pre class="result notranslate">Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 5
+	at Exceptions.Unchecked_Demo.main(Unchecked_Demo.java:8)
+</pre>
+<ul class="list">
+<li><p><b>Errors</b> − These are not exceptions at all, but problems that arise beyond the control of the user or the programmer. Errors are typically ignored in your code because you can rarely do anything about an error. For example, if a stack overflow occurs, an error will arise. They are also ignored at the time of compilation.</p></li>
+</ul>
+<h2>Exception Hierarchy</h2>
+<p>All exception classes are subtypes of the java.lang.Exception class. The exception class is a subclass of the Throwable class. Other than the exception class there is another subclass called Error which is derived from the Throwable class.</p>
+<p>Errors are abnormal conditions that happen in case of severe failures, these are not handled by the Java programs. Errors are generated to indicate errors generated by the runtime environment. Example: JVM is out of memory. Normally, programs cannot recover from errors.</p>
+<p>The Exception class has two main subclasses: IOException class and RuntimeException Class.</p>
+<img src="./Java Exceptions_files/exceptions1.jpg" alt="Exceptions1">
+<p>Following is a list of most common checked and unchecked <a href="https://www.tutorialspoint.com/java/java_builtin_exceptions.htm">Java's Built-in Exceptions</a>.</p>
+<h2>Exceptions Methods</h2>
+<p>Following is the list of important methods available in the Throwable class.</p>
+<table class="table table-bordered">
+<tbody><tr>
+<th>Sr.No.</th>
+<th style="text-align:center;">Method &amp; Description</th>
+</tr>
+<tr>
+<td class="ts">1</td>
+<td><p><b>public String getMessage()</b></p>
+<p>Returns a detailed message about the exception that has occurred. This message is initialized in the Throwable constructor.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">2</td>
+<td><p><b>public Throwable getCause()</b></p>
+<p>Returns the cause of the exception as represented by a Throwable object.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">3</td>
+<td><p><b>public String toString()</b></p>
+<p>Returns the name of the class concatenated with the result of getMessage().</p>
+</td>
+</tr>
+<tr>
+<td class="ts">4</td>
+<td><p><b>public void printStackTrace()</b></p>
+<p>Prints the result of toString() along with the stack trace to System.err, the error output stream.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">5</td>
+<td><p><b>public StackTraceElement [] getStackTrace()</b></p>
+<p>Returns an array containing each element on the stack trace. The element at index 0 represents the top of the call stack, and the last element in the array represents the method at the bottom of the call stack.</p>
+</td>
+</tr>
+<tr>
+<td class="ts">6</td>
+<td><p><b>public Throwable fillInStackTrace()</b></p>
+<p>Fills the stack trace of this Throwable object with the current stack trace, adding to any previous information in the stack trace.</p>
+</td>
+</tr>
+</tbody></table>
+<h2>Catching Exceptions</h2>
+<p>A method catches an exception using a combination of the <b>try</b> and <b>catch</b> keywords. A try/catch block is placed around the code that might generate an exception. Code within a try/catch block is referred to as protected code, and the syntax for using try/catch looks like the following −</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">try {
+   // Protected code
+} catch (ExceptionName e1) {
+   // Catch block
+}
+</pre>
+<p>The code which is prone to exceptions is placed in the try block. When an exception occurs, that exception occurred is handled by catch block associated with it. Every try block should be immediately followed either by a catch block or finally block.</p>
+<p>A catch statement involves declaring the type of exception you are trying to catch. If an exception occurs in protected code, the catch block (or blocks) that follows the try is checked. If the type of exception that occurred is listed in a catch block, the exception is passed to the catch block much as an argument is passed into a method parameter.</p>
+<h3>Example</h3>
+<p>The following is an array declared with 2 elements. Then the code tries to access the 3<sup>rd</sup> element of the array which throws an exception.</p>
+<a href="http://tpcg.io/gVDoOF" target="_blank" rel="nofollow" class="demo" data-external="true"><i class="fa-external-link"></i> Live Demo</a>
+<pre class="prettyprint notranslate prettyprinted" style=""><span class="com">// File Name : ExcepTest.java</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">io</span><span class="pun">.*;</span><span class="pln">
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">ExcepTest</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> args</span><span class="pun">[])</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+         </span><span class="kwd">int</span><span class="pln"> a</span><span class="pun">[]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="kwd">int</span><span class="pun">[</span><span class="lit">2</span><span class="pun">];</span><span class="pln">
+         </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Access element three :"</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> a</span><span class="pun">[</span><span class="lit">3</span><span class="pun">]);</span><span class="pln">
+      </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">ArrayIndexOutOfBoundsException</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+         </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Exception thrown  :"</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> e</span><span class="pun">);</span><span class="pln">
+      </span><span class="pun">}</span><span class="pln">
+      </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Out of the block"</span><span class="pun">);</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<p>This will produce the following result −</p>
+<h3>Output</h3>
+<pre class="result notranslate">Exception thrown  :java.lang.ArrayIndexOutOfBoundsException: 3
+Out of the block
+</pre>
+<h2>Multiple Catch Blocks</h2>
+<p>A try block can be followed by multiple catch blocks. The syntax for multiple catch blocks looks like the following −</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">try {
+   // Protected code
+} catch (ExceptionType1 e1) {
+   // Catch block
+} catch (ExceptionType2 e2) {
+   // Catch block
+} catch (ExceptionType3 e3) {
+   // Catch block
+}
+</pre>
+<p>The previous statements demonstrate three catch blocks, but you can have any number of them after a single try. If an exception occurs in the protected code, the exception is thrown to the first catch block in the list. If the data type of the exception thrown matches ExceptionType1, it gets caught there. If not, the exception passes down to the second catch statement. This continues until the exception either is caught or falls through all catches, in which case the current method stops execution and the exception is thrown down to the previous method on the call stack.</p>
+<h3>Example</h3>
+<p>Here is code segment showing how to use multiple try/catch statements.</p>
+<pre class="prettyprint notranslate prettyprinted" style=""><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+   file </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">FileInputStream</span><span class="pun">(</span><span class="pln">fileName</span><span class="pun">);</span><span class="pln">
+   x </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">byte</span><span class="pun">)</span><span class="pln"> file</span><span class="pun">.</span><span class="pln">read</span><span class="pun">();</span><span class="pln">
+</span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">IOException</span><span class="pln"> i</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+   i</span><span class="pun">.</span><span class="pln">printStackTrace</span><span class="pun">();</span><span class="pln">
+   </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">-</span><span class="lit">1</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">FileNotFoundException</span><span class="pln"> f</span><span class="pun">)</span><span class="pln"> </span><span class="com">// Not valid! {</span><span class="pln">
+   f</span><span class="pun">.</span><span class="pln">printStackTrace</span><span class="pun">();</span><span class="pln">
+   </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">-</span><span class="lit">1</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<h2>Catching Multiple Type of Exceptions</h2>
+<p>Since Java 7, you can handle more than one exception using a single catch block, this feature simplifies the code. Here is how you would do it −</p>
+<pre class="result notranslate">catch (IOException|FileNotFoundException ex) {
+   logger.log(ex);
+   throw ex;
+</pre>
+<h2>The Throws/Throw Keywords</h2>
+<p>If a method does not handle a checked exception, the method must declare it using the <b>throws</b> keyword. The throws keyword appears at the end of a method's signature.</p>
+<p>You can throw an exception, either a newly instantiated one or an exception that you just caught, by using the <b>throw</b> keyword.</p>
+<p>Try to understand the difference between throws and throw keywords, <i>throws</i> is used to postpone the handling of a checked exception and <i>throw</i> is used to invoke an exception explicitly.</p>
+<p>The following method declares that it throws a RemoteException −</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate prettyprinted" style=""><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">io</span><span class="pun">.*;</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> className </span><span class="pun">{</span><span class="pln">
+
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> deposit</span><span class="pun">(</span><span class="kwd">double</span><span class="pln"> amount</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">RemoteException</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="com">// Method implementation</span><span class="pln">
+      </span><span class="kwd">throw</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">RemoteException</span><span class="pun">();</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+   </span><span class="com">// Remainder of class definition</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<p>A method can declare that it throws more than one exception, in which case the exceptions are declared in a list separated by commas. For example, the following method declares that it throws a RemoteException and an InsufficientFundsException −</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate prettyprinted" style=""><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">io</span><span class="pun">.*;</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> className </span><span class="pun">{</span><span class="pln">
+
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> withdraw</span><span class="pun">(</span><span class="kwd">double</span><span class="pln"> amount</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">RemoteException</span><span class="pun">,</span><span class="pln"> 
+      </span><span class="typ">InsufficientFundsException</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="com">// Method implementation</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+   </span><span class="com">// Remainder of class definition</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<h2>The Finally Block</h2>
+<p>The finally block follows a try block or a catch block. A finally block of code always executes, irrespective of occurrence of an Exception.</p>
+<p>Using a finally block allows you to run any cleanup-type statements that you want to execute, no matter what happens in the protected code.</p>
+<p>A finally block appears at the end of the catch blocks and has the following syntax −</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">try {
+   // Protected code
+} catch (ExceptionType1 e1) {
+   // Catch block
+} catch (ExceptionType2 e2) {
+   // Catch block
+} catch (ExceptionType3 e3) {
+   // Catch block
+}finally {
+   // The finally block always executes.
+}
+</pre>
+<h3>Example</h3>
+<a href="http://tpcg.io/Lg9VKM" target="_blank" rel="nofollow" class="demo" data-external="true"><i class="fa-external-link"></i> Live Demo</a>
+<pre class="prettyprint notranslate prettyprinted" style=""><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">ExcepTest</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> args</span><span class="pun">[])</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="kwd">int</span><span class="pln"> a</span><span class="pun">[]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="kwd">int</span><span class="pun">[</span><span class="lit">2</span><span class="pun">];</span><span class="pln">
+      </span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+         </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Access element three :"</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> a</span><span class="pun">[</span><span class="lit">3</span><span class="pun">]);</span><span class="pln">
+      </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">ArrayIndexOutOfBoundsException</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+         </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Exception thrown  :"</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> e</span><span class="pun">);</span><span class="pln">
+      </span><span class="pun">}</span><span class="kwd">finally</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+         a</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="lit">6</span><span class="pun">;</span><span class="pln">
+         </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"First element value: "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> a</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]);</span><span class="pln">
+         </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"The finally statement is executed"</span><span class="pun">);</span><span class="pln">
+      </span><span class="pun">}</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<p>This will produce the following result −</p>
+<h3>Output</h3>
+<pre class="result notranslate">Exception thrown  :java.lang.ArrayIndexOutOfBoundsException: 3
+First element value: 6
+The finally statement is executed
+</pre>
+<p>Note the following −</p>
+<ul class="list">
+<li><p>A catch clause cannot exist without a try statement.</p></li>
+<li><p>It is not compulsory to have finally clauses whenever a try/catch block is present.</p></li>
+<li><p>The try block cannot be present without either catch clause or finally clause.</p></li>
+<li><p>Any code cannot be present in between the try, catch, finally blocks.</p></li>
+</ul>
+<h2>The try-with-resources</h2>
+<p>Generally, when we use any resources like streams, connections, etc. we have to close them explicitly using finally block. In the following program, we are reading data from a file using <b>FileReader</b> and we are closing it using finally block.</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate prettyprinted" style=""><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">io</span><span class="pun">.</span><span class="typ">File</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">io</span><span class="pun">.</span><span class="typ">FileReader</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">io</span><span class="pun">.</span><span class="typ">IOException</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">ReadData_Demo</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> args</span><span class="pun">[])</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="typ">FileReader</span><span class="pln"> fr </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">;</span><span class="pln">		
+      </span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+         </span><span class="typ">File</span><span class="pln"> file </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">File</span><span class="pun">(</span><span class="str">"file.txt"</span><span class="pun">);</span><span class="pln">
+         fr </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">FileReader</span><span class="pun">(</span><span class="pln">file</span><span class="pun">);</span><span class="pln"> </span><span class="kwd">char</span><span class="pln"> </span><span class="pun">[]</span><span class="pln"> a </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="kwd">char</span><span class="pun">[</span><span class="lit">50</span><span class="pun">];</span><span class="pln">
+         fr</span><span class="pun">.</span><span class="pln">read</span><span class="pun">(</span><span class="pln">a</span><span class="pun">);</span><span class="pln">   </span><span class="com">// reads the content to the array</span><span class="pln">
+         </span><span class="kwd">for</span><span class="pun">(</span><span class="kwd">char</span><span class="pln"> c </span><span class="pun">:</span><span class="pln"> a</span><span class="pun">)</span><span class="pln">
+         </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="pln">c</span><span class="pun">);</span><span class="pln">   </span><span class="com">// prints the characters one by one</span><span class="pln">
+      </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">IOException</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+         e</span><span class="pun">.</span><span class="pln">printStackTrace</span><span class="pun">();</span><span class="pln">
+      </span><span class="pun">}</span><span class="kwd">finally</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+         </span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            fr</span><span class="pun">.</span><span class="pln">close</span><span class="pun">();</span><span class="pln">
+         </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">IOException</span><span class="pln"> ex</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">		
+            ex</span><span class="pun">.</span><span class="pln">printStackTrace</span><span class="pun">();</span><span class="pln">
+         </span><span class="pun">}</span><span class="pln">
+      </span><span class="pun">}</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<p><b>try-with-resources</b>, also referred as <b>automatic resource management</b>, is a new exception handling mechanism that was introduced in Java 7, which automatically closes the resources used within the try catch block.</p>
+<p>To use this statement, you simply need to declare the required resources within the parenthesis, and the created resource will be closed automatically at the end of the block. Following is the syntax of try-with-resources statement.</p>
+<h3>Syntax</h3>
+<pre class="result notranslate">try(FileReader fr = new FileReader("file path")) {
+   // use the resource
+   } catch () {
+      // body of catch 
+   }
+}
+</pre>
+<p>Following is the program that reads the data in a file using try-with-resources statement.</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate prettyprinted" style=""><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">io</span><span class="pun">.</span><span class="typ">FileReader</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">io</span><span class="pun">.</span><span class="typ">IOException</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Try_withDemo</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> args</span><span class="pun">[])</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="kwd">try</span><span class="pun">(</span><span class="typ">FileReader</span><span class="pln"> fr </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">FileReader</span><span class="pun">(</span><span class="str">"E://file.txt"</span><span class="pun">))</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+         </span><span class="kwd">char</span><span class="pln"> </span><span class="pun">[]</span><span class="pln"> a </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="kwd">char</span><span class="pun">[</span><span class="lit">50</span><span class="pun">];</span><span class="pln">
+         fr</span><span class="pun">.</span><span class="pln">read</span><span class="pun">(</span><span class="pln">a</span><span class="pun">);</span><span class="pln">   </span><span class="com">// reads the contentto the array</span><span class="pln">
+         </span><span class="kwd">for</span><span class="pun">(</span><span class="kwd">char</span><span class="pln"> c </span><span class="pun">:</span><span class="pln"> a</span><span class="pun">)</span><span class="pln">
+         </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="pln">c</span><span class="pun">);</span><span class="pln">   </span><span class="com">// prints the characters one by one</span><span class="pln">
+      </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">IOException</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+         e</span><span class="pun">.</span><span class="pln">printStackTrace</span><span class="pun">();</span><span class="pln">
+      </span><span class="pun">}</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<p>Following points are to be kept in mind while working with try-with-resources statement.</p>
+<ul class="list">
+<li><p>To use a class with try-with-resources statement it should implement <b>AutoCloseable</b> interface and the <b>close()</b> method of it gets invoked automatically at runtime.</p></li>
+<li><p>You can declare more than one class in try-with-resources statement.</p></li>
+<li><p>While you declare multiple classes in the try block of try-with-resources statement these classes are closed in reverse order.</p></li>
+<li><p>Except the declaration of resources within the parenthesis everything is the same as normal try/catch block of a try block.</p></li>
+<li><p>The resource declared in try gets instantiated just before the start of the try-block.</p></li>
+<li><p>The resource declared at the try block is implicitly declared as final.</p></li>
+</ul>
+<h2>User-defined Exceptions</h2>
+<p>You can create your own exceptions in Java. Keep the following points in mind when writing your own exception classes −</p>
+<ul class="list">
+<li><p>All exceptions must be a child of Throwable.</p></li>
+<li><p>If you want to write a checked exception that is automatically enforced by the Handle or Declare Rule, you need to extend the Exception class.</p></li>
+<li><p>If you want to write a runtime exception, you need to extend the RuntimeException class.</p></li>
+</ul>
+<p>We can define our own Exception class as below −</p>
+<pre class="result notranslate">class MyException extends Exception {
+}
+</pre>
+<p>You just need to extend the predefined <b>Exception</b> class to create your own Exception. These are considered to be checked exceptions. The following <b>InsufficientFundsException</b> class is a user-defined exception that extends the Exception class, making it a checked exception. An exception class is like any other class, containing useful fields and methods.</p>
+<h3>Example</h3>
+<pre class="prettyprint notranslate prettyprinted" id="exception" style=""><span class="com">// File Name InsufficientFundsException.java</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">io</span><span class="pun">.*;</span><span class="pln">
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">InsufficientFundsException</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">Exception</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+   </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">double</span><span class="pln"> amount</span><span class="pun">;</span><span class="pln">
+   
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">InsufficientFundsException</span><span class="pun">(</span><span class="kwd">double</span><span class="pln"> amount</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">amount </span><span class="pun">=</span><span class="pln"> amount</span><span class="pun">;</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+   
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">double</span><span class="pln"> getAmount</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="kwd">return</span><span class="pln"> amount</span><span class="pun">;</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<p>To demonstrate using our user-defined exception, the following CheckingAccount class contains a withdraw() method that throws an InsufficientFundsException.</p>
+<pre class="prettyprint notranslate prettyprinted" style=""><span class="com">// File Name CheckingAccount.java</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">io</span><span class="pun">.*;</span><span class="pln">
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">CheckingAccount</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+   </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">double</span><span class="pln"> balance</span><span class="pun">;</span><span class="pln">
+   </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> number</span><span class="pun">;</span><span class="pln">
+   
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">CheckingAccount</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> number</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">number </span><span class="pun">=</span><span class="pln"> number</span><span class="pun">;</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+   
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> deposit</span><span class="pun">(</span><span class="kwd">double</span><span class="pln"> amount</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      balance </span><span class="pun">+=</span><span class="pln"> amount</span><span class="pun">;</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+   
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> withdraw</span><span class="pun">(</span><span class="kwd">double</span><span class="pln"> amount</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">InsufficientFundsException</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">amount </span><span class="pun">&lt;=</span><span class="pln"> balance</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+         balance </span><span class="pun">-=</span><span class="pln"> amount</span><span class="pun">;</span><span class="pln">
+      </span><span class="pun">}</span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+         </span><span class="kwd">double</span><span class="pln"> needs </span><span class="pun">=</span><span class="pln"> amount </span><span class="pun">-</span><span class="pln"> balance</span><span class="pun">;</span><span class="pln">
+         </span><span class="kwd">throw</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">InsufficientFundsException</span><span class="pun">(</span><span class="pln">needs</span><span class="pun">);</span><span class="pln">
+      </span><span class="pun">}</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+   
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">double</span><span class="pln"> getBalance</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="kwd">return</span><span class="pln"> balance</span><span class="pun">;</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+   
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> getNumber</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="kwd">return</span><span class="pln"> number</span><span class="pun">;</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<p>The following BankDemo program demonstrates invoking the deposit() and withdraw() methods of CheckingAccount.</p>
+<pre class="prettyprint notranslate prettyprinted" style=""><span class="com">// File Name BankDemo.java</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">BankDemo</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> </span><span class="pun">[]</span><span class="pln"> args</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="typ">CheckingAccount</span><span class="pln"> c </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">CheckingAccount</span><span class="pun">(</span><span class="lit">101</span><span class="pun">);</span><span class="pln">
+      </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Depositing $500..."</span><span class="pun">);</span><span class="pln">
+      c</span><span class="pun">.</span><span class="pln">deposit</span><span class="pun">(</span><span class="lit">500.00</span><span class="pun">);</span><span class="pln">
+      
+      </span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+         </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"\nWithdrawing $100..."</span><span class="pun">);</span><span class="pln">
+         c</span><span class="pun">.</span><span class="pln">withdraw</span><span class="pun">(</span><span class="lit">100.00</span><span class="pun">);</span><span class="pln">
+         </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"\nWithdrawing $600..."</span><span class="pun">);</span><span class="pln">
+         c</span><span class="pun">.</span><span class="pln">withdraw</span><span class="pun">(</span><span class="lit">600.00</span><span class="pun">);</span><span class="pln">
+      </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">InsufficientFundsException</span><span class="pln"> e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+         </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Sorry, but you are short $"</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> e</span><span class="pun">.</span><span class="pln">getAmount</span><span class="pun">());</span><span class="pln">
+         e</span><span class="pun">.</span><span class="pln">printStackTrace</span><span class="pun">();</span><span class="pln">
+      </span><span class="pun">}</span><span class="pln">
+   </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></pre>
+<p>Compile all the above three files and run BankDemo. This will produce the following result −</p>
+<h3>Output</h3>
+<pre class="result notranslate">Depositing $500...
+
+Withdrawing $100...
+
+Withdrawing $600...
+Sorry, but you are short $200.0
+InsufficientFundsException
+         at CheckingAccount.withdraw(CheckingAccount.java:25)
+         at BankDemo.main(BankDemo.java:13)
+</pre>
+<h2>Common Exceptions</h2>
+<p>In Java, it is possible to define two catergories of Exceptions and Errors.</p>
+<ul class="list">
+<li><p><b>JVM Exceptions</b> − These are exceptions/errors that are exclusively or logically thrown by the JVM. Examples: NullPointerException, ArrayIndexOutOfBoundsException, ClassCastException.</p></li>
+<li><p><b>Programmatic Exceptions</b> − These exceptions are thrown explicitly by the application or the API programmers. Examples: IllegalArgumentException, IllegalStateException.</p></li>
+</ul>
+<hr>
+<div class="pre-btn">
+<a href="https://www.tutorialspoint.com/java/java_files_io.htm"><i class="icon icon-arrow-circle-o-left big-font"></i> Previous Page</a>
+</div>
+<div class="print-btn center">
+<a href="https://www.tutorialspoint.com/cgi-bin/printpage.cgi" target="_blank"><i class="icon icon-print big-font"></i> Print</a>
+</div>
+<div class="nxt-btn">
+<a href="https://www.tutorialspoint.com/java/java_innerclasses.htm">Next Page <i class="icon icon-arrow-circle-o-right big-font"></i>&nbsp;</a>
+</div>
+<hr>
+<!-- PRINTING ENDS HERE -->
+<div class="bottomgooglead">
+<div class="bottomadtag">Advertisements</div>
+<!-- /60931893/tutorial_bottom_leader_board -->
+<div id="div-gpt-ad-1510138782906-3">
+<script>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1510138782906-3'); });
+</script>
+<div id="google_ads_iframe_/60931893/tutorial_bottom_leader_board_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/60931893/tutorial_bottom_leader_board_0" title="3rd party ad content" name="google_ads_iframe_/60931893/tutorial_bottom_leader_board_0" width="600" height="400" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" src="./Java Exceptions_files/saved_resource.html"></iframe></div></div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-3" id="rightbar">
+<div class="simple-ad">
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://www.facebook.com/sharer.php?u=&#39; + &#39;http://www.tutorialspoint.com/java/java_exceptions.htm&#39;,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=456,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;" data-external="true">
+<img src="./Java Exceptions_files/facebookIcon.jpg" alt="img">
+</a>
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://twitter.com/share?url=&#39; + &#39;http://www.tutorialspoint.com/java/java_exceptions.htm&#39;,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=456,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;" data-external="true">
+<img src="./Java Exceptions_files/twitterIcon.jpg" alt="img">
+</a>
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://www.linkedin.com/cws/share?url=&#39; + &#39;http://www.tutorialspoint.com/java/java_exceptions.htm&amp;title=&#39;+ document.title,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=456,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;" data-external="true">
+<img src="./Java Exceptions_files/linkedinIcon.jpg" alt="img">
+</a>
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://plus.google.com/share?url=http://www.tutorialspoint.com/java/java_exceptions.htm&#39;,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=456,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;" data-external="true">
+<img src="./Java Exceptions_files/googlePlusIcon.jpg" alt="img">
+</a>
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://www.stumbleupon.com/submit?url=http://www.tutorialspoint.com/java/java_exceptions.htm&amp;title=&#39;+ document.title,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=456,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;" data-external="true">
+<img src="./Java Exceptions_files/StumbleUponIcon.jpg" alt="img">
+</a>
+<a href="javascript:void(0)" onclick="var sTop = window.screen.height/2-(218); var sLeft = window.screen.width/2-(313);window.open(&#39;https://reddit.com/submit?url=http://www.tutorialspoint.com/java/java_exceptions.htm&amp;title=&#39;+ document.title,&#39;sharer&#39;,&#39;toolbar=0,status=0,width=626,height=656,top=&#39;+sTop+&#39;,left=&#39;+sLeft);return false;" data-external="true">
+<img src="./Java Exceptions_files/reddit.jpg" alt="img">
+</a>
+</div>
+<div class="rightgooglead">
+<!-- /60931893/tutorial_right_top -->
+<div id="div-gpt-ad-1510138782906-2" style="height:250px; width:300px;">
+<script>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1510138782906-2'); });
+</script>
+<div id="google_ads_iframe_/60931893/tutorial_right_top_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/60931893/tutorial_right_top_0" title="3rd party ad content" name="google_ads_iframe_/60931893/tutorial_right_top_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" src="./Java Exceptions_files/saved_resource(1).html"></iframe></div></div>
+</div>
+<div class="rightgooglead">
+<!-- /60931893/tutorial_right_middle -->
+<div id="div-gpt-ad-1510138782906-1">
+<script>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1510138782906-1'); });
+</script>
+<div id="google_ads_iframe_/60931893/tutorial_right_middle_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/60931893/tutorial_right_middle_0" title="3rd party ad content" name="google_ads_iframe_/60931893/tutorial_right_middle_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" src="./Java Exceptions_files/saved_resource(2).html"></iframe></div></div>
+</div>
+<div class="rightgooglead">
+<!-- /60931893/tutorial_right_bottom -->
+<div id="div-gpt-ad-1510138782906-0">
+<script>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1510138782906-0'); });
+</script>
+<div id="google_ads_iframe_/60931893/tutorial_right_bottom_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/60931893/tutorial_right_bottom_0" title="3rd party ad content" name="google_ads_iframe_/60931893/tutorial_right_bottom_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" src="./Java Exceptions_files/saved_resource(3).html"></iframe></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="footer-copyright">
+<div class="container">
+<div class="row">
+<div class="col-md-1">
+<a href="https://www.tutorialspoint.com/index.htm" class="logo"> <img alt="Tutorials Point" class="img-responsive" src="./Java Exceptions_files/logo-footer.png"> </a>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+   <nav id="sub-menu">
+      <ul>
+         <li><a href="https://www.tutorialspoint.com/about/tutorials_writing.htm">Write for us</a></li>
+         <li><a href="https://www.tutorialspoint.com/about/faq.htm">FAQ's</a></li>
+         <li><a href="https://www.tutorialspoint.com/about/about_helping.htm">Helping</a></li>
+         <li><a href="https://www.tutorialspoint.com/about/contact_us.htm">Contact</a></li>
+      </ul>
+   </nav>
+</div>
+<div class="col-md-3 col-sm-12 col-xs-12">
+<p>© Copyright 2017. All Rights Reserved.</p>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+   <div class="news-group">
+      <input type="text" class="form-control-foot search" name="textemail" id="textemail" autocomplete="off" placeholder="Enter email for newsletter" onfocus="if (this.value == &#39;Enter email for newsletter...&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Enter email for newsletter...&#39;;}">
+      <span class="input-group-btn"> <button class="btn btn-default btn-footer" id="btnemail" type="submit" onclick="javascript:void(0);">go</button> </span>
+      <div id="newsresponse"></div>
+   </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Libs -->
+<script type="text/javascript" src="./Java Exceptions_files/custom-min.js.download"></script><a class="scroll-to-top visible" href="https://www.tutorialspoint.com/#" id="scrollToTop"><i class="icon icon-chevron-up icon-white"></i></a>
+<script src="./Java Exceptions_files/urchin.js.download">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+$('.pg-icon').click(function(){
+   $('.wrapLoader').show();
+});
+</script>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Java Exceptions",
+    "name": "Java Exceptions",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.tutorialspoint.com/java/java_exceptions.htm"
+    },
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://www.tutorialspoint.com/java/images/exceptions1.jpg",
+        "width": 600,
+        "height": 317
+    },
+    "author": {
+        "@type": "Organization",
+        "name": "Tutorials Point",
+        "url": "https://www.tutorialspoint.com",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.tutorialspoint.com/images/logo60.png",
+            "width": 210,
+            "height": 60
+        }
+    },
+    "datePublished": "November 04 2017 15:07:15.",
+    "dateModified": "October 31 2017 05:22:55.",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Tutorials Point",
+        "url": "https://www.tutorialspoint.com",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.tutorialspoint.com/images/logo60.png",
+            "width": 210,
+            "height": 60
+        }
+    },
+    "description": "An exception (or exceptional event) is a problem that arises during the execution of a program. When an Exception occurs the normal flow of the program is disrupted and the program/Application terminates abnormally, which is not recommended, therefore, th..."
+}
+</script>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+                "name": "www.tutorialspoint.com",
+                "@id": "https://www.tutorialspoint.com"
+            }
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+                "name": "Java",
+                "@id": "https://www.tutorialspoint.com/java"
+            }
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+                "name": "Java - Exceptions"
+            }
+        }
+    ]
+}
+</script>
+
+
+
+<div class="autocomplete-suggestions " style="top: 2262.8px; left: 0px; width: 8px;"></div></body></html>

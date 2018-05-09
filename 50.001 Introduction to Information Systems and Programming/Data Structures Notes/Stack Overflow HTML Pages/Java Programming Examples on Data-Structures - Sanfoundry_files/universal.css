@@ -1,0 +1,39 @@
+.ml-webforms-popup-overlay {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2147483640;
+    display: none;
+    background: #000;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: alpha(opacity=50);
+    -moz-opacity: .5;
+    -khtml-opacity: .5;
+    opacity: .5
+}
+
+.mailerlite-animation {
+  -webkit-transition: all .5s ease-out;
+  -moz-transition: all .5s ease-out;
+  -o-transition: all .5s ease-out;
+  transition: all .5s ease-out;
+}
+
+.mailerlite-form-slidebox {
+  width: 500px;
+}
+
+@media only screen and (max-width: 768px) {
+  .mailerlite-form-slidebox {
+    width: 100%;
+  }
+}
+
+@media (max-device-width:768px){
+  .ml-webforms-popup-overlay{background:0 0!important; display:none!important}
+}
+
+

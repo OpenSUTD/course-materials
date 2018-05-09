@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0057)http://introcs.cs.princeton.edu/java/44st/DeDup.java.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="shortcut icon" href="http://introcs.cs.princeton.edu/favicon.ico">
+<link rel="stylesheet" href="./DeDup.java_files/java.css" type="text/css">
+
+<title>DeDup.java</title>
+
+
+<meta name="AUTHOR" content="Robert Sedgewick and Kevin Wayne">
+<meta name="DESCRIPTION" content="DeDup code in Java">
+<meta name="TITLE" content="DeDup code in Java">
+<meta name="KEYWORDS" content="DeDup,java,programming,computer science,algorithm,program,code">
+<meta name="ROBOTS" content="INDEX,FOLLOW">
+
+</head>
+
+
+<body>
+<center><h1>DeDup.java</h1></center><p><br>
+
+Below is the syntax highlighted version of <a href="http://introcs.cs.princeton.edu/java/44st/DeDup.java">DeDup.java</a>
+from <a href="http://introcs.cs.princeton.edu/java/44st">§4.4 Symbol Tables</a>.
+</p><p><br>
+
+<!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+</p><pre><tt><span class="comment">/******************************************************************************</span>
+<span class="comment"> *  Compilation:  javac DeDup.java</span>
+<span class="comment"> *  Execution:    java DeDup &lt; words.txt</span>
+<span class="comment"> *  Dependencies: SET.java StdIn.java</span>
+<span class="comment"> *</span>
+<span class="comment"> *  Read in a list of words from standard input and print out</span>
+<span class="comment"> *  each word, removing any duplicates.</span>
+<span class="comment"> *</span>
+<span class="comment"> ******************************************************************************/</span>
+
+<span class="keyword">public</span><span class="normal"> </span><span class="keyword">class</span><span class="normal"> </span><span class="classname">DeDup</span><span class="normal"> </span><span class="cbracket">{</span><span class="normal">  </span>
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">main</span><span class="symbol">(</span><span class="normal">String</span><span class="symbol">[]</span><span class="normal"> args</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="usertype">SET&lt;String&gt;</span><span class="normal"> distinct </span><span class="symbol">=</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> SET</span><span class="symbol">&lt;</span><span class="normal">String</span><span class="symbol">&gt;();</span>
+<span class="normal">        </span><span class="keyword">while</span><span class="normal"> </span><span class="symbol">(!</span><span class="normal">StdIn</span><span class="symbol">.</span><span class="function">isEmpty</span><span class="symbol">())</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">            </span><span class="usertype">String</span><span class="normal"> key </span><span class="symbol">=</span><span class="normal"> StdIn</span><span class="symbol">.</span><span class="function">readString</span><span class="symbol">();</span>
+<span class="normal">            </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(!</span><span class="normal">distinct</span><span class="symbol">.</span><span class="function">contains</span><span class="symbol">(</span><span class="normal">key</span><span class="symbol">))</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">                distinct</span><span class="symbol">.</span><span class="function">add</span><span class="symbol">(</span><span class="normal">key</span><span class="symbol">);</span>
+<span class="normal">                StdOut</span><span class="symbol">.</span><span class="function">println</span><span class="symbol">(</span><span class="normal">key</span><span class="symbol">);</span>
+<span class="normal">            </span><span class="cbracket">}</span>
+<span class="normal">        </span><span class="cbracket">}</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+<span class="cbracket">}</span>
+</tt></pre>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./DeDup.java_files/ga.js.download" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-10811519-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+
+
+<p><br></p><address><small>
+Copyright © 2000–2011, Robert Sedgewick and Kevin Wayne.
+<br>Last updated: Tue Aug 30 09:58:33 EDT 2016.
+</small></address>
+
+
+</body></html>

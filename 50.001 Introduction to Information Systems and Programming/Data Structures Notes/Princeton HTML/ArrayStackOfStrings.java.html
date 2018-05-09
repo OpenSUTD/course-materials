@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0074)http://introcs.cs.princeton.edu/java/43stack/ArrayStackOfStrings.java.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="shortcut icon" href="http://introcs.cs.princeton.edu/favicon.ico">
+<link rel="stylesheet" href="./ArrayStackOfStrings.java_files/java.css" type="text/css">
+
+<title>ArrayStackOfStrings.java</title>
+
+
+<meta name="AUTHOR" content="Robert Sedgewick and Kevin Wayne">
+<meta name="DESCRIPTION" content="ArrayStackOfStrings code in Java">
+<meta name="TITLE" content="ArrayStackOfStrings code in Java">
+<meta name="KEYWORDS" content="ArrayStackOfStrings,java,programming,computer science,algorithm,program,code">
+<meta name="ROBOTS" content="INDEX,FOLLOW">
+
+</head>
+
+
+<body>
+<center><h1>ArrayStackOfStrings.java</h1></center><p><br>
+
+Below is the syntax highlighted version of <a href="http://introcs.cs.princeton.edu/java/43stack/ArrayStackOfStrings.java">ArrayStackOfStrings.java</a>
+from <a href="http://introcs.cs.princeton.edu/java/43stack">§4.3 Stacks and Queues</a>.
+</p><p><br>
+
+<!-- Generator: GNU source-highlight 3.1.6
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+</p><pre><tt><span class="comment">/******************************************************************************</span>
+<span class="comment"> *  Compilation:  javac ArrayStackOfStrings.java</span>
+<span class="comment"> *  Execution:    java ArrayStackOfStrings</span>
+<span class="comment"> *  Data files:   </span><span class="url">http://introcs.cs.princeton.edu/43stack/tobe.txt</span>
+<span class="comment"> *  </span>
+<span class="comment"> *  Stack of strings implementation with a fixed-size array.</span>
+<span class="comment"> *</span>
+<span class="comment"> *  % more tobe.txt </span>
+<span class="comment"> *  to be or not to - be - - that - - - is </span>
+<span class="comment"> * </span>
+<span class="comment"> *  % java ArrayStackOfStrings 5 &lt; tobe.txt </span>
+<span class="comment"> *  to be not that or be</span>
+<span class="comment"> *</span>
+<span class="comment"> ******************************************************************************/</span>
+
+<span class="preproc">import</span><span class="normal"> java</span><span class="symbol">.</span><span class="normal">util</span><span class="symbol">.</span><span class="normal">Iterator</span><span class="symbol">;</span>
+<span class="preproc">import</span><span class="normal"> java</span><span class="symbol">.</span><span class="normal">util</span><span class="symbol">.</span><span class="normal">NoSuchElementException</span><span class="symbol">;</span>
+
+<span class="keyword">public</span><span class="normal"> </span><span class="keyword">class</span><span class="normal"> </span><span class="classname">ArrayStackOfStrings</span><span class="normal"> </span><span class="keyword">implements</span><span class="normal"> Iterable</span><span class="symbol">&lt;</span><span class="normal">String</span><span class="symbol">&gt;</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">    </span><span class="keyword">private</span><span class="normal"> String</span><span class="symbol">[]</span><span class="normal"> items</span><span class="symbol">;</span><span class="normal">  </span><span class="comment">// holds the items</span>
+<span class="normal">    </span><span class="keyword">private</span><span class="normal"> </span><span class="type">int</span><span class="normal"> n</span><span class="symbol">;</span><span class="normal">           </span><span class="comment">// number of items in stack</span>
+
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="function">ArrayStackOfStrings</span><span class="symbol">(</span><span class="type">int</span><span class="normal"> capacity</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        items </span><span class="symbol">=</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> String</span><span class="symbol">[</span><span class="normal">capacity</span><span class="symbol">];</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="type">boolean</span><span class="normal"> </span><span class="function">isEmpty</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> n </span><span class="symbol">==</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span><span class="normal"> </span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="type">boolean</span><span class="normal"> </span><span class="function">isFull</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> n </span><span class="symbol">==</span><span class="normal"> items</span><span class="symbol">.</span><span class="normal">length</span><span class="symbol">;</span><span class="normal"> </span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">push</span><span class="symbol">(</span><span class="usertype">String</span><span class="normal"> item</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        items</span><span class="symbol">[</span><span class="normal">n</span><span class="symbol">++]</span><span class="normal"> </span><span class="symbol">=</span><span class="normal"> item</span><span class="symbol">;</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="usertype">String</span><span class="normal"> </span><span class="function">pop</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> items</span><span class="symbol">[--</span><span class="normal">n</span><span class="symbol">];</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="usertype">Iterator&lt;String&gt;</span><span class="normal"> </span><span class="function">iterator</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">return</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> </span><span class="function">ReverseArrayIterator</span><span class="symbol">();</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+<span class="normal">    </span><span class="comment">// an iterator, doesn't implement remove() since it's optional</span>
+<span class="normal">    </span><span class="keyword">private</span><span class="normal"> </span><span class="keyword">class</span><span class="normal"> </span><span class="classname">ReverseArrayIterator</span><span class="normal"> </span><span class="keyword">implements</span><span class="normal"> Iterator</span><span class="symbol">&lt;</span><span class="normal">String</span><span class="symbol">&gt;</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="keyword">private</span><span class="normal"> </span><span class="type">int</span><span class="normal"> i </span><span class="symbol">=</span><span class="normal"> n</span><span class="symbol">-</span><span class="number">1</span><span class="symbol">;</span>
+<span class="normal">        </span><span class="keyword">public</span><span class="normal"> </span><span class="type">boolean</span><span class="normal"> </span><span class="function">hasNext</span><span class="symbol">()</span><span class="normal">  </span><span class="cbracket">{</span><span class="normal"> </span><span class="keyword">return</span><span class="normal"> i </span><span class="symbol">&gt;=</span><span class="normal"> </span><span class="number">0</span><span class="symbol">;</span><span class="normal">                              </span><span class="cbracket">}</span>
+<span class="normal">        </span><span class="keyword">public</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">remove</span><span class="symbol">()</span><span class="normal">      </span><span class="cbracket">{</span><span class="normal"> </span><span class="keyword">throw</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> </span><span class="function">UnsupportedOperationException</span><span class="symbol">();</span><span class="normal">  </span><span class="cbracket">}</span>
+
+<span class="normal">        </span><span class="keyword">public</span><span class="normal"> </span><span class="usertype">String</span><span class="normal"> </span><span class="function">next</span><span class="symbol">()</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">            </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(!</span><span class="function">hasNext</span><span class="symbol">())</span><span class="normal"> </span><span class="keyword">throw</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> </span><span class="function">NoSuchElementException</span><span class="symbol">();</span>
+<span class="normal">            </span><span class="keyword">return</span><span class="normal"> items</span><span class="symbol">[</span><span class="normal">i</span><span class="symbol">--];</span>
+<span class="normal">        </span><span class="cbracket">}</span>
+<span class="normal">    </span><span class="cbracket">}</span>
+
+
+<span class="normal">    </span><span class="keyword">public</span><span class="normal"> </span><span class="keyword">static</span><span class="normal"> </span><span class="type">void</span><span class="normal"> </span><span class="function">main</span><span class="symbol">(</span><span class="normal">String</span><span class="symbol">[]</span><span class="normal"> args</span><span class="symbol">)</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">        </span><span class="type">int</span><span class="normal"> capacity </span><span class="symbol">=</span><span class="normal"> Integer</span><span class="symbol">.</span><span class="function">parseInt</span><span class="symbol">(</span><span class="normal">args</span><span class="symbol">[</span><span class="number">0</span><span class="symbol">]);</span>
+<span class="normal">        </span><span class="usertype">ArrayStackOfStrings</span><span class="normal"> stack </span><span class="symbol">=</span><span class="normal"> </span><span class="keyword">new</span><span class="normal"> </span><span class="function">ArrayStackOfStrings</span><span class="symbol">(</span><span class="normal">capacity</span><span class="symbol">);</span>
+<span class="normal">        </span><span class="keyword">while</span><span class="normal"> </span><span class="symbol">(!</span><span class="normal">StdIn</span><span class="symbol">.</span><span class="function">isEmpty</span><span class="symbol">())</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">            </span><span class="usertype">String</span><span class="normal"> item </span><span class="symbol">=</span><span class="normal"> StdIn</span><span class="symbol">.</span><span class="function">readString</span><span class="symbol">();</span>
+<span class="normal">            </span><span class="keyword">if</span><span class="normal"> </span><span class="symbol">(!</span><span class="normal">item</span><span class="symbol">.</span><span class="function">equals</span><span class="symbol">(</span><span class="string">"-"</span><span class="symbol">))</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">                stack</span><span class="symbol">.</span><span class="function">push</span><span class="symbol">(</span><span class="normal">item</span><span class="symbol">);</span><span class="normal"> </span>
+<span class="normal">            </span><span class="cbracket">}</span>
+<span class="normal">            </span><span class="keyword">else</span><span class="normal"> </span><span class="cbracket">{</span>
+<span class="normal">                StdOut</span><span class="symbol">.</span><span class="function">print</span><span class="symbol">(</span><span class="normal">stack</span><span class="symbol">.</span><span class="function">pop</span><span class="symbol">()</span><span class="normal"> </span><span class="symbol">+</span><span class="normal"> </span><span class="string">" "</span><span class="symbol">);</span>
+<span class="normal">            </span><span class="cbracket">}</span>
+<span class="normal">        </span><span class="cbracket">}</span>
+<span class="normal">        StdOut</span><span class="symbol">.</span><span class="function">println</span><span class="symbol">();</span>
+<span class="normal">    </span><span class="cbracket">}</span><span class="normal"> </span>
+<span class="cbracket">}</span><span class="normal"> </span>
+</tt></pre>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./ArrayStackOfStrings.java_files/ga.js.download" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-10811519-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+
+
+<p><br></p><address><small>
+Copyright © 2000–2011, Robert Sedgewick and Kevin Wayne.
+<br>Last updated: Tue Aug 30 09:58:33 EDT 2016.
+</small></address>
+
+
+</body></html>

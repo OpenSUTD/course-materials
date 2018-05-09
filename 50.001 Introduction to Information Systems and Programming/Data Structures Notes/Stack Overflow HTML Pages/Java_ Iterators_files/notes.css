@@ -1,0 +1,115 @@
+
+body {
+    background-color: #fff;
+    font: 11px/16px verdana, tahoma, arial, sans-serif;
+}
+#content {
+    width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+td, th {font: 11px/16px verdana, tahoma, arial, sans-serif;}
+dt     {font-weight: bold; padding-top: 0.5em;}
+
+h1   {
+    font: italic 32px georgia, 'times new roman', sans-serif;
+}
+
+.title {font: italic 16px georgia, 'times new roman', sans-serif;}
+
+.syntax {border: thin solid; padding: 0.5em; background-color: #eee;}
+.purpose {border: thin solid; padding: 0.5em; background-color: #ccf;}
+
+h2 {
+    font-size: larger;
+    font-weight: bold;
+    color: #600;
+    border-style: solid;
+    border-color: #660000;
+    border-width: 0px 0px 1px 0px;
+    padding: 0.2em;
+    padding-left: 0;
+    margin-top: 1.5em;
+    margin-left: 1px;
+    margin-right: 1px;
+    margin-bottom: 1px;
+}
+h3 {
+    /*font-size: 100%;*/
+    font-weight: bold;
+    margin-bottom: 0;
+    margin-top   : 0.75em;
+    padding-top  : 0.0;
+    padding-bottom: 0.0;
+    color: #055;
+}
+p   {margin-top:0.5em; margin-bottom: 0.5em}
+li  {margin-top:0.5em;}
+h4,h5,h6 {font-family: sans-serif; padding-top: 1em; }
+pre  {font-family: "Lucida Sans Typewriter", monospace; margin-top: 0; margin-bottom: 0;}
+.code {font-family: "Lucida Sans Typewriter", monospace;}
+
+strong.color {color: blue}  /* is this still used??? */
+.hylyt    {background-color: yellow;}
+.hilite   {font-weight: bold; background-color: yellow;}
+.hiliteu   {font-weight: bold; background-color: yellow; text-decoration: underline overline;}
+.hilite-g {font-weight: bold; background-color: #afa;}
+.hilite-b {font-weight: bold; background-color: #aaf;}
+.leadin {font-weight: bold;}
+
+em   {font-style: italic; font-weight: bold }
+ul   {margin-top: 0; margin-bottom: 0;}
+ol   {margin-top: 0; margin-bottom: 0;}
+dl   {margin-top: 0; margin-bottom: 0;}
+li.sec   {margin-top: 0.5em;}
+
+.compact {margin-top: 0;}
+.file {padding      : 4px;
+             margin-left  : 1em; 
+             border-left  : solid thin;
+             border-top   : solid thin;
+             border-right : solid;
+             border-bottom: solid;
+             margin-top   : 0.5em;
+             margin-bottom: 0.5em;
+             background-color: #FFD;}
+.example {padding      : 4px;
+             margin-left  : 1em; 
+             border-left  : solid thin;
+             margin-top   : 0.5em;
+             margin-bottom: 0.5em;
+             background-color: #FFD;}
+.fragment {padding      : 4px;
+             margin-left  : 1em;
+             border-left  : solid thin;
+             margin-top   : 0.5em;
+             margin-bottom: 0.5em;
+             background-color: #FFD;}
+.fragmentBox {padding     : 4px;
+             margin-left  : 1em;
+             border       : dashed thin;
+             background-color: #FFD;}
+.example2 {padding      : 4px;
+             margin-left  : 0;
+             margin-top   : 0.5em;
+             margin-bottom: 0.5em;}
+.footer  {
+    font-size: xx-small;
+    font-style:italic;
+    border-top : thin solid;
+    margin-top : .8em ;
+}
+
+.level1 {background-color: green;}
+.level2 {color: blue;}
+.level3 {color: black;}
+
+.solidbox {border : thin solid;}
+
+.rowheader {background-color: #C0C0C0; font-style: italic;}
+
+/* Question/answer styles */
+.answerspace {}
+.answer    {display: none;}
+.question  {margin-top: 1.0em; page-break-inside: avoid}
+.mc        {list-style-type: lower-alpha;}
