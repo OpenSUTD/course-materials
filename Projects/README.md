@@ -23,8 +23,12 @@ Static data for SUTD.
 Telegram bot that sends you a link to a jupyter notebook once you power your raspberry pi up
 
 * **Laser cut calipers**, Isaac  
-`SVG` `hardware` `tools`
+`SVG` `hardware` `tools`  
 Laser cut vernier calipers with depth rod. Beginner-intermediate project.
+
+* **kyancer_bot**, Isaac
+`python` `telegram`  
+Telegram bot that converts your text to headaches using inline queries. 
 
 ## Contributing a folder
 NB: If you are using windows ang git bash, open up a terminal (powershell or cmd is fine) in with admin access and use `git config core.longpaths true` to handle long file names.

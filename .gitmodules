@@ -13,3 +13,6 @@
 [submodule "Projects/jupyter_sendme"]
 	path = Projects/jupyter_sendme
 	url = https://github.com/isaacngym/jupyter_sendme
+[submodule "Projects/kyancer_bot"]
+	path = Projects/kyancer_bot
+	url = https://github.com/isaacngym/kyancer_bot
