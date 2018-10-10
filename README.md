@@ -1,4 +1,4 @@
-# OpenSUTD
+# First-gen prototype OpenSUTD. We've created the [OpenSUTD organization](https://github.com/opensutd) - this repo has been forked there and will no longer be updated here. 
 Hello there, welcome to OpenSUTD! We believe knowledge should be available for everyone who wants to access it. MIT set up OpenCourseWare in the spirit of sharing knowledge with everybody - this is our take on it, and it'll be interesting to see what this evolves into!  
 
 > **Important note:** This is crowd-contributed stuff that's in its infancy and it'd be nice if this can be developed into a useful & valuable platform **before** it is shared around!  
