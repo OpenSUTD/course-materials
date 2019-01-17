@@ -1,4 +1,4 @@
-# OpenSUTD/Projects
+# Important note: Do NOT submit projects here as of Jan 2019! The projects here will be given another home eventually.
 This is a crowd-sourced collection of useful projects, scripts, and tools from the SUTD community.
 
 ## List of Projects
